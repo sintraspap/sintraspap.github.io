@@ -11,21 +11,19 @@
   a{text-decoration:none;color:inherit}
   .container{max-width:1100px;margin:0 auto;padding:0 16px}
 
-  /* Top */
-  .top{border-bottom:1px solid var(--borde);padding:12px 0}
-  .marca{font-weight:800}
-
-  /* Nav */
-  nav{background:var(--azul);color:#fff}
-  .nav-row{display:flex;align-items:center;gap:16px;padding:10px 0}
-  .links{display:flex;gap:10px;flex-wrap:wrap}
-  .links a{padding:10px 12px;border-radius:6px}
-  .links a:hover{background:var(--azul-hover)}
-  .burger{margin-left:auto;display:none;background:transparent;border:1px solid rgba(255,255,255,.4);border-radius:6px;color:#fff;padding:8px 10px}
+  /* Header institucional */
+  header{background:var(--azul);color:#fff;position:sticky;top:0;z-index:50}
+  .head{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+  .brand{font-weight:800;font-size:20px}
+  .menu{list-style:none;display:flex;gap:18px;margin:0;padding:0;flex-wrap:wrap}
+  .menu a{color:#fff;padding:8px 10px;border-radius:6px}
+  .menu a:hover{background:var(--azul-hover)}
+  .burger{display:none;margin-left:12px;background:transparent;border:1px solid rgba(255,255,255,.5);color:#fff;border-radius:6px;padding:8px 10px}
   @media(max-width:820px){
+    .head{flex-wrap:wrap;gap:8px}
     .burger{display:block}
-    .links{display:none;width:100%;flex-direction:column;border-top:1px solid rgba(255,255,255,.25);margin-top:6px}
-    .links.show{display:flex}
+    .menu{display:none;width:100%;border-top:1px solid rgba(255,255,255,.25);padding-top:8px}
+    .menu.show{display:flex;flex-direction:column}
   }
 
   /* Contenido */
@@ -43,10 +41,9 @@
   th,td{padding:10px;border-bottom:1px solid var(--borde);text-align:left}
   th{background:#f8fafc}
   tr:hover td{background:#fafafa}
-  .nota{font-size:13px;color:#666;margin-top:6px}
 
   /* Footer */
-  footer{background:#091f40;color:#fff}
+  footer{background:#091f40;color:#fff;margin-top:16px}
   .foot{display:grid;gap:18px;grid-template-columns:1fr; padding:22px 0}
   @media(min-width:760px){ .foot{grid-template-columns:1.2fr 1fr} }
   .foot a{color:#e6e6e6;text-decoration:underline}
@@ -55,28 +52,23 @@
 </head>
 <body>
 
-<!-- Cabecera -->
-<div class="top">
-  <div class="container"><div class="marca">SINTRASPAP</div></div>
-</div>
-
-<!-- Menú -->
-<nav>
-  <div class="container">
-    <div class="nav-row">
-      <strong>Institucional</strong>
-      <button class="burger" onclick="document.querySelector('.links').classList.toggle('show')">☰ Menú</button>
-    </div>
-    <div class="links">
-      <a href="#institucional">INSTITUCIONAL</a>
-      <a href="#consultas">CONSULTAS</a>
-      <a href="#gestiones">GESTIONES</a>
-      <a href="#seguridad">SEGURIDAD</a>
-      <a href="#directorio">DIRECTORIO</a>
-      <a href="#contacto">CONTACTO</a>
-    </div>
+<!-- Encabezado -->
+<header>
+  <div class="container head">
+    <div class="brand">SINTRASPAP</div>
+    <button class="burger" onclick="document.querySelector('.menu').classList.toggle('show')">☰ Menú</button>
+    <nav style="width:100%">
+      <ul class="menu">
+        <li><a href="#institucional">Institucional</a></li>
+        <li><a href="#consultas">Consultas</a></li>
+        <li><a href="#gestiones">Gestiones</a></li>
+        <li><a href="#seguridad">Seguridad</a></li>
+        <li><a href="#directorio">Directorio</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
   </div>
-</nav>
+</header>
 
 <!-- Contenido -->
 <main class="container">
@@ -102,16 +94,16 @@
     <p>Normativas, campañas y recomendaciones para el sector de seguridad privada.</p>
   </section>
 
-  <!-- DIRECTORIO MUY SIMPLE -->
+  <!-- DIRECTORIO -->
   <section id="directorio">
     <h2>Directorio de Empresas</h2>
 
-    <!-- 1) BUSCADOR -->
+    <!-- Buscador -->
     <div class="buscador">
       <input id="q" class="input" type="search" placeholder="Escribí para buscar (nombre, RUC, ciudad o contacto)..." oninput="filtrar()" />
     </div>
 
-    <!-- 2) TABLA: EDITÁ COMO SI FUERA EXCEL -->
+    <!-- Tabla (editás como Excel) -->
     <div class="tabla">
       <table id="tabla">
         <thead>
@@ -124,16 +116,14 @@
           </tr>
         </thead>
         <tbody>
-          <!-- ⬇⬇⬇ CAMBIÁ ESTAS FILAS COMO QUIERAS (copiá/pegá para agregar más) ⬇⬇⬇ -->
+          <!-- EDITÁ ESTAS FILAS: copiá <tr>...</tr> para agregar más -->
           <tr><td>SegurPar S.A.</td><td>80000000-1</td><td>Habilitada</td><td>Asunción</td><td>0981 000 000</td></tr>
           <tr><td>ProtecPy</td><td>80111222-3</td><td>Vencida</td><td>Ciudad del Este</td><td>0982 111 111</td></tr>
           <tr><td>Guardianes del Sur</td><td>80222333-5</td><td>Habilitada</td><td>Encarnación</td><td>0971 222 222</td></tr>
           <tr><td>Alfa Seguridad</td><td>80333444-6</td><td>Suspendida</td><td>Luque</td><td>021 555 555</td></tr>
-          <!-- ⬆⬆⬆ FIN: EDICIÓN SÚPER SIMPLE POR FILAS ⬆⬆⬆ -->
         </tbody>
       </table>
     </div>
-    <p class="nota">Tip: para agregar una empresa, copiá una fila completa <code>&lt;tr&gt;...&lt;/tr&gt;</code> y cambiá los textos.</p>
   </section>
 
   <hr>
@@ -145,17 +135,19 @@
   </section>
 </main>
 
-<!-- Footer -->
+<!-- Footer SINTRASPAP -->
 <footer>
   <div class="container foot">
     <div>
-      <h3>DEPARTAMENTO ESPECIALIZADO EN EL</h3>
-      <p><strong>CONTROL Y FISCALIZACIÓN DE EMPRESAS DE SEGURIDAD PRIVADA Y AFINES</strong></p>
+      <h3>SINTRASPAP</h3>
+      <p><strong>Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay</strong></p>
+      <p>Defendemos la formalización del sector, el respeto a los derechos laborales y la dignificación del trabajo.</p>
     </div>
-    <div>
-      <h3>CONTACTO</h3>
-      <p>Dirección… (calle, número, ciudad)</p>
-      <p><a href="mailto:sintraspappy@gmail.com">sintraspappy@gmail.com</a></p>
+    <div id="contacto">
+      <h3>Contacto</h3>
+      <p>Tel: <a href="tel:+595973409535">+595 973 409535</a></p>
+      <p>Correo: <a href="mailto:sintraspappy@gmail.com">sintraspappy@gmail.com</a></p>
+      <p>Personería Gremial N° 24/2024</p>
     </div>
   </div>
   <div class="cpy">© 2025 SINTRASPAP</div>
