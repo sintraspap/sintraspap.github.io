@@ -6,34 +6,45 @@
 <title>SINTRASPAP – Sindicato de Trabajadores de la Seguridad Privada</title>
 <meta name="description" content="Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay" />
 <style>
-  :root{ --azul:#0b2a59; --azul-hover:#1e4f9a; --borde:#e5e7eb; --gris:#444; }
-  *{box-sizing:border-box} html,body{margin:0;font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;color:#111;background:#fff}
+  :root{ --azul:#0b2a59; --azul-hover:#1e4f9a; --borde:#e5e7eb; --gris:#444; --bg:#fff; }
+  *{box-sizing:border-box}
+  html,body{margin:0;font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;background:#fff;color:#111}
   a{text-decoration:none;color:inherit}
   .container{max-width:1100px;margin:0 auto;padding:0 16px}
 
-  /* Header institucional */
+  /* Header */
   header{background:var(--azul);color:#fff;position:sticky;top:0;z-index:50}
   .head{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
   .brand{font-weight:800;font-size:20px}
   .menu{list-style:none;display:flex;gap:18px;margin:0;padding:0;flex-wrap:wrap}
   .menu a{color:#fff;padding:8px 10px;border-radius:6px}
-  .menu a:hover{background:var(--azul-hover)}
+  .menu a.active,.menu a:hover{background:var(--azul-hover)}
   .burger{display:none;margin-left:12px;background:transparent;border:1px solid rgba(255,255,255,.5);color:#fff;border-radius:6px;padding:8px 10px}
   @media(max-width:820px){
     .head{flex-wrap:wrap;gap:8px}
     .burger{display:block}
+    nav{width:100%}
     .menu{display:none;width:100%;border-top:1px solid rgba(255,255,255,.25);padding-top:8px}
     .menu.show{display:flex;flex-direction:column}
   }
 
-  /* Contenido */
+  /* Secciones */
   main{padding:24px 0 40px}
-  h1{font-size:clamp(22px,4vw,30px);margin:0 0 6px}
-  h2{font-size:clamp(18px,3vw,22px);margin:20px 0 8px}
+  section{display:none;animation:fade .15s ease-in}
+  section.active{display:block}
+  @keyframes fade{from{opacity:.4;transform:translateY(3px)}to{opacity:1;transform:none}}
+  h1{font-size:clamp(22px,4vw,30px);margin:0 0 8px}
+  h2{font-size:clamp(18px,3vw,22px);margin:14px 0 8px}
   p{color:var(--gris);line-height:1.6;margin:0 0 12px}
-  hr{border:none;border-top:1px solid var(--borde);margin:20px 0}
+  hr{border:none;border-top:1px solid var(--borde);margin:18px 0}
 
-  /* Directorio simple */
+  /* Tarjetas */
+  .cards{display:grid;gap:16px;grid-template-columns:1fr}
+  @media(min-width:760px){ .cards{grid-template-columns:1fr 1fr} }
+  .card{border:1px solid var(--borde);border-radius:12px;padding:14px;background:#fff}
+  .muted{color:#666;font-size:13px}
+
+  /* Directorio */
   .buscador{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
   .input{flex:1 1 280px;border:1px solid var(--borde);border-radius:8px;padding:10px 12px;font:inherit}
   .tabla{border:1px solid var(--borde);border-radius:12px;overflow:auto;background:#fff}
@@ -52,16 +63,16 @@
 </head>
 <body>
 
-<!-- Encabezado -->
+<!-- HEADER -->
 <header>
   <div class="container head">
     <div class="brand">SINTRASPAP</div>
     <button class="burger" onclick="document.querySelector('.menu').classList.toggle('show')">☰ Menú</button>
-    <nav style="width:100%">
-      <ul class="menu">
+    <nav>
+      <ul class="menu" id="menu">
+        <li><a href="#inicio">Inicio</a></li>
         <li><a href="#institucional">Institucional</a></li>
-        <li><a href="#consultas">Consultas</a></li>
-        <li><a href="#gestiones">Gestiones</a></li>
+        <li><a href="#ofertas">Ofertas laborales</a></li>
         <li><a href="#seguridad">Seguridad</a></li>
         <li><a href="#directorio">Directorio</a></li>
         <li><a href="#contacto">Contacto</a></li>
@@ -70,42 +81,95 @@
   </div>
 </header>
 
-<!-- Contenido -->
+<!-- CONTENIDO -->
 <main class="container">
+
+  <!-- INICIO -->
+  <section id="inicio" class="active">
+    <h1>Noticias del sector</h1>
+    <p class="muted">Publicá aquí lo más relevante sobre seguridad privada y actividad sindical.</p>
+
+    <div class="cards">
+      <article class="card">
+        <h2>Reunión con autoridades laborales</h2>
+        <p>Representantes del SINTRASPAP presentaron propuestas para mejorar condiciones de guardias y fiscalización de contratos.</p>
+        <p class="muted">Publicado: 28/08/2025</p>
+      </article>
+      <article class="card">
+        <h2>Capacitación en normas de seguridad</h2>
+        <p>Jornada de formación dirigida a trabajadores del sector: protocolos, derechos laborales y salud ocupacional.</p>
+        <p class="muted">Publicado: 20/08/2025</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- INSTITUCIONAL -->
   <section id="institucional">
-    <h1>Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay</h1>
+    <h1>Institucional</h1>
+    <p><strong>SINTRASPAP</strong> – Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay.</p>
     <p>Trabajamos por la formalización del sector, el respeto a los derechos laborales y la dignificación del trabajo.</p>
+    <h2>Misión</h2>
+    <p>Defender los derechos de las y los trabajadores, promover la capacitación y la seguridad en el trabajo.</p>
+    <h2>Visión</h2>
+    <p>Un sector formalizado, con empleo digno y condiciones justas para toda la familia trabajadora de seguridad privada.</p>
+    <h2>Autoridades</h2>
+    <ul>
+      <li>Secretario General: ___________________</li>
+      <li>Secretaría de Organización: ___________</li>
+      <li>Tesorería: ____________________________</li>
+    </ul>
   </section>
 
-  <hr>
+  <!-- OFERTAS LABORALES -->
+  <section id="ofertas">
+    <h1>Ofertas laborales</h1>
+    <p class="muted">Publicá las oportunidades que reciban del sector. Editá las filas como si fuera una planilla.</p>
 
-  <section id="consultas">
-    <h2>Consultas</h2>
-    <p>Habilitaciones, IPS, contratos, jornadas, horas extra y salarios.</p>
+    <div class="tabla">
+      <table id="tabla-ofertas">
+        <thead>
+          <tr>
+            <th>Empresa</th>
+            <th>Puesto</th>
+            <th>Ciudad</th>
+            <th>Requisitos</th>
+            <th>Contacto</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>SegurPar S.A.</td><td>Guardia de seguridad</td><td>Asunción</td><td>Experiencia 1 año, antecedentes</td><td>0981 000 000</td></tr>
+          <tr><td>Guardianes del Sur</td><td>Supervisor</td><td>Encarnación</td><td>Licencia conducir, disponibilidad</td><td>0971 222 222</td></tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 
-  <section id="gestiones">
-    <h2>Gestiones</h2>
-    <p>Trámites disponibles, requisitos y enlaces externos cuando corresponda.</p>
-  </section>
-
+  <!-- SEGURIDAD -->
   <section id="seguridad">
-    <h2>Seguridad</h2>
+    <h1>Seguridad</h1>
     <p>Normativas, campañas y recomendaciones para el sector de seguridad privada.</p>
+    <div class="cards">
+      <div class="card">
+        <h2>Protocolos básicos en servicio</h2>
+        <p>Buenas prácticas de prevención, comunicación y actuación ante incidentes.</p>
+      </div>
+      <div class="card">
+        <h2>Derechos laborales clave</h2>
+        <p>Contrato por escrito, jornada, horas extra, salario mínimo, aportes al IPS y otras obligaciones patronales.</p>
+      </div>
+    </div>
   </section>
 
   <!-- DIRECTORIO -->
   <section id="directorio">
-    <h2>Directorio de Empresas</h2>
+    <h1>Directorio de Empresas habilitadas</h1>
 
-    <!-- Buscador -->
     <div class="buscador">
-      <input id="q" class="input" type="search" placeholder="Escribí para buscar (nombre, RUC, ciudad o contacto)..." oninput="filtrar()" />
+      <input id="q" class="input" type="search" placeholder="Buscar (nombre, RUC, ciudad o contacto)..." oninput="filtrarDirectorio()" />
     </div>
 
-    <!-- Tabla (editás como Excel) -->
     <div class="tabla">
-      <table id="tabla">
+      <table id="tabla-empresas">
         <thead>
           <tr>
             <th>Empresa</th>
@@ -116,26 +180,28 @@
           </tr>
         </thead>
         <tbody>
-          <!-- EDITÁ ESTAS FILAS: copiá <tr>...</tr> para agregar más -->
           <tr><td>SegurPar S.A.</td><td>80000000-1</td><td>Habilitada</td><td>Asunción</td><td>0981 000 000</td></tr>
-          <tr><td>ProtecPy</td><td>80111222-3</td><td>Vencida</td><td>Ciudad del Este</td><td>0982 111 111</td></tr>
+          <tr><td>ProtecPy</td><td>80111222-3</td><td>Habilitada</td><td>Ciudad del Este</td><td>0982 111 111</td></tr>
           <tr><td>Guardianes del Sur</td><td>80222333-5</td><td>Habilitada</td><td>Encarnación</td><td>0971 222 222</td></tr>
-          <tr><td>Alfa Seguridad</td><td>80333444-6</td><td>Suspendida</td><td>Luque</td><td>021 555 555</td></tr>
+          <tr><td>Alfa Seguridad</td><td>80333444-6</td><td>Habilitada</td><td>Luque</td><td>021 555 555</td></tr>
         </tbody>
       </table>
     </div>
   </section>
 
-  <hr>
-
+  <!-- CONTACTO -->
   <section id="contacto">
-    <h2>Contáctanos</h2>
-    <p>Tel: <a href="tel:+595973409535">+595 973 409535</a> — Correo: <a href="mailto:sintraspappy@gmail.com">sintraspappy@gmail.com</a></p>
+    <h1>Contacto</h1>
+    <p>Tel: <a href="tel:+595992644708">0992 644 708</a></p>
+    <p>Correo: <a href="mailto:sintraspappy@gmail.com">sintraspappy@gmail.com</a></p>
     <p>Personería Gremial N° 24/2024</p>
+    <hr>
+    <p class="muted">Podés escribirnos para consultas, denuncias o propuestas de trabajo conjunto.</p>
   </section>
+
 </main>
 
-<!-- Footer SINTRASPAP -->
+<!-- FOOTER -->
 <footer>
   <div class="container foot">
     <div>
@@ -143,9 +209,9 @@
       <p><strong>Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay</strong></p>
       <p>Defendemos la formalización del sector, el respeto a los derechos laborales y la dignificación del trabajo.</p>
     </div>
-    <div id="contacto">
+    <div>
       <h3>Contacto</h3>
-      <p>Tel: <a href="tel:+595973409535">+595 973 409535</a></p>
+      <p>Tel: <a href="tel:+595992644708">0992 644 708</a></p>
       <p>Correo: <a href="mailto:sintraspappy@gmail.com">sintraspappy@gmail.com</a></p>
       <p>Personería Gremial N° 24/2024</p>
     </div>
@@ -154,10 +220,28 @@
 </footer>
 
 <script>
-/* Buscador MUY simple (filtra filas por texto) */
-function filtrar(){
+/* Navegación por hash (#) */
+const sections = Array.from(document.querySelectorAll('main section'));
+const links = Array.from(document.querySelectorAll('#menu a'));
+
+function showSection(id){
+  sections.forEach(s => s.classList.toggle('active', '#'+s.id === id));
+  links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === id));
+  document.querySelector('.menu').classList.remove('show');
+}
+
+function handleHash(){
+  const id = location.hash || '#inicio';
+  if(!document.querySelector(id)) location.hash = '#inicio';
+  showSection(id);
+}
+window.addEventListener('hashchange', handleHash);
+window.addEventListener('DOMContentLoaded', handleHash);
+
+/* Buscador directorio */
+function filtrarDirectorio(){
   const q = (document.getElementById('q').value || '').toLowerCase();
-  const rows = document.querySelectorAll('#tabla tbody tr');
+  const rows = document.querySelectorAll('#tabla-empresas tbody tr');
   rows.forEach(tr=>{
     const text = tr.innerText.toLowerCase();
     tr.style.display = text.includes(q) ? '' : 'none';
