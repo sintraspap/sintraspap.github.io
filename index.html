@@ -11,14 +11,13 @@
   *{box-sizing:border-box}
   html,body{
     margin:0; padding:0; width:100%;
-    overflow-x:hidden;                /* evita scroll lateral en móvil */
+    overflow-x:hidden;
     font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;
     background:#fff; color:#111;
   }
   a{text-decoration:none;color:inherit}
   .container{max-width:1100px;margin:0 auto;padding:0 16px}
 
-  /* Ocultar visual sin perder accesibilidad */
   .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
   /* Header */
@@ -54,7 +53,7 @@
   @media(min-width:760px){ .cards{grid-template-columns:1fr 1fr} }
   .card{border:1px solid var(--borde);border-radius:12px;padding:14px;background:#fff}
 
-  /* Tablas (Ofertas / Directorio) */
+  /* Tablas */
   .buscador{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
   .input{flex:1 1 280px;border:1px solid var(--borde);border-radius:8px;padding:10px 12px;font:inherit}
   .tabla{border:1px solid var(--borde);border-radius:12px;overflow-x:auto;background:#fff; -webkit-overflow-scrolling:touch}
@@ -69,20 +68,20 @@
   @media(min-width:760px){ .foot{grid-template-columns:1.2fr 1fr} }
   .foot a{color:#e6e6e6;text-decoration:underline}
   .flogo{height:42px;width:auto;margin-bottom:8px}
+  .afiliados{margin-top:14px;text-align:center}
+  .afil-logos{display:flex;justify-content:center;align-items:center;gap:20px;flex-wrap:wrap;margin-top:8px}
+  .afil-logos img{height:50px;width:auto;max-width:180px;background:#fff;border-radius:8px;padding:4px}
   .cpy{border-top:1px solid rgba(255,255,255,.2);text-align:center;padding:10px 0;color:#dcdcdc;font-size:14px}
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <header>
   <div class="container head">
-    <!-- Logo opcional -->
     <div class="brand">
       <img src="logo-sintraspap.png" alt="Logo SINTRASPAP" onerror="this.style.display='none'">
       <span>SINTRASPAP</span>
     </div>
-
     <button class="burger" onclick="document.querySelector('.menu').classList.toggle('show')">☰ Menú</button>
     <nav>
       <ul class="menu" id="menu">
@@ -97,10 +96,8 @@
   </div>
 </header>
 
-<!-- CONTENIDO -->
 <main class="container">
 
-  <!-- INICIO -->
   <section id="inicio" class="active">
     <h1>Noticias del sector</h1>
     <div class="cards">
@@ -117,7 +114,6 @@
     </div>
   </section>
 
-  <!-- INSTITUCIONAL -->
   <section id="institucional">
     <h1 class="sr-only">Institucional</h1>
     <p><strong>SINTRASPAP</strong> – Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay.</p>
@@ -136,11 +132,9 @@
     <p>Un sector formalizado, con empleo digno y condiciones justas para toda la familia trabajadora de seguridad privada.</p>
   </section>
 
-  <!-- OFERTAS LABORALES -->
   <section id="ofertas">
     <h1>Ofertas laborales</h1>
     <p class="muted">Editá/duplicá las filas para publicar nuevas oportunidades.</p>
-
     <div class="tabla">
       <table id="tabla-ofertas">
         <thead>
@@ -160,7 +154,6 @@
     </div>
   </section>
 
-  <!-- SEGURIDAD -->
   <section id="seguridad">
     <h1>Seguridad</h1>
     <div class="cards">
@@ -175,14 +168,11 @@
     </div>
   </section>
 
-  <!-- DIRECTORIO -->
   <section id="directorio">
     <h1>Directorio de Empresas habilitadas</h1>
-
     <div class="buscador">
       <input id="q" class="input" type="search" placeholder="Buscar (nombre, RUC, ciudad o contacto)..." oninput="filtrarDirectorio()" />
     </div>
-
     <div class="tabla">
       <table id="tabla-empresas">
         <thead>
@@ -204,7 +194,6 @@
     </div>
   </section>
 
-  <!-- CONTACTO -->
   <section id="contacto">
     <h1>Contacto</h1>
     <p>Tel: <a href="tel:+595992644708">0992 644 708</a></p>
@@ -214,15 +203,25 @@
 
 </main>
 
-<!-- FOOTER -->
 <footer>
   <div class="container foot">
     <div>
-      <img src="logo-sintraspap-blanco.png" alt="Logo SINTRASPAP" class="flogo" onerror="this.style.display='none'">
+      <!-- mismo logo también en el pie -->
+      <img src="logo-sintraspap.png" alt="Logo SINTRASPAP" class="flogo" onerror="this.style.display='none'">
       <h3>SINTRASPAP</h3>
       <p><strong>Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay</strong></p>
       <p>Defendemos la formalización del sector, el respeto a los derechos laborales y la dignificación del trabajo.</p>
+
+      <!-- Afiliaciones -->
+      <div class="afiliados">
+        <p><strong>Afiliado a:</strong></p>
+        <div class="afil-logos">
+          <img src="logo-cnt.png" alt="Central Nacional de Trabajadores" onerror="this.style.display='none'">
+          <img src="logo-citsp.png" alt="Confederación Internacional de Trabajadores de la Seguridad Privada" onerror="this.style.display='none'">
+        </div>
+      </div>
     </div>
+
     <div>
       <h3>Contacto</h3>
       <p>Tel: <a href="tel:+595992644708">0992 644 708</a></p>
@@ -234,10 +233,8 @@
 </footer>
 
 <script>
-/* Navegación por hash (#) */
 const sections = Array.from(document.querySelectorAll('main section'));
 const links = Array.from(document.querySelectorAll('#menu a'));
-
 function showSection(id){
   sections.forEach(s => s.classList.toggle('active', '#'+s.id === id));
   links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === id));
@@ -251,7 +248,6 @@ function handleHash(){
 window.addEventListener('hashchange', handleHash);
 window.addEventListener('DOMContentLoaded', handleHash);
 
-/* Buscador directorio */
 function filtrarDirectorio(){
   const q = (document.getElementById('q').value || '').toLowerCase();
   const rows = document.querySelectorAll('#tabla-empresas tbody tr');
