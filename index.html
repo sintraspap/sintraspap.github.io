@@ -1,49 +1,242 @@
-<!DOCTYPE html>
+Adrián Díaz, [28/08/2025 14:46]
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <title>SINTRASPAP - Sindicato de Trabajadores de la Seguridad Privada</title>
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SINTRASPAP – Sindicato de Trabajadores de la Seguridad Privada</title>
+  <meta name="description" content="SINTRASPAP: información para trabajadores y empleadores del sector de seguridad privada en Paraguay." />
+
+  <!-- Paleta y estilos -->
   <style>
-    body { font-family: Arial, sans-serif; margin: 40px; background: #f9f9f9; color: #333; }
-    h1, h2, h3 { color: #1a3e6e; }
-    .container { max-width: 900px; margin: 0 auto; }
-    .nav { margin: 20px 0; }
-    .nav a { margin: 0 15px; text-decoration: none; color: #1a3e6e; }
-    .footer { margin-top: 50px; font-size: 0.9em; color: #666; }
+    :root{
+      --bg:#0f172a;          /* azul noche */
+      --bg-soft:#111827;     /* gris azulado */
+      --card:#1f2937;        /* card */
+      --txt:#e5e7eb;         /* texto claro */
+      --muted:#9ca3af;       /* texto secundario */
+      --brand:#60a5fa;       /* azul */
+      --brand-2:#22d3ee;     /* cian */
+      --accent:#34d399;      /* verde */
+      --danger:#f87171;      /* rojo suave */
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 14px;
+      --space: clamp(16px, 3vw, 28px);
+      --max: 1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:linear-gradient(120deg,var(--bg),#0b1226 60%);color:var(--txt);font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif}
+    a{color:inherit}
+    img{max-width:100%;display:block}
+    .container{max-width:var(--max);margin:0 auto;padding:0 var(--space)}
+    /* Header / Nav */
+    header{
+      position:sticky; top:0; z-index:50;
+      background:rgba(15,23,42,.8); backdrop-filter: blur(10px);
+      border-bottom:1px solid rgba(255,255,255,.06)
+    }
+    .nav{display:flex;align-items:center;gap:16px;justify-content:space-between;padding:14px var(--space)}
+    .brand{font-weight:800;letter-spacing:.5px;font-size:clamp(22px,3vw,28px);background:linear-gradient(90deg,var(--brand),var(--brand-2));-webkit-background-clip:text;color:transparent}
+    .links{display:flex;gap:14px;flex-wrap:wrap}
+    .links a{
+      text-decoration:none;padding:8px 12px;border-radius:10px;
+      color:var(--txt);opacity:.9;border:1px solid transparent
+    }
+    .links a:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.08)}
+    /* Hero */
+    .hero{padding:calc(var(--space)*2) 0 var(--space) 0;text-align:center}
+    .hero h1{font-size:clamp(28px,5vw,44px);margin:0 0 10px}
+    .hero p{color:var(--muted);margin:0 auto;max-width:800px;font-size:clamp(16px,2.2vw,18px)}
+    .cta{margin-top:18px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    .btn{
+      display:inline-block;padding:12px 16px;border-radius:12px;text-decoration:none;
+      background:linear-gradient(90deg,var(--brand),var(--brand-2));color:#0b1226;
+      font-weight:700;box-shadow:var(--shadow)
+    }
+    .btn.outline{background:transparent;color:var(--txt);border:1px solid rgba(255,255,255,.15);box-shadow:none}
+    /* Secciones */
+    section{scroll-margin-top:80px;padding:calc(var(--space)*1.5) 0;border-top:1px solid rgba(255,255,255,.06)}
+    h2{font-size:clamp(22px,3.5vw,28px);margin:0 0 8px}
+    .muted{color:var(--muted)}
+    /* Cards */
+    .grid{display:grid;gap:16px;grid-template-columns:repeat(12,1fr)}
+    .card{grid-column:span 12;background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+    @media(min-width:760px){ .card.md-6{grid-column:span 6} .card.md-4{grid-column:span 4} }
+    .list{margin:8px 0 0 0;padding-left:18px}
+    /* Tabla simple */
+    table{width:100%;border-collapse:collapse;border-radius:12px;overflow:hidden}
+    th,td{padding:12px 10px;border-bottom:1px solid rgba(255,255,255,.06);text-align:left}
+    th{background:rgba(255,255,255,.04);font-weight:700}
+    tr:hover td{background:rgba(255,255,255,.03)}
+    /* Footer */
+    footer{padding:30px 0;color:var(--muted);text-align:center;border-top:1px solid rgba(255,255,255,.06)}
+
+Adrián Díaz, [28/08/2025 14:46]
+/* Enlaces internos suaves */
+    html{scroll-behavior:smooth}
+    /* Badge */
+    .badge{display:inline-block;padding:4px 10px;border-radius:999px;background:rgba(52,211,153,.15);color:var(--accent);font-weight:700;font-size:12px;border:1px solid rgba(52,211,153,.25)}
+    .warn{background:rgba(248,113,113,.15);color:var(--danger);border-color:rgba(248,113,113,.25)}
+    /* Contacto */
+    .contact{display:grid;gap:16px}
+    @media(min-width:760px){ .contact{grid-template-columns:1fr 1fr} }
+    .field{display:flex;flex-direction:column;gap:6px}
+    input,textarea{
+      background:#0b1226;color:var(--txt);border:1px solid rgba(255,255,255,.12);
+      border-radius:10px;padding:12px;font:inherit
+    }
+    textarea{min-height:120px;resize:vertical}
+    .small{font-size:13px;color:var(--muted)}
   </style>
 </head>
 <body>
-
-  <div class="container">
-    <h1>SINTRASPAP</h1>
-    <p><strong>Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay</strong></p>
-
-    <div class="nav">
-      <a href="index.html">Inicio</a>
-      <a href="empresas.html">Directorio de Empresas</a>
-      <a href="formales.html">Empresas Formales</a>
-      <a href="empleo.html">Bolsa de Trabajo</a>
-      <a href="noticias.html">Noticias</a>
-      <a href="contacto.html">Contacto</a>
+  <header>
+    <div class="nav container">
+      <div class="brand">SINTRASPAP</div>
+      <nav class="links">
+        <a href="#inicio">Inicio</a>
+        <a href="#directorio">Directorio de Empresas</a>
+        <a href="#formales">Empresas Formales</a>
+        <a href="#bolsa">Bolsa de Trabajo</a>
+        <a href="#noticias">Noticias</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
     </div>
+  </header>
 
-    <h2>Bienvenidos</h2>
-    <p>El SINTRASPAP lucha por la formalización del sector de la seguridad privada, el respeto a los derechos laborales y la dignificación del trabajo.</p>
+  <main>
+    <!-- HERO -->
+    <section id="inicio" class="hero container">
+      <h1>Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay</h1>
+      <p>Trabajamos por la formalización del sector, el respeto a los derechos laborales y la dignificación del trabajo.</p>
+      <div class="cta">
+        <a class="btn" href="#bolsa">Ver oportunidades</a>
+        <a class="btn outline" href="#formales">Empresas formales</a>
+      </div>
+    </section>
 
-    <p>En esta página encontrarás:</p>
-    <ul>
-      <li>Empresas habilitadas y regulares.</li>
-      <li>Oportunidades de empleo.</li>
-      <li>Noticias sobre el sector.</li>
-      <li>Información para trabajadores y clientes.</li>
-    </ul>
+    <!-- QUÉ ENCONTRÁS -->
+    <section class="container">
+      <div class="grid">
+        <div class="card md-4">
+          <h3>Empresas habilitadas</h3>
+          <p class="muted">Listado de firmas con habilitación vigente del Ministerio del Interior.</p>
+        </div>
+        <div class="card md-4">
+          <h3>Bolsa de trabajo</h3>
+          <p class="muted">Oportunidades de empleo actualizadas para guardias y supervisores.</p>
+        </div>
+        <div class="card md-4">
+          <h3>Asesoría</h3>
+          <p class="muted">Orientación para denuncias, contratos, IPS, jornada y salario.</p>
+        </div>
+      </div>
+    </section>
 
-    <div class="footer">
-      <p>SINTRASPAP – Personería Gremial N° 24/2024</p>
-      <p>Teléfono: 0992 644 708 | Correo: sintraspappy@gmail.com</p>
-    </div>
-  </div>
+    <!-- DIRECTORIO -->
+    <section id="directorio" class="container">
+      <h2>Directorio de Empresas</h2>
+      <p class="muted">Búsqueda rápida de empresas del sector (demo).</p>
+      <div class="card">
+        <table>
+          <thead>
+            <tr><th>Empresa</th><th>RUC</th><th>Estado</th><th>Contacto</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>SegurPar S.A.</td><td>80000000-1</td><td><span class="badge">Habilitada</span></td><td>0981 000 000</td></tr>
+            <tr><td>ProtecPy</td><td>80111222-3</td><td><span class="badge warn">Vencida</span></td><td>0982 111 111</td></tr>
+            <tr><td>Guardianes del Sur</td><td>80222333-5</td><td><span class="badge">Habilitada</span></td><td>0971 222 222</td></tr>
+          </tbody>
+        </table>
+        <p class="small">*Estos datos son de ejemplo. Podés reemplazarlos por una tabla real cuando los tengas.</p>
+      </div>
+    </section>
 
+    <!-- EMPRESAS FORMALES -->
+    <section id="formales" class="container">
+      <h2>Empresas Formales</h2>
+      <p class="muted">Criterios: habilitación vigente, cumplimiento IPS, contratos y salario legal.</p>
+      <div class="grid">
+        <div class="card md-6">
+          <strong>¿Cómo verificamos?</strong>
+          <ul class="list">
+            <li>Resolución de habilitación y vigencia.</li>
+            <li>Registro de empleados en IPS.</li>
+            <li>Cumplimiento de jornada y horas extra.</li>
+
+Adrián Díaz, [28/08/2025 14:46]
+<li>Elementos de seguridad y capacitación.</li>
+          </ul>
+        </div>
+        <div class="card md-6">
+          <strong>Proponé una empresa</strong>
+          <p class="muted">Escribinos con datos y comprobantes. Evaluamos y publicamos.</p>
+          <a class="btn" href="#contacto">Enviar propuesta</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- BOLSA -->
+    <section id="bolsa" class="container">
+      <h2>Bolsa de Trabajo</h2>
+      <div class="card">
+        <ul class="list">
+          <li><strong>Guardia – Asunción (noche)</strong> • Salario básico + IPS • Postular: <a href="mailto:sintraspappy@gmail.com?subject=Postulación Guardia Noche">enviar CV por correo</a></li>
+          <li><strong>Supervisor – CDE</strong> • Experiencia 2 años • Postular: <a href="mailto:sintraspappy@gmail.com?subject=Postulación Supervisor CDE">correo</a></li>
+        </ul>
+        <p class="small">*Publicaciones de ejemplo. Reemplazá con vacancias reales.</p>
+      </div>
+    </section>
+
+    <!-- NOTICIAS -->
+    <section id="noticias" class="container">
+      <h2>Noticias</h2>
+      <div class="grid">
+        <article class="card md-6">
+          <h3>Capacitación sobre derechos laborales</h3>
+          <p class="muted">Charla abierta para trabajadores del sector. Inscripción gratuita.</p>
+          <a class="btn outline" href="#contacto">Quiero participar</a>
+        </article>
+        <article class="card md-6">
+          <h3>Campaña de formalización</h3>
+          <p class="muted">Relevamiento de empresas y asesoría para regularización ante IPS.</p>
+          <a class="btn outline" href="#contacto">Solicitar asesoría</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="container">
+      <h2>Contacto</h2>
+      <div class="contact card">
+        <div>
+          <p><strong>WhatsApp:</strong> +595 973 409535</p>
+          <p><strong>Correo:</strong> <a href="mailto:sintraspappy@gmail.com">sintraspappy@gmail.com</a></p>
+          <p class="small">Personería Gremial N° 24/2024</p>
+        </div>
+        <form action="https://formsubmit.co/sintraspappy@gmail.com" method="POST">
+          <!-- Gratis y simple para formularios estáticos; podés cambiarlo por mailto si querés -->
+          <div class="field">
+            <label>Nombre</label>
+            <input name="nombre" required>
+          </div>
+          <div class="field">
+            <label>Email</label>
+            <input type="email" name="email" required>
+          </div>
+          <div class="field">
+            <label>Mensaje</label>
+            <textarea name="mensaje" required></textarea>
+          </div>
+          <input type="hidden" name="_captcha" value="false">
+          <button class="btn" type="submit">Enviar</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">© 2025 SINTRASPAP • Hecho con GitHub Pages</div>
+  </footer>
 </body>
 </html>
