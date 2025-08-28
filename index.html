@@ -4,9 +4,8 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>SINTRASPAP – Sindicato de Trabajadores de la Seguridad Privada</title>
-<meta name="description" content="Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay" />
 <style>
-  :root{ --azul:#0b2a59; --azul-hover:#1e4f9a; --borde:#e5e7eb; --gris:#444; }
+  :root{ --azul:#0b2a59; --azul-hover:#1e4f9a; --borde:#e5e7eb; --gris:#ccc; }
 
   *{box-sizing:border-box}
   html,body{
@@ -18,13 +17,11 @@
   a{text-decoration:none;color:inherit}
   .container{max-width:1100px;margin:0 auto;padding:0 16px}
 
-  .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-
   /* Header */
   header{background:var(--azul);color:#fff;position:sticky;top:0;z-index:50}
-  .head{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
-  .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px}
-  .brand img{height:36px;width:auto;display:inline-block}
+  .head{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
+  .brand{display:flex;align-items:center;gap:12px;font-weight:900;font-size:28px}
+  .brand img{height:50px;width:auto;display:inline-block}
   .menu{list-style:none;display:flex;gap:18px;margin:0;padding:0;flex-wrap:wrap}
   .menu a{color:#fff;padding:8px 10px;border-radius:6px}
   .menu a.active,.menu a:hover{background:var(--azul-hover)}
@@ -44,33 +41,32 @@
   @keyframes fade{from{opacity:.4;transform:translateY(3px)}to{opacity:1;transform:none}}
   h1{font-size:clamp(22px,4vw,30px);margin:0 0 8px}
   h2{font-size:clamp(18px,3vw,22px);margin:14px 0 8px}
-  p{color:var(--gris);line-height:1.6;margin:0 0 12px}
-  hr{border:none;border-top:1px solid var(--borde);margin:18px 0}
-  .muted{color:#666;font-size:13px}
+  p{line-height:1.6;margin:0 0 12px}
 
-  /* Tarjetas */
+  /* Noticias con imágenes */
   .cards{display:grid;gap:16px;grid-template-columns:1fr}
   @media(min-width:760px){ .cards{grid-template-columns:1fr 1fr} }
   .card{border:1px solid var(--borde);border-radius:12px;padding:14px;background:#fff}
+  .card img{max-width:100%;border-radius:8px;margin-bottom:10px}
 
   /* Tablas */
   .buscador{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
   .input{flex:1 1 280px;border:1px solid var(--borde);border-radius:8px;padding:10px 12px;font:inherit}
-  .tabla{border:1px solid var(--borde);border-radius:12px;overflow-x:auto;background:#fff; -webkit-overflow-scrolling:touch}
-  table{width:100%;border-collapse:collapse;min-width:720px}
+  .tabla{border:1px solid var(--borde);border-radius:12px;overflow-x:auto;background:#fff}
+  table{width:100%;border-collapse:collapse}
   th,td{padding:10px;border-bottom:1px solid var(--borde);text-align:left}
   th{background:#f8fafc}
   tr:hover td{background:#fafafa}
 
   /* Footer */
-  footer{background:#091f40;color:#fff;margin-top:16px}
+  footer{background:#091f40;color:#fff;margin-top:16px;padding-top:20px}
   .foot{display:grid;gap:18px;grid-template-columns:1fr; padding:22px 0}
   @media(min-width:760px){ .foot{grid-template-columns:1.2fr 1fr} }
-  .foot a{color:#e6e6e6;text-decoration:underline}
-  .flogo{height:42px;width:auto;margin-bottom:8px}
-  .afiliados{margin-top:14px;text-align:center}
-  .afil-logos{display:flex;justify-content:center;align-items:center;gap:20px;flex-wrap:wrap;margin-top:8px}
-  .afil-logos img{height:50px;width:auto;max-width:180px;background:#fff;border-radius:8px;padding:4px}
+  .flogo{height:50px;width:auto;margin-bottom:8px}
+  .afiliados p{font-size:18px;margin:0 0 8px}
+  .afil-logos{display:flex;justify-content:center;align-items:center;gap:30px;flex-wrap:wrap;margin-top:8px}
+  .afil-logos img{height:70px;width:auto;max-width:200px;background:#fff;border-radius:8px;padding:4px}
+  .ausp{margin-top:24px}
   .cpy{border-top:1px solid rgba(255,255,255,.2);text-align:center;padding:10px 0;color:#dcdcdc;font-size:14px}
 </style>
 </head>
@@ -88,7 +84,7 @@
         <li><a href="#inicio">Inicio</a></li>
         <li><a href="#institucional">Institucional</a></li>
         <li><a href="#ofertas">Ofertas laborales</a></li>
-        <li><a href="#seguridad">Seguridad</a></li>
+        <li><a href="#leyes">Leyes</a></li>
         <li><a href="#directorio">Directorio</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
@@ -98,45 +94,46 @@
 
 <main class="container">
 
+  <!-- INICIO -->
   <section id="inicio" class="active">
-    <h1>Noticias del sector</h1>
     <div class="cards">
       <article class="card">
+        <img src="noticia1.jpg" alt="Noticia 1" onerror="this.style.display='none'">
         <h2>Reunión con autoridades laborales</h2>
         <p>Representantes del SINTRASPAP presentaron propuestas para mejorar condiciones de guardias y fiscalización de contratos.</p>
-        <p class="muted">Publicado: 28/08/2025</p>
+        <p><em>28/08/2025</em></p>
       </article>
       <article class="card">
+        <img src="noticia2.jpg" alt="Noticia 2" onerror="this.style.display='none'">
         <h2>Capacitación en normas de seguridad</h2>
         <p>Jornada de formación dirigida a trabajadores del sector: protocolos, derechos laborales y salud ocupacional.</p>
-        <p class="muted">Publicado: 20/08/2025</p>
+        <p><em>20/08/2025</em></p>
       </article>
     </div>
   </section>
 
+  <!-- INSTITUCIONAL -->
   <section id="institucional">
-    <h1 class="sr-only">Institucional</h1>
     <p><strong>SINTRASPAP</strong> – Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay.</p>
-    <p>Trabajamos por la formalización del sector, el respeto a los derechos laborales y la dignificación del trabajo.</p>
 
     <h2>Autoridades</h2>
     <ul>
-      <li><strong>Secretario General:</strong> ___________________</li>
-      <li><strong>Secretario de Conflictos:</strong> ______________</li>
+      <li><strong>Secretario General:</strong> Hugo Centurión Sanabria</li>
+      <li><strong>Secretario de Conflictos:</strong> Adriano Rubén Díaz</li>
     </ul>
 
     <h2>Misión</h2>
-    <p>Defender los derechos de las y los trabajadores, promover la capacitación y la seguridad en el trabajo.</p>
+    <p>Velar por los derechos de los trabajadores de la seguridad privada, fomentar su capacitación constante y garantizar entornos laborales seguros, dignos y justos.</p>
 
     <h2>Visión</h2>
     <p>Un sector formalizado, con empleo digno y condiciones justas para toda la familia trabajadora de seguridad privada.</p>
   </section>
 
+  <!-- OFERTAS LABORALES -->
   <section id="ofertas">
     <h1>Ofertas laborales</h1>
-    <p class="muted">Editá/duplicá las filas para publicar nuevas oportunidades.</p>
     <div class="tabla">
-      <table id="tabla-ofertas">
+      <table>
         <thead>
           <tr>
             <th>Empresa</th>
@@ -148,52 +145,46 @@
         </thead>
         <tbody>
           <tr><td>SegurPar S.A.</td><td>Guardia de seguridad</td><td>Asunción</td><td>Experiencia 1 año, antecedentes</td><td>0981 000 000</td></tr>
-          <tr><td>Guardianes del Sur</td><td>Supervisor</td><td>Encarnación</td><td>Licencia conducir, disponibilidad</td><td>0971 222 222</td></tr>
         </tbody>
       </table>
     </div>
   </section>
 
-  <section id="seguridad">
-    <h1>Seguridad</h1>
-    <div class="cards">
-      <div class="card">
-        <h2>Protocolos básicos en servicio</h2>
-        <p>Buenas prácticas de prevención, comunicación y actuación ante incidentes.</p>
-      </div>
-      <div class="card">
-        <h2>Derechos laborales clave</h2>
-        <p>Contrato por escrito, jornada, horas extra, salario mínimo, aportes al IPS y otras obligaciones patronales.</p>
-      </div>
-    </div>
+  <!-- LEYES -->
+  <section id="leyes">
+    <h1>Leyes</h1>
+    <ul>
+      <li>Ley 5424/15 – Regulación de empresas de seguridad privada.</li>
+      <li>Código Laboral del Paraguay.</li>
+      <li>Ley de IPS – aportes y seguridad social.</li>
+      <li>Normativas sobre jornada laboral y salario mínimo.</li>
+    </ul>
   </section>
 
+  <!-- DIRECTORIO -->
   <section id="directorio">
-    <h1>Directorio de Empresas habilitadas</h1>
+    <h1>Lista de empresas de seguridad habilitadas</h1>
     <div class="buscador">
-      <input id="q" class="input" type="search" placeholder="Buscar (nombre, RUC, ciudad o contacto)..." oninput="filtrarDirectorio()" />
+      <input id="q" class="input" type="search" placeholder="Buscar empresa o ciudad..." oninput="filtrarDirectorio()" />
     </div>
     <div class="tabla">
       <table id="tabla-empresas">
         <thead>
           <tr>
             <th>Empresa</th>
-            <th>RUC</th>
-            <th>Estado</th>
             <th>Ciudad</th>
             <th>Contacto</th>
           </tr>
         </thead>
         <tbody>
-          <tr><td>SegurPar S.A.</td><td>80000000-1</td><td>Habilitada</td><td>Asunción</td><td>0981 000 000</td></tr>
-          <tr><td>ProtecPy</td><td>80111222-3</td><td>Habilitada</td><td>Ciudad del Este</td><td>0982 111 111</td></tr>
-          <tr><td>Guardianes del Sur</td><td>80222333-5</td><td>Habilitada</td><td>Encarnación</td><td>0971 222 222</td></tr>
-          <tr><td>Alfa Seguridad</td><td>80333444-6</td><td>Habilitada</td><td>Luque</td><td>021 555 555</td></tr>
+          <tr><td>SegurPar S.A.</td><td>Asunción</td><td>0981 000 000</td></tr>
+          <tr><td>ProtecPy</td><td>Ciudad del Este</td><td>0982 111 111</td></tr>
         </tbody>
       </table>
     </div>
   </section>
 
+  <!-- CONTACTO -->
   <section id="contacto">
     <h1>Contacto</h1>
     <p>Tel: <a href="tel:+595992644708">0992 644 708</a></p>
@@ -206,19 +197,21 @@
 <footer>
   <div class="container foot">
     <div>
-      <!-- mismo logo también en el pie -->
       <img src="logo-sintraspap.png" alt="Logo SINTRASPAP" class="flogo" onerror="this.style.display='none'">
       <h3>SINTRASPAP</h3>
       <p><strong>Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay</strong></p>
-      <p>Defendemos la formalización del sector, el respeto a los derechos laborales y la dignificación del trabajo.</p>
 
-      <!-- Afiliaciones -->
       <div class="afiliados">
         <p><strong>Afiliado a:</strong></p>
         <div class="afil-logos">
           <img src="logo-cnt.png" alt="Central Nacional de Trabajadores" onerror="this.style.display='none'">
           <img src="logo-citsp.png" alt="Confederación Internacional de Trabajadores de la Seguridad Privada" onerror="this.style.display='none'">
         </div>
+      </div>
+
+      <div class="ausp">
+        <h3>Auspiciantes</h3>
+        <p>Espacio disponible para auspiciantes y colaboradores.</p>
       </div>
     </div>
 
