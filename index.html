@@ -6,13 +6,19 @@
 <title>SINTRASPAP – Sindicato de Trabajadores de la Seguridad Privada</title>
 <meta name="description" content="Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay" />
 <style>
-  :root{ --azul:#0b2a59; --azul-hover:#1e4f9a; --borde:#e5e7eb; --gris:#444; --bg:#fff; }
+  :root{ --azul:#0b2a59; --azul-hover:#1e4f9a; --borde:#e5e7eb; --gris:#444; }
+
   *{box-sizing:border-box}
-  html,body{margin:0;font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;background:#fff;color:#111}
+  html,body{
+    margin:0; padding:0; width:100%;
+    overflow-x:hidden;                /* evita scroll lateral en móvil */
+    font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;
+    background:#fff; color:#111;
+  }
   a{text-decoration:none;color:inherit}
   .container{max-width:1100px;margin:0 auto;padding:0 16px}
 
-  /* Para ocultar títulos visuales sin perder accesibilidad */
+  /* Ocultar visual sin perder accesibilidad */
   .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
   /* Header */
@@ -41,17 +47,17 @@
   h2{font-size:clamp(18px,3vw,22px);margin:14px 0 8px}
   p{color:var(--gris);line-height:1.6;margin:0 0 12px}
   hr{border:none;border-top:1px solid var(--borde);margin:18px 0}
+  .muted{color:#666;font-size:13px}
 
   /* Tarjetas */
   .cards{display:grid;gap:16px;grid-template-columns:1fr}
   @media(min-width:760px){ .cards{grid-template-columns:1fr 1fr} }
   .card{border:1px solid var(--borde);border-radius:12px;padding:14px;background:#fff}
-  .muted{color:#666;font-size:13px}
 
   /* Tablas (Ofertas / Directorio) */
   .buscador{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
   .input{flex:1 1 280px;border:1px solid var(--borde);border-radius:8px;padding:10px 12px;font:inherit}
-  .tabla{border:1px solid var(--borde);border-radius:12px;overflow:auto;background:#fff}
+  .tabla{border:1px solid var(--borde);border-radius:12px;overflow-x:auto;background:#fff; -webkit-overflow-scrolling:touch}
   table{width:100%;border-collapse:collapse;min-width:720px}
   th,td{padding:10px;border-bottom:1px solid var(--borde);text-align:left}
   th{background:#f8fafc}
@@ -71,7 +77,7 @@
 <!-- HEADER -->
 <header>
   <div class="container head">
-    <!-- LOGO + nombre (si el archivo no existe, la imagen se oculta sola) -->
+    <!-- Logo opcional -->
     <div class="brand">
       <img src="logo-sintraspap.png" alt="Logo SINTRASPAP" onerror="this.style.display='none'">
       <span>SINTRASPAP</span>
@@ -116,22 +122,24 @@
     <h1 class="sr-only">Institucional</h1>
     <p><strong>SINTRASPAP</strong> – Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay.</p>
     <p>Trabajamos por la formalización del sector, el respeto a los derechos laborales y la dignificación del trabajo.</p>
-    <h2>Misión</h2>
-    <p>Defender los derechos de las y los trabajadores, promover la capacitación y la seguridad en el trabajo.</p>
-    <h2>Visión</h2>
-    <p>Un sector formalizado, con empleo digno y condiciones justas para toda la familia trabajadora de seguridad privada.</p>
+
     <h2>Autoridades</h2>
     <ul>
-      <li>Secretario General: ___________________</li>
-      <li>Secretaría de Organización: ___________</li>
-      <li>Tesorería: ____________________________</li>
+      <li><strong>Secretario General:</strong> ___________________</li>
+      <li><strong>Secretario de Conflictos:</strong> ______________</li>
     </ul>
+
+    <h2>Misión</h2>
+    <p>Defender los derechos de las y los trabajadores, promover la capacitación y la seguridad en el trabajo.</p>
+
+    <h2>Visión</h2>
+    <p>Un sector formalizado, con empleo digno y condiciones justas para toda la familia trabajadora de seguridad privada.</p>
   </section>
 
   <!-- OFERTAS LABORALES -->
   <section id="ofertas">
     <h1>Ofertas laborales</h1>
-    <p class="muted">Publicá las oportunidades que reciban del sector. Editá las filas como si fuera una planilla.</p>
+    <p class="muted">Editá/duplicá las filas para publicar nuevas oportunidades.</p>
 
     <div class="tabla">
       <table id="tabla-ofertas">
@@ -202,8 +210,6 @@
     <p>Tel: <a href="tel:+595992644708">0992 644 708</a></p>
     <p>Correo: <a href="mailto:sintraspappy@gmail.com">sintraspappy@gmail.com</a></p>
     <p>Personería Gremial N° 24/2024</p>
-    <hr>
-    <p class="muted">Podés escribirnos para consultas, denuncias o propuestas de trabajo conjunto.</p>
   </section>
 
 </main>
@@ -212,7 +218,6 @@
 <footer>
   <div class="container foot">
     <div>
-      <!-- LOGO en blanco opcional para footer -->
       <img src="logo-sintraspap-blanco.png" alt="Logo SINTRASPAP" class="flogo" onerror="this.style.display='none'">
       <h3>SINTRASPAP</h3>
       <p><strong>Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay</strong></p>
@@ -238,7 +243,6 @@ function showSection(id){
   links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === id));
   document.querySelector('.menu').classList.remove('show');
 }
-
 function handleHash(){
   const id = location.hash || '#inicio';
   if(!document.querySelector(id)) location.hash = '#inicio';
