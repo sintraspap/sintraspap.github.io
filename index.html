@@ -3,25 +3,21 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>SINTRASPAP – Sindicato de Trabajadores de la Seguridad Privada</title>
+<title>SINTRASPAP - Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay</title>
+<meta name="description" content="Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay" />
 <style>
-  :root{ --azul:#0b2a59; --azul-hover:#1e4f9a; --borde:#e5e7eb; --gris:#ccc; }
+  :root{ --azul:#0b2a59; --azul-hover:#1e4f9a; --borde:#e5e7eb; --gris:#666; }
 
   *{box-sizing:border-box}
-  html,body{
-    margin:0; padding:0; width:100%;
-    overflow-x:hidden;
-    font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;
-    background:#fff; color:#111;
-  }
+  html,body{margin:0;padding:0;width:100%;overflow-x:hidden;font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;background:#fff;color:#111}
   a{text-decoration:none;color:inherit}
   .container{max-width:1100px;margin:0 auto;padding:0 16px}
 
   /* Header */
   header{background:var(--azul);color:#fff;position:sticky;top:0;z-index:50}
-  .head{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
-  .brand{display:flex;align-items:center;gap:12px;font-weight:900;font-size:28px}
-  .brand img{height:50px;width:auto;display:inline-block}
+  .head{display:flex;align-items:center;justify-content:space-between;padding:20px 0}
+  .brand{display:flex;align-items:center;gap:14px;font-weight:900;font-size:34px}
+  .brand img{height:64px;width:auto;display:inline-block}
   .menu{list-style:none;display:flex;gap:18px;margin:0;padding:0;flex-wrap:wrap}
   .menu a{color:#fff;padding:8px 10px;border-radius:6px}
   .menu a.active,.menu a:hover{background:var(--azul-hover)}
@@ -41,33 +37,45 @@
   @keyframes fade{from{opacity:.4;transform:translateY(3px)}to{opacity:1;transform:none}}
   h1{font-size:clamp(22px,4vw,30px);margin:0 0 8px}
   h2{font-size:clamp(18px,3vw,22px);margin:14px 0 8px}
-  p{line-height:1.6;margin:0 0 12px}
+  p{line-height:1.6;margin:0 0 12px;color:#222}
+  .muted{color:#777}
 
-  /* Noticias con imágenes */
+  /* Cards/noticias */
   .cards{display:grid;gap:16px;grid-template-columns:1fr}
   @media(min-width:760px){ .cards{grid-template-columns:1fr 1fr} }
   .card{border:1px solid var(--borde);border-radius:12px;padding:14px;background:#fff}
-  .card img{max-width:100%;border-radius:8px;margin-bottom:10px}
+  .card img{max-width:100%;border-radius:8px;margin-bottom:10px;display:block}
 
-  /* Tablas */
+  /* Bloque AUSPCIANTES (Inicio) */
+  .ausp-home{margin:6px 0 22px;border:1px solid var(--borde);border-radius:14px;padding:16px;background:linear-gradient(180deg,#f7fafc, #eef4ff)}
+  .ausp-home h2{font-size:clamp(20px,3.2vw,26px);margin:0 0 12px}
+  .sponsor-grid{display:grid;gap:14px;grid-template-columns:1fr}
+  @media(min-width:680px){ .sponsor-grid{grid-template-columns:1fr 1fr} }
+  .sponsor-item{border:1px solid var(--borde);background:#fff;border-radius:12px;padding:12px;text-align:center}
+  .sponsor-item img,.sponsor-item video{max-width:100%;border-radius:10px}
+  .sponsor-item a{display:inline-block;margin-top:8px;color:#0b2a59;text-decoration:underline}
+
+  /* Tablas y buscador */
   .buscador{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
   .input{flex:1 1 280px;border:1px solid var(--borde);border-radius:8px;padding:10px 12px;font:inherit}
   .tabla{border:1px solid var(--borde);border-radius:12px;overflow-x:auto;background:#fff}
-  table{width:100%;border-collapse:collapse}
+  table{width:100%;border-collapse:collapse;min-width:620px}
   th,td{padding:10px;border-bottom:1px solid var(--borde);text-align:left}
   th{background:#f8fafc}
   tr:hover td{background:#fafafa}
 
   /* Footer */
-  footer{background:#091f40;color:#fff;margin-top:16px;padding-top:20px}
+  footer{background:#091f40;color:#fff;margin-top:16px}
   .foot{display:grid;gap:18px;grid-template-columns:1fr; padding:22px 0}
   @media(min-width:760px){ .foot{grid-template-columns:1.2fr 1fr} }
-  .flogo{height:50px;width:auto;margin-bottom:8px}
-  .afiliados p{font-size:18px;margin:0 0 8px}
-  .afil-logos{display:flex;justify-content:center;align-items:center;gap:30px;flex-wrap:wrap;margin-top:8px}
-  .afil-logos img{height:70px;width:auto;max-width:200px;background:#fff;border-radius:8px;padding:4px}
-  .ausp{margin-top:24px}
+  .flogo{height:72px;width:auto;margin-bottom:10px}
+  .afiliados p{font-size:22px;margin:0 0 10px;text-align:center;font-weight:bold}
+  .afil-logos{display:flex;justify-content:center;align-items:center;gap:32px;flex-wrap:wrap;margin-top:10px}
+  .afil-logos img{height:96px;width:auto;max-width:260px;background:#fff;border-radius:10px;padding:6px}
   .cpy{border-top:1px solid rgba(255,255,255,.2);text-align:center;padding:10px 0;color:#dcdcdc;font-size:14px}
+
+  /* Utilidades */
+  .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 </style>
 </head>
 <body>
@@ -96,24 +104,44 @@
 
   <!-- INICIO -->
   <section id="inicio" class="active">
+    <!-- AUSPCIANTES ARRIBA -->
+    <div class="ausp-home">
+      <h2>Auspiciantes</h2>
+      <div class="sponsor-grid">
+        <!-- Ejemplos (cambiá las imágenes/enlaces por los reales) -->
+        <div class="sponsor-item">
+          <img src="banner-1.png" alt="Auspiciante 1" onerror="this.style.display='none'">
+          <a href="https://www.ejemplo-empresaseguridad.com" target="_blank" rel="noopener">Visitar sitio</a>
+        </div>
+        <div class="sponsor-item">
+          <!-- Si querés video, subí banner-2.mp4 y usá el <video> -->
+          <!-- <video autoplay muted loop playsinline><source src="banner-2.mp4" type="video/mp4"></video> -->
+          <img src="banner-2.png" alt="Auspiciante 2" onerror="this.style.display='none'">
+          <a href="https://www.otro-auspiciante.com" target="_blank" rel="noopener">Visitar sitio</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Noticias con imagen -->
     <div class="cards">
       <article class="card">
-        <img src="noticia1.jpg" alt="Noticia 1" onerror="this.style.display='none'">
+        <img src="noticia1.jpg" alt="Reunión con autoridades" onerror="this.style.display='none'">
         <h2>Reunión con autoridades laborales</h2>
         <p>Representantes del SINTRASPAP presentaron propuestas para mejorar condiciones de guardias y fiscalización de contratos.</p>
-        <p><em>28/08/2025</em></p>
+        <p class="muted">28/08/2025</p>
       </article>
       <article class="card">
-        <img src="noticia2.jpg" alt="Noticia 2" onerror="this.style.display='none'">
+        <img src="noticia2.jpg" alt="Capacitación en normas de seguridad" onerror="this.style.display='none'">
         <h2>Capacitación en normas de seguridad</h2>
         <p>Jornada de formación dirigida a trabajadores del sector: protocolos, derechos laborales y salud ocupacional.</p>
-        <p><em>20/08/2025</em></p>
+        <p class="muted">20/08/2025</p>
       </article>
     </div>
   </section>
 
   <!-- INSTITUCIONAL -->
   <section id="institucional">
+    <h1 class="sr-only">Institucional</h1>
     <p><strong>SINTRASPAP</strong> – Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay.</p>
 
     <h2>Autoridades</h2>
@@ -136,11 +164,7 @@
       <table>
         <thead>
           <tr>
-            <th>Empresa</th>
-            <th>Puesto</th>
-            <th>Ciudad</th>
-            <th>Requisitos</th>
-            <th>Contacto</th>
+            <th>Empresa</th><th>Puesto</th><th>Ciudad</th><th>Requisitos</th><th>Contacto</th>
           </tr>
         </thead>
         <tbody>
@@ -153,32 +177,39 @@
   <!-- LEYES -->
   <section id="leyes">
     <h1>Leyes</h1>
-    <ul>
-      <li>Ley 5424/15 – Regulación de empresas de seguridad privada.</li>
-      <li>Código Laboral del Paraguay.</li>
-      <li>Ley de IPS – aportes y seguridad social.</li>
-      <li>Normativas sobre jornada laboral y salario mínimo.</li>
-    </ul>
+    <div class="cards">
+      <div class="card">
+        <h2>Ley 5424/15 – Servicios de Seguridad Privada</h2>
+        <p>Marco legal que regula las actividades de seguridad privada en Paraguay.</p>
+      </div>
+      <div class="card">
+        <h2>Leyes laborales principales</h2>
+        <ul>
+          <li>Código Laboral del Paraguay.</li>
+          <li>Jornada laboral y horas extra conforme a normativa vigente.</li>
+          <li>Salario mínimo y pago puntual.</li>
+          <li>Aportes al IPS y cobertura correspondiente.</li>
+        </ul>
+      </div>
+    </div>
   </section>
 
   <!-- DIRECTORIO -->
   <section id="directorio">
     <h1>Lista de empresas de seguridad habilitadas</h1>
     <div class="buscador">
-      <input id="q" class="input" type="search" placeholder="Buscar empresa o ciudad..." oninput="filtrarDirectorio()" />
+      <input id="q" class="input" type="search" placeholder="Buscar (empresa, ciudad o contacto)..." oninput="filtrarDirectorio()" />
     </div>
     <div class="tabla">
       <table id="tabla-empresas">
         <thead>
-          <tr>
-            <th>Empresa</th>
-            <th>Ciudad</th>
-            <th>Contacto</th>
-          </tr>
+          <tr><th>Empresa</th><th>Ciudad</th><th>Contacto</th></tr>
         </thead>
         <tbody>
           <tr><td>SegurPar S.A.</td><td>Asunción</td><td>0981 000 000</td></tr>
           <tr><td>ProtecPy</td><td>Ciudad del Este</td><td>0982 111 111</td></tr>
+          <tr><td>Guardianes del Sur</td><td>Encarnación</td><td>0971 222 222</td></tr>
+          <tr><td>Alfa Seguridad</td><td>Luque</td><td>021 555 555</td></tr>
         </tbody>
       </table>
     </div>
@@ -189,7 +220,8 @@
     <h1>Contacto</h1>
     <p>Tel: <a href="tel:+595992644708">0992 644 708</a></p>
     <p>Correo: <a href="mailto:sintraspappy@gmail.com">sintraspappy@gmail.com</a></p>
-    <p>Personería Gremial N° 24/2024</p>
+    <p>Facebook: <a href="https://www.facebook.com/share/16oD8u6Nu1/" target="_blank" rel="noopener">SINTRASPAP en Facebook</a></p>
+    <p>X (Twitter): <a href="https://x.com/sintraspap_py?t=rRnZT7aWDZo1lA4R-m680g&s=09" target="_blank" rel="noopener">@sintraspap_py</a></p>
   </section>
 
 </main>
@@ -201,17 +233,13 @@
       <h3>SINTRASPAP</h3>
       <p><strong>Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay</strong></p>
 
+      <!-- Afiliaciones (más grande) -->
       <div class="afiliados">
-        <p><strong>Afiliado a:</strong></p>
+        <p>Afiliado a:</p>
         <div class="afil-logos">
           <img src="logo-cnt.png" alt="Central Nacional de Trabajadores" onerror="this.style.display='none'">
           <img src="logo-citsp.png" alt="Confederación Internacional de Trabajadores de la Seguridad Privada" onerror="this.style.display='none'">
         </div>
-      </div>
-
-      <div class="ausp">
-        <h3>Auspiciantes</h3>
-        <p>Espacio disponible para auspiciantes y colaboradores.</p>
       </div>
     </div>
 
@@ -219,13 +247,15 @@
       <h3>Contacto</h3>
       <p>Tel: <a href="tel:+595992644708">0992 644 708</a></p>
       <p>Correo: <a href="mailto:sintraspappy@gmail.com">sintraspappy@gmail.com</a></p>
-      <p>Personería Gremial N° 24/2024</p>
+      <p>Facebook: <a href="https://www.facebook.com/share/16oD8u6Nu1/" target="_blank" rel="noopener">SINTRASPAP</a></p>
+      <p>X (Twitter): <a href="https://x.com/sintraspap_py?t=rRnZT7aWDZo1lA4R-m680g&s=09" target="_blank" rel="noopener">@sintraspap_py</a></p>
     </div>
   </div>
   <div class="cpy">© 2025 SINTRASPAP</div>
 </footer>
 
 <script>
+/* Navegación por hash (#) */
 const sections = Array.from(document.querySelectorAll('main section'));
 const links = Array.from(document.querySelectorAll('#menu a'));
 function showSection(id){
@@ -241,6 +271,7 @@ function handleHash(){
 window.addEventListener('hashchange', handleHash);
 window.addEventListener('DOMContentLoaded', handleHash);
 
+/* Buscador del Directorio */
 function filtrarDirectorio(){
   const q = (document.getElementById('q').value || '').toLowerCase();
   const rows = document.querySelectorAll('#tabla-empresas tbody tr');
