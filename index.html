@@ -6,249 +6,171 @@
 <title>SINTRASPAP – Sindicato de Trabajadores de la Seguridad Privada</title>
 <meta name="description" content="Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay" />
 <style>
-  :root{
-    --azul:#0b2a59; --azul-osc:#091f40; --azul-hover:#1e4f9a;
-    --gris:#444; --borde:#e5e7eb; --bg:#fff;
-  }
-  *{box-sizing:border-box}
-  html,body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#fff;color:#111}
-  a{color:inherit;text-decoration:none}
-  img{max-width:100%;height:auto;display:block}
+  :root{ --azul:#0b2a59; --azul-hover:#1e4f9a; --borde:#e5e7eb; --gris:#444; }
+  *{box-sizing:border-box} html,body{margin:0;font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;color:#111;background:#fff}
+  a{text-decoration:none;color:inherit}
   .container{max-width:1100px;margin:0 auto;padding:0 16px}
 
-  /* FAJA DE LOGOS */
-  .topbar{border-bottom:1px solid var(--borde);background:#fff}
-  .logos{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0}
-  .logo-text{font-weight:800;color:#111;font-size:18px}
+  /* Top */
+  .top{border-bottom:1px solid var(--borde);padding:12px 0}
+  .marca{font-weight:800}
 
-  /* NAV */
+  /* Nav */
   nav{background:var(--azul);color:#fff}
-  .nav-row{display:flex;align-items:center;gap:18px;padding:10px 0}
-  .brand{font-weight:800}
-  .burger{display:none;margin-left:auto;background:transparent;border:1px solid rgba(255,255,255,.5);color:#fff;border-radius:6px;padding:8px 10px}
-  .links{display:flex;gap:10px;flex-wrap:wrap;padding:6px 0}
+  .nav-row{display:flex;align-items:center;gap:16px;padding:10px 0}
+  .links{display:flex;gap:10px;flex-wrap:wrap}
   .links a{padding:10px 12px;border-radius:6px}
   .links a:hover{background:var(--azul-hover)}
-  @media(max-width:860px){
+  .burger{margin-left:auto;display:none;background:transparent;border:1px solid rgba(255,255,255,.4);border-radius:6px;color:#fff;padding:8px 10px}
+  @media(max-width:820px){
     .burger{display:block}
-    .links{display:none;flex-direction:column;border-top:1px solid rgba(255,255,255,.25)}
+    .links{display:none;width:100%;flex-direction:column;border-top:1px solid rgba(255,255,255,.25);margin-top:6px}
     .links.show{display:flex}
   }
 
-  /* CONTENIDO */
-  main{padding:26px 0 40px}
-  section{padding:10px 0}
+  /* Contenido */
+  main{padding:24px 0 40px}
   h1{font-size:clamp(22px,4vw,30px);margin:0 0 6px}
-  h2{font-size:clamp(18px,3vw,22px);margin:24px 0 8px}
-  p{color:var(--gris);line-height:1.6;margin:0 0 10px}
-  hr{border:none;border-top:1px solid var(--borde);margin:22px 0}
+  h2{font-size:clamp(18px,3vw,22px);margin:20px 0 8px}
+  p{color:var(--gris);line-height:1.6;margin:0 0 12px}
+  hr{border:none;border-top:1px solid var(--borde);margin:20px 0}
 
-  /* DIRECTORIO */
-  .toolbar{display:grid;gap:10px;grid-template-columns:1fr;margin:12px 0 16px}
-  @media(min-width:680px){ .toolbar{grid-template-columns:1fr 220px 220px} }
-  .input,.select{border:1px solid var(--borde);border-radius:8px;padding:10px 12px;font:inherit;background:#fff}
-  .table-wrap{border:1px solid var(--borde);border-radius:12px;overflow:auto;background:#fff}
-  table{width:100%;border-collapse:collapse;min-width:760px}
-  th,td{padding:12px 10px;border-bottom:1px solid var(--borde);text-align:left;vertical-align:top}
-  th{background:#f8fafc;position:sticky;top:0;z-index:1;cursor:pointer}
+  /* Directorio simple */
+  .buscador{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+  .input{flex:1 1 280px;border:1px solid var(--borde);border-radius:8px;padding:10px 12px;font:inherit}
+  .tabla{border:1px solid var(--borde);border-radius:12px;overflow:auto;background:#fff}
+  table{width:100%;border-collapse:collapse;min-width:720px}
+  th,td{padding:10px;border-bottom:1px solid var(--borde);text-align:left}
+  th{background:#f8fafc}
   tr:hover td{background:#fafafa}
-  .badge{display:inline-block;padding:3px 8px;border-radius:999px;font-size:12px;border:1px solid #cfe8cf;background:#edf9ed;color:#126b12}
-  .warn{border-color:#f7c9c9;background:#fff1f1;color:#9b1c1c}
-  .pager{display:flex;gap:8px;justify-content:flex-end;margin-top:10px}
-  .btn{border:1px solid var(--borde);padding:8px 10px;border-radius:8px;background:#fff}
-  .btn[disabled]{opacity:.5;pointer-events:none}
+  .nota{font-size:13px;color:#666;margin-top:6px}
 
-  /* FOOTER */
-  footer{background:var(--azul-osc);color:#fff}
-  .foot-wrap{padding:24px 0}
-  .foot{display:grid;gap:18px;grid-template-columns:1fr}
+  /* Footer */
+  footer{background:#091f40;color:#fff}
+  .foot{display:grid;gap:18px;grid-template-columns:1fr; padding:22px 0}
   @media(min-width:760px){ .foot{grid-template-columns:1.2fr 1fr} }
-  .foot h3{margin:0 0 8px}
-  .foot p,.foot a{color:#e6e6e6}
-  .foot a{text-decoration:underline}
-  .foot-bottom{border-top:1px solid rgba(255,255,255,.2);padding:12px 0;color:#dcdcdc;text-align:center;font-size:14px}
+  .foot a{color:#e6e6e6;text-decoration:underline}
+  .cpy{border-top:1px solid rgba(255,255,255,.2);text-align:center;padding:10px 0;color:#dcdcdc;font-size:14px}
 </style>
 </head>
 <body>
 
-  <!-- FAJA DE LOGOS -->
-  <div class="topbar">
-    <div class="container logos">
-      <div class="logo-text">SINTRASPAP</div>
-      <div class="logo-text">PARAGUAY</div>
+<!-- Cabecera -->
+<div class="top">
+  <div class="container"><div class="marca">SINTRASPAP</div></div>
+</div>
+
+<!-- Menú -->
+<nav>
+  <div class="container">
+    <div class="nav-row">
+      <strong>Institucional</strong>
+      <button class="burger" onclick="document.querySelector('.links').classList.toggle('show')">☰ Menú</button>
+    </div>
+    <div class="links">
+      <a href="#institucional">INSTITUCIONAL</a>
+      <a href="#consultas">CONSULTAS</a>
+      <a href="#gestiones">GESTIONES</a>
+      <a href="#seguridad">SEGURIDAD</a>
+      <a href="#directorio">DIRECTORIO</a>
+      <a href="#contacto">CONTACTO</a>
     </div>
   </div>
+</nav>
 
-  <!-- NAVEGACIÓN -->
-  <nav>
-    <div class="container">
-      <div class="nav-row">
-        <div class="brand">Institucional</div>
-        <button class="burger" aria-label="Abrir menú" onclick="document.querySelector('.links').classList.toggle('show')">☰ Menú</button>
-      </div>
-      <div class="links">
-        <a href="#institucional">INSTITUCIONAL</a>
-        <a href="#consultas">CONSULTAS</a>
-        <a href="#gestiones">GESTIONES</a>
-        <a href="#seguridad">SEGURIDAD</a>
-        <a href="#directorio">DIRECTORIO</a>
-        <a href="#contacto">CONTACTO</a>
-      </div>
+<!-- Contenido -->
+<main class="container">
+  <section id="institucional">
+    <h1>Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay</h1>
+    <p>Trabajamos por la formalización del sector, el respeto a los derechos laborales y la dignificación del trabajo.</p>
+  </section>
+
+  <hr>
+
+  <section id="consultas">
+    <h2>Consultas</h2>
+    <p>Habilitaciones, IPS, contratos, jornadas, horas extra y salarios.</p>
+  </section>
+
+  <section id="gestiones">
+    <h2>Gestiones</h2>
+    <p>Trámites disponibles, requisitos y enlaces externos cuando corresponda.</p>
+  </section>
+
+  <section id="seguridad">
+    <h2>Seguridad</h2>
+    <p>Normativas, campañas y recomendaciones para el sector de seguridad privada.</p>
+  </section>
+
+  <!-- DIRECTORIO MUY SIMPLE -->
+  <section id="directorio">
+    <h2>Directorio de Empresas</h2>
+
+    <!-- 1) BUSCADOR -->
+    <div class="buscador">
+      <input id="q" class="input" type="search" placeholder="Escribí para buscar (nombre, RUC, ciudad o contacto)..." oninput="filtrar()" />
     </div>
-  </nav>
 
-  <!-- CONTENIDO -->
-  <main class="container">
-    <section id="institucional">
-      <h1>Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay</h1>
-      <p>Trabajamos por la formalización del sector, el respeto a los derechos laborales y la dignificación del trabajo.</p>
-    </section>
-
-    <hr>
-
-    <section id="consultas">
-      <h2>Consultas</h2>
-      <p>Habilitaciones, IPS, contratos, jornada, horas extra y salarios.</p>
-    </section>
-
-    <section id="gestiones">
-      <h2>Gestiones</h2>
-      <p>Trámites disponibles, requisitos y enlaces externos cuando corresponda.</p>
-    </section>
-
-    <section id="seguridad">
-      <h2>Seguridad</h2>
-      <p>Normativas, campañas y recomendaciones para el sector de seguridad privada.</p>
-    </section>
-
-    <!-- ===== DIRECTORIO INTEGRADO ===== -->
-    <section id="directorio">
-      <h2>Directorio de Empresas</h2>
-      <p>Buscá por <strong>nombre</strong>, <strong>RUC</strong>, <strong>ciudad</strong> o <strong>contacto</strong>. Filtrá por estado y ordená haciendo clic en los encabezados.</p>
-
-      <div class="toolbar">
-        <input id="q" class="input" type="search" placeholder="Buscar por nombre, RUC, ciudad o contacto…" oninput="applyFilters()" />
-        <select id="estado" class="select" onchange="applyFilters()">
-          <option value="">Estado (todos)</option>
-          <option value="Habilitada">Habilitada</option>
-          <option value="Vencida">Vencida</option>
-          <option value="Suspendida">Suspendida</option>
-        </select>
-        <select id="porPagina" class="select" onchange="goPage(1,true)">
-          <option value="10">10 por página</option>
-          <option value="25">25 por página</option>
-          <option value="50">50 por página</option>
-          <option value="100">100 por página</option>
-        </select>
-      </div>
-
-      <div class="table-wrap">
-        <table id="tabla">
-          <thead>
-            <tr>
-              <th data-col="empresa">Empresa</th>
-              <th data-col="ruc">RUC</th>
-              <th data-col="estado">Estado</th>
-              <th data-col="ciudad">Ciudad</th>
-              <th data-col="contacto">Contacto</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
-
-      <div class="pager">
-        <button class="btn" onclick="prevPage()">&larr; Anterior</button>
-        <span id="pageInfo" style="align-self:center"></span>
-        <button class="btn" onclick="nextPage()">Siguiente &rarr;</button>
-      </div>
-    </section>
-    <!-- ===== FIN DIRECTORIO ===== -->
-
-    <hr>
-
-    <!-- CONTACTO -->
-    <section id="contacto">
-      <h2>Contáctanos</h2>
-      <p>Tel: <a href="tel:+595973409535">+595 973 409535</a> — Correo: <a href="mailto:sintraspappy@gmail.com">sintraspappy@gmail.com</a></p>
-      <p>Personería Gremial N° 24/2024</p>
-    </section>
-  </main>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="container foot-wrap">
-      <div class="foot">
-        <div>
-          <h3>DEPARTAMENTO ESPECIALIZADO EN EL</h3>
-          <p><strong>CONTROL Y FISCALIZACIÓN DE EMPRESAS DE SEGURIDAD PRIVADA Y AFINES</strong></p>
-        </div>
-        <div>
-          <h3>CONTACTO</h3>
-          <p>Dirección… (calle, número, ciudad)</p>
-          <p><a href="mailto:sintraspappy@gmail.com">sintraspappy@gmail.com</a></p>
-        </div>
-      </div>
+    <!-- 2) TABLA: EDITÁ COMO SI FUERA EXCEL -->
+    <div class="tabla">
+      <table id="tabla">
+        <thead>
+          <tr>
+            <th>Empresa</th>
+            <th>RUC</th>
+            <th>Estado</th>
+            <th>Ciudad</th>
+            <th>Contacto</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- ⬇⬇⬇ CAMBIÁ ESTAS FILAS COMO QUIERAS (copiá/pegá para agregar más) ⬇⬇⬇ -->
+          <tr><td>SegurPar S.A.</td><td>80000000-1</td><td>Habilitada</td><td>Asunción</td><td>0981 000 000</td></tr>
+          <tr><td>ProtecPy</td><td>80111222-3</td><td>Vencida</td><td>Ciudad del Este</td><td>0982 111 111</td></tr>
+          <tr><td>Guardianes del Sur</td><td>80222333-5</td><td>Habilitada</td><td>Encarnación</td><td>0971 222 222</td></tr>
+          <tr><td>Alfa Seguridad</td><td>80333444-6</td><td>Suspendida</td><td>Luque</td><td>021 555 555</td></tr>
+          <!-- ⬆⬆⬆ FIN: EDICIÓN SÚPER SIMPLE POR FILAS ⬆⬆⬆ -->
+        </tbody>
+      </table>
     </div>
-    <div class="foot-bottom">© 2025 SINTRASPAP</div>
-  </footer>
+    <p class="nota">Tip: para agregar una empresa, copiá una fila completa <code>&lt;tr&gt;...&lt;/tr&gt;</code> y cambiá los textos.</p>
+  </section>
 
-  <!-- === JS DEL DIRECTORIO (editá el arreglo EMPRESAS) === -->
-  <script>
-  /* 1) EDITA ESTA LISTA CON TUS EMPRESAS */
-  const EMPRESAS = [
-    { empresa:"SegurPar S.A.",    ruc:"80000000-1", estado:"Habilitada", ciudad:"Asunción",         contacto:"0981 000 000" },
-    { empresa:"ProtecPy",         ruc:"80111222-3", estado:"Vencida",    ciudad:"Ciudad del Este",  contacto:"0982 111 111" },
-    { empresa:"Guardianes del Sur", ruc:"80222333-5", estado:"Habilitada", ciudad:"Encarnación",   contacto:"0971 222 222" },
-    { empresa:"Alfa Seguridad",   ruc:"80333444-6", estado:"Suspendida", ciudad:"Luque",            contacto:"021 555 555" },
-    // Agregá más:
-    // { empresa:"...", ruc:"...", estado:"Habilitada|Vencida|Suspendida", ciudad:"...", contacto:"..." },
-  ];
+  <hr>
 
-  /* 2) LÓGICA BÁSICA: búsqueda, orden, paginado */
-  let sortCol='empresa', sortDir='asc', page=1;
-  const $=s=>document.querySelector(s);
-  const N=s=>(s||'').toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  <section id="contacto">
+    <h2>Contáctanos</h2>
+    <p>Tel: <a href="tel:+595973409535">+595 973 409535</a> — Correo: <a href="mailto:sintraspappy@gmail.com">sintraspappy@gmail.com</a></p>
+    <p>Personería Gremial N° 24/2024</p>
+  </section>
+</main>
 
-  function getFiltered(){
-    const q=N($('#q').value), e=$('#estado').value;
-    let rows=EMPRESAS.filter(r => (!e || r.estado===e) && (!q ||
-      N(r.empresa).includes(q)||N(r.ruc).includes(q)||N(r.ciudad).includes(q)||N(r.contacto).includes(q)));
-    rows.sort((a,b)=>{const A=N(a[sortCol]),B=N(b[sortCol]); return A<B?(sortDir==='asc'?-1:1):A>B?(sortDir==='asc'?1:-1):0;});
-    return rows;
-  }
+<!-- Footer -->
+<footer>
+  <div class="container foot">
+    <div>
+      <h3>DEPARTAMENTO ESPECIALIZADO EN EL</h3>
+      <p><strong>CONTROL Y FISCALIZACIÓN DE EMPRESAS DE SEGURIDAD PRIVADA Y AFINES</strong></p>
+    </div>
+    <div>
+      <h3>CONTACTO</h3>
+      <p>Dirección… (calle, número, ciudad)</p>
+      <p><a href="mailto:sintraspappy@gmail.com">sintraspappy@gmail.com</a></p>
+    </div>
+  </div>
+  <div class="cpy">© 2025 SINTRASPAP</div>
+</footer>
 
-  function render(){
-    const rows=getFiltered(), per=parseInt($('#porPagina').value||'10',10);
-    const totalPages=Math.max(1,Math.ceil(rows.length/per)); if(page>totalPages) page=totalPages;
-    const slice=rows.slice((page-1)*per,(page-1)*per+per);
-    $('#tabla tbody').innerHTML=slice.map(r=>{
-      const badge=r.estado==='Habilitada' ? '<span class="badge">Habilitada</span>' :
-                    r.estado==='Vencida' ? '<span class="badge warn">Vencida</span>' :
-                                           '<span class="badge warn">Suspendida</span>';
-      return `<tr>
-        <td>${r.empresa}</td><td>${r.ruc}</td><td>${badge}</td>
-        <td>${r.ciudad||''}</td><td>${r.contacto||''}</td>
-      </tr>`;
-    }).join('');
-    $('#pageInfo').textContent=Página ${page} de ${totalPages} — ${rows.length} empresas;
-  }
-
-  function applyFilters(){ page=1; render(); }
-  function goPage(n,reset){ if(reset) page=1; else page=n; render(); }
-  function nextPage(){ page++; render(); }
-  function prevPage(){ page=Math.max(1,page-1); render(); }
-
-  document.querySelectorAll('th[data-col]').forEach(th=>{
-    th.addEventListener('click',()=>{
-      const col=th.getAttribute('data-col');
-      if(sortCol===col) sortDir=(sortDir==='asc'?'desc':'asc'); else { sortCol=col; sortDir='asc'; }
-      render();
-    });
+<script>
+/* Buscador MUY simple (filtra filas por texto) */
+function filtrar(){
+  const q = (document.getElementById('q').value || '').toLowerCase();
+  const rows = document.querySelectorAll('#tabla tbody tr');
+  rows.forEach(tr=>{
+    const text = tr.innerText.toLowerCase();
+    tr.style.display = text.includes(q) ? '' : 'none';
   });
-
-  /* inicial */
-  render();
-  </script>
+}
+</script>
 </body>
 </html>
