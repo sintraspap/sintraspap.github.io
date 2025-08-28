@@ -12,10 +12,14 @@
   a{text-decoration:none;color:inherit}
   .container{max-width:1100px;margin:0 auto;padding:0 16px}
 
+  /* Para ocultar títulos visuales sin perder accesibilidad */
+  .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
   /* Header */
   header{background:var(--azul);color:#fff;position:sticky;top:0;z-index:50}
   .head{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
-  .brand{font-weight:800;font-size:20px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px}
+  .brand img{height:36px;width:auto;display:inline-block}
   .menu{list-style:none;display:flex;gap:18px;margin:0;padding:0;flex-wrap:wrap}
   .menu a{color:#fff;padding:8px 10px;border-radius:6px}
   .menu a.active,.menu a:hover{background:var(--azul-hover)}
@@ -44,7 +48,7 @@
   .card{border:1px solid var(--borde);border-radius:12px;padding:14px;background:#fff}
   .muted{color:#666;font-size:13px}
 
-  /* Directorio */
+  /* Tablas (Ofertas / Directorio) */
   .buscador{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
   .input{flex:1 1 280px;border:1px solid var(--borde);border-radius:8px;padding:10px 12px;font:inherit}
   .tabla{border:1px solid var(--borde);border-radius:12px;overflow:auto;background:#fff}
@@ -58,6 +62,7 @@
   .foot{display:grid;gap:18px;grid-template-columns:1fr; padding:22px 0}
   @media(min-width:760px){ .foot{grid-template-columns:1.2fr 1fr} }
   .foot a{color:#e6e6e6;text-decoration:underline}
+  .flogo{height:42px;width:auto;margin-bottom:8px}
   .cpy{border-top:1px solid rgba(255,255,255,.2);text-align:center;padding:10px 0;color:#dcdcdc;font-size:14px}
 </style>
 </head>
@@ -66,7 +71,12 @@
 <!-- HEADER -->
 <header>
   <div class="container head">
-    <div class="brand">SINTRASPAP</div>
+    <!-- LOGO + nombre (si el archivo no existe, la imagen se oculta sola) -->
+    <div class="brand">
+      <img src="logo-sintraspap.png" alt="Logo SINTRASPAP" onerror="this.style.display='none'">
+      <span>SINTRASPAP</span>
+    </div>
+
     <button class="burger" onclick="document.querySelector('.menu').classList.toggle('show')">☰ Menú</button>
     <nav>
       <ul class="menu" id="menu">
@@ -87,8 +97,6 @@
   <!-- INICIO -->
   <section id="inicio" class="active">
     <h1>Noticias del sector</h1>
-    <p class="muted">Publicá aquí lo más relevante sobre seguridad privada y actividad sindical.</p>
-
     <div class="cards">
       <article class="card">
         <h2>Reunión con autoridades laborales</h2>
@@ -105,7 +113,7 @@
 
   <!-- INSTITUCIONAL -->
   <section id="institucional">
-    <h1>Institucional</h1>
+    <h1 class="sr-only">Institucional</h1>
     <p><strong>SINTRASPAP</strong> – Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay.</p>
     <p>Trabajamos por la formalización del sector, el respeto a los derechos laborales y la dignificación del trabajo.</p>
     <h2>Misión</h2>
@@ -147,7 +155,6 @@
   <!-- SEGURIDAD -->
   <section id="seguridad">
     <h1>Seguridad</h1>
-    <p>Normativas, campañas y recomendaciones para el sector de seguridad privada.</p>
     <div class="cards">
       <div class="card">
         <h2>Protocolos básicos en servicio</h2>
@@ -205,6 +212,8 @@
 <footer>
   <div class="container foot">
     <div>
+      <!-- LOGO en blanco opcional para footer -->
+      <img src="logo-sintraspap-blanco.png" alt="Logo SINTRASPAP" class="flogo" onerror="this.style.display='none'">
       <h3>SINTRASPAP</h3>
       <p><strong>Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay</strong></p>
       <p>Defendemos la formalización del sector, el respeto a los derechos laborales y la dignificación del trabajo.</p>
