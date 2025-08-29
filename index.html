@@ -581,7 +581,7 @@ window.addEventListener('DOMContentLoaded', agregarEstadoYLimpiarRubros);
     .then(r => r.json())
     .then(d => {
       // Solo vos lo ves en la consola (F12 -> Console)
-      console.log('Visitas totales:', d.value);
+console.log('Cantidad de visitas en la página:', d.value);
 
       // Opcional: mostrar un badge si entrás con ?visitas=1
       if (location.search.includes('visitas=1')) {
