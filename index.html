@@ -62,14 +62,61 @@
   .card{border:1px solid var(--borde);border-radius:12px;padding:14px;background:#fff}
   .card img{max-width:100%;border-radius:8px;margin-bottom:10px;display:block}
 
-  /* Bloque AUSPCIANTES (Inicio) */
-  .ausp-home{margin:6px 0 22px;border:1px solid var(--borde);border-radius:14px;padding:16px;background:linear-gradient(180deg,#f7fafc, #eef4ff)}
-  .ausp-home h2{font-size:clamp(20px,3.2vw,26px);margin:0 0 12px}
-  .sponsor-grid{display:grid;gap:14px;grid-template-columns:1fr}
-  @media(min-width:680px){ .sponsor-grid{grid-template-columns:1fr 1fr} }
-  .sponsor-item{border:1px solid var(--borde);background:#fff;border-radius:12px;padding:12px;text-align:center}
-  .sponsor-item img,.sponsor-item video{max-width:100%;border-radius:10px}
-  .sponsor-item a{display:inline-block;margin-top:8px;color:#0b2a59;text-decoration:underline}
+/* Bloque AUSPICIANTES (Inicio) — versión compacta en 2 columnas */
+.ausp-home{
+  margin:6px 0 16px;
+  border:1px solid var(--borde);
+  border-radius:12px;
+  padding:12px;                          /* más chico */
+  background:linear-gradient(180deg,#f7fafc,#eef4ff);
+}
+
+.ausp-home h2{
+  font-size:clamp(18px,3vw,24px);
+  margin:0 0 10px;
+}
+
+.sponsor-grid{
+  display:grid;
+  gap:12px;                              /* menos espacio entre tarjetas */
+  grid-template-columns:1fr;             /* 1 columna en móvil */
+  justify-items:center;                  /* centra el contenido */
+  align-items:start;
+}
+
+/* En pantallas medianas/grandes: 2 columnas (lado a lado) */
+@media (min-width:720px){
+  .sponsor-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+
+.sponsor-item{
+  border:1px solid var(--borde);
+  background:#fff;
+  border-radius:10px;
+  padding:10px;                          /* tarjeta más compacta */
+  text-align:center;
+}
+
+/* Imagen/video más chico */
+.sponsor-item img,
+.sponsor-item video{
+  width:100%;
+  max-width:280px;                       /* <<< ajustá si querés aún más chico (p.ej. 240px) */
+  height:auto;
+  border-radius:8px;
+  display:block;
+  margin:0 auto;
+}
+
+.sponsor-item a{
+  display:inline-block;
+  margin-top:6px;
+  font-size:14px;
+  color:#0b2a59;
+  text-decoration:underline;
+}
 
   /* Tablas y buscador */
   .buscador{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
