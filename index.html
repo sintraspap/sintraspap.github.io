@@ -497,17 +497,17 @@ function cargarEmpresasDesdeTexto() {
     // Rubro (después de la palabra Habilitado)
     let rubro = '';
     if (mFecha) {
-   const despuesFecha = l.slice(mFecha.index + mFecha[0].length).trim();
+  const despuesFecha = l.slice(mFecha.index + mFecha[0].length).trim();
 const mR = despuesFecha.match(/Habilitado\s*(.*)/i);
 if (mR) {
   rubro = mR[1]
-    .replace(/;+$/,'')          // saca ; del final
-    .replace(/;+/g, ', ')       // convierte ;; en coma
-    .replace(/\s+,/g, ',')      // limpia espacios antes de coma
-    .replace(/,\s*$/, '')       // borra coma al final
-    .trim();
+    .split(';')                        // separa por ;
+    .map(r => r.trim())                // limpia espacios
+    .filter(r => r.length > 0)         // elimina vacíos
+    .join(', ');                       // une con coma y espacio
 } else {
   rubro = '';
+}
 }
     }
 
