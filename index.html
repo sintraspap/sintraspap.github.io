@@ -369,13 +369,13 @@ footer .muted {
   </div>
 </div> <!-- cierra .tabla -->
 
-  <p style="margin-top:12px; font-size:14px; color:#555;">
-    <em>Datos oficiales del: 
-      <a href="https://controleseguridad.com.py/index-quienes-somos.html" target="_blank" rel="noopener">
-        controleseguridad.com.py
-      </a>
-    </em>
-  </p>
+  <p style="margin-top:16px; font-size:16px; color:#333; text-align:center;">
+  <em>Datos oficiales del: 
+    <a href="https://controleseguridad.com.py/index-quienes-somos.html" target="_blank" rel="noopener" style="color:#0b2a59; font-weight:bold;">
+      controleseguridad.com.py
+    </a>
+  </em>
+</p>
 </section>
   <!-- 🔽🔽 PEGA AQUÍ EL TEXTO CRUDO COPIADO DE LA PÁGINA OFICIAL 🔽🔽
        Instrucciones: entrá a https://controleseguridad.com.py/empresa.php
@@ -497,9 +497,18 @@ function cargarEmpresasDesdeTexto() {
     // Rubro (después de la palabra Habilitado)
     let rubro = '';
     if (mFecha) {
-      const despuesFecha = l.slice(mFecha.index + mFecha[0].length).trim();
-      const mR = despuesFecha.match(/Habilitado\s*(.*)/i);
-      rubro = mR ? mR[1].replace(/;+$/,'').replace(/;+/g,'; ').trim() : '';
+   const despuesFecha = l.slice(mFecha.index + mFecha[0].length).trim();
+const mR = despuesFecha.match(/Habilitado\s*(.*)/i);
+if (mR) {
+  rubro = mR[1]
+    .replace(/;+$/,'')          // saca ; del final
+    .replace(/;+/g, ', ')       // convierte ;; en coma
+    .replace(/\s+,/g, ',')      // limpia espacios antes de coma
+    .replace(/,\s*$/, '')       // borra coma al final
+    .trim();
+} else {
+  rubro = '';
+}
     }
 
     // Fila
