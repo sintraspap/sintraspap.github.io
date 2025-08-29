@@ -571,5 +571,29 @@ function agregarEstadoYLimpiarRubros(){
 window.addEventListener('DOMContentLoaded', cargarEmpresasDesdeTexto);
 window.addEventListener('DOMContentLoaded', agregarEstadoYLimpiarRubros);
 </script>
+
+<script>
+(function () {
+  // Contador global (sube para todos los que visitan)
+  const endpoint = 'https://api.countapi.xyz/hit/sintraspap/visitas';
+
+  fetch(endpoint)
+    .then(r => r.json())
+    .then(d => {
+      // Solo vos lo ves en la consola (F12 -> Console)
+      console.log('Visitas totales:', d.value);
+
+      // Opcional: mostrar un badge si entrás con ?visitas=1
+      if (location.search.includes('visitas=1')) {
+        const badge = document.createElement('div');
+        badge.textContent = 'Visitas: ' + d.value;
+        badge.style.cssText =
+          'position:fixed;bottom:8px;right:8px;padding:6px 10px;border-radius:8px;background:#111;color:#fff;font:12px system-ui;opacity:.85;z-index:9999';
+        document.body.appendChild(badge);
+      }
+    })
+    .catch(() => console.log('No se pudo consultar el contador'));
+})();
+</script>
 </body>
 </html>
