@@ -303,29 +303,55 @@ Id Nombre Resolución Fecha Estado Rubro
 </footer>
 
 <script>
-// Convierte el texto del <textarea id="emp-raw"> en filas de la tabla
+// ---------- Navegación por secciones ----------
+const sections = Array.from(document.querySelectorAll('main section'));
+const links = Array.from(document.querySelectorAll('#menu a'));
+
+function showSection(id){
+  if (!id || !document.querySelector(id)) id = '#inicio';
+  sections.forEach(s => s.classList.toggle('active', ('#'+s.id) === id));
+  links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === id));
+  document.querySelector('.menu')?.classList.remove('show');
+}
+
+function handleHash(){
+  showSection(location.hash || '#inicio');
+}
+
+window.addEventListener('hashchange', handleHash);
+window.addEventListener('DOMContentLoaded', handleHash);
+
+// ---------- Buscador (Empresas) ----------
+function filtrarDirectorio(){
+  const q = (document.getElementById('q')?.value || '').toLowerCase();
+  document.querySelectorAll('#tabla-empresas tbody tr').forEach(tr=>{
+    tr.style.display = tr.innerText.toLowerCase().includes(q) ? '' : 'none';
+  });
+}
+window.filtrarDirectorio = filtrarDirectorio; // para el oninput del buscador
+
+// ---------- Cargar empresas desde el <textarea> ----------
 function cargarEmpresasDesdeTexto() {
   const raw = (document.getElementById('emp-raw')?.value || '').trim();
   if (!raw) return;
 
   const tbody = document.querySelector('#tabla-empresas tbody');
+  if (!tbody) return;
   tbody.innerHTML = '';
 
-  // Tomamos solo líneas que parezcan "ID ... fecha ... Habilitado ..."
+  // Cada línea que empiece con ID (número) la tomamos
   const lineas = raw.split('\n').map(l => l.trim()).filter(l => /^\d+\s+/.test(l));
 
   lineas.forEach(l => {
-    // Intentamos extraer: ID | Nombre | Resolución | Fecha | (Estado) | Rubro
-    // La página tiene formatos mezclados; este parser es tolerante.
-    // 1) ID = primeros números
+    // ID
     const mId = l.match(/^(\d+)\s+/);
     const id = mId ? mId[1] : '';
 
-    // 2) Fecha: buscamos AAAA-MM-DD o MM/AAAA o NNN/AAAA
+    // Fecha
     const mFecha = l.match(/(\d{4}-\d{2}-\d{2}|\d{2}\/\d{4}|\d{3}\/\d{4})/);
     const fecha = mFecha ? mFecha[1] : '';
 
-    // 3) Resolución: número que está antes de la fecha
+    // Resolución (antes de la fecha)
     let resolucion = '';
     if (mFecha) {
       const antesDeFecha = l.slice(0, mFecha.index).trim();
@@ -333,17 +359,16 @@ function cargarEmpresasDesdeTexto() {
       if (mRes) resolucion = mRes[1];
     }
 
-    // 4) Nombre: lo que queda entre el ID y la resolución
+    // Nombre (entre ID y resolución)
     let nombre = l;
     if (mId) nombre = nombre.slice(mId[0].length).trim();
     if (resolucion) {
       const idx = nombre.lastIndexOf(resolucion);
       if (idx > -1) nombre = nombre.slice(0, idx).trim();
     }
-    // limpiamos doble espacios y guiones redundantes
     nombre = nombre.replace(/\s{2,}/g, ' ').replace(/\s+-\s+/g, ' - ');
 
-    // 5) Rubro: lo que queda después de la fecha y la palabra Habilitado
+    // Rubro (después de la palabra Habilitado)
     let rubro = '';
     if (mFecha) {
       const despuesFecha = l.slice(mFecha.index + mFecha[0].length).trim();
@@ -351,20 +376,19 @@ function cargarEmpresasDesdeTexto() {
       rubro = mR ? mR[1].replace(/;+$/,'').replace(/;+/g,'; ').trim() : '';
     }
 
-    // Agregar fila
+    // Fila
     const tr = document.createElement('tr');
-    tr.innerHTML = 
+    tr.innerHTML = `
       <td>${id}</td>
       <td>${nombre}</td>
       <td>${resolucion}</td>
       <td>${fecha}</td>
       <td>${rubro}</td>
-    ;
+    `;
     tbody.appendChild(tr);
   });
 }
 
-// Ejecutar al cargar
 window.addEventListener('DOMContentLoaded', cargarEmpresasDesdeTexto);
 </script>
 </body>
