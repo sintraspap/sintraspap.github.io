@@ -280,6 +280,7 @@ footer .muted {
 </footer>
 
 <script>
+<script>
 /* Navegación por hash (#) */
 const sections = Array.from(document.querySelectorAll('main section'));
 const links = Array.from(document.querySelectorAll('#menu a'));
@@ -290,7 +291,7 @@ function showSection(id){
 }
 function handleHash(){
   const id = location.hash || '#inicio';
-  if(!document.querySelector(id)) location.hash = '#inicio';
+  if (!document.querySelector(id)) location.hash = '#inicio';
   showSection(id);
 }
 window.addEventListener('hashchange', handleHash);
@@ -305,6 +306,7 @@ function filtrarDirectorio(){
     tr.style.display = text.includes(q) ? '' : 'none';
   });
 }
+</script>
 </script>
 </body>
 </html>
