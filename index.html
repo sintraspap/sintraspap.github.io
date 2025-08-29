@@ -520,66 +520,56 @@ function agregarEstadoYLimpiarRubros(){
   const table = document.getElementById('tabla-empresas');
   if (!table) return;
 
-  // 1) Agregar <th> Estado antes de "Rubro" si no existe
+  // 1) Agregar <th> "Estado" antes de "Rubro" si no existe
   const headRow = table.tHead && table.tHead.rows[0];
   if (headRow) {
     const ths = Array.from(headRow.cells);
     const yaTieneEstado = ths.some(th => th.textContent.trim().toLowerCase() === 'estado');
     if (!yaTieneEstado) {
-      // Buscamos la columna "Rubro" para insertar antes
       const thRubro = ths.find(th => th.textContent.trim().toLowerCase() === 'rubro');
       const thEstado = document.createElement('th');
       thEstado.textContent = 'Estado';
-      if (thRubro) {
-        headRow.insertBefore(thEstado, thRubro);
-      } else {
-        // Si por algún motivo no encuentra "Rubro", lo agrega al final
-        headRow.appendChild(thEstado);
-      }
+      if (thRubro) headRow.insertBefore(thEstado, thRubro);
+      else headRow.appendChild(thEstado);
     }
   }
 
-  // 2) En cada fila, insertar <td>Habilitado antes del rubro si no existe
+  // 2) En cada fila, insertar <td>Habilitado antes del Rubro si no existe
   const tbody = table.tBodies[0];
   if (!tbody) return;
+
   Array.from(tbody.rows).forEach(tr => {
     const celdas = Array.from(tr.cells);
+    const idxRubro = celdas.length - 1; // la última celda es "Rubro"
     const yaTieneEstado = celdas.some(td => td.dataset && td.dataset.col === 'estado');
 
-if (!yaTieneEstado) {
-  const tdEstado = document.createElement('td');
-  tdEstado.textContent = 'Habilitado';
-  tdEstado.dataset.col = 'estado';
+    if (!yaTieneEstado) {
+      const tdEstado = document.createElement('td');
+      tdEstado.textContent = 'Habilitado';
+      tdEstado.dataset.col = 'estado';
+      if (idxRubro >= 0) tr.insertBefore(tdEstado, celdas[idxRubro]);
+      else tr.appendChild(tdEstado);
+    }
 
-  // Insertar antes de la última celda (que es "Rubro")
-  const ultima = tr.lastElementChild;
-  if (ultima) {
-    tr.insertBefore(tdEstado, ultima);
-  } else {
-    tr.appendChild(tdEstado);
-  }
-} // ← cierra if (!yaTieneEstado)
-
-// 3) Limpiar el texto del "Rubro" (última celda)
-const rubroTd = tr.lastElementChild;
-if (rubroTd) {
-  let txt = rubroTd.textContent;
-  // Quitar ; al inicio y al final
-  txt = txt.replace(/^\s*;+|;+\s*$/g, '');
-  // Separar por ;, limpiar espacios y unir con coma
-  txt = txt
-    .split(';')
-    .map(r => r.trim())
-    .filter(Boolean)
-    .join(', ');
-  rubroTd.textContent = txt;
+    // 3) Limpiar el texto del "Rubro" (quitar ;;; y espacios)
+    const rubroTd = tr.lastElementChild; // sigue siendo la última porque insertamos antes
+    if (rubroTd) {
+      let txt = rubroTd.textContent || '';
+      // quitar ; al inicio/fin y convertir ;;; a " , "
+      txt = txt.replace(/^\s*;+|;+\s*$/g, '');
+      txt = txt
+        .split(';')
+        .map(r => r.trim())
+        .filter(Boolean)
+        .join(', ');
+      rubroTd.textContent = txt;
+    }
+  });
 }
-}); // ← cierra lineas.forEach(l => { ... })
 
-} // ← cierra function cargarEmpresasDesdeTexto() { ... }
-
-// Dejar este listener al final:
+// Llamadas al cargar la página
 window.addEventListener('DOMContentLoaded', cargarEmpresasDesdeTexto);
+window.addEventListener('DOMContentLoaded', agregarEstadoYLimpiarRubros);
 </script>
 </body>
-</html>                                 
+</html>
