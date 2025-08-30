@@ -181,12 +181,14 @@ footer .muted {
     <div class="cards">
   {% for post in site.posts %}
   <article class="card">
+{% for post in site.posts %}
+  <article class="card">
     {% if post.image %}
-      <img src="{{ post.image }}" alt="{{ post.title }}">
+      <img src="{{ post.image | relative_url }}" alt="{{ post.title }}">
     {% endif %}
     <h3>{{ post.title }}</h3>
     <p>{{ post.excerpt }}</p>
- <a href="{{ post.url | relative_url }}">Leer más</a>
+    <a href="{{ post.url | relative_url }}">Leer más</a>
   </article>
 {% endfor %}
     </div>
