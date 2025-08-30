@@ -1,8 +1,4 @@
 title: "SINTRASPAP"
-description: "Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay"
+url: "https://sintraspappy2025.github.io"
+baseurl: "/sintraspap.github.io"   # IMPORTANTE para rutas
 theme: minima
-
-url: https://sintraspappy2025.github.io
-baseurl: /sintraspap.github.io
-
-permalink: /:year/:month/:day/:title/
