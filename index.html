@@ -175,6 +175,34 @@ footer .muted {
   .head { align-items: center; justify-content: space-between; } /* ya lo tenías parecido */
 .social-icons { margin-left: 12px; } /* un respiro entre menú e íconos */
 }
+/* Iconos de redes en el footer */
+.footer-social{
+  display:flex;
+  gap:18px;
+  justify-content:center;
+  margin:16px 0 8px;   /* arriba y un poco antes del copyright */
+}
+.footer-social a{
+  color:#fff;
+  font-size:26px;      /* icono grande */
+  width:52px;
+  height:52px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.25);
+  transition:background .15s, transform .15s, opacity .15s;
+}
+.footer-social a:hover{
+  background:rgba(255,255,255,.22);
+  transform:translateY(-2px);
+}
+@media (max-width:820px){
+  .footer-social{ gap:16px; }
+  .footer-social a{ width:56px; height:56px; font-size:28px; } /* un pelín más grandes en móvil */
+}
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
@@ -197,18 +225,6 @@ footer .muted {
         <li><a href="#contacto">Contacto</a></li>
       </ul>
     </nav>
-      <!-- Íconos de redes -->
-    <div class="social-icons">
-      <a href="https://www.facebook.com/share/17MGniwXdL/" target="_blank" rel="noopener" aria-label="Facebook">
-        <i class="fa-brands fa-facebook-f"></i>
-      </a>
-      <a href="https://x.com/sintraspap_py?t=xoAS-cRqgSr3BrY4azV4rQ&s=09" target="_blank" rel="noopener" aria-label="X">
-        <i class="fa-brands fa-x-twitter"></i>
-      </a>
-      <a href="https://wa.me/595992644708" target="_blank" rel="noopener" aria-label="WhatsApp">
-        <i class="fa-brands fa-whatsapp"></i>
-      </a>
-    </div>
   </div>
 </header>
 <main class="container">
@@ -506,6 +522,18 @@ footer .muted {
       <p>X (Twitter): <a href="https://x.com/sintraspap_py?t=rRnZT7aWDZo1lA4R-m680g&s=09" target="_blank" rel="noopener">@sintraspap_py</a></p>
     </div>
   </div>
+  <!-- Íconos de redes (footer) -->
+<div class="footer-social">
+  <a href="https://www.facebook.com/share/17MGniwXdL/" target="_blank" rel="noopener" aria-label="Facebook">
+    <i class="fa-brands fa-facebook-f"></i>
+  </a>
+  <a href="https://x.com/sintraspap_py?t=xoAS-cRqgSr3BrY4azV4rQ&s=09" target="_blank" rel="noopener" aria-label="X (Twitter)">
+    <i class="fa-brands fa-x-twitter"></i>
+  </a>
+  <a href="https://wa.me/595992644708" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+</div>
   <div class="cpy">© 2025 SINTRASPAP</div>
 </footer>
 
