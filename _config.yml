@@ -2,7 +2,7 @@ title: "SINTRASPAP"
 description: "Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay"
 theme: minima
 
-url: "https://sintraspappy2025.github.io"
-baseurl: ""
+url: https://sintraspappy2025.github.io
+baseurl: /sintraspap.github.io
 
 permalink: /:year/:month/:day/:title/
