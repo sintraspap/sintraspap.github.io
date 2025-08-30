@@ -165,18 +165,17 @@ footer .muted {
 
   <!-- INICIO -->
   <section id="inicio" class="active">
-    <!-- AUSPCIANTES ARRIBA -->
- <div class="sponsor-item">
-  <img src="banner-1.png" alt="Auspiciante 1" onerror="this.style.display='none'">
-  <a href="https://wa.me/595992644708" target="_blank" rel="noopener">Escribinos al WhatsApp</a>
+  <!-- AUSPCIANTES ARRIBA -->
+<div class="sponsor-grid">
+  <div class="sponsor-item">
+    <img src="banner-1.png" alt="Auspiciante 1" onerror="this.style.display='none'">
+    <a href="https://wa.me/595992644708" target="_blank" rel="noopener">Escribinos al WhatsApp</a>
+  </div>
+  <div class="sponsor-item">
+    <img src="banner-2.png" alt="Auspiciante 2" onerror="this.style.display='none'">
+    <a href="https://wa.me/595992644708" target="_blank" rel="noopener">Escribinos al WhatsApp</a>
+  </div>
 </div>
-
-<div class="sponsor-item">
-  <img src="banner-2.png" alt="Auspiciante 2" onerror="this.style.display='none'">
-  <a href="https://wa.me/595992644708" target="_blank" rel="noopener">Escribinos al WhatsApp</a>
-</div>
-      </div>
-    </div>
 
     <!-- Noticias con imagen -->
     <div class="cards">
@@ -187,7 +186,7 @@ footer .muted {
     {% endif %}
     <h3>{{ post.title }}</h3>
     <p>{{ post.excerpt }}</p>
-    <a href="{{ post.url }}">Leer más</a>
+ <a href="{{ post.url | relative_url }}">Leer más</a>
   </article>
 {% endfor %}
     </div>
