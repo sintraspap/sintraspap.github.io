@@ -172,6 +172,8 @@ footer .muted {
 /* OCULTAR el bloque de auspiciantes (sin dejar hueco) */
 .sponsor-grid { 
   display: none !important; 
+  .head { align-items: center; justify-content: space-between; } /* ya lo tenías parecido */
+.social-icons { margin-left: 12px; } /* un respiro entre menú e íconos */
 }
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -184,18 +186,6 @@ footer .muted {
       <img src="logo-sintraspap.png" alt="Logo SINTRASPAP" onerror="this.style.display='none'">
       <span>SINTRASPAP</span>
     </div>
-    <!-- Íconos de redes -->
-    <div class="social-icons">
-      <a href="https://www.facebook.com/share/17MGniwXdL/" target="_blank" rel="noopener" aria-label="Facebook">
-        <i class="fa-brands fa-facebook-f"></i>
-      </a>
-      <a href="https://x.com/sintraspap_py?t=xoAS-cRqgSr3BrY4azV4rQ&s=09" target="_blank" rel="noopener" aria-label="X">
-        <i class="fa-brands fa-x-twitter"></i>
-      </a>
-      <a href="https://wa.me/595992644708" target="_blank" rel="noopener" aria-label="WhatsApp">
-        <i class="fa-brands fa-whatsapp"></i>
-      </a>
-    </div>
     <button class="burger" onclick="document.querySelector('.menu').classList.toggle('show')">☰ Menú</button>
     <nav>
       <ul class="menu" id="menu">
@@ -207,9 +197,20 @@ footer .muted {
         <li><a href="#contacto">Contacto</a></li>
       </ul>
     </nav>
+      <!-- Íconos de redes -->
+    <div class="social-icons">
+      <a href="https://www.facebook.com/share/17MGniwXdL/" target="_blank" rel="noopener" aria-label="Facebook">
+        <i class="fa-brands fa-facebook-f"></i>
+      </a>
+      <a href="https://x.com/sintraspap_py?t=xoAS-cRqgSr3BrY4azV4rQ&s=09" target="_blank" rel="noopener" aria-label="X">
+        <i class="fa-brands fa-x-twitter"></i>
+      </a>
+      <a href="https://wa.me/595992644708" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+      </a>
+    </div>
   </div>
 </header>
-
 <main class="container">
 
   <!-- INICIO -->
