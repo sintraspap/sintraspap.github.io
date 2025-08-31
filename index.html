@@ -260,12 +260,7 @@ footer .muted {
     const data = await res.json();
     const items = (data.items || []).slice().sort((a,b)=> (b.fecha||'').localeCompare(a.fecha||''));
     const cont = document.getElementById('news-from-json');
-
-    if(!items.length){
-      cont.innerHTML = '<p class="muted">Aún no hay noticias.</p>';
-      return;
-    }
-
+    if(!items.length){ cont.innerHTML = '<p class="muted">Aún no hay noticias.</p>'; return; }
     cont.innerHTML = items.map(item => `
       <article class="card">
         ${item.imagen ? `<img src="${item.imagen}" alt="${item.titulo||''}" loading="lazy">` : ``}
