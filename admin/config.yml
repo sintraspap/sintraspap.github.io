@@ -1,27 +1,25 @@
 backend:
   name: git-gateway
-  branch: main
+  branch: main   # o "principal" si tu repo usa ese nombre
 
-media_folder: "assets/images"
-public_folder: "/assets/images"
-
-publish_mode: editorial_workflow
+media_folder: "assets/images"     # dónde guarda las imágenes en el repo
+public_folder: "/assets/images"   # cómo se referencian en la web
 
 collections:
   - name: "noticias"
-    label: "Noticias"
+    label: "Noticias (Inicio)"
     files:
       - file: "data/noticias.json"
-        name: "listado"
         label: "Listado de noticias"
+        name: "listado"
         fields:
-          - label: "Noticias"
+          - label: "Items"
             name: "items"
             widget: "list"
-            summary: "{{fields.titulo}} — {{fields.fecha}}"
+            collapsed: true
             fields:
               - { label: "Título",  name: "titulo",  widget: "string" }
-              - { label: "Fecha",   name: "fecha",   widget: "datetime", format: "YYYY-MM-DD" }
-              - { label: "Resumen", name: "resumen", widget: "text" }
-              - { label: "Imagen",  name: "imagen",  widget: "image" }
+              - { label: "Resumen", name: "resumen", widget: "text", required: false }
+              - { label: "Imagen",  name: "imagen",  widget: "image", required: false }
               - { label: "Cuerpo",  name: "cuerpo",  widget: "markdown" }
+              - { label: "Fecha",   name: "fecha",   widget: "datetime", format: "YYYY-MM-DD" }
