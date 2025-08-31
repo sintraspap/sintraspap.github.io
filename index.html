@@ -249,16 +249,16 @@ footer .muted {
 <div id="news-from-sheet" class="cards"></div>
 <script>
 (async function(){
-  const SHEET_ID = "1ootblgfQj-9lft1rn4h_BtLuP-0Jn0nHrHbTaAngvKl";
-  const SHEET_NAME = "Form_Responses 1";  // con guion bajo
+  const SHEET_ID = "1ootblgfQj-9lft1rn4h_BtLuP-0Jn0nHrHbTaAngvKI";   // ← I mayúscula
+  const SHEET_NAME = "Form_Responses 1";
 
   const url = https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(SHEET_NAME)}&t=${Date.now()};
 
   function toDirectDriveUrl(link){
     if(!link) return "";
-    let m = link.match(/\/d\/([^/]+)/);                 // .../file/d/ID/...
+    let m = link.match(/\/d\/([^/]+)/);
     if(m) return https://drive.google.com/uc?export=view&id=${m[1]};
-    m = link.match(/[?&]id=([^&]+)/);                   // ...?id=ID
+    m = link.match(/[?&]id=([^&]+)/);
     if(m) return https://drive.google.com/uc?export=view&id=${m[1]};
     return link;
   }
@@ -278,10 +278,7 @@ footer .muted {
     })).filter(x => x.titulo);
 
     const cont = document.getElementById('news-from-sheet');
-    if(!data.length){
-      cont.innerHTML = '<p class="muted">Aún no hay noticias.</p>';
-      return;
-    }
+    if(!data.length){ cont.innerHTML = '<p class="muted">Aún no hay noticias.</p>'; return; }
 
     cont.innerHTML = data.map(item => `
       <article class="card">
@@ -302,6 +299,7 @@ footer .muted {
   }
 })();
 </script>
+</section>
   <!-- INSTITUCIONAL -->
   <section id="institucional">
     <h1 class="sr-only">Institucional</h1>
