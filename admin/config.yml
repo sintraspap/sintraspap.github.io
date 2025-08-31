@@ -1,0 +1,24 @@
+backend:
+  name: git-gateway
+  branch: main   # usa la rama principal de tu repo
+
+media_folder: "assets/uploads"   # adentro del repo (donde se guardan las imágenes)
+public_folder: "/assets/uploads" # ruta pública
+
+locale: es
+site_url: ""                      # opcional, Netlify lo deduce
+
+collections:
+  - name: "noticias"
+    label: "Noticias"
+    folder: "news"                # los archivos se guardan en /news
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    editor:
+      preview: false              # sin vista previa (más liviano en móvil)
+    fields:
+      - { label: "Título",   name: "title",   widget: "string" }
+      - { label: "Fecha",    name: "date",    widget: "datetime", format: "YYYY-MM-DDTHH:mm:ssZ" }
+      - { label: "Resumen",  name: "summary", widget: "text", required: false }
+      - { label: "Imagen",   name: "image",   widget: "image", required: false }
+      - { label: "Contenido",name: "body",    widget: "markdown" }
