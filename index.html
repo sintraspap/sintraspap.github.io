@@ -251,56 +251,37 @@ footer .muted {
   </div>
 </div>
 
- <!-- Noticias desde Google Sheets -->
-<div id="news-from-sheet" class="cards"></div>
+<!-- Noticias desde data/noticias.json -->
+<div id="news-from-json" class="cards"></div>
 <script>
 (async function(){
-  const SHEET_ID = "1ootblgfQj-9lft1rn4h_BtLuP-0Jn0nHrHbTaAngvKI";   // ← I mayúscula
-  const SHEET_NAME = "Form_Responses 1";
-
-  const url = https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(SHEET_NAME)}&t=${Date.now()};
-
-  function toDirectDriveUrl(link){
-    if(!link) return "";
-    let m = link.match(/\/d\/([^/]+)/);
-    if(m) return https://drive.google.com/uc?export=view&id=${m[1]};
-    m = link.match(/[?&]id=([^&]+)/);
-    if(m) return https://drive.google.com/uc?export=view&id=${m[1]};
-    return link;
-  }
-
   try{
-    const res = await fetch(url);
-    const text = await res.text();
-    const json = JSON.parse(text.substring(text.indexOf('{'), text.lastIndexOf('}')+1));
-    const rows = json.table.rows || [];
+    const res = await fetch('data/noticias.json', { cache: 'no-store' });
+    const data = await res.json();
+    const items = (data.items || []).slice().sort((a,b)=> (b.fecha||'').localeCompare(a.fecha||''));
+    const cont = document.getElementById('news-from-json');
 
-    const data = rows.map(r => ({
-      titulo:  r.c[1]?.v || "",
-      resumen: r.c[2]?.v || "",
-      imagen:  toDirectDriveUrl(r.c[3]?.v || ""),
-      cuerpo:  r.c[4]?.v || "",
-      fecha:   r.c[5]?.v || r.c[0]?.f || ""
-    })).filter(x => x.titulo);
+    if(!items.length){
+      cont.innerHTML = '<p class="muted">Aún no hay noticias.</p>';
+      return;
+    }
 
-    const cont = document.getElementById('news-from-sheet');
-    if(!data.length){ cont.innerHTML = '<p class="muted">Aún no hay noticias.</p>'; return; }
-
-    cont.innerHTML = data.map(item => `
+    cont.innerHTML = items.map(item => `
       <article class="card">
-        ${item.imagen ? <img src="${item.imagen}" alt="${item.titulo}" loading="lazy"> : ``}
-        <h3>${item.titulo}</h3>
-        ${item.resumen ? <p>${item.resumen}</p> : ``}
+        ${item.imagen ? `<img src="${item.imagen}" alt="${item.titulo||''}" loading="lazy">` : ``}
+        <h3>${item.titulo||''}</h3>
+        ${item.resumen ? `<p>${item.resumen}</p>` : ``}
         ${item.cuerpo ? `
           <details style="margin-top:6px">
             <summary>Leer más</summary>
             <div style="margin-top:8px; white-space:pre-wrap">${item.cuerpo}</div>
           </details>` : ``}
-        ${item.fecha ? <p class="muted" style="margin-top:8px">${item.fecha}</p> : ``}
+        ${item.fecha ? `<p class="muted" style="margin-top:8px">${item.fecha}</p>` : ``}
       </article>
     `).join('');
   }catch(e){
-    document.getElementById('news-from-sheet').innerHTML = '<p class="muted">⚠ No se pudo cargar noticias del formulario.</p>';
+    document.getElementById('news-from-json').innerHTML =
+      '<p class="muted">⚠ No se pudo cargar noticias.</p>';
     console.error(e);
   }
 })();
