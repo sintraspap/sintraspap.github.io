@@ -259,7 +259,56 @@ footer .muted {
 {% endfor %}
     </div>
   </section>
+<h2 style="margin-top:20px">📢 Noticias publicadas desde el celular</h2>
+<div id="news-from-sheet" class="cards"></div>
 
+<script>
+(async function(){
+  const SHEET_ID = "1ootblgfQi-9if1m4h_BtLuP-0Jn0nHrHbTaAngvKl"; 
+  const SHEET_NAME = "Form Responses 1"; // 👈 así se llama tu pestaña abajo
+
+  const url = https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(SHEET_NAME)}&t=${Date.now()};
+
+  // Convierte link de Drive en enlace directo
+  function toDirectDriveUrl(link){
+    if(!link) return "";
+    const m = link.match(/\/d\/([^/]+)/);
+    return m ? https://drive.google.com/uc?export=view&id=${m[1]} : link;
+  }
+
+  try{
+    const res = await fetch(url);
+    const text = await res.text();
+    const json = JSON.parse(text.substring(text.indexOf('{'), text.lastIndexOf('}')+1));
+    const rows = json.table.rows || [];
+
+    const data = rows.map(r => ({
+      titulo:  r.c[1]?.v || "",
+      resumen: r.c[2]?.v || "",
+      imagen:  toDirectDriveUrl(r.c[3]?.v || ""),
+      cuerpo:  r.c[4]?.v || "",
+      fecha:   r.c[5]?.v || r.c[0]?.f || ""
+    })).filter(x => x.titulo);
+
+    const cont = document.getElementById('news-from-sheet');
+    cont.innerHTML = data.map(item => `
+      <article class="card">
+        ${item.imagen ? <img src="${item.imagen}" alt="${item.titulo}" loading="lazy"> : ``}
+        <h3>${item.titulo}</h3>
+        ${item.resumen ? <p>${item.resumen}</p> : ``}
+        ${item.cuerpo ? `
+          <details style="margin-top:6px">
+            <summary>Leer más</summary>
+            <div style="margin-top:8px; white-space:pre-wrap">${item.cuerpo}</div>
+          </details>` : ``}
+        ${item.fecha ? <p class="muted" style="margin-top:8px">${item.fecha}</p> : ``}
+      </article>
+    `).join('');
+  }catch(e){
+    document.getElementById('news-from-sheet').innerHTML = '<p class="muted">⚠ No se pudo cargar noticias del formulario.</p>';
+  }
+})();
+</script>
   <!-- INSTITUCIONAL -->
   <section id="institucional">
     <h1 class="sr-only">Institucional</h1>
