@@ -574,7 +574,13 @@ function showSection(id){
 }
 
 function handleHash(){
-  showSection(location.hash || '#inicio');
+  const h = location.hash || '#inicio';
+
+  // ⚠️ Deja pasar rutas internas del widget de Netlify Identity
+  // (por ejemplo "#/invite", "#/recovery", etc.)
+  if (h.startsWith('#/')) return;
+
+  showSection(h);
 }
 
 window.addEventListener('hashchange', handleHash);
