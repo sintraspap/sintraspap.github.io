@@ -1,9 +1,9 @@
 backend:
   name: git-gateway
-  branch: main   # o "principal" si tu repo usa ese nombre
+  branch: main
 
-media_folder: "assets/images"     # dónde guarda las imágenes en el repo
-public_folder: "/assets/images"   # cómo se referencian en la web
+media_folder: "assets/images"
+public_folder: "/assets/images"
 
 collections:
   - name: "noticias"
