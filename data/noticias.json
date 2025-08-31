@@ -1,1 +1,11 @@
-{ "items": [] }
+{
+  "items": [
+    {
+      "titulo": "¡Nace SINTRASPAP!",
+      "resumen": "Acta fundacional y personería.",
+      "imagen": "assets/images/noticia-viceministro.jpg",
+      "cuerpo": "Texto completo de la noticia…",
+      "fecha": "2025-08-31"
+    }
+  ]
+}
