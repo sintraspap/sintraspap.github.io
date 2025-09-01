@@ -267,10 +267,14 @@ footer .muted {
         <h3>${item.titulo||''}</h3>
         ${item.resumen ? `<p>${item.resumen}</p>` : ``}
         ${item.cuerpo ? `
-          <details style="margin-top:6px">
-            <summary>Leer más</summary>
-            <div style="margin-top:8px; white-space:pre-wrap">${item.cuerpo}</div>
-          </details>` : ``}
+        ${item.cuerpo ? `
+  <p style="margin-top:6px">
+    <a href="noticia.html?slug=${encodeURIComponent((item.titulo||'').toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+      .replace(/[^a-z0-9\s-]/g,'').trim().replace(/\s+/g,'-'))}">
+      Leer más
+    </a>
+  </p>` : ``}
         ${item.fecha ? `<p class="muted" style="margin-top:8px">${item.fecha}</p>` : ``}
       </article>
     `).join('');
