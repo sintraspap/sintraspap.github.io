@@ -1,13 +1,6 @@
 {
   "items": [
     {
-      "titulo": "Paraguay",
-      "fecha": "2025-09-01",
-      "resumen": "Py",
-      "cuerpo": "Py",
-      "imagen": "images/uploads/paraguay-puntos.png"
-    },
-    {
       "titulo": "Reconocimiento al SINTRASPAP",
       "fecha": "2025-01-15",
       "resumen": "Acto de reconocimiento realizado en enero",
