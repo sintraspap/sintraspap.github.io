@@ -256,11 +256,9 @@ footer .muted {
 <script>
 (async () => {
   try {
-    // Traer JSON en cada carga
-    const res = await fetch('/data/noticias.json', { cache: 'no-store' });
+    const res = await fetch('data/noticias.json', { cache: 'no-store' });
     const data = await res.json();
 
-    // Ordenar por fecha (más nuevas primero)
     const items = (data.items || [])
       .slice()
       .sort((a, b) => (b.fecha || '').localeCompare(a.fecha || ''));
