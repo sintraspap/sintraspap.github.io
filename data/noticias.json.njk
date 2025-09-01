@@ -1,0 +1,14 @@
+{
+  "items": [
+    {%- for p in collections.noticias -%}
+    {
+      "titulo": {{ p.data.title | dump }},
+      "resumen": {{ (p.data.summary or "") | dump }},
+      "imagen": {{ (p.data.image or "") | dump }},
+      "cuerpo": {{ (p.template.frontMatter.content or "") | dump }},
+      "fecha": "{{ p.data.date | date('%Y-%m-%d') }}",
+      "url": {{ p.url | dump }}
+    }{% if not loop.last %},{% endif %}
+    {%- endfor -%}
+  ]
+}
