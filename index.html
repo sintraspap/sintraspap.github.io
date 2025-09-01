@@ -253,6 +253,7 @@ footer .muted {
 <!-- Noticias desde data/noticias.json -->
 <div id="news-from-json" class="cards"></div>
 <script>
+<script>
 (async () => {
   try {
     const res = await fetch('data/noticias.json', { cache: 'no-store' });
@@ -260,7 +261,7 @@ footer .muted {
 
     const items = (data.items || [])
       .slice()
-      .sort((a, b) => (b.fecha  '').localeCompare(a.fecha  ''));
+      .sort((a, b) => (b.fecha || '').localeCompare(a.fecha || ''));
 
     const cont = document.getElementById('news-from-json');
     if (!items.length) {
@@ -275,9 +276,9 @@ footer .muted {
         .replace(/[^a-z0-9\s-]/g,'')
         .trim().replace(/\s+/g,'-');
 
-      return 
+      return `
         <article class="card">
-          ${item.imagen ? <img src="${item.imagen}" alt="${item.titulo || ''}" loading="lazy"> : `}
+          ${item.imagen ? <img src="${item.imagen}" alt="${item.titulo || ''}" loading="lazy"> : ``}
           <h3>${item.titulo || ''}</h3>
           ${item.resumen ? <p class="muted">${item.resumen}</p> : ``}
           ${item.cuerpo ? <p style="margin-top:6px"><a href="noticia.html?slug=${encodeURIComponent(slug)}">Leer más</a></p> : ``}
@@ -288,7 +289,7 @@ footer .muted {
   } catch (e) {
     console.error(e);
     document.getElementById('news-from-json').innerHTML =
-      '<p class="muted">⚠️ No se pudo cargar noticias.</p>';
+      '<p class="muted">⚠ No se pudo cargar noticias.</p>';
   }
 })();
 </script>
