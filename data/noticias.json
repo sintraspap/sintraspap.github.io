@@ -16,6 +16,13 @@
       "fecha": "2025-09-01",
       "cuerpo": "ZSi",
       "imagen": "/images/uploads/1000876688.jpg"
+    },
+    {
+      "resumen": "Si",
+      "cuerpo": "SSi",
+      "imagen": "/images/uploads/1000876692.png",
+      "fecha": "2025-09-01",
+      "titulo": "Si"
     }
   ]
 }
