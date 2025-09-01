@@ -29,6 +29,13 @@
       "resumen": "Si",
       "cuerpo": "SSi",
       "fecha": "2025-09-01"
+    },
+    {
+      "imagen": "/images/uploads/1000875442.jpg",
+      "cuerpo": "Prueba",
+      "resumen": "Prueba",
+      "titulo": "Prueba",
+      "fecha": "2025-09-01"
     }
   ]
 }
