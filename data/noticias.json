@@ -6,6 +6,13 @@
       "resumen": "Py",
       "cuerpo": "Py",
       "imagen": "images/uploads/paraguay-puntos.png"
+    },
+    {
+      "titulo": "Reconocimiento al SINTRASPAP",
+      "fecha": "2025-01-15",
+      "resumen": "Acto de reconocimiento realizado en enero",
+      "cuerpo": "El Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay (SINTRASPAP) recibió un importante reconocimiento en enero pasado por su labor en defensa de los derechos de los trabajadores de la seguridad privada.",
+      "imagen": "images/uploads/spy.jpg"
     }
   ]
 }
