@@ -260,7 +260,7 @@ footer .muted {
 
     const items = (data.items || [])
       .slice()
-      .sort((a, b) => (b.fecha || '').localeCompare(a.fecha || ''));
+      .sort((a, b) => (b.fecha  '').localeCompare(a.fecha  ''));
 
     const cont = document.getElementById('news-from-json');
     if (!items.length) {
@@ -275,9 +275,9 @@ footer .muted {
         .replace(/[^a-z0-9\s-]/g,'')
         .trim().replace(/\s+/g,'-');
 
-      return `
+      return 
         <article class="card">
-          ${item.imagen ? <img src="${item.imagen}" alt="${item.titulo || ''}" loading="lazy"> : ``}
+          ${item.imagen ? <img src="${item.imagen}" alt="${item.titulo || ''}" loading="lazy"> : `}
           <h3>${item.titulo || ''}</h3>
           ${item.resumen ? <p class="muted">${item.resumen}</p> : ``}
           ${item.cuerpo ? <p style="margin-top:6px"><a href="noticia.html?slug=${encodeURIComponent(slug)}">Leer más</a></p> : ``}
