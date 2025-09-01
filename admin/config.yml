@@ -8,14 +8,16 @@ public_folder: "/assets/images/uploads"
 collections:
   - name: "noticias"
     label: "Noticias"
-    files:
-      - file: "data/noticias.json"
-        label: "Noticias"
-        name: "noticias"
-        format: "json"
+    file: "data/noticias.json"
+    format: "json"
+    fields:
+      - label: "Noticias"
+        name: "items"
+        widget: "list"
+        summary: "{{fields.titulo}} — {{fields.fecha}}"
         fields:
           - { label: "Título",  name: "titulo",  widget: "string" }
           - { label: "Resumen", name: "resumen", widget: "text", required: false }
-          - { label: "Cuerpo",  name: "cuerpo",  widget: "text", required: false }
+          - { label: "Cuerpo",  name: "cuerpo",  widget: "markdown", required: false }
           - { label: "Imagen",  name: "imagen",  widget: "image", required: false }
-          - { label: "Fecha",   name: "fecha",   widget: "datetime", format: "YYYY-MM-DD" }
+          - { label: "Fecha",   name: "fecha",   widget: "datetime", format: "YYYY-MM-DD", time_format: false }
