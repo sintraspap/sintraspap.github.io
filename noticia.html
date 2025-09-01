@@ -22,11 +22,14 @@
   const $out = document.getElementById("noticia");
   const params = new URLSearchParams(location.search);
   const slug = params.get("slug");
-  if (!slug) { $out.innerHTML = '<div class="alert">No se encontró la noticia.</div>'; return; }
+  if (!slug) { 
+    $out.innerHTML = '<div class="alert">No se encontró la noticia.</div>'; 
+    return; 
+  }
 
   try {
     // cache-busting para evitar JSON viejo
-    const res = await fetch(data/noticias.json?nocache=${Date.now()}, { cache: 'no-store' });
+    const res = await fetch(`data/noticias.json?nocache=${Date.now()}`, { cache: 'no-store' });
     if (!res.ok) throw new Error('HTTP ' + res.status);
     const data = await res.json();
     const items = Array.isArray(data.items) ? data.items : [];
@@ -46,12 +49,12 @@
       return;
     }
 
-    document.title = ${item.titulo || 'Noticia'} – SINTRASPAP;
+    document.title = `${item.titulo || 'Noticia'} – SINTRASPAP`;
     $out.innerHTML = `
       <h1>${item.titulo || ""}</h1>
-      ${item.fecha ? <p class="muted">${item.fecha}</p> : ``}
-      ${item.imagen ? <img src="${item.imagen}" alt="${item.titulo || ""}"> : ``}
-      ${item.cuerpo ? <div>${item.cuerpo}</div> : ``}
+      ${item.fecha ? `<p class="muted">${item.fecha}</p>` : ``}
+      ${item.imagen ? `<img src="${item.imagen}" alt="${item.titulo || ""}">` : ``}
+      ${item.cuerpo ? `<div>${item.cuerpo}</div>` : ``}
     `;
   } catch (e) {
     console.error(e);
