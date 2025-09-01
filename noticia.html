@@ -20,27 +20,22 @@
 <script>
 (async function(){
   const $out = document.getElementById("noticia");
-
-  const params = new URLSearchParams(window.location.search);
+  const params = new URLSearchParams(location.search);
   const slug = params.get("slug");
-  if (!slug) {
-    $out.innerHTML = '<div class="alert">No se encontró la noticia.</div>';
-    return;
-  }
+  if (!slug) { $out.innerHTML = '<div class="alert">No se encontró la noticia.</div>'; return; }
 
   try {
-    // ✅ RUTA RELATIVA (funciona en GitHub Pages dentro de /sintraspap.github.io/)
-    const res = await fetch('data/noticias.json', { cache: 'no-store' });
+    // cache-busting para evitar JSON viejo
+    const res = await fetch(data/noticias.json?nocache=${Date.now()}, { cache: 'no-store' });
     if (!res.ok) throw new Error('HTTP ' + res.status);
     const data = await res.json();
     const items = Array.isArray(data.items) ? data.items : [];
 
-    const normaliza = (t = "") => t.toLowerCase()
-      .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-      .replace(/[^a-z0-9\s-]/g, "")
-      .trim().replace(/\s+/g, "-");
+    const normaliza = (t="") => t.toLowerCase()
+      .normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+      .replace(/[^a-z0-9\s-]/g,"").trim().replace(/\s+/g,"-");
 
-    const item = items.find(n => normaliza(n.titulo || "") === slug);
+    const item = items.find(n => normaliza(n.titulo||"") === slug);
 
     if (!item) {
       $out.innerHTML = `
@@ -51,7 +46,7 @@
       return;
     }
 
-    document.title = ${item.titulo || "Noticia"} – SINTRASPAP;
+    document.title = ${item.titulo || 'Noticia'} – SINTRASPAP;
     $out.innerHTML = `
       <h1>${item.titulo || ""}</h1>
       ${item.fecha ? <p class="muted">${item.fecha}</p> : ``}
