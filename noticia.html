@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Noticia – SINTRASPAP</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body{font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;max-width:800px;margin:20px auto;padding:0 16px;line-height:1.6;}
+    img{max-width:100%;border-radius:8px;margin:16px 0;}
+    .muted{color:#777;font-size:14px;margin-top:10px;}
+    a{color:#0b2a59;text-decoration:none;}
+    a:hover{text-decoration:underline;}
+  </style>
+</head>
+<body>
+  <a href="index.html">← Volver al inicio</a>
+  <div id="noticia"></div>
+
+<script>
+(async function(){
+  const params = new URLSearchParams(window.location.search);
+  const slug = params.get("slug");
+  if(!slug){
+    document.getElementById("noticia").innerHTML = "<p>No se encontró la noticia.</p>";
+    return;
+  }
+
+  try{
+    const res = await fetch("data/noticias.json", { cache:"no-store" });
+    const data = await res.json();
+    const items = data.items || [];
+
+    // Buscar por slug
+    const item = items.find(n => {
+      const s = (n.titulo||"").toLowerCase()
+        .normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+        .replace(/[^a-z0-9\s-]/g,"").trim().replace(/\s+/g,"-");
+      return s === slug;
+    });
+
+    if(!item){
+      document.getElementById("noticia").innerHTML = "<p>No se encontró la noticia.</p>";
+      return;
+    }
+
+    document.title = item.titulo + " – SINTRASPAP";
+    document.getElementById("noticia").innerHTML = `
+      <h1>${item.titulo||""}</h1>
+      ${item.fecha ? `<p class="muted">${item.fecha}</p>` : ``}
+      ${item.imagen ? `<img src="${item.imagen}" alt="${item.titulo||""}">` : ``}
+      ${item.cuerpo ? `<div>${item.cuerpo}</div>` : ``}
+    `;
+  }catch(e){
+    console.error(e);
+    document.getElementById("noticia").innerHTML = "<p>Error al cargar la noticia.</p>";
+  }
+})();
+</script>
+</body>
+</html>
