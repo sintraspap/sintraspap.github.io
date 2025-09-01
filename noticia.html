@@ -1,63 +1,54 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <title>Noticia – SINTRASPAP</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body{font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;max-width:800px;margin:20px auto;padding:0 16px;line-height:1.6;}
-    img{max-width:100%;border-radius:8px;margin:16px 0;}
-    .muted{color:#777;font-size:14px;margin-top:10px;}
-    a{color:#0b2a59;text-decoration:none;}
-    a:hover{text-decoration:underline;}
-  </style>
+<meta charset="utf-8">
+<title>Noticia – SINTRASPAP</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  body{font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;max-width:800px;margin:20px auto;padding:0 16px;line-height:1.6;}
+  img{max-width:100%;border-radius:8px;margin:16px 0;}
+  .muted{color:#777;font-size:14px;margin-top:10px;}
+  a{color:#0b2a59;text-decoration:none;}
+  a:hover{text-decoration:underline;}
+</style>
 </head>
 <body>
   <a href="index.html#inicio">← Volver al inicio</a>
   <div id="noticia"></div>
 
-  <script>
-  (async () => {
-    const params = new URLSearchParams(location.search);
-    const slug = params.get('slug');
-    const cont = document.getElementById('noticia');
+<script>
+(async function(){
+  const cont = document.getElementById("noticia");
+  const params = new URLSearchParams(location.search);
+  const slug = params.get("slug");
+  if (!slug) { cont.innerHTML = "<p>No se encontró la noticia.</p>"; return; }
 
-    if (!slug) {
-      cont.innerHTML = '<p>No se encontró la noticia.</p>';
-      return;
-    }
+  try {
+    // 🔹 Ruta RELATIVA → funciona en GitHub Pages con /<repo>/
+    const res = await fetch('data/noticias.json?ts=' + Date.now(), { cache: 'no-store' });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+    const items = Array.isArray(data.items) ? data.items : [];
 
-    try {
-      const url = new URL('data/noticias.json', location.origin).href;
-      const res = await fetch(url, { cache: 'no-store' });
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      const data = await res.json();
-      const items = Array.isArray(data.items) ? data.items : [];
+    const toSlug = (t="") => t.toLowerCase()
+      .normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+      .replace(/[^a-z0-9\s-]/g,"").trim().replace(/\s+/g,"-");
 
-      const normaliza = (t='') => t.toLowerCase()
-        .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
-        .replace(/[^a-z0-9\s-]/g,'')
-        .trim().replace(/\s+/g,'-');
+    const item = items.find(n => toSlug(n.titulo || "") === slug);
+    if (!item) { cont.innerHTML = "<p>No se encontró la noticia.</p>"; return; }
 
-      const item = items.find(n => normaliza(n.titulo || '') === slug);
-
-      if (!item) {
-        cont.innerHTML = '<p>No se encontró la noticia.</p>';
-        return;
-      }
-
-      document.title = ${item.titulo || 'Noticia'} – SINTRASPAP;
-      cont.innerHTML = `
-        <h1>${item.titulo || ''}</h1>
-        ${item.fecha ? <p class="muted">${item.fecha}</p> : ``}
-        ${item.imagen ? <img src="${item.imagen}" alt="${item.titulo || ''}"> : ``}
-        ${item.cuerpo ? <div>${item.cuerpo}</div> : ``}
-      `;
-    } catch (e) {
-      console.error(e);
-      cont.innerHTML = '<p>Error al cargar la noticia.</p>';
-    }
-  })();
-  </script>
+    document.title = ${item.titulo || "Noticia"} – SINTRASPAP;
+    cont.innerHTML = `
+      <h1>${item.titulo || ""}</h1>
+      ${item.fecha ? <p class="muted">${item.fecha}</p> : ``}
+      ${item.imagen ? <img src="${item.imagen}" alt="${item.titulo || ""}"> : ``}
+      ${item.cuerpo ? <div>${item.cuerpo}</div> : ``}
+    `;
+  } catch (e) {
+    console.error(e);
+    cont.innerHTML = "<p>Error al cargar la noticia.</p>";
+  }
+})();
+</script>
 </body>
 </html>
