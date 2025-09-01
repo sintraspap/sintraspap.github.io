@@ -1,5 +1,3 @@
-media_folder: "assets/uploads"
-public_folder: "/assets/uploads"
 backend:
   name: git-gateway
   branch: main
