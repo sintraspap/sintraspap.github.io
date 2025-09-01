@@ -1,55 +1,11 @@
 {
   "items": [
     {
-      "titulo": "Página reparada",
-      "cuerpo": "Luego de un pequeño inconveniente, ya la página vuelve a funcionar normalmente.",
-      "imagen": "/assets/images/1000876642.png",
-      "fecha": "2025-08-31"
-    },
-    {
-      "titulo": "Página arreglada",
-      "cuerpo": "Luego de su primera caída hemos restablecido la página.",
-      "fecha": "2025-08-31"
-    },
-    {
-      "titulo": "Hola",
+      "titulo": "Paraguay",
       "fecha": "2025-09-01",
-      "cuerpo": "ZSi",
-      "imagen": "/images/uploads/1000876688.jpg"
-    },
-    {
-      "resumen": "Si",
-      "cuerpo": "SSi",
-      "imagen": "/images/uploads/1000876692.png",
-      "fecha": "2025-09-01",
-      "titulo": "Si"
-    },
-    {
-      "titulo": "Si",
-      "resumen": "Si",
-      "cuerpo": "SSi",
-      "fecha": "2025-09-01"
-    },
-    {
-      "imagen": "/images/uploads/1000875442.jpg",
-      "cuerpo": "Prueba",
-      "resumen": "Prueba",
-      "titulo": "Prueba",
-      "fecha": "2025-09-01"
-    },
-    {
-      "titulo": "Prueba",
-      "fecha": "2025-09-01",
-      "resumen": "Genial",
-      "cuerpo": "SSi",
-      "imagen": "/images/uploads/1000871769.jpg"
-    },
-    {
-      "titulo": "prfhbcnvnfvv",
-      "fecha": "2025-09-01",
-      "resumen": "sddddv",
-      "cuerpo": "vdvdvdvdvdcdvdvdvv",
-      "imagen": "/images/uploads/banner-2.png"
+      "resumen": "Py",
+      "cuerpo": "Py",
+      "imagen": "/images/uploads/paraguay-puntos.png"
     }
   ]
 }
