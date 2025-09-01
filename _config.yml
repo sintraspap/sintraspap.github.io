@@ -1,4 +1,22 @@
-title: "SINTRASPAP"
-url: "https://sintraspappy2025.github.io"
-baseurl: "/sintraspap.github.io"   # IMPORTANTE para rutas
-theme: minima
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "noticias"
+    label: "Noticias"
+    files:
+      - file: "data/noticias.json"
+        label: "Noticias"
+        name: "noticias"
+        fields:
+          - { name: "items", label: "Items", widget: "list", fields: [
+              { name: "titulo", label: "Título", widget: "string" },
+              { name: "fecha",  label: "Fecha",  widget: "datetime", format: "YYYY-MM-DD" },
+              { name: "resumen", label: "Resumen", widget: "text", required: false },
+              { name: "cuerpo",  label: "Cuerpo",  widget: "markdown", required: false },
+              { name: "imagen",  label: "Imagen",  widget: "image", required: false }
+          ] }
