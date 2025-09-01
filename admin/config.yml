@@ -1,25 +1,18 @@
-media_folder: "assets/uploads"     # dónde se guardan los archivos en el repo
-public_folder: "/assets/uploads"   # ruta pública que se escribirá en el JSON
 backend:
   name: git-gateway
   branch: main
 
-media_folder: "assets/images"
-public_folder: "/assets/images"
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
 
 collections:
   - name: "noticias"
-  label: "Noticias"
-  folder: "content/noticias"     # aquí se guardan los archivos de cada noticia
-  create: true
-  slug: "{{slug}}"               # p.ej. content/noticias/mi-titulo.md
-  format: "frontmatter"
-  extension: "md"
-  fields:
-    - { label: "Título", name: "title", widget: "string" }
-    - { label: "Fecha",  name: "date",  widget: "datetime", format: "YYYY-MM-DD" }
-    - { label: "Imagen", name: "image", widget: "image", hint: "Ideal 1200x630" }
-    - { label: "Resumen (para la tarjeta)", name: "summary", widget: "text", required: false }
-    - { label: "Cuerpo", name: "body", widget: "markdown" }
-    - { label: "Layout (no tocar)", name: "layout", widget: "hidden", default: "noticia.njk" }
-    - { label: "Permalink (no tocar)", name: "permalink", widget: "hidden", default: "/noticias/{{slug}}/index.html" }
+    label: "Noticias"
+    file: "data/noticias.json"
+    format: "json"
+    fields:
+      - { label: "Título",  name: "titulo",  widget: "string" }
+      - { label: "Resumen", name: "resumen", widget: "text", required: false }
+      - { label: "Cuerpo",  name: "cuerpo",  widget: "text", required: false }
+      - { label: "Imagen",  name: "imagen",  widget: "image", required: false }
+      - { label: "Fecha",   name: "fecha",   widget: "datetime", format: "YYYY-MM-DD" }
