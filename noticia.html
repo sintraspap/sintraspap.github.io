@@ -5,12 +5,12 @@
 <title>Noticia – SINTRASPAP</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-  body{font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;max-width:800px;margin:20px auto;padding:0 16px;line-height:1.6;background:#111;color:#eee}
+  body{font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;max-width:800px;margin:20px auto;padding:0 16px;line-height:1.6;background:#0b0b0b;color:#eaeaea}
   img{max-width:100%;border-radius:8px;margin:16px 0}
   .muted{color:#aaa;font-size:14px;margin-top:10px}
-  a{color:#9dc1ff;text-decoration:none}
+  a{color:#8ab4ff;text-decoration:none}
   a:hover{text-decoration:underline}
-  .err{background:#221b1b;color:#ffd4d4;border:1px solid #a44;padding:12px;border-radius:8px}
+  .alert{background:#2b1f1f;border:1px solid #8a4b4b;color:#ffdede;padding:14px;border-radius:10px}
 </style>
 </head>
 <body>
@@ -19,50 +19,48 @@
 
 <script>
 (async function(){
-  const cont = document.getElementById("noticia");
-  const params = new URLSearchParams(location.search);
+  const $out = document.getElementById("noticia");
+
+  const params = new URLSearchParams(window.location.search);
   const slug = params.get("slug");
-
-  const show = html => cont.innerHTML = html;
-
   if (!slug) {
-    show('<p class="err">No se encontró el parámetro <code>slug</code> en la URL.</p>');
+    $out.innerHTML = '<div class="alert">No se encontró la noticia.</div>';
     return;
   }
 
   try {
-    // Ruta RELATIVA para que funcione en /usuario.github.io/REPO/
-    const res = await fetch('data/noticias.json?ts=' + Date.now(), { cache: 'no-store' });
+    // ✅ RUTA RELATIVA (funciona en GitHub Pages dentro de /sintraspap.github.io/)
+    const res = await fetch('data/noticias.json', { cache: 'no-store' });
     if (!res.ok) throw new Error('HTTP ' + res.status);
-
-    // Intento de parseo (si viniera HTML por error, esto lanzará)
     const data = await res.json();
     const items = Array.isArray(data.items) ? data.items : [];
 
-    const toSlug = (t="") => t.toLowerCase()
-      .normalize("NFD").replace(/[\u0300-\u036f]/g,"")
-      .replace(/[^a-z0-9\\s-]/g,"").trim().replace(/\\s+/g,"-");
+    const normaliza = (t = "") => t.toLowerCase()
+      .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9\s-]/g, "")
+      .trim().replace(/\s+/g, "-");
 
-    const item = items.find(n => toSlug(n.titulo || "") === slug);
+    const item = items.find(n => normaliza(n.titulo || "") === slug);
 
     if (!item) {
-      show(
-        '<div class="err">No se encontró la noticia con slug: <code>' + slug +
-        '</code>.<br>Verificá que el <strong>título</strong> en <code>data/noticias.json</code> genere ese mismo slug.</div>'
-      );
+      $out.innerHTML = `
+        <div class="alert">
+          No se encontró la noticia con slug: <b>${slug}</b>.<br>
+          Verificá que el <b>título</b> en <code>data/noticias.json</code> genere ese mismo slug.
+        </div>`;
       return;
     }
 
-    document.title = (item.titulo || "Noticia") + " – SINTRASPAP";
-    show(
-      '<h1>' + (item.titulo || "") + '</h1>' +
-      (item.fecha ? '<p class="muted">' + item.fecha + '</p>' : '') +
-      (item.imagen ? '<img src="' + item.imagen + '" alt="' + (item.titulo || "") + '">' : '') +
-      (item.cuerpo ? '<div>' + item.cuerpo + '</div>' : '')
-    );
+    document.title = ${item.titulo || "Noticia"} – SINTRASPAP;
+    $out.innerHTML = `
+      <h1>${item.titulo || ""}</h1>
+      ${item.fecha ? <p class="muted">${item.fecha}</p> : ``}
+      ${item.imagen ? <img src="${item.imagen}" alt="${item.titulo || ""}"> : ``}
+      ${item.cuerpo ? <div>${item.cuerpo}</div> : ``}
+    `;
   } catch (e) {
     console.error(e);
-    show('<p class="err">Error al cargar la noticia. ' + (e && e.message ? e.message : '') + '</p>');
+    $out.innerHTML = '<div class="alert">Error al cargar la noticia.</div>';
   }
 })();
 </script>
