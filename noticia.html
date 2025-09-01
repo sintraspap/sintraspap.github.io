@@ -20,13 +20,12 @@
 (async function(){
   const params = new URLSearchParams(window.location.search);
   const slug = params.get("slug");
-  if(!slug){
-    document.getElementById("noticia").innerHTML = "<p>No se encontró la noticia.</p>";
-    return;
-  }
+  if(!slug){ document.getElementById("noticia").innerHTML = "<p>No se encontró la noticia.</p>"; return; }
 
   try{
-    const res = await fetch("data/noticias.json", { cache:"no-store" });
+    // 👉 siempre desde la raíz del sitio
+    const url = new URL('data/noticias.json', location.origin).href;
+    const res = await fetch(url, { cache:"no-store" });
     const data = await res.json();
     const items = data.items || [];
 
@@ -37,17 +36,14 @@
       return s === slug;
     });
 
-    if(!item){
-      document.getElementById("noticia").innerHTML = "<p>No se encontró la noticia.</p>";
-      return;
-    }
+    if(!item){ document.getElementById("noticia").innerHTML = "<p>No se encontró la noticia.</p>"; return; }
 
     document.title = (item.titulo||"Noticia") + " – SINTRASPAP";
     document.getElementById("noticia").innerHTML = `
       <h1>${item.titulo||""}</h1>
-      ${item.fecha ? `<p class="muted">${item.fecha}</p>` : ``}
-      ${item.imagen ? `<img src="${item.imagen}" alt="${item.titulo||""}">` : ``}
-      ${item.cuerpo ? `<div>${item.cuerpo}</div>` : ``}
+      ${item.fecha ? <p class="muted">${item.fecha}</p> : ``}
+      ${item.imagen ? <img src="${item.imagen}" alt="${item.titulo||""}"> : ``}
+      ${item.cuerpo ? <div>${item.cuerpo}</div> : ``}
     `;
   }catch(e){
     console.error(e);
