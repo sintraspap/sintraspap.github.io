@@ -6,20 +6,6 @@
       "resumen": "Py",
       "cuerpo": "Py",
       "imagen": "images/uploads/paraguay-puntos.png"
-    },
-    {
-      "titulo": "Seguridad Laboral",
-      "fecha": "2025-09-02",
-      "resumen": "Avances en seguridad laboral",
-      "cuerpo": "El sindicato presentó nuevas propuestas para mejorar la seguridad de los trabajadores.",
-      "imagen": "images/uploads/seguridad.png"
-    },
-    {
-      "titulo": "Capacitación",
-      "fecha": "2025-09-03",
-      "resumen": "Curso para afiliados",
-      "cuerpo": "Se habilitan inscripciones para la capacitación anual en derechos laborales.",
-      "imagen": "images/uploads/capacitacion.png"
     }
   ]
 }
