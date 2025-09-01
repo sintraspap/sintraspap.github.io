@@ -266,8 +266,9 @@ footer .muted {
         ${item.imagen ? `<img src="${item.imagen}" alt="${item.titulo||''}" loading="lazy">` : ``}
         <h3>${item.titulo||''}</h3>
         ${item.resumen ? `<p>${item.resumen}</p>` : ``}
-        ${item.cuerpo ? `
-        ${item.cuerpo ? `
+      
+        ${item.resumen ? `<p>${item.resumen}</p>` : ``}
+${item.cuerpo ? `
   <p style="margin-top:6px">
     <a href="noticia.html?slug=${encodeURIComponent((item.titulo||'').toLowerCase()
       .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
@@ -275,7 +276,7 @@ footer .muted {
       Leer más
     </a>
   </p>` : ``}
-        ${item.fecha ? `<p class="muted" style="margin-top:8px">${item.fecha}</p>` : ``}
+${item.fecha ? `<p class="muted" style="margin-top:8px">${item.fecha}</p>` : ``}
       </article>
     `).join('');
   }catch(e){
