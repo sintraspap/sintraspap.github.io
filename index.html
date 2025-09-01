@@ -275,15 +275,15 @@ footer .muted {
         .replace(/[^a-z0-9\s-]/g,'')
         .trim().replace(/\s+/g,'-');
 
-      return 
-        <article class="card">
-          ${item.imagen ? <img src="${item.imagen}" alt="${item.titulo || ''}" loading="lazy"> : `}
-          <h3>${item.titulo || ''}</h3>
-          ${item.resumen ? <p class="muted">${item.resumen}</p> : ``}
-          ${item.cuerpo ? <p style="margin-top:6px"><a href="noticia.html?slug=${encodeURIComponent(slug)}">Leer más</a></p> : ``}
-          ${item.fecha ? <p class="muted" style="margin-top:8px">${item.fecha}</p> : ``}
-        </article>
-      `;
+     return `
+  <article class="card">
+    ${item.imagen ? <img src="${item.imagen}" alt="${item.titulo || ''}" loading="lazy"> : ``}
+    <h3>${item.titulo || ''}</h3>
+    ${item.resumen ? <p class="muted">${item.resumen}</p> : ``}
+    ${item.cuerpo ? <p style="margin-top:6px"><a href="noticia.html?slug=${encodeURIComponent(slug)}">Leer más</a></p> : ``}
+    ${item.fecha ? <p class="muted" style="margin-top:8px">${item.fecha}</p> : ``}
+  </article>
+`;
     }).join('');
   } catch (e) {
     console.error(e);
