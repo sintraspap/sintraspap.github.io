@@ -2,22 +2,25 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "assets/images/uploads"
-public_folder: "/assets/images/uploads"
+media_folder: "images/uploads"     # dónde se suben los archivos
+public_folder: "/images/uploads"   # cómo se referencian en la web
 
 collections:
-  - name: "noticias"
-    label: "Noticias"
-    file: "data/noticias.json"
-    format: "json"
-    fields:
-      - label: "Noticias"
-        name: "items"
-        widget: "list"
-        summary: "{{fields.titulo}} — {{fields.fecha}}"
+  - label: "Noticias"
+    name: "noticias"
+    files:
+      - label: "Listado de noticias"
+        name: "listado"
+        file: "data/noticias.json"
         fields:
-          - { label: "Título",  name: "titulo",  widget: "string" }
-          - { label: "Resumen", name: "resumen", widget: "text", required: false }
-          - { label: "Cuerpo",  name: "cuerpo",  widget: "markdown", required: false }
-          - { label: "Imagen",  name: "imagen",  widget: "image", required: false }
-          - { label: "Fecha",   name: "fecha",   widget: "datetime", format: "YYYY-MM-DD", time_format: false }
+          - label: "Noticias"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.titulo}} — {{fields.fecha}}"
+            allow_add: true
+            fields:
+              - { label: "Título",  name: "titulo",  widget: "string" }
+              - { label: "Fecha",   name: "fecha",   widget: "datetime", format: "YYYY-MM-DD", time_format: false }
+              - { label: "Resumen", name: "resumen", widget: "text", required: false }
+              - { label: "Cuerpo",  name: "cuerpo",  widget: "markdown", required: false }
+              - { label: "Imagen",  name: "imagen",  widget: "image", required: false }
