@@ -1,13 +1,13 @@
-module.exports = function (eleventyConfig) {
-  // Copiar tal cual a _site
-  eleventyConfig.addPassthroughCopy("data");            // <-- aquí vive noticias.json
-  eleventyConfig.addPassthroughCopy("images");          // para /images/uploads
-  eleventyConfig.addPassthroughCopy("assets");          // si usas /assets
+modulemodule.exports = function(eleventyConfig) {
+  // Copiar estas carpetas y archivos tal cual a _site
+  eleventyConfig.addPassthroughCopy("data");
+  eleventyConfig.addPassthroughCopy("images");
+  eleventyConfig.addPassthroughCopy("assets");
 
   return {
     dir: {
-      input: ".",      // raíz del repo
-      output: "_site", // carpeta de publicación
+      input: ".",      // entrada = raíz
+      output: "_site", // salida = _site
     },
   };
 };
