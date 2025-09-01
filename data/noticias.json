@@ -36,6 +36,13 @@
       "resumen": "Prueba",
       "titulo": "Prueba",
       "fecha": "2025-09-01"
+    },
+    {
+      "titulo": "Prueba",
+      "fecha": "2025-09-01",
+      "resumen": "Genial",
+      "cuerpo": "SSi",
+      "imagen": "/images/uploads/1000871769.jpg"
     }
   ]
 }
