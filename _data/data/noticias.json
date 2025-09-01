@@ -1,3 +1,11 @@
 {
-  "items": []
+  "items": [
+    {
+      "titulo": "Primera noticia de prueba",
+      "resumen": "Este es un resumen corto.",
+      "cuerpo": "Este es el cuerpo completo de la noticia.",
+      "imagen": "https://via.placeholder.com/800x420",
+      "fecha": "2025-09-01"
+    }
+  ]
 }
