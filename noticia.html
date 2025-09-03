@@ -12,7 +12,7 @@
       padding: 0 16px;
       line-height: 1.6;
     }
-    img, video {
+    img {
       max-width: 100%;
       border-radius: 8px;
       margin: 16px 0;
@@ -54,7 +54,6 @@
       }
 
       try {
-        // Ruta relativa (funciona en GitHub Pages)
         const res = await fetch('data/noticias.json', { cache: 'no-store' });
         if (!res.ok) throw new Error('HTTP ' + res.status);
         const data = await res.json();
@@ -76,14 +75,11 @@
           return;
         }
 
-        // ✅ Corregido: usar comillas para el título
         document.title = `${item.titulo} – SINTRASPAP`;
 
-        // ✅ Corregido: usar template strings con comillas y expresiones válidas
         $out.innerHTML = `
           <h1>${item.titulo}</h1>
           ${item.fecha ? `<p class="muted">${item.fecha}</p>` : ''}
-          ${item.video ? `<video src="${item.video}" controls preload="metadata" playsinline></video>` : ''}
           ${item.imagen ? `<img src="${item.imagen}" alt="${item.titulo}">` : ''}
           ${item.cuerpo ? `<div>${item.cuerpo}</div>` : ''}
         `;
