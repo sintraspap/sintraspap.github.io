@@ -755,16 +755,5 @@ console.log('Cantidad de visitas en la página:', d.value);
     .catch(() => console.log('No se pudo consultar el contador'));
 })();
 </script>
-<script>
-  if (window.netlifyIdentity) {
-    window.netlifyIdentity.on("init", user => {
-      if (!user) {
-        window.netlifyIdentity.on("login", () => {
-          document.location.href = "/admin/";
-        });
-      }
-    });
-  }
-</script>
 </body>
 </html>
