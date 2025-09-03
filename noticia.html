@@ -5,12 +5,13 @@
   <title>Noticia – SINTRASPAP</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Meta tags para WhatsApp, Facebook, Telegram, etc. -->
+  <!-- Meta tags para WhatsApp, Facebook, Telegram -->
   <meta property="og:title" content="" id="og-title">
   <meta property="og:description" content="" id="og-description">
   <meta property="og:image" content="" id="og-image">
   <meta property="og:url" content="" id="og-url">
   <meta property="og:type" content="article">
+  <meta property="og:site_name" content="SINTRASPAP">
 
   <style>
     body {
@@ -86,17 +87,22 @@
         // Actualiza el título de la página
         document.title = `${item.titulo} – SINTRASPAP`;
 
-        // Actualiza metadatos Open Graph (para WhatsApp, redes sociales)
+        // URL absoluta completa para que funcione en redes sociales
+        const baseUrl = 'https://sintraspappy2025.github.io/sintraspap.github.io';
+        const imageUrl = `${baseUrl}/${item.imagen}`;
+        const pageUrl = `${baseUrl}/noticia.html?slug=${slug}`;
+
+        // Actualiza metadatos Open Graph (para WhatsApp, Facebook, etc.)
         document.getElementById('og-title').content = item.titulo;
         document.getElementById('og-description').content = item.resumen;
-        document.getElementById('og-image').content = `https://sintrapap.github.io/${item.imagen}`;
-        document.getElementById('og-url').content = `https://sintrapap.github.io/noticia.html?slug=${slug}`;
+        document.getElementById('og-image').content = imageUrl;
+        document.getElementById('og-url').content = pageUrl;
 
         // Muestra la noticia
         $out.innerHTML = `
           <h1>${item.titulo}</h1>
           ${item.fecha ? `<p class="muted">${item.fecha}</p>` : ''}
-          ${item.imagen ? `<img src="${item.imagen}" alt="${item.titulo}">` : ''}
+          ${item.imagen ? `<img src="${imageUrl}" alt="${item.titulo}">` : ''}
           ${item.cuerpo ? `<div>${item.cuerpo}</div>` : ''}
         `;
       } catch (e) {
