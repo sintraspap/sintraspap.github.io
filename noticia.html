@@ -5,12 +5,12 @@
 <title>Noticia – SINTRASPAP</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-  body{font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;max-width:800px;margin:20px auto;padding:0 16px;line-height:1.6;background:#0b0b0b;color:#eaeaea}
-  img{max-width:100%;border-radius:8px;margin:16px 0}
-  .muted{color:#aaa;font-size:14px;margin-top:10px}
-  a{color:#8ab4ff;text-decoration:none}
-  a:hover{text-decoration:underline}
-  .alert{background:#2b1f1f;border:1px solid #8a4b4b;color:#ffdede;padding:14px;border-radius:10px}
+  body{font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;max-width:800px;margin:20px auto;padding:0 16px;line-height:1.6;}
+  img,video{max-width:100%;border-radius:8px;margin:16px 0;}
+  .muted{color:#777;font-size:14px;margin-top:10px;}
+  a{color:#0b2a59;text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  .alert{background:#f7eaea;border:1px solid #e5bcbc;color:#6a1a1a;padding:14px;border-radius:10px}
 </style>
 </head>
 <body>
@@ -20,25 +20,27 @@
 <script>
 (async function(){
   const $out = document.getElementById("noticia");
-  const params = new URLSearchParams(location.search);
+
+  const params = new URLSearchParams(window.location.search);
   const slug = params.get("slug");
-  if (!slug) { 
-    $out.innerHTML = '<div class="alert">No se encontró la noticia.</div>'; 
-    return; 
+  if (!slug) {
+    $out.innerHTML = '<div class="alert">No se encontró la noticia.</div>';
+    return;
   }
 
   try {
-    // cache-busting para evitar JSON viejo
-    const res = await fetch(`data/noticias.json?nocache=${Date.now()}`, { cache: 'no-store' });
+    // Ruta relativa (funciona en GitHub Pages dentro de /sintraspap.github.io/)
+    const res = await fetch('data/noticias.json', { cache: 'no-store' });
     if (!res.ok) throw new Error('HTTP ' + res.status);
     const data = await res.json();
     const items = Array.isArray(data.items) ? data.items : [];
 
-    const normaliza = (t="") => t.toLowerCase()
-      .normalize("NFD").replace(/[\u0300-\u036f]/g,"")
-      .replace(/[^a-z0-9\s-]/g,"").trim().replace(/\s+/g,"-");
+    const normaliza = (t = "") => t.toLowerCase()
+      .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9\s-]/g, "")
+      .trim().replace(/\s+/g, "-");
 
-    const item = items.find(n => normaliza(n.titulo||"") === slug);
+    const item = items.find(n => normaliza(n.titulo || "") === slug);
 
     if (!item) {
       $out.innerHTML = `
@@ -49,12 +51,13 @@
       return;
     }
 
-    document.title = `${item.titulo || 'Noticia'} – SINTRASPAP`;
+    document.title = ${item.titulo || "Noticia"} – SINTRASPAP;
     $out.innerHTML = `
       <h1>${item.titulo || ""}</h1>
-      ${item.fecha ? `<p class="muted">${item.fecha}</p>` : ``}
-      ${item.imagen ? `<img src="${item.imagen}" alt="${item.titulo || ""}">` : ``}
-      ${item.cuerpo ? `<div>${item.cuerpo}</div>` : ``}
+      ${item.fecha ? <p class="muted">${item.fecha}</p> : ``}
+      ${item.video ? <video src="${item.video}" controls preload="metadata" playsinline></video> : ``}
+      ${item.imagen ? <img src="${item.imagen}" alt="${item.titulo || ""}"> : ``}
+      ${item.cuerpo ? <div>${item.cuerpo}</div> : ``}
     `;
   } catch (e) {
     console.error(e);
