@@ -1,253 +1,137 @@
 <!doctype html>
 <html lang="es">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q994YVT2V2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-Q994YVT2V2');
-</script>
-
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-
-<!-- Meta tags por defecto (se actualizarán dinámicamente) -->
-<title>SINTRASPAP - Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay</title>
-<meta name="description" content="Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay" />
-
-<!-- Open Graph - se actualizarán dinámicamente -->
-<meta property="og:title" content="SINTRASPAP - Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay" />
-<meta property="og:description" content="Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay" />
-<meta property="og:image" content="https://sintraspappy2025.github.io/sintraspap.github.io/logo-sintraspap.png" />
-<meta property="og:url" content="https://sintraspappy2025.github.io/sintraspap.github.io/" />
-<meta property="og:type" content="article" />
-<meta property="og:site_name" content="SINTRASPAP" />
-
-<!-- Twitter Cards -->
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="SINTRASPAP - Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay" />
-<meta name="twitter:description" content="Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay" />
-<meta name="twitter:image" content="https://sintraspappy2025.github.io/sintraspap.github.io/logo-sintraspap.png" />
-
-<!-- Favicon -->
-<link rel="icon" href="favicon.ico" type="image/x-icon">
-<link rel="icon" href="favicon-32x32.png" sizes="32x32" type="image/png">
-<link rel="icon" href="favicon-16x16.png" sizes="16x16" type="image/png">
-
-<style>
-  :root{ --azul:#0b2a59; --azul-hover:#1e4f9a; --borde:#e5e7eb; --gris:#666; }
-
-  *{box-sizing:border-box}
-  html,body{margin:0;padding:0;width:100%;overflow-x:hidden;font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;background:#fff;color:#111}
-  a{text-decoration:none;color:inherit}
-  .container{max-width:1100px;margin:0 auto;padding:0 16px}
-
-  /* Header */
-  header{background:var(--azul);color:#fff;position:sticky;top:0;z-index:50}
-  .head{display:flex;align-items:center;justify-content:space-between;padding:20px 0}
-  .brand{display:flex;align-items:center;gap:14px;font-weight:900;font-size:34px}
-  .brand img{height:64px;width:auto;display:inline-block}
-  .back-btn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;padding:8px 16px;border-radius:6px;text-decoration:none;font-size:14px;transition:background .2s}
-  .back-btn:hover{background:rgba(255,255,255,.3)}
-
-  /* Main content */
-  main{padding:40px 0;min-height:70vh}
-  
-  /* Article styles */
-  .article-container{max-width:800px;margin:0 auto;background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.1);overflow:hidden}
-  .article-header{padding:32px 32px 0}
-  .article-title{font-size:clamp(24px,4vw,36px);margin:0 0 16px;color:var(--azul);line-height:1.2}
-  .article-meta{color:#666;font-size:14px;margin-bottom:24px;display:flex;gap:16px;flex-wrap:wrap}
-  .article-image{width:100%;max-height:400px;object-fit:cover;display:block}
-  .article-content{padding:32px}
-  .article-content p{line-height:1.7;margin:0 0 20px;font-size:16px}
-  .article-content strong{color:var(--azul)}
-
-  /* Loading state */
-  .loading{text-align:center;padding:60px 20px;color:#666}
-  .error{text-align:center;padding:60px 20px;color:#d32f2f;background:#ffebee;border-radius:8px;margin:20px}
-
-  /* Footer simplificado */
-  footer{background:#091f40;color:#fff;margin-top:40px;padding:20px 0;text-align:center}
-  
-  @media(max-width:768px){
-    .article-header{padding:20px 20px 0}
-    .article-content{padding:20px}
-    .head{flex-wrap:wrap;gap:12px}
-  }
-</style>
+  <meta charset="utf-8">
+  <title>Noticia – SINTRASPAP</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Meta tags para WhatsApp, Facebook, Telegram -->
+  <meta property="og:title" content="" id="og-title">
+  <meta property="og:description" content="" id="og-description">
+  <meta property="og:image" content="" id="og-image">
+  <meta property="og:url" content="" id="og-url">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="SINTRASPAP">
+  <style>
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 0 16px;
+      line-height: 1.6;
+    }
+    img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin: 16px 0;
+    }
+    .muted {
+      color: #777;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+    a {
+      color: #0b2a59;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .alert {
+      background: #f7eaea;
+      border: 1px solid #e5bcbc;
+      color: #6a1a1a;
+      padding: 14px;
+      border-radius: 10px;
+    }
+  </style>
 </head>
 <body>
-
-<header>
-  <div class="container head">
-    <div class="brand">
-      <img src="logo-sintraspap.png" alt="Logo SINTRASPAP" onerror="this.style.display='none'">
-      <span>SINTRASPAP</span>
-    </div>
-    <a href="index.html" class="back-btn">← Volver al inicio</a>
-  </div>
-</header>
-
-<main class="container">
-  <div id="loading" class="loading">
-    Cargando noticia...
-  </div>
-  
-  <div id="error" class="error" style="display:none">
-    No se pudo cargar la noticia solicitada.
-  </div>
-
-  <article id="article" class="article-container" style="display:none">
-    <div class="article-header">
-      <h1 id="article-title" class="article-title"></h1>
-      <div id="article-meta" class="article-meta"></div>
-    </div>
-    <img id="article-image" class="article-image" style="display:none" alt="">
-    <div id="article-content" class="article-content"></div>
-  </article>
-</main>
-
-<footer>
-  <div class="container">
-    <p>© 2025 SINTRASPAP - Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay</p>
-  </div>
-</footer>
-
-<script>
-// Función para generar slug desde título
-function generateSlug(title) {
-  return (title || '')
-    .toLowerCase()
-    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-    .replace(/[^a-z0-9\s-]/g, '')
-    .trim()
-    .replace(/\s+/g, '-');
-}
-
-// Función para actualizar meta tags dinámicamente
-function updateMetaTags(noticia) {
-  const baseUrl = 'https://sintraspappy2025.github.io/sintraspap.github.io/';
-  const slug = generateSlug(noticia.titulo);
-  
-  // Actualizar título de la página
-  document.title = `${noticia.titulo} - SINTRASPAP`;
-  
-  // Actualizar meta description
-  const metaDesc = document.querySelector('meta[name="description"]');
-  if (metaDesc) metaDesc.setAttribute('content', noticia.resumen || noticia.titulo);
-  
-  // Actualizar Open Graph
-  const ogTitle = document.querySelector('meta[property="og:title"]');
-  if (ogTitle) ogTitle.setAttribute('content', noticia.titulo);
-  
-  const ogDesc = document.querySelector('meta[property="og:description"]');
-  if (ogDesc) ogDesc.setAttribute('content', noticia.resumen || noticia.titulo);
-  
-  const ogUrl = document.querySelector('meta[property="og:url"]');
-  if (ogUrl) ogUrl.setAttribute('content', `${baseUrl}noticia.html?slug=${encodeURIComponent(slug)}`);
-  
-  const ogImage = document.querySelector('meta[property="og:image"]');
-  if (ogImage && noticia.imagen) {
-    ogImage.setAttribute('content', `${baseUrl}${noticia.imagen}`);
-  }
-  
-  // Actualizar Twitter Cards
-  const twitterTitle = document.querySelector('meta[name="twitter:title"]');
-  if (twitterTitle) twitterTitle.setAttribute('content', noticia.titulo);
-  
-  const twitterDesc = document.querySelector('meta[name="twitter:description"]');
-  if (twitterDesc) twitterDesc.setAttribute('content', noticia.resumen || noticia.titulo);
-  
-  const twitterImage = document.querySelector('meta[name="twitter:image"]');
-  if (twitterImage && noticia.imagen) {
-    twitterImage.setAttribute('content', `${baseUrl}${noticia.imagen}`);
-  }
-}
-
-// Función para formatear fecha
-function formatDate(dateStr) {
-  if (!dateStr) return '';
-  const date = new Date(dateStr);
-  return date.toLocaleDateString('es-PY', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  });
-}
-
-// Cargar y mostrar la noticia
-async function loadArticle() {
-  try {
-    // Obtener slug de la URL
-    const params = new URLSearchParams(window.location.search);
-    const slug = params.get('slug');
-    
-    if (!slug) {
-      throw new Error('No se especificó una noticia');
-    }
-    
-    // Cargar datos de noticias
-    const response = await fetch('data/noticias.json', { cache: 'no-store' });
-    const data = await response.json();
-    
-    // Buscar la noticia por slug
-    const noticia = data.items.find(item => {
-      const itemSlug = generateSlug(item.titulo);
-      return itemSlug === slug;
-    });
-    
-    if (!noticia) {
-      throw new Error('Noticia no encontrada');
-    }
-    
-    // Actualizar meta tags antes de mostrar contenido
-    updateMetaTags(noticia);
-    
-    // Mostrar contenido
-    document.getElementById('article-title').textContent = noticia.titulo;
-    
-    // Meta información
-    const metaInfo = [];
-    if (noticia.fecha) {
-      metaInfo.push(`📅 ${formatDate(noticia.fecha)}`);
-    }
-    document.getElementById('article-meta').textContent = metaInfo.join(' • ');
-    
-    // Imagen (si existe)
-    const articleImage = document.getElementById('article-image');
-    if (noticia.imagen) {
-      articleImage.src = noticia.imagen;
-      articleImage.alt = noticia.titulo;
-      articleImage.style.display = 'block';
-      articleImage.onerror = function() {
-        this.style.display = 'none';
-      };
-    }
-    
-    // Contenido del artículo
-    const articleContent = document.getElementById('article-content');
-    if (noticia.resumen) {
-      articleContent.innerHTML = `<p class="resumen" style="font-size:18px;color:#333;font-weight:500;margin-bottom:32px;">${noticia.resumen}</p>`;
-    }
-    if (noticia.cuerpo) {
-      articleContent.innerHTML += noticia.cuerpo;
-    }
-    
-    // Mostrar artículo y ocultar loading
-    document.getElementById('loading').style.display = 'none';
-    document.getElementById('article').style.display = 'block';
-    
-  } catch (error) {
-    console.error('Error cargando artículo:', error);
-    document.getElementById('loading').style.display = 'none';
-    document.getElementById('error').style.display = 'block';
-    document.getElementById('error').innerHTML = `
-      <h3>Error al cargar la noticia</h3>
-      <p>${error.message}</p>
-      <a href="index.html" style="color: var(--azul); text-decoration: underline;">Volver al inicio</a>
-    `;
-  }
-}
+  <a href="index.html#inicio">← Volver al inicio</a>
+  <div id="noticia" style="margin-top:14px"></div>
+  <script>
+    (async function () {
+      const $out = document.getElementById("noticia");
+      const params = new URLSearchParams(window.location.search);
+      const slug = params.get("slug");
+      
+      if (!slug) {
+        $out.innerHTML = '<div class="alert">No se encontró la noticia.</div>';
+        return;
+      }
+      
+      try {
+        const res = await fetch('data/noticias.json');
+        if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+        
+        const data = await res.json();
+        const items = Array.isArray(data.items) ? data.items : [];
+        
+        const normaliza = (t = "") => t.toLowerCase()
+          .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+          .replace(/[^a-z0-9\s-]/g, "")
+          .trim().replace(/\s+/g, "-");
+        
+        const item = items.find(n => normaliza(n.titulo || "") === slug);
+        
+        if (!item) {
+          $out.innerHTML = `
+            <div class="alert">
+              No se encontró la noticia con slug: <b>${escapeHtml(slug)}</b>.<br>
+              Verificá que el <b>título</b> en <code>data/noticias.json</code> genere ese mismo slug.
+            </div>`;
+          return;
+        }
+        
+        // URL base dinámica
+        const baseUrl = window.location.origin + window.location.pathname.replace(/\/[^\/]*$/, '');
+        
+        // Función para construir URL absoluta de imagen
+        const getImageUrl = (imagePath) => {
+          if (!imagePath) return '';
+          if (imagePath.startsWith('http')) return imagePath;
+          return `${baseUrl}/${imagePath}`;
+        };
+        
+        // Función para escapar HTML y prevenir XSS
+        function escapeHtml(text) {
+          const div = document.createElement('div');
+          div.textContent = text;
+          return div.innerHTML;
+        }
+        
+        // Actualiza el título de la página
+        document.title = `${item.titulo} – SINTRASPAP`;
+        
+        // Actualiza metadatos Open Graph
+        document.getElementById('og-title').content = item.titulo || '';
+        document.getElementById('og-description').content = item.resumen || '';
+        document.getElementById('og-image').content = getImageUrl(item.imagen);
+        document.getElementById('og-url').content = `${window.location.origin}${window.location.pathname}?slug=${slug}`;
+        
+        // Construye el contenido de forma segura
+        let contenidoHtml = `<h1>${escapeHtml(item.titulo || 'Sin título')}</h1>`;
+        
+        if (item.fecha) {
+          contenidoHtml += `<p class="muted">${escapeHtml(item.fecha)}</p>`;
+        }
+        
+        if (item.imagen) {
+          contenidoHtml += `<img src="${escapeHtml(item.imagen)}" alt="${escapeHtml(item.titulo || 'Imagen de la noticia')}">`;
+        }
+        
+        if (item.cuerpo) {
+          // Para el cuerpo, si confías en el contenido, puedes usar innerHTML
+          // Si no, usa escapeHtml(item.cuerpo)
+          contenidoHtml += `<div>${item.cuerpo}</div>`;
+        }
+        
+        $out.innerHTML = contenidoHtml;
+        
+      } catch (e) {
+        console.error('Error al cargar la noticia:', e);
+        $out.innerHTML = '<div class="alert">Error al cargar la noticia. Por favor, intenta nuevamente.</div>';
+      }
+    })();
+  </script>
+</body>
+</html>
