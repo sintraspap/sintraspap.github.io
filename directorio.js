@@ -18,7 +18,8 @@ async function cargarEmpresasDesdeJSON() {
     tablaBody.innerHTML = '<tr><td colspan="5" style="text-align: center; padding: 20px;">Cargando empresas...</td></tr>';
 
     // 1. Obtener los datos del archivo JSON
-    const response = await fetch('data/empresas.json');
+    // Se usa la ruta absoluta desde la raíz del sitio para evitar problemas de rutas relativas
+    const response = await fetch('/sintraspap.github.io/data/empresas.json');
     if (!response.ok) {
       throw new Error(`Error al cargar el archivo JSON: ${response.status} ${response.statusText}`);
     }
@@ -31,10 +32,12 @@ async function cargarEmpresasDesdeJSON() {
     if (empresas && empresas.length > 0) {
       empresas.forEach(empresa => {
         const fila = document.createElement('tr');
-        // Aquí limpiamos el rubro como hacía el script original
-        // (Aunque ya está limpio en el JSON, lo dejamos por si acaso)
+        
+        // Los datos del JSON ya vienen limpios, pero se mantiene la limpieza por si acaso
         let rubroLimpio = empresa.rubro || '';
+        // Quitar punto y coma inicial o final y espacios
         rubroLimpio = rubroLimpio.replace(/^\s*;+|;+\s*$/g, '');
+        // Separar por punto y coma, limpiar espacios, filtrar vacíos y unir con coma y espacio
         rubroLimpio = rubroLimpio
           .split(';')
           .map(r => r.trim())
