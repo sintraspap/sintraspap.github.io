@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sintraspappy2025.github.io/sintraspap.github.io/sitemap.xml

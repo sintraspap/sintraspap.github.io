@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{{ title }} | SINTRASPAP</title>
+
+  <!-- Open Graph (usar dominio del archivo _data/site.json) -->
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="SINTRASPAP" />
+  <meta property="og:locale" content="es_PY" />
+  <meta property="og:title" content="{{ title }}" />
+  <meta property="og:description" content="{{ summary or title }}" />
+  <meta property="og:image" content="{{ site.url }}{{ image }}" />
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{{ title }}" />
+  <meta name="twitter:description" content="{{ summary or title }}" />
+  <meta name="twitter:image" content="{{ site.url }}{{ image }}" />
+
+  <style>
+    body{font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;margin:0}
+    .container{max-width:840px;margin:0 auto;padding:16px}
+    h1{margin:10px 0 6px}
+    .muted{color:#666}
+    img{max-width:100%;border-radius:10px}
+    a{color:#0b2a59}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <p><a href="/index.html#inicio">← Volver al inicio</a></p>
+    <h1>{{ title }}</h1>
+    <p class="muted">{{ date | date: "%Y-%m-%d" }}</p>
+    {% if image %}<img src="{{ image }}" alt="">{% endif %}
+    <div style="margin-top:12px;line-height:1.7">
+      {{ content | safe }}
+    </div>
+  </div>
+</body>
+</html>
