@@ -19,7 +19,7 @@ async function cargarEmpresasDesdeJSON() {
 
     // 1. Obtener los datos del archivo JSON
     // Se usa la ruta absoluta desde la raíz del sitio para evitar problemas de rutas relativas
-    const response = await fetch('/sintraspap.github.io/data/empresas.json');
+   const response = await fetch("/data/empresas.json");
     if (!response.ok) {
       throw new Error(`Error al cargar el archivo JSON: ${response.status} ${response.statusText}`);
     }
