@@ -1,0 +1,636 @@
+<!doctype html>
+<html lang="es">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q994YVT2V2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Q994YVT2V2');
+</script>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SINTRASPAP - Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay</title>
+<meta name="description" content="Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay" />
+<!-- Favicon -->
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="icon" href="favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="favicon-16x16.png" sizes="16x16" type="image/png">
+  <!-- Open Graph general -->
+<meta property="og:title" content="SINTRASPAP - Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay" />
+<meta property="og:description" content="Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay. Representamos y defendemos a los trabajadores de la seguridad privada en todo el país." />
+<meta property="og:image" content="https://sintraspappy2025.github.io/sintraspap.github.io/logo-sintraspap.png" />
+<meta property="og:url" content="https://sintraspappy2025.github.io/sintraspap.github.io/" />
+<meta property="og:type" content="website" />
+
+<!-- Para que también se vea bien en Twitter/X -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="SINTRASPAP - Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay" />
+<meta name="twitter:description" content="Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay. Representamos y defendemos a los trabajadores de la seguridad privada en todo el país." />
+<meta name="twitter:image" content="https://sintraspappy2025.github.io/sintraspap.github.io/logo-sintraspap.png" />
+<style>
+  :root{ --azul:#0b2a59; --azul-hover:#1e4f9a; --borde:#e5e7eb; --gris:#666; }
+
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;width:100%;overflow-x:hidden;font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;background:#fff;color:#111}
+  a{text-decoration:none;color:inherit}
+  .container{max-width:1100px;margin:0 auto;padding:0 16px}
+
+  /* Header */
+  header{background:var(--azul);color:#fff;position:sticky;top:0;z-index:50}
+  .head{display:flex;align-items:center;justify-content:space-between;padding:20px 0}
+  .brand{display:flex;align-items:center;gap:14px;font-weight:900;font-size:34px}
+  .brand img{height:64px;width:auto;display:inline-block}
+  .menu{list-style:none;display:flex;gap:18px;margin:0;padding:0;flex-wrap:wrap}
+  .menu a{color:#fff;padding:8px 10px;border-radius:6px}
+  .menu a.active,.menu a:hover{background:var(--azul-hover)}
+  .burger{display:none;margin-left:12px;background:transparent;border:1px solid rgba(255,255,255,.5);color:#fff;border-radius:6px;padding:8px 10px}
+  @media(max-width:820px){
+    .head{flex-wrap:wrap;gap:8px}
+    .burger{display:block}
+    nav{width:100%}
+    .menu{display:none;width:100%;border-top:1px solid rgba(255,255,255,.25);padding-top:8px}
+    .menu.show{display:flex;flex-direction:column}
+  }
+
+  /* Secciones */
+  main{padding:24px 0 40px}
+  section{display:none;animation:fade .15s ease-in}
+  section.active{display:block}
+  @keyframes fade{from{opacity:.4;transform:translateY(3px)}to{opacity:1;transform:none}}
+  h1{font-size:clamp(22px,4vw,30px);margin:0 0 8px}
+  h2{font-size:clamp(18px,3vw,22px);margin:14px 0 8px}
+  p{line-height:1.6;margin:0 0 12px;color:#222}
+  .muted{color:#777}
+
+  /* Cards/noticias */
+  .cards{display:grid;gap:16px;grid-template-columns:1fr}
+  @media(min-width:760px){ .cards{grid-template-columns:1fr 1fr} }
+  .card{border:1px solid var(--borde);border-radius:12px;padding:14px;background:#fff}
+  .card img{max-width:100%;border-radius:8px;margin-bottom:10px;display:block}
+
+/* Bloque AUSPCIANTES (Inicio) */
+.sponsor-grid{
+  display:grid;
+  gap:12px;
+  grid-template-columns:1fr;   /* por defecto: 1 columna en celu */
+  width:100%;
+}
+@media (min-width:720px){
+  .sponsor-grid{
+    grid-template-columns:1fr 1fr; /* en PC → 2 columnas */
+  }
+}
+
+.sponsor-item{
+  border:1px solid var(--borde);
+  background:#fff;
+  border-radius:12px;
+  padding:12px;
+  text-align:center;
+}
+
+.sponsor-item img,
+.sponsor-item video{
+  width:100%;
+  max-width:260px;   /* tamaño máximo del banner */
+  margin:0 auto;
+  display:block;
+  border-radius:10px;
+}
+
+  /* Tablas y buscador */
+  .buscador{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+  .input{flex:1 1 280px;border:1px solid var(--borde);border-radius:8px;padding:10px 12px;font:inherit}
+  .tabla{border:1px solid var(--borde);border-radius:12px;overflow-x:auto;background:#fff}
+  table{width:100%;border-collapse:collapse;min-width:620px}
+  th,td{padding:10px;border-bottom:1px solid var(--borde);text-align:left}
+  th{background:#f8fafc}
+  tr:hover td{background:#fafafa}
+
+  /* Footer */
+  footer{background:#091f40;color:#fff;margin-top:16px}
+  .foot{display:grid;gap:18px;grid-template-columns:1fr; padding:22px 0}
+  @media(min-width:760px){ .foot{grid-template-columns:1.2fr 1fr} }
+  .flogo{height:72px;width:auto;margin-bottom:10px}
+  .afiliados p{font-size:22px;margin:0 0 10px;text-align:center;font-weight:bold}
+  .afil-logos{display:flex;justify-content:center;align-items:center;gap:32px;flex-wrap:wrap;margin-top:10px}
+  .afil-logos img{height:96px;width:auto;max-width:260px;background:#fff;border-radius:10px;padding:6px}
+  .cpy{border-top:1px solid rgba(255,255,255,.2);text-align:center;padding:10px 0;color:#dcdcdc;font-size:14px}
+
+  /* Utilidades */
+  .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  /* Forzar colores claros dentro del footer */
+footer, 
+footer p,
+footer li,
+footer a,
+footer h3 {
+  color: #fff !important;
+}
+
+footer a {
+  text-decoration: underline;
+}
+
+footer .muted {
+  color: #e6e6e6 !important;
+}
+ /* Espaciado extra para las Leyes */
+#leyes ul li {
+  margin-bottom: 20px;  /* más separación entre ítems */
+  line-height: 1.8;     /* aumenta la altura de línea del texto */
+}
+/* --- Íconos de redes en el header --- */
+.social-icons{
+  display: flex;
+  gap: 12px;
+}
+
+.social-icons a{
+  font-size: 18px;
+  color: #fff;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,.15);
+  border: 1px solid rgba(255,255,255,.25);
+  transition: background 0.2s, transform 0.2s;
+}
+
+.social-icons a:hover{
+  background: rgba(255,255,255,.3);
+  transform: translateY(-2px);
+}
+/* En pantallas chicas que se centre */
+@media(max-width:820px){
+  .social-icons{
+    width: 100%;
+    justify-content: center;
+    margin-top: 6px;
+  }
+}
+/* OCULTAR el bloque de auspiciantes (sin dejar hueco) */
+.sponsor-grid {
+  display: none !important;
+}
+/* Ajustes del header (seguro y válido) */
+.head { align-items: center; justify-content: space-between; }
+/* Si ya no usás íconos en el header, podés borrar esta siguiente línea */
+.social-icons { margin-left: 12px; }
+/* Iconos de redes en el footer */
+.footer-social{
+  display:flex;
+  gap:18px;
+  justify-content:center;
+  margin:16px 0 8px;   /* arriba y un poco antes del copyright */
+}
+.footer-social a{
+  color:#fff;
+  font-size:26px;      /* icono grande */
+  width:52px;
+  height:52px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.25);
+  transition:background .15s, transform .15s, opacity .15s;
+}
+.footer-social a:hover{
+  background:rgba(255,255,255,.22);
+  transform:translateY(-2px);
+}
+@media (max-width:820px){
+  .footer-social{ gap:16px; }
+  .footer-social a{ width:56px; height:56px; font-size:28px; } /* un pelín más grandes en móvil */
+}
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<header>
+  <div class="container head">
+    <div class="brand">
+      <img src="logo-sintraspap.png" alt="Logo SINTRASPAP" onerror="this.style.display='none'">
+      <span>SINTRASPAP</span>
+    </div>
+    <button class="burger" onclick="document.querySelector('.menu').classList.toggle('show')">☰ Menú</button>
+    <nav>
+      <ul class="menu" id="menu">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#institucional">Institucional</a></li>
+        <li><a href="#ofertas">Ofertas laborales</a></li>
+        <li><a href="#leyes">Leyes</a></li>
+       <li><a href="#directorio">Empresas</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main class="container">
+
+  <!-- INICIO -->
+  <section id="inicio" class="active">
+  <!-- AUSPCIANTES ARRIBA -->
+<div class="sponsor-grid">
+  <div class="sponsor-item">
+    <img src="banner-1.png" alt="Auspiciante 1" onerror="this.style.display='none'">
+    <a href="https://wa.me/595992644708" target="_blank" rel="noopener">Escribinos al WhatsApp</a>
+  </div>
+  <div class="sponsor-item">
+    <img src="banner-2.png" alt="Auspiciante 2" onerror="this.style.display='none'">
+    <a href="https://wa.me/595992644708" target="_blank" rel="noopener">Escribinos al WhatsApp</a>
+  </div>
+</div>
+<!-- Noticias desde data/noticias.json -->
+<div id="news-from-json" class="cards"></div>
+<script>
+(async () => {
+  try {
+    const res = await fetch('data/noticias.json', { cache: 'no-store' });
+    const data = await res.json();
+
+    const items = (data.items || [])
+      .slice()
+      .sort((a, b) => (b.fecha || '').localeCompare(a.fecha || ''));
+
+    const cont = document.getElementById('news-from-json');
+    if (!items.length) {
+      cont.innerHTML = '<p class="muted">Aún no hay noticias.</p>';
+      return;
+    }
+
+    cont.innerHTML = items.map(item => {
+      const slug = (item.titulo || '')
+        .toLowerCase()
+        .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+        .replace(/[^a-z0-9\s-]/g,'')
+        .trim().replace(/\s+/g,'-');
+
+      return `
+        <article class="card">
+          ${item.imagen ? `<img src="${item.imagen}" alt="${item.titulo || ''}" loading="lazy">` : ``}
+          <h3>${item.titulo || ''}</h3>
+          ${item.resumen ? `<p class="muted">${item.resumen}</p>` : ``}
+          ${item.cuerpo ? `<p style="margin-top:6px"><a href="noticia.html?slug=${encodeURIComponent(slug)}">Leer más</a></p>` : ``}
+          ${item.fecha ? `<p class="muted" style="margin-top:8px">${item.fecha}</p>` : ``}
+        </article>
+      `;
+    }).join('');
+  } catch (e) {
+    console.error(e);
+    document.getElementById('news-from-json').innerHTML =
+      '<p class="muted">⚠️ No se pudo cargar noticias.</p>';
+  }
+})();
+</script>
+</section>
+  <!-- INSTITUCIONAL -->
+  <section id="institucional">
+    <h1 class="sr-only">Institucional</h1>
+  <p>
+  Somos el <strong>Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay (SINTRASPAP)</strong>, fundado el <strong>17 de marzo de 2024</strong> y reconocido por el Ministerio de Trabajo, Empleo y Seguridad Social con la <strong>Personería Gremial N.º 24/2024</strong>.
+</p>
+
+<p>
+  Tenemos <strong>jurisdicción en todo el territorio nacional</strong> para representar a nuestros afiliados ante las patronales y autoridades del Estado. Defendemos el <strong>trabajo digno</strong>, promovemos la <strong>capacitación constante</strong> y velamos por el <strong>cumplimiento de los derechos laborales</strong>, garantizando condiciones seguras y justas para toda la familia trabajadora de la seguridad privada.
+</p>
+
+    <h2>Autoridades</h2>
+    <ul>
+      <li><strong>Secretario General:</strong> Hugo Centurión Sanabria</li>
+   <li style="list-style:none; margin-bottom:20px; text-align:center;">
+  <img src="secretario-conflictos.jpg" 
+       alt="Foto de Adriano Rubén Díaz" 
+       style="max-width:180px; border-radius:12px; display:block; margin:0 auto 10px;">
+  <div><strong>Secretario de Conflictos</strong></div>
+  <div>Adriano Rubén Díaz</div>
+</li>
+    </ul>
+
+    <h2>Misión</h2>
+    <p>Velar por los derechos de los trabajadores de la seguridad privada, fomentar su capacitación constante y garantizar entornos laborales seguros, dignos y justos.</p>
+
+    <h2>Visión</h2>
+    <p>Un sector formalizado, con empleo digno y condiciones justas para toda la familia trabajadora de seguridad privada.</p>
+  </section>
+
+  <!-- OFERTAS LABORALES -->
+<section id="ofertas">
+  <h1>Ofertas laborales</h1>
+
+  <div class="formulario-container">
+    <iframe 
+      src="https://docs.google.com/forms/d/e/1FAIpQLScbLAuguiQZm0iGV8O0aS1yQ4kCEefWAs9dUqT_fJeC9yxw7A/viewform?embedded=true" 
+      width="100%" 
+      height="1200" 
+      frameborder="0" 
+      marginheight="0" 
+      marginwidth="0">
+      Cargando…
+    </iframe>
+  </div>
+</section>
+
+<style>
+  .formulario-container {
+    max-width: 800px;     /* ancho máximo en PC */
+    margin: 0 auto;       /* centra el formulario */
+    padding: 20px;        /* espacio alrededor */
+    background: #fff;     /* fondo blanco */
+    border: 1px solid #ddd; /* borde gris suave */
+    border-radius: 10px;  /* bordes redondeados */
+    box-shadow: 0 2px 8px rgba(0,0,0,.1); /* sombra ligera */
+  }
+
+  #ofertas h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #0b2a59; /* mismo azul de tu web */
+  }
+/* Ocultar "Leer más" cuando el <details> está abierto */
+details[open] > summary {
+  display: none;
+}
+</style>
+
+<!-- LEYES -->
+<section id="leyes">
+  <h2>Leyes</h2>
+  <ul>
+    <li>
+      <a href="https://drive.google.com/file/d/1KLj6iDsZiBj187p_NJil_FHs2bOb0JIg/view?usp=drivesdk" target="_blank" rel="noopener">
+        Ley N° 213/93 - Código del Trabajo (texto completo)
+      </a>
+    </li>
+    <li>
+      <a href="https://drive.google.com/file/d/1KQ7JWTEcD8BlFxodgfmVmEtRDLBz-zLG/view?usp=drivesdk" target="_blank" rel="noopener">
+        Ley N° 5424/15 - Regulación de empresas de seguridad privada
+      </a>
+    </li>
+    <li>
+      <a href="https://drive.google.com/file/d/1KNEsCUXIZTQB4-E6nE64leYpjZmOODt0/view?usp=drivesdk" target="_blank" rel="noopener">
+        Resolución N° 2/2016 - Reglamentación de la Ley 5424/15 (Policía Nacional)
+      </a>
+    </li>
+  </ul>
+</section>
+
+  <!-- DIRECTORIO -->
+<section id="directorio">
+  <h1>Empresas de seguridad habilitadas</h1>
+
+  <!-- Buscador -->
+  <div class="buscador">
+    <input id="q" class="input" type="search" placeholder="Buscar (ID, empresa, resolución, rubro)..." oninput="filtrarDirectorio()" />
+  </div>
+
+  <!-- Tabla -->
+  <div class="tabla">
+    <table id="tabla-empresas">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Empresa</th>
+          <th>Resolución</th>
+          <th>Fecha</th>
+          <th>Rubro</th>
+        </tr>
+      </thead>
+      <tbody>
+    </tbody>
+      </table>
+    </div><!-- .tabla -->
+
+    <p style="margin-top:16px; font-size:16px; color:#333; text-align:center;">
+      <em>Datos oficiales del: 
+        <a href="https://controleseguridad.com.py/index-quienes-somos.html"
+           target="_blank" rel="noopener"
+           style="color:#0b2a59; font-weight:bold;">
+          controleseguridad.com.py
+        </a>
+      </em>
+    </p>
+
+    <!-- 🔽🔽 PEGA AQUÍ EL TEXTO CRUDO COPIADO DE LA PÁGINA OFICIAL 🔽🔽 -->
+    <textarea id="emp-raw" style="display:none;"></textarea>
+    <!-- 🔼🔼 NO BORRAR ESTE TEXTAREA, SOLO PEGAR ADENTRO 🔼🔼 -->
+</section>
+
+  <!-- CONTACTO -->
+<section id="contacto">
+  <h1>Contacto</h1>
+  <p>📞 <a href="tel:+595992644708">+595 992 644 708</a></p>
+  <p>✉ <a href="mailto:sintraspappy@gmail.com">sintraspappy@gmail.com</a></p>
+  <p>🅕 <a href="https://www.facebook.com/share/16oD8u6Nu1/" target="_blank" rel="noopener">SINTRASPAP</a></p>
+  <p>𝕏 <a href="https://x.com/sintraspap_py?t=rRnZT7aWDZo1lA4R-m680g&s=09" target="_blank" rel="noopener">@sintraspap_py</a></p>
+</section>
+
+</main>
+
+<footer>
+  <div class="container foot">
+    <div>
+      <img src="logo-sintraspap.png" alt="Logo SINTRASPAP" class="flogo" onerror="this.style.display='none'">
+      <h3>SINTRASPAP</h3>
+      <p><strong>Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay</strong></p>
+
+      <!-- Afiliaciones (más grande) -->
+      <div class="afiliados">
+        <p>Afiliado a:</p>
+        <div class="afil-logos">
+          <img src="logo-cnt.png" alt="Central Nacional de Trabajadores" onerror="this.style.display='none'">
+          <img src="logo-citsp.png" alt="Confederación Internacional de Trabajadores de la Seguridad Privada" onerror="this.style.display='none'">
+        </div>
+      </div>
+    </div>
+
+<div>
+  <h3>Contacto</h3>
+  <p>📞 <a href="tel:+595992644708">+595 992 644 708</a></p>
+  <p>✉ <a href="mailto:sintraspappy@gmail.com">sintraspappy@gmail.com</a></p>
+  <p>🅕 <a href="https://www.facebook.com/share/16oD8u6Nu1/" target="_blank" rel="noopener">SINTRASPAP</a></p>
+  <p>𝕏 <a href="https://x.com/sintraspap_py?t=rRnZT7aWDZo1lA4R-m680g&s=09" target="_blank" rel="noopener">@sintraspap_py</a></p>
+</div>
+  </div>
+  <!-- Íconos de redes (footer) -->
+<div class="footer-social">
+  <a href="https://www.facebook.com/share/17MGniwXdL/" target="_blank" rel="noopener" aria-label="Facebook">
+    <i class="fa-brands fa-facebook-f"></i>
+  </a>
+  <a href="https://x.com/sintraspap_py?t=xoAS-cRqgSr3BrY4azV4rQ&s=09" target="_blank" rel="noopener" aria-label="X (Twitter)">
+    <i class="fa-brands fa-x-twitter"></i>
+  </a>
+  <a href="https://wa.me/595992644708" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+</div>
+  <div class="cpy">© 2025 SINTRASPAP</div>
+</footer>
+
+<script>
+// ---------- Navegación por secciones ----------
+const sections = Array.from(document.querySelectorAll('main section'));
+const links = Array.from(document.querySelectorAll('#menu a'));
+
+function showSection(id){
+  if (!id || !document.querySelector(id)) id = '#inicio';
+  sections.forEach(s => s.classList.toggle('active', ('#'+s.id) === id));
+  links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === id));
+  document.querySelector('.menu')?.classList.remove('show');
+}
+
+function handleHash(){
+  const h = location.hash || '#inicio';
+
+  // ⚠️ Deja pasar rutas internas del widget de Netlify Identity
+  // (por ejemplo "#/invite", "#/recovery", etc.)
+  if (h.startsWith('#/')) return;
+
+  showSection(h);
+}
+
+window.addEventListener('hashchange', handleHash);
+window.addEventListener('DOMContentLoaded', handleHash);
+
+// ---------- Buscador (Empresas) ----------
+function filtrarDirectorio(){
+  const q = (document.getElementById('q')?.value || '').toLowerCase();
+  document.querySelectorAll('#tabla-empresas tbody tr').forEach(tr=>{
+    tr.style.display = tr.innerText.toLowerCase().includes(q) ? '' : 'none';
+  });
+}
+window.filtrarDirectorio = filtrarDirectorio; // para el oninput del buscador
+
+// ---------- Cargar empresas desde el <textarea> ----------
+function cargarEmpresasDesdeTexto() {
+  const raw = (document.getElementById('emp-raw')?.value || '').trim();
+  if (!raw) return;
+
+  const tbody = document.querySelector('#tabla-empresas tbody');
+  if (!tbody) return;
+  tbody.innerHTML = '';
+
+  // Cada línea que empiece con ID (número) la tomamos
+  const lineas = raw.split('\n').map(l => l.trim()).filter(l => /^\d+\s+/.test(l));
+
+  lineas.forEach(l => {
+    // ID
+    const mId = l.match(/^(\d+)\s+/);
+    const id = mId ? mId[1] : '';
+
+    // Fecha
+    const mFecha = l.match(/(\d{4}-\d{2}-\d{2}|\d{2}\/\d{4}|\d{3}\/\d{4})/);
+    const fecha = mFecha ? mFecha[1] : '';
+
+    // Resolución (antes de la fecha)
+    let resolucion = '';
+    if (mFecha) {
+      const antesDeFecha = l.slice(0, mFecha.index).trim();
+      const mRes = antesDeFecha.match(/(\d{1,4}(?:\/\d{2,4})?)\s*$/);
+      if (mRes) resolucion = mRes[1];
+    }
+
+    // Nombre (entre ID y resolución)
+    let nombre = l;
+    if (mId) nombre = nombre.slice(mId[0].length).trim();
+    if (resolucion) {
+      const idx = nombre.lastIndexOf(resolucion);
+      if (idx > -1) nombre = nombre.slice(0, idx).trim();
+    }
+    nombre = nombre.replace(/\s{2,}/g, ' ').replace(/\s+-\s+/g, ' - ');
+
+    // Rubro (después de la palabra Habilitado)
+    let rubro = '';
+    if (mFecha) {
+  const despuesFecha = l.slice(mFecha.index + mFecha[0].length).trim();
+const mR = despuesFecha.match(/Habilitado\s*(.*)/i);
+if (mR) {
+  rubro = mR[1]
+    .split(';')                        // separa por ;
+    .map(r => r.trim())                // limpia espacios
+    .filter(r => r.length > 0)         // elimina vacíos
+    .join(', ');                       // une con coma y espacio
+} else {
+  rubro = '';
+}
+}
+
+    // Fila
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${id}</td>
+      <td>${nombre}</td>
+      <td>${resolucion}</td>
+      <td>${fecha}</td>
+      <td>${rubro}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+function agregarEstadoYLimpiarRubros(){
+  const table = document.getElementById('tabla-empresas');
+  if (!table) return;
+
+  // 1) Agregar <th> "Estado" antes de "Rubro" si no existe
+  const headRow = table.tHead && table.tHead.rows[0];
+  if (headRow) {
+    const ths = Array.from(headRow.cells);
+    const yaTieneEstado = ths.some(th => th.textContent.trim().toLowerCase() === 'estado');
+    if (!yaTieneEstado) {
+      const thRubro = ths.find(th => th.textContent.trim().toLowerCase() === 'rubro');
+      const thEstado = document.createElement('th');
+      thEstado.textContent = 'Estado';
+      if (thRubro) headRow.insertBefore(thEstado, thRubro);
+      else headRow.appendChild(thEstado);
+    }
+  }
+
+  // 2) En cada fila, insertar <td>Habilitado antes del Rubro si no existe
+  const tbody = table.tBodies[0];
+  if (!tbody) return;
+
+  Array.from(tbody.rows).forEach(tr => {
+    const celdas = Array.from(tr.cells);
+    const idxRubro = celdas.length - 1; // la última celda es "Rubro"
+    const yaTieneEstado = celdas.some(td => td.dataset && td.dataset.col === 'estado');
+
+    if (!yaTieneEstado) {
+      const tdEstado = document.createElement('td');
+      tdEstado.textContent = 'Habilitado';
+      tdEstado.dataset.col = 'estado';
+      if (idxRubro >= 0) tr.insertBefore(tdEstado, celdas[idxRubro]);
+      else tr.appendChild(tdEstado);
+    }
+
+    // 3) Limpiar el texto del "Rubro" (quitar ;;; y espacios)
+    const rubroTd = tr.lastElementChild; // sigue siendo la última porque insertamos antes
+    if (rubroTd) {
+      let txt = rubroTd.textContent || '';
+      // quitar ; al inicio/fin y convertir ;;; a " , "
+      txt = txt.replace(/^\s*;+|;+\s*$/g, '');
+      txt = txt
+        .split(';')
+        .map(r => r.trim())
+        .filter(Boolean)
+        .join(', ');
+      rubroTd.textContent = txt;
+    }
+  });
+}
+// Llamadas al cargar la página
+window.addEventListener('DOMContentLoaded', cargarEmpresasDesdeTexto);
+window.addEventListener('DOMContentLoaded', agregarEstadoYLimpiarRubros);
+</script>
+
+<script src="directorio.js"></script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Noticia – SINTRASPAP</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Meta tags para WhatsApp, Facebook, Telegram -->
+  <meta property="og:title" content="" id="og-title">
+  <meta property="og:description" content="" id="og-description">
+  <meta property="og:image" content="" id="og-image">
+  <meta property="og:url" content="" id="og-url">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="SINTRASPAP">
+  <style>
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 0 16px;
+      line-height: 1.6;
+    }
+    img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin: 16px 0;
+    }
+    .muted {
+      color: #777;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+    a {
+      color: #0b2a59;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .alert {
+      background: #f7eaea;
+      border: 1px solid #e5bcbc;
+      color: #6a1a1a;
+      padding: 14px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <a href="index.html#inicio">← Volver al inicio</a>
+  <div id="noticia" style="margin-top:14px"></div>
+  <script>
+    (async function () {
+      const $out = document.getElementById("noticia");
+      const params = new URLSearchParams(window.location.search);
+      const slug = params.get("slug");
+      
+      if (!slug) {
+        $out.innerHTML = '<div class="alert">No se encontró la noticia.</div>';
+        return;
+      }
+      
+      try {
+        const res = await fetch('data/noticias.json');
+        if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+        
+        const data = await res.json();
+        const items = Array.isArray(data.items) ? data.items : [];
+        
+        const normaliza = (t = "") => t.toLowerCase()
+          .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+          .replace(/[^a-z0-9\s-]/g, "")
+          .trim().replace(/\s+/g, "-");
+        
+        const item = items.find(n => normaliza(n.titulo || "") === slug);
+        
+        if (!item) {
+          $out.innerHTML = `
+            <div class="alert">
+              No se encontró la noticia con slug: <b>${escapeHtml(slug)}</b>.<br>
+              Verificá que el <b>título</b> en <code>data/noticias.json</code> genere ese mismo slug.
+            </div>`;
+          return;
+        }
+        
+        // URL base dinámica
+        const baseUrl = window.location.origin + window.location.pathname.replace(/\/[^\/]*$/, '');
+        
+        // Función para construir URL absoluta de imagen
+        const getImageUrl = (imagePath) => {
+          if (!imagePath) return '';
+          if (imagePath.startsWith('http')) return imagePath;
+          return `${baseUrl}/${imagePath}`;
+        };
+        
+        // Función para escapar HTML y prevenir XSS
+        function escapeHtml(text) {
+          const div = document.createElement('div');
+          div.textContent = text;
+          return div.innerHTML;
+        }
+        
+        // Actualiza el título de la página
+        document.title = `${item.titulo} – SINTRASPAP`;
+        
+        // Actualiza metadatos Open Graph
+        document.getElementById('og-title').content = item.titulo || '';
+        document.getElementById('og-description').content = item.resumen || '';
+        document.getElementById('og-image').content = getImageUrl(item.imagen);
+        document.getElementById('og-url').content = `${window.location.origin}${window.location.pathname}?slug=${slug}`;
+        
+        // Construye el contenido de forma segura
+        let contenidoHtml = `<h1>${escapeHtml(item.titulo || 'Sin título')}</h1>`;
+        
+        if (item.fecha) {
+          contenidoHtml += `<p class="muted">${escapeHtml(item.fecha)}</p>`;
+        }
+        
+        if (item.imagen) {
+          contenidoHtml += `<img src="${escapeHtml(item.imagen)}" alt="${escapeHtml(item.titulo || 'Imagen de la noticia')}">`;
+        }
+        
+        if (item.cuerpo) {
+          // Para el cuerpo, si confías en el contenido, puedes usar innerHTML
+          // Si no, usa escapeHtml(item.cuerpo)
+          contenidoHtml += `<div>${item.cuerpo}</div>`;
+        }
+        
+        $out.innerHTML = contenidoHtml;
+        
+      } catch (e) {
+        console.error('Error al cargar la noticia:', e);
+        $out.innerHTML = '<div class="alert">Error al cargar la noticia. Por favor, intenta nuevamente.</div>';
+      }
+    })();
+  </script>
+</body>
+</html>
