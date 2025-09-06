@@ -1,4 +1,0 @@
----
-title: "Noticias"
-outputs: ["HTML", "SectionJSON"]
----
