@@ -1,21 +1,48 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Página principal -->
   <url>
-    <loc>http://localhost:1315/</loc>
-    <lastmod>2025-09-05T22:30:00-03:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1315/posts/</loc>
-    <lastmod>2025-09-05T22:30:00-03:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1315/posts/segunda-noticia/</loc>
-    <lastmod>2025-09-05T15:45:00-03:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1315/posts/primera-noticia/</loc>
-    <lastmod>2025-09-05T13:59:03-03:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1315/categories/</loc>
-  </url><url>
-    <loc>http://localhost:1315/tags/</loc>
+    <loc>https://sintraspappy2025.github.io/sintraspap.github.io/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
   </url>
+
+  <!-- Secciones -->
+  <url>
+    <loc>https://sintraspappy2025.github.io/sintraspap.github.io/#inicio</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://sintraspappy2025.github.io/sintraspap.github.io/#institucional</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://sintraspappy2025.github.io/sintraspap.github.io/#ofertas</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://sintraspappy2025.github.io/sintraspap.github.io/#leyes</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://sintraspappy2025.github.io/sintraspap.github.io/#directorio</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://sintraspappy2025.github.io/sintraspap.github.io/#contacto</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
 </urlset>
