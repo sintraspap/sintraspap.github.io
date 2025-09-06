@@ -1,31 +1,79 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 	<meta name="generator" content="Hugo 0.149.0">
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Inicio - SINTRASPAP</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 40px; }
-        ul { list-style-type: none; padding: 0; }
-        li { margin: 10px 0; }
+        :root{ --azul:#0b2a59; --azul-hover:#1e4f9a; --borde:#e5e7eb; --gris:#666; }
+        *{box-sizing:border-box}
+        html,body{margin:0;padding:0;width:100%;overflow-x:hidden;font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;background:#fff;color:#111}
+        a{text-decoration:none;color:inherit}
+        .container{max-width:1100px;margin:0 auto;padding:0 16px}
+
+         
+        header{background:var(--azul);color:#fff;position:sticky;top:0;z-index:50}
+        .head{display:flex;align-items:center;justify-content:space-between;padding:20px 0}
+        .brand{display:flex;align-items:center;gap:14px;font-weight:900;font-size:34px}
+        .brand img{height:64px;width:auto;display:inline-block}
+        .menu{list-style:none;display:flex;gap:18px;margin:0;padding:0;flex-wrap:wrap}
+        .menu a{color:#fff;padding:8px 10px;border-radius:6px}
+        .menu a.active,.menu a:hover{background:var(--azul-hover)}
+        .burger{display:none;margin-left:12px;background:transparent;border:1px solid rgba(255,255,255,.5);color:#fff;border-radius:6px;padding:8px 10px}
+        @media(max-width:820px){
+            .head{flex-wrap:wrap;gap:8px}
+            .burger{display:block}
+            nav{width:100%}
+            .menu{display:none;width:100%;border-top:1px solid rgba(255,255,255,.25);padding-top:8px}
+            .menu.show{display:flex;flex-direction:column}
+        }
+
+         
+        main{padding:24px 0 40px}
+        h1{font-size:clamp(22px,4vw,30px);margin:0 0 8px}
+        h2{font-size:clamp(18px,3vw,22px);margin:14px 0 8px}
+        p{line-height:1.6;margin:0 0 12px;color:#222}
+        .muted{color:#777}
     </style>
 </head>
 <body>
-    <h1>Inicio - SINTRASPAP</h1>
-    <h2>Últimas Noticias</h2>
+    
+    <header>
+        <div class="container head">
+            <div class="brand">
+                <img src="/logo-sintraspap.png" alt="Logo SINTRASPAP" onerror="this.style.display='none'">
+                <span>SINTRASPAP</span>
+            </div>
+            <button class="burger" onclick="document.querySelector('.menu').classList.toggle('show')">☰ Menú</button>
+            <nav>
+                <ul class="menu" id="menu">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#institucional">Institucional</a></li>
+                    <li><a href="#ofertas">Ofertas laborales</a></li>
+                    <li><a href="#leyes">Leyes</a></li>
+                    <li><a href="#directorio">Empresas</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
     
-    
-        <ul>
-            <li><a href="">Título de la noticia</a> - 10/09/2023</li>
-        </ul>
-    
+    <main class="container">
+        <h1>Inicio - SINTRASPAP</h1>
+        <h2>Últimas Noticias</h2>
 
-    
-    <h3>Título de la noticia</h3>
-    <p><strong>Descripción de la imagen</strong></p>
-    <p>Este es el contenido de mi noticia con una imagen.</p>
-    <p>read more</p>
-    <footer>© SINTRASPAP - Noticias 2025</footer>
+        
+            <p>- <a href="">Título de la noticia</a> - 10/09/2023</p>
+        
+
+        
+        <h3>Título de la noticia</h3>
+        <p><strong>Descripción de la imagen</strong></p>
+        <p>Este es el contenido de mi noticia con una imagen.</p>
+        <p>read more</p>
+        <footer>© SINTRASPAP - Noticias 2025</footer>
+    </main>
 </body>
 </html>
