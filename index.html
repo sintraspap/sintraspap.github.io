@@ -282,23 +282,29 @@ footer .muted {
       const cuerpoHtml = item.cuerpo  ? '<div>' + item.cuerpo + '</div>' : '';
       const fechaHtml  = item.fecha   ? '<p style="margin-top:6px"><small>' + item.fecha + '</small></p>' : '';
 
-      return (
-`<article class="card">
-  ${imgHtml}
+   return `
+<article class="card">
+  ${item.imagen ? `<img src="${item.imagen}" alt="${safeTitle}">` : ''}
   <h3>${item.titulo || ''}</h3>
-  ${resumenHtml}
-  ${cuerpoHtml}
-  ${fechaHtml}
+  ${item.resumen ? `<p class="muted">${item.resumen}</p>` : ''}
+  ${item.cuerpo ? `<div>${item.cuerpo}</div>` : ''}
+  ${item.fecha ? `<p style="margin-top:6px"><small>${item.fecha}</small></p>` : ''}
   <div class="acciones" style="margin-top:12px">
     <button
       class="btn-compartir"
-      style="background:#0b5ed7;color:#fff;border:none;padding:8px 14px;border-radius:8px;cursor:pointer"
+      style="background:#0b5ed7;color:#fff;border:none;padding:8px 14px;border-radius:6px;cursor:pointer"
       data-title="${safeTitle}"
-      data-url="${location.origin + location.pathname}#${slug}"
+      data-url="${location.origin + location.pathname}?n=${slug}"
     >Compartir</button>
   </div>
-</article>`
-      );
+  <!-- Comentarios de Facebook -->
+  <div class="fb-comments"
+       data-href="${location.origin + location.pathname}?n=${slug}"
+       data-width="100%"
+       data-numposts="3"></div>
+</article>
+`;
+
     }).join('');
 
     // Botón "Compartir"
