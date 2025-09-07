@@ -241,9 +241,7 @@ footer .muted {
   <section id="inicio" class="active">
   <!-- AUSPCIANTES ARRIBA -->
 <div class="sponsor-grid">
-  <div class="sponsor-item">
-    <img src="banner-1.png" alt="Auspiciante 1" onerror="this.style.display='none'">
-    <a href="https://wa.me/595992644708" target="_blank" rel="noopener">Escribinos al WhatsApp</a>
+  <div class="sponshttps://wa.me/595992644708" target="_blank" rel="noopener">Escribinos al WhatsApp</a>
   </div>
   <div class="sponsor-item">
     <img src="banner-2.png" alt="Auspiciante 2" onerror="this.style.display='none'">
@@ -255,12 +253,13 @@ footer .muted {
 <script>
 (async () => {
   try {
-    const res = await fetch('data/noticias.json', { cache: 'no-store' });
-    const data = await res.json();
+    const res = await fetch('data/noticias.json?v=' + Date.now(), { cache: 'no-store' });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data  = await res.json();
+    const items = Array.isArray(data) ? data : (data.items || []);
 
-    const items = (data.items || [])
-      .slice()
-      .sort((a, b) => (b.fecha || '').localeCompare(a.fecha || ''));
+    // orden por fecha descendente
+    items.sort((a, b) => (b.fecha || '').localeCompare(a.fecha || ''));
 
     const cont = document.getElementById('news-from-json');
     if (!items.length) {
@@ -268,31 +267,57 @@ footer .muted {
       return;
     }
 
-    cont.innerHTML = items.map(item => {
+    cont.innerHTML = items.map((item, i) => {
       const slug = (item.titulo || '')
         .toLowerCase()
         .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
         .replace(/[^a-z0-9\s-]/g,'')
-        .trim().replace(/\s+/g,'-');
+        .trim().replace(/\s+/g,'-') || ('noticia-' + i);
 
-      return `
-        <article class="card">
-          ${item.imagen ? `<img src="${item.imagen}" alt="${item.titulo || ''}" loading="lazy">` : ``}
-          <h3>${item.titulo || ''}</h3>
-          ${item.resumen ? `<p class="muted">${item.resumen}</p>` : ``}
-          ${item.cuerpo ? `<p style="margin-top:6px"><a href="noticia.html?slug=${encodeURIComponent(slug)}">Leer más</a></p>` : ``}
-          ${item.fecha ? `<p class="muted" style="margin-top:8px">${item.fecha}</p>` : ``}
-        </article>
-      `;
+      const safeTitle = (item.titulo || '').replace(/"/g,'&quot;');
+
+return `
+<article class="card">
+  ${item.imagen ? `<img src="${item.imagen}" alt="${safeTitle}">` : ''}
+  <h3>${item.titulo || ''}</h3>
+  ${item.resumen ? `<p class="muted">${item.resumen}</p>` : ''}
+  ${item.cuerpo  ? `<div>${item.cuerpo}</div>` : ''}
+  ${item.fecha   ? `<p style="margin-top:6px"><small>${item.fecha}</small></p>` : ''}
+
+  <div class="acciones" style="margin-top:8px">
+    <button
+      class="btn-compartir"
+      data-title="${safeTitle}"
+      data-url="${location.origin + location.pathname}#${slug}"
+    >Compartir</button>
+  </div>
+</article>
+`;
+
     }).join('');
+
+    // activar botones de "Compartir" después de renderizar
+    document.querySelectorAll('.btn-compartir').forEach(btn => {
+      btn.addEventListener('click', async (e) => {
+        const title = e.currentTarget.dataset.title || document.title;
+        const url   = e.currentTarget.dataset.url   || location.href;
+        try {
+          if (navigator.share) {
+            await navigator.share({ title, url });
+          } else {
+            await navigator.clipboard.writeText(url);
+            alert('Enlace copiado ✔');
+          }
+        } catch (_) { /* cancelado o bloqueado */ }
+      });
+    });
   } catch (e) {
     console.error(e);
     document.getElementById('news-from-json').innerHTML =
-      '<p class="muted">⚠️ No se pudo cargar noticias.</p>';
+      '<p class="muted">⚠ No se pudo cargar noticias.</p>';
   }
 })();
 </script>
-</section>
   <!-- INSTITUCIONAL -->
   <section id="institucional">
     <h1 class="sr-only">Institucional</h1>
