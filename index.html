@@ -284,11 +284,6 @@ footer .muted {
 
 return `
 <article class="card">
-  <!-- 🎯 DIAGNÓSTICO DE IMÁGENES -->
-  <div style="background: #ff0000; color: white; padding: 10px; margin-bottom: 10px; border-radius: 8px;">
-    🎯 DEBUG IMAGEN: "${item.imagen || 'NO HAY IMAGEN'}"
-  </div>
-  
   ${item.imagen ? `<img src="${item.imagen}" alt="${safeTitle}">` : ''}
   <h3>${item.titulo || ''}</h3>
   ${item.resumen ? `<p class="muted">${item.resumen}</p>` : ''}
