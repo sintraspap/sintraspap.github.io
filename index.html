@@ -238,137 +238,117 @@ footer .muted {
 </header>
 <main class="container">
 
-  <!-- INICIO -->
-  <section id="inicio" class="active">
+ <!-- INICIO -->
+<section id="inicio" class="active">
   <!-- AUSPCIANTES ARRIBA -->
-<div class="sponsor-grid">
-  <div class="sponshttps://wa.me/595992644708" target="_blank" rel="noopener">Escribinos al WhatsApp</a>
+  <div class="sponsor-grid">
+    <div class="sponsor-item">
+      <img src="banner-1.png" alt="Auspiciante 1" onerror="this.style.display='none'">
+      <a href="https://wa.me/595992644708" target="_blank" rel="noopener">Escribinos al WhatsApp</a>
+    </div>
+    <div class="sponsor-item">
+      <img src="banner-2.png" alt="Auspiciante 2" onerror="this.style.display='none'">
+      <a href="https://wa.me/595992644708" target="_blank" rel="noopener">Escribinos al WhatsApp</a>
+    </div>
   </div>
-  <div class="sponsor-item">
-    <img src="banner-2.png" alt="Auspiciante 2" onerror="this.style.display='none'">
-    <a href="https://wa.me/595992644708" target="_blank" rel="noopener">Escribinos al WhatsApp</a>
-  </div>
-</div>
 
-<!-- Noticias desde data/noticias.json -->
-<div id="news-from-json" class="cards"></div>
-<script>
-
-// 1. PRIMERO la función actualizarMetaTags
-function actualizarMetaTags(noticia) {
+  <!-- Noticias desde data/noticias.json -->
+  <div id="news-from-json" class="cards"></div>
+  
+  <script>
+  // 1. PRIMERO la función actualizarMetaTags
+  function actualizarMetaTags(noticia) {
     // ... código de la función ...
-}
-
-// 2. LUEGO el código principal con async
-(async () => {
-  try {
-    // ... código de fetch y generación de noticias ...
-    
-    // 3. DENTRO del código principal, el botón compartir
-    document.querySelectorAll('.btn-compartir').forEach(btn => {
-      btn.addEventListener('click', async (e) => {
-        // ... código del botón que llama a actualizarMetaTags ...
-      });
-    });
-
-    // 4. ACTUALIZAR meta tags de la primera noticia
-    actualizarMetaTags(items[0]);
-
-  } catch (e) {
-    // ... manejo de errores ...
   }
-})();
-</script>
 
-(async () => {
-  try {
-    const res = await fetch('data/noticias.json?v=' + Date.now(), { cache: 'no-store' });
-    if (!res.ok) throw new Error('HTTP ' + res.status);
+  // 2. LUEGO el código principal con async
+  (async () => {
+    try {
+      const res = await fetch('data/noticias.json?v=' + Date.now(), { cache: 'no-store' });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
 
-    const data  = await res.json();
-    const items = Array.isArray(data) ? data : (data.items || []);
+      const data = await res.json();
+      const items = Array.isArray(data) ? data : (data.items || []);
 
-    // Orden por fecha (más nuevas primero)
-    items.sort((a, b) => (b.fecha || '').localeCompare(a.fecha || ''));
+      // Orden por fecha (más nuevas primero)
+      items.sort((a, b) => (b.fecha || '').localeCompare(a.fecha || ''));
 
-    const cont = document.getElementById('news-from-json');
-    if (!items.length) {
-      cont.innerHTML = '<p class="muted">Aún no hay noticias.</p>';
-      return;
-    }
+      const cont = document.getElementById('news-from-json');
+      if (!items.length) {
+        cont.innerHTML = '<p class="muted">Aún no hay noticias.</p>';
+        return;
+      }
 
-    cont.innerHTML = items.map((item, i) => {
-      const slug = (item.titulo || '')
-        .toLowerCase()
-        .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
-        .replace(/[^a-z0-9\s-]/g,'')
-        .trim().replace(/\s+/g,'-') || ('noticia-' + i);
+      cont.innerHTML = items.map((item, i) => {
+        const slug = (item.titulo || '')
+          .toLowerCase()
+          .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+          .replace(/[^a-z0-9\s-]/g,'')
+          .trim().replace(/\s+/g,'-') || ('noticia-' + i);
 
-      const safeTitle  = (item.titulo || '').replace(/"/g,'&quot;');
-      const imgHtml    = item.imagen ? '<img src="' + item.imagen + '" alt="' + safeTitle + '">' : '';
-      const resumenHtml= item.resumen ? '<p class="muted">' + item.resumen + '</p>' : '';
-      const cuerpoHtml = item.cuerpo  ? '<div>' + item.cuerpo + '</div>' : '';
-      const fechaHtml  = item.fecha   ? '<p style="margin-top:6px"><small>' + item.fecha + '</small></p>' : '';
+        const safeTitle = (item.titulo || '').replace(/"/g,'&quot;');
+        const imgHtml = item.imagen ? '<img src="' + item.imagen + '" alt="' + safeTitle + '">' : '';
+        const resumenHtml = item.resumen ? '<p class="muted">' + item.resumen + '</p>' : '';
+        const cuerpoHtml = item.cuerpo ? '<div>' + item.cuerpo + '</div>' : '';
+        const fechaHtml = item.fecha ? '<p style="margin-top:6px"><small>' + item.fecha + '</small></p>' : '';
 
-return `
-<article class="card">
-  ${item.imagen ? `<img src="${item.imagen}" alt="${safeTitle}">` : ''}
-  <h3>${item.titulo || ''}</h3>
-  ${item.resumen ? `<p class="muted">${item.resumen}</p>` : ''}
-  ${item.cuerpo ? `<div>${item.cuerpo}</div>` : ''}
-  ${item.fecha ? `<p style="margin-top:6px"><small>${item.fecha}</small></p>` : ''}
-  <div class="acciones" style="margin-top:12px">
-    <button
-      class="btn-compartir"
-      style="background:#0b5ed7;color:#fff;border:none;padding:8px 14px;border-radius:6px;cursor:pointer"
-      data-title="${safeTitle}"
-      data-url="${location.origin + location.pathname}?n=${slug}"
-    >Compartir</button>
-  </div>
-  <!-- Comentarios de Facebook -->
-  <div class="fb-comments"
-       data-href="${location.origin + location.pathname}?n=${slug}"
-       data-width="100%"
-       data-numposts="3"></div>
-</article>
-`;
+        return `
+          <article class="card">
+            ${item.imagen ? `<img src="${item.imagen}" alt="${safeTitle}">` : ''}
+            <h3>${item.titulo || ''}</h3>
+            ${item.resumen ? `<p class="muted">${item.resumen}</p>` : ''}
+            ${item.cuerpo ? `<div>${item.cuerpo}</div>` : ''}
+            ${item.fecha ? `<p style="margin-top:6px"><small>${item.fecha}</small></p>` : ''}
+            <div class="acciones" style="margin-top:12px">
+              <button
+                class="btn-compartir"
+                style="background:#0b5ed7;color:#fff;border:none;padding:8px 14px;border-radius:6px;cursor:pointer"
+                data-title="${safeTitle}"
+                data-url="${location.origin + location.pathname}?n=${slug}"
+              >Compartir</button>
+            </div>
+            <!-- Comentarios de Facebook -->
+            <div class="fb-comments"
+                 data-href="${location.origin + location.pathname}?n=${slug}"
+                 data-width="100%"
+                 data-numposts="3"></div>
+          </article>
+        `;
+      }).join('');
 
-    }).join('');
-
-       // Botón "Compartir" - CÓDIGO CORREGIDO
-    document.querySelectorAll('.btn-compartir').forEach(btn => {
-      btn.addEventListener('click', async (e) => {
-        const title = e.currentTarget.dataset.title || document.title;
-        const url   = e.currentTarget.dataset.url   || location.href;
-        
-        // Actualizar meta tags antes de compartir
-        const itemIndex = items.findIndex(item => item.titulo === title);
-        if (itemIndex !== -1) {
+      // Botón "Compartir"
+      document.querySelectorAll('.btn-compartir').forEach(btn => {
+        btn.addEventListener('click', async (e) => {
+          const title = e.currentTarget.dataset.title || document.title;
+          const url = e.currentTarget.dataset.url || location.href;
+          
+          // Actualizar meta tags antes de compartir
+          const itemIndex = items.findIndex(item => item.titulo === title);
+          if (itemIndex !== -1) {
             actualizarMetaTags(items[itemIndex]);
-        }
-        
-        try {
-          if (navigator.share) {
-            await navigator.share({ title, url });
-          } else {
-            await navigator.clipboard.writeText(url);
-            alert('Enlace copiado ✔');
           }
-        } catch (_) {}
+          
+          try {
+            if (navigator.share) {
+              await navigator.share({ title, url });
+            } else {
+              await navigator.clipboard.writeText(url);
+              alert('Enlace copiado ✔');
+            }
+          } catch (_) {}
+        });
       });
-    });
 
-    // ACTUALIZAR META TAGS DE LA PRIMERA NOTICIA
-    actualizarMetaTags(items[0]);
+      // ACTUALIZAR META TAGS DE LA PRIMERA NOTICIA
+      actualizarMetaTags(items[0]);
 
-  } catch (e) {
-    console.error(e);
-    document.getElementById('news-from-json').innerHTML =
-      '<p class="muted">⚠ No se pudo cargar noticias.</p>';
-  }
-})();
-</script>
-
+    } catch (e) {
+      console.error(e);
+      document.getElementById('news-from-json').innerHTML =
+        '<p class="muted">⚠ No se pudo cargar noticias.</p>';
+    }
+  })();
+  </script>
 </section>
   <!-- INSTITUCIONAL -->
   <section id="institucional">
