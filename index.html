@@ -248,6 +248,7 @@ footer .muted {
     <a href="https://wa.me/595992644708" target="_blank" rel="noopener">Escribinos al WhatsApp</a>
   </div>
 </div>
+
 <!-- Noticias desde data/noticias.json -->
 <div id="news-from-json" class="cards"></div>
 <script>
@@ -255,10 +256,11 @@ footer .muted {
   try {
     const res = await fetch('data/noticias.json?v=' + Date.now(), { cache: 'no-store' });
     if (!res.ok) throw new Error('HTTP ' + res.status);
+
     const data  = await res.json();
     const items = Array.isArray(data) ? data : (data.items || []);
 
-    // orden por fecha descendente
+    // Orden por fecha (más nuevas primero)
     items.sort((a, b) => (b.fecha || '').localeCompare(a.fecha || ''));
 
     const cont = document.getElementById('news-from-json');
@@ -274,36 +276,32 @@ footer .muted {
         .replace(/[^a-z0-9\s-]/g,'')
         .trim().replace(/\s+/g,'-') || ('noticia-' + i);
 
-      const safeTitle = (item.titulo || '').replace(/"/g,'&quot;');
+      const safeTitle  = (item.titulo || '').replace(/"/g,'&quot;');
+      const imgHtml    = item.imagen ? '<img src="' + item.imagen + '" alt="' + safeTitle + '">' : '';
+      const resumenHtml= item.resumen ? '<p class="muted">' + item.resumen + '</p>' : '';
+      const cuerpoHtml = item.cuerpo  ? '<div>' + item.cuerpo + '</div>' : '';
+      const fechaHtml  = item.fecha   ? '<p style="margin-top:6px"><small>' + item.fecha + '</small></p>' : '';
 
-return `
-<article class="card">
-  ${item.imagen ? '<img src="'+item.imagen+'" alt="'+safeTitle+'">' : ''}
+      return (
+`<article class="card">
+  ${imgHtml}
   <h3>${item.titulo || ''}</h3>
-  ${item.resumen ? <p class="muted">${item.resumen}</p> : ''}
-  ${item.cuerpo  ? <div>${item.cuerpo}</div> : ''}
-  ${item.fecha   ? <p style="margin-top:6px"><small>${item.fecha}</small></p> : ''}
-
+  ${resumenHtml}
+  ${cuerpoHtml}
+  ${fechaHtml}
   <div class="acciones" style="margin-top:12px">
     <button
       class="btn-compartir"
-      style="background:#0b5ed7;color:#fff;border:none;padding:8px 14px;border-radius:6px;cursor:pointer;font-weight:600"
+      style="background:#0b5ed7;color:#fff;border:none;padding:8px 14px;border-radius:8px;cursor:pointer"
       data-title="${safeTitle}"
       data-url="${location.origin + location.pathname}#${slug}"
-    >🔗 Compartir</button>
+    >Compartir</button>
   </div>
-
-  <!-- Bloque de comentarios de Facebook -->
-  <div class="fb-comments"
-       data-href="${location.origin + location.pathname}#${slug}"
-       data-width="100%"
-       data-numposts="3"></div>
-</article>
-`;
-
+</article>`
+      );
     }).join('');
 
-    // activar botones de "Compartir" después de renderizar
+    // Botón "Compartir"
     document.querySelectorAll('.btn-compartir').forEach(btn => {
       btn.addEventListener('click', async (e) => {
         const title = e.currentTarget.dataset.title || document.title;
@@ -315,9 +313,10 @@ return `
             await navigator.clipboard.writeText(url);
             alert('Enlace copiado ✔');
           }
-        } catch (_) { /* cancelado o bloqueado */ }
+        } catch (_) {}
       });
     });
+
   } catch (e) {
     console.error(e);
     document.getElementById('news-from-json').innerHTML =
@@ -325,6 +324,7 @@ return `
   }
 })();
 </script>
+
 </section>
   <!-- INSTITUCIONAL -->
   <section id="institucional">
