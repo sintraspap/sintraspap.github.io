@@ -1,13 +1,6 @@
 {
   "items": [
     {
-  "titulo": "Prueba desde GitHub Desktop",
-  "fecha": "2025-09-07",
-  "resumen": "Noticia de prueba agregada localmente.",
-  "cuerpo": "<p>Si ves esto en la página pública, significa que ya pudiste usar Commit + Push 🎉</p>",
-  "imagen": "images/uploads/prueba.jpg"
-  },
-    {
   "titulo": "Intendenta de CDE destituye a funcionario por violencia en hospital de Franco",
   "fecha": "2025-09-05",
   "resumen": "La intendenta interina de Ciudad del Este, María Portillo, destituyó al funcionario Eduardo Joel Ríos Dávalos tras un violento incidente en el Hospital Distrital de Presidente Franco.",
