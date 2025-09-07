@@ -256,99 +256,166 @@ footer .muted {
   <div id="news-from-json" class="cards"></div>
   
   <script>
-  // 1. PRIMERO la función actualizarMetaTags
-  function actualizarMetaTags(noticia) {
-    // ... código de la función ...
-  }
+// 1. FUNCIÓN PARA ACTUALIZAR META TAGS DINÁMICAMENTE
+function actualizarMetaTags(noticia) {
+  if (!noticia) return;
+  
+  // Configurar título
+  const title = noticia.titulo ? `${noticia.titulo} - SINTRASPAP` : 'SINTRASPAP';
+  document.title = title;
+  
+  // Actualizar meta tags OG
+  const ogTitle = document.querySelector('meta[property="og:title"]');
+  const ogDescription = document.querySelector('meta[property="og:description"]');
+  const ogImage = document.querySelector('meta[property="og:image"]');
+  const ogUrl = document.querySelector('meta[property="og:url"]');
+  
+  // Actualizar meta tags Twitter
+  const twitterTitle = document.querySelector('meta[name="twitter:title"]');
+  const twitterDescription = document.querySelector('meta[name="twitter:description"]');
+  const twitterImage = document.querySelector('meta[name="twitter:image"]');
+  
+  if (ogTitle) ogTitle.setAttribute('content', title);
+  if (twitterTitle) twitterTitle.setAttribute('content', title);
+  
+  // Descripción (usar resumen o título si no hay resumen)
+  const description = noticia.resumen || noticia.titulo || 'Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay';
+  if (ogDescription) ogDescription.setAttribute('content', description);
+  if (twitterDescription) twitterDescription.setAttribute('content', description);
+  
+  // Imagen (usar imagen de la noticia o la portada por defecto)
+  const imageUrl = noticia.imagen || 'https://sintraspap.github.io/portada.jpg';
+  if (ogImage) ogImage.setAttribute('content', imageUrl);
+  if (twitterImage) twitterImage.setAttribute('content', imageUrl);
+  
+  // URL actual (con parámetro de noticia si existe)
+  const currentUrl = window.location.href;
+  if (ogUrl) ogUrl.setAttribute('content', currentUrl);
+}
 
-  // 2. LUEGO el código principal con async
-  (async () => {
-    try {
-      const res = await fetch('data/noticias.json?v=' + Date.now(), { cache: 'no-store' });
-      if (!res.ok) throw new Error('HTTP ' + res.status);
+// 2. CARGAR NOTICIAS DESDE JSON
+(async () => {
+  try {
+    const res = await fetch('data/noticias.json?v=' + Date.now(), { cache: 'no-store' });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
 
-      const data = await res.json();
-      const items = Array.isArray(data) ? data : (data.items || []);
+    const data = await res.json();
+    const items = Array.isArray(data) ? data : (data.items || []);
 
-      // Orden por fecha (más nuevas primero)
-      items.sort((a, b) => (b.fecha || '').localeCompare(a.fecha || ''));
+    // Orden por fecha (más nuevas primero)
+    items.sort((a, b) => (b.fecha || '').localeCompare(a.fecha || ''));
 
-      const cont = document.getElementById('news-from-json');
-      if (!items.length) {
-        cont.innerHTML = '<p class="muted">Aún no hay noticias.</p>';
-        return;
-      }
+    const cont = document.getElementById('news-from-json');
+    if (!items.length) {
+      cont.innerHTML = '<p class="muted">Aún no hay noticias.</p>';
+      return;
+    }
 
-      cont.innerHTML = items.map((item, i) => {
+    // 3. VERIFICAR SI HAY UNA NOTICIA ESPECÍFICA EN LA URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const noticiaParam = urlParams.get('n');
+    let noticiaSeleccionada = items[0]; // Por defecto la primera
+
+    if (noticiaParam) {
+      // Buscar la noticia por slug
+      const found = items.find((item, index) => {
         const slug = (item.titulo || '')
           .toLowerCase()
-          .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
-          .replace(/[^a-z0-9\s-]/g,'')
-          .trim().replace(/\s+/g,'-') || ('noticia-' + i);
-
-        const safeTitle = (item.titulo || '').replace(/"/g,'&quot;');
-        const imgHtml = item.imagen ? '<img src="' + item.imagen + '" alt="' + safeTitle + '">' : '';
-        const resumenHtml = item.resumen ? '<p class="muted">' + item.resumen + '</p>' : '';
-        const cuerpoHtml = item.cuerpo ? '<div>' + item.cuerpo + '</div>' : '';
-        const fechaHtml = item.fecha ? '<p style="margin-top:6px"><small>' + item.fecha + '</small></p>' : '';
-
-        return `
-          <article class="card">
-            ${item.imagen ? `<img src="${item.imagen}" alt="${safeTitle}">` : ''}
-            <h3>${item.titulo || ''}</h3>
-            ${item.resumen ? `<p class="muted">${item.resumen}</p>` : ''}
-            ${item.cuerpo ? `<div>${item.cuerpo}</div>` : ''}
-            ${item.fecha ? `<p style="margin-top:6px"><small>${item.fecha}</small></p>` : ''}
-            <div class="acciones" style="margin-top:12px">
-              <button
-                class="btn-compartir"
-                style="background:#0b5ed7;color:#fff;border:none;padding:8px 14px;border-radius:6px;cursor:pointer"
-                data-title="${safeTitle}"
-                data-url="${location.origin + location.pathname}?n=${slug}"
-              >Compartir</button>
-            </div>
-            <!-- Comentarios de Facebook -->
-            <div class="fb-comments"
-                 data-href="${location.origin + location.pathname}?n=${slug}"
-                 data-width="100%"
-                 data-numposts="3"></div>
-          </article>
-        `;
-      }).join('');
-
-      // Botón "Compartir"
-      document.querySelectorAll('.btn-compartir').forEach(btn => {
-        btn.addEventListener('click', async (e) => {
-          const title = e.currentTarget.dataset.title || document.title;
-          const url = e.currentTarget.dataset.url || location.href;
-          
-          // Actualizar meta tags antes de compartir
-          const itemIndex = items.findIndex(item => item.titulo === title);
-          if (itemIndex !== -1) {
-            actualizarMetaTags(items[itemIndex]);
-          }
-          
-          try {
-            if (navigator.share) {
-              await navigator.share({ title, url });
-            } else {
-              await navigator.clipboard.writeText(url);
-              alert('Enlace copiado ✔');
-            }
-          } catch (_) {}
-        });
+          .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+          .replace(/[^a-z0-9\s-]/g, '')
+          .trim().replace(/\s+/g, '-') || ('noticia-' + index);
+        return slug === noticiaParam;
       });
-
-      // ACTUALIZAR META TAGS DE LA PRIMERA NOTICIA
-      actualizarMetaTags(items[0]);
-
-    } catch (e) {
-      console.error(e);
-      document.getElementById('news-from-json').innerHTML =
-        '<p class="muted">⚠ No se pudo cargar noticias.</p>';
+      
+      if (found) {
+        noticiaSeleccionada = found;
+        // Scroll suave a la noticia después de cargar
+        setTimeout(() => {
+          const element = document.querySelector(`[data-slug="${noticiaParam}"]`);
+          if (element) element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
     }
-  })();
-  </script>
+
+    // 4. ACTUALIZAR META TAGS CON LA NOTICIA SELECCIONADA
+    actualizarMetaTags(noticiaSeleccionada);
+
+    // 5. RENDERIZAR NOTICIAS
+    cont.innerHTML = items.map((item, i) => {
+      const slug = (item.titulo || '')
+        .toLowerCase()
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^a-z0-9\s-]/g, '')
+        .trim().replace(/\s+/g, '-') || ('noticia-' + i);
+
+      const safeTitle = (item.titulo || '').replace(/"/g, '&quot;');
+      const isActive = noticiaParam === slug;
+
+      return `
+        <article class="card" data-slug="${slug}" ${isActive ? 'style="border: 2px solid #0b2a59;"' : ''}>
+          ${item.imagen ? `<img src="${item.imagen}" alt="${safeTitle}" style="max-height:300px;object-fit:cover;">` : ''}
+          <h3>${item.titulo || ''}</h3>
+          ${item.resumen ? `<p class="muted">${item.resumen}</p>` : ''}
+          ${item.cuerpo ? `<div>${item.cuerpo}</div>` : ''}
+          ${item.fecha ? `<p style="margin-top:6px"><small>${item.fecha}</small></p>` : ''}
+          <div class="acciones" style="margin-top:12px">
+            <button
+              class="btn-compartir"
+              style="background:#0b5ed7;color:#fff;border:none;padding:8px 14px;border-radius:6px;cursor:pointer"
+              data-title="${item.titulo || ''}"
+              data-image="${item.imagen || ''}"
+              data-url="${location.origin + location.pathname}?n=${slug}"
+            >
+              Compartir
+            </button>
+          </div>
+          <!-- Comentarios de Facebook -->
+          <div class="fb-comments"
+               data-href="${location.origin + location.pathname}?n=${slug}"
+               data-width="100%"
+               data-numposts="3"></div>
+        </article>
+      `;
+    }).join('');
+
+    // 6. EVENT LISTENER PARA BOTONES COMPARTIR
+    document.querySelectorAll('.btn-compartir').forEach(btn => {
+      btn.addEventListener('click', async (e) => {
+        const title = e.currentTarget.dataset.title || document.title;
+        const image = e.currentTarget.dataset.image || '';
+        const url = e.currentTarget.dataset.url || location.href;
+        
+        // Encontrar la noticia correspondiente
+        const itemIndex = items.findIndex(item => item.titulo === title);
+        if (itemIndex !== -1) {
+          actualizarMetaTags({
+            ...items[itemIndex],
+            imagen: image || items[itemIndex].imagen
+          });
+        }
+        
+        // Compartir
+        try {
+          if (navigator.share) {
+            await navigator.share({ title, url });
+          } else {
+            await navigator.clipboard.writeText(url);
+            alert('Enlace copiado ✔');
+          }
+        } catch (err) {
+          console.log('Error al compartir:', err);
+        }
+      });
+    });
+
+  } catch (e) {
+    console.error('Error cargando noticias:', e);
+    document.getElementById('news-from-json').innerHTML =
+      '<p class="muted">⚠ No se pudo cargar noticias.</p>';
+  }
+})();
+</script>
+
 </section>
   <!-- INSTITUCIONAL -->
   <section id="institucional">
