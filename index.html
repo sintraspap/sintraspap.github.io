@@ -30,6 +30,19 @@
 <meta name="twitter:title" content="SINTRASPAP - Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay" />
 <meta name="twitter:description" content="Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay. Representamos y defendemos a los trabajadores de la seguridad privada en todo el país." />
 <meta name="twitter:image" content="https://sintraspap.github.io/portada.jpg" />
+
+<!-- En el <head>, DESPUÉS de los meta tags existentes -->
+<meta property="og:title" id="og-title" content="SINTRASPAP - Sindicato Nacional de Trabajadores de la Seguridad Privada">
+<meta property="og:description" id="og-description" content="Representamos y defendemos a los trabajadores de la seguridad privada en todo el país.">
+<meta property="og:image" id="og-image" content="https://sintraspap.github.io/portada.jpg">
+<meta property="og:url" id="og-url" content="https://sintraspap.github.io/">
+<meta property="og:type" content="website">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" id="twitter-title" content="SINTRASPAP - Sindicato Nacional de Trabajadores de la Seguridad Privada">
+<meta name="twitter:description" id="twitter-description" content="Representamos y defendemos a los trabajadores de la seguridad privada en todo el país.">
+<meta name="twitter:image" id="twitter-image" content="https://sintraspap.github.io/portada.jpg">
+
 <style>
   :root{ --azul:#0b2a59; --azul-hover:#1e4f9a; --borde:#e5e7eb; --gris:#666; }
 
@@ -252,6 +265,21 @@ footer .muted {
 <!-- Noticias desde data/noticias.json -->
 <div id="news-from-json" class="cards"></div>
 <script>
+
+// PEGA esto ANTES del código de las noticias (antes del (async () => {)
+function actualizarMetaTags(noticia) {
+    // Actualizar meta tags para redes sociales
+    document.getElementById('og-title').content = noticia.titulo || 'SINTRASPAP';
+    document.getElementById('og-description').content = noticia.resumen || 'Sindicato Nacional de Trabajadores de la Seguridad Privada';
+    document.getElementById('og-image').content = noticia.imagen ? 'https://sintraspap.github.io/' + noticia.imagen : 'https://sintraspap.github.io/portada.jpg';
+    document.getElementById('og-url').content = window.location.href;
+    
+    // Twitter
+    document.getElementById('twitter-title').content = noticia.titulo || 'SINTRASPAP';
+    document.getElementById('twitter-description').content = noticia.resumen || 'Sindicato Nacional de Trabajadores de la Seguridad Privada';
+    document.getElementById('twitter-image').content = noticia.imagen ? 'https://sintraspap.github.io/' + noticia.imagen : 'https://sintraspap.github.io/portada.jpg';
+}
+
 (async () => {
   try {
     const res = await fetch('data/noticias.json?v=' + Date.now(), { cache: 'no-store' });
@@ -307,11 +335,18 @@ return `
 
     }).join('');
 
-    // Botón "Compartir"
+       // Botón "Compartir" - CÓDIGO CORREGIDO
     document.querySelectorAll('.btn-compartir').forEach(btn => {
       btn.addEventListener('click', async (e) => {
         const title = e.currentTarget.dataset.title || document.title;
         const url   = e.currentTarget.dataset.url   || location.href;
+        
+        // Actualizar meta tags antes de compartir
+        const itemIndex = items.findIndex(item => item.titulo === title);
+        if (itemIndex !== -1) {
+            actualizarMetaTags(items[itemIndex]);
+        }
+        
         try {
           if (navigator.share) {
             await navigator.share({ title, url });
@@ -322,6 +357,9 @@ return `
         } catch (_) {}
       });
     });
+
+    // ACTUALIZAR META TAGS DE LA PRIMERA NOTICIA
+    actualizarMetaTags(items[0]);
 
   } catch (e) {
     console.error(e);
