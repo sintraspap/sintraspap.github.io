@@ -18,34 +18,22 @@
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <link rel="icon" href="favicon-32x32.png" sizes="32x32" type="image/png">
 <link rel="icon" href="favicon-16x16.png" sizes="16x16" type="image/png">
-  <!-- Open Graph general -->
-<meta property="og:title" content="SINTRASPAP - Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay" />
-<meta property="og:description" content="Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay. Representamos y defendemos a los trabajadores de la seguridad privada en todo el país." />
-<meta property="og:image" content="https://sintraspap.github.io/portada.jpg" />
-<meta property="og:url" content="https://sintraspappy2025.github.io/sintraspap.github.io/" />
-<meta property="og:type" content="website" />
 
-<!-- Para que también se vea bien en Twitter/X -->
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="SINTRASPAP - Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay" />
-<meta name="twitter:description" content="Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay. Representamos y defendemos a los trabajadores de la seguridad privada en todo el país." />
-<meta name="twitter:image" content="https://sintraspap.github.io/portada.jpg" />
-
-<!-- En el <head>, DESPUÉS de los meta tags existentes -->
-<meta property="og:title" id="og-title" content="SINTRASPAP - Sindicato Nacional de Trabajadores de la Seguridad Privada">
-<meta property="og:description" id="og-description" content="Representamos y defendemos a los trabajadores de la seguridad privada en todo el país.">
+<!-- Open Graph general -->
+<meta property="og:title" id="og-title" content="SINTRASPAP - Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay">
+<meta property="og:description" id="og-description" content="Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay. Representamos y defendemos a los trabajadores de la seguridad privada en todo el país.">
 <meta property="og:image" id="og-image" content="https://sintraspap.github.io/portada.jpg">
 <meta property="og:url" id="og-url" content="https://sintraspap.github.io/">
 <meta property="og:type" content="website">
 
+<!-- Para que también se vea bien en Twitter/X -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" id="twitter-title" content="SINTRASPAP - Sindicato Nacional de Trabajadores de la Seguridad Privada">
-<meta name="twitter:description" id="twitter-description" content="Representamos y defendemos a los trabajadores de la seguridad privada en todo el país.">
+<meta name="twitter:title" id="twitter-title" content="SINTRASPAP - Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay">
+<meta name="twitter:description" id="twitter-description" content="Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay. Representamos y defendemos a los trabajadores de la seguridad privada en todo el país.">
 <meta name="twitter:image" id="twitter-image" content="https://sintraspap.github.io/portada.jpg">
 
 <style>
   :root{ --azul:#0b2a59; --azul-hover:#1e4f9a; --borde:#e5e7eb; --gris:#666; }
-
   *{box-sizing:border-box}
   html,body{margin:0;padding:0;width:100%;overflow-x:hidden;font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;background:#fff;color:#111}
   a{text-decoration:none;color:inherit}
@@ -266,19 +254,31 @@ footer .muted {
 <div id="news-from-json" class="cards"></div>
 <script>
 
-// PEGA esto ANTES del código de las noticias (antes del (async () => {)
+// 1. PRIMERO la función actualizarMetaTags
 function actualizarMetaTags(noticia) {
-    // Actualizar meta tags para redes sociales
-    document.getElementById('og-title').content = noticia.titulo || 'SINTRASPAP';
-    document.getElementById('og-description').content = noticia.resumen || 'Sindicato Nacional de Trabajadores de la Seguridad Privada';
-    document.getElementById('og-image').content = noticia.imagen ? 'https://sintraspap.github.io/' + noticia.imagen : 'https://sintraspap.github.io/portada.jpg';
-    document.getElementById('og-url').content = window.location.href;
-    
-    // Twitter
-    document.getElementById('twitter-title').content = noticia.titulo || 'SINTRASPAP';
-    document.getElementById('twitter-description').content = noticia.resumen || 'Sindicato Nacional de Trabajadores de la Seguridad Privada';
-    document.getElementById('twitter-image').content = noticia.imagen ? 'https://sintraspap.github.io/' + noticia.imagen : 'https://sintraspap.github.io/portada.jpg';
+    // ... código de la función ...
 }
+
+// 2. LUEGO el código principal con async
+(async () => {
+  try {
+    // ... código de fetch y generación de noticias ...
+    
+    // 3. DENTRO del código principal, el botón compartir
+    document.querySelectorAll('.btn-compartir').forEach(btn => {
+      btn.addEventListener('click', async (e) => {
+        // ... código del botón que llama a actualizarMetaTags ...
+      });
+    });
+
+    // 4. ACTUALIZAR meta tags de la primera noticia
+    actualizarMetaTags(items[0]);
+
+  } catch (e) {
+    // ... manejo de errores ...
+  }
+})();
+</script>
 
 (async () => {
   try {
