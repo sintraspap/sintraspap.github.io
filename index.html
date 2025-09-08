@@ -428,14 +428,14 @@ function actualizarMetaTags(noticia) {
       const safeTitle = (item.titulo || '').replace(/"/g, '&quot;');
       const isActive = noticiaParam === slug;
 
-     return `
+    return `
   <article class="card noticia-unificada" data-slug="${slug}" ${isActive ? 'style="border: 2px solid #0b2a59;"' : ''}>
+    <h3 class="titulo-noticia">${item.titulo || ''}</h3>
+    
     ${item.imagen ? `
       <div class="imagen-noticia">
         <img src="${item.imagen}" alt="${safeTitle}" style="max-height:300px;object-fit:cover;">
       </div>` : ''}
-    
-    <h3 class="titulo-noticia">${item.titulo || ''}</h3>
     
     ${item.fecha ? `<span class="fecha-noticia">${item.fecha}</span>` : ''}
     
