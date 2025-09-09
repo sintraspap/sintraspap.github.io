@@ -278,7 +278,7 @@ footer .muted {
 
 <main id="main-content" class="container" role="main">
 
-  <!-- INICIO -->
+<!-- INICIO -->
 <section id="inicio" class="active">
   <!-- ANUNCIOS DINÁMICOS (CARRUSEL DE TEXTO) -->
   <div class="anuncio-dinamico" style="background: linear-gradient(135deg, #0b2a59 0%, #1e4f9a 100%); border-radius: 12px; padding: 20px; margin-bottom: 24px; text-align: center; box-shadow: 0 4px 12px rgba(11, 42, 89, 0.2);">
@@ -403,25 +403,30 @@ function actualizarMetaTags(noticia) {
       
       // Determinar si mostrar contenido completo o resumen
       const mostrarCompleto = isActive || !item.cuerpo;
-      const contenidoCompleto = mostrarCompleto ? `
-        ${item.resumen ? `<p class="muted" style="font-style: italic;">${item.resumen}</p>` : ''}
-        ${item.cuerpo ? `<div style="margin-top:12px;">${item.cuerpo}</div>` : ''}
-      ` : `
-        ${item.resumen ? `<p class="muted" style="font-style: italic;">${item.resumen}</p>` : ''}
-        <div style="margin-top:12px;">
-          <button class="btn-leer-mas" data-slug="${slug}" 
-                  style="background:#0b2a59;color:#fff;border:none;padding:8px 14px;border-radius:6px;cursor:pointer">
-            Leer más
-          </button>
-        </div>
-      `;
-
+      
       return `
         <article class="card" data-slug="${slug}" ${isActive ? 'style="border: 2px solid #0b2a59;"' : ''}>
           <h3>${item.titulo || ''}</h3>
           ${item.fecha ? `<p style="margin-top:0; margin-bottom:12px;"><small><strong>${item.fecha}</strong></small></p>` : ''}
           ${item.imagen ? `<img src="${item.imagen}" alt="${safeTitle}" style="max-height:300px;object-fit:cover; margin-bottom:12px;">` : ''}
-          ${contenidoCompleto}
+          
+          ${item.resumen ? `<p class="muted" style="font-style: italic;">${item.resumen}</p>` : ''}
+          
+          ${item.cuerpo ? `
+            <div class="contenido-noticia" style="${mostrarCompleto ? '' : 'display: none;'} margin-top:12px;">
+              ${item.cuerpo}
+            </div>
+          ` : ''}
+          
+          ${item.cuerpo ? `
+            <div style="margin-top:12px;">
+              <button class="btn-toggle-leer" data-slug="${slug}" data-expandido="${mostrarCompleto}" 
+                      style="background:#0b2a59;color:#fff;border:none;padding:8px 14px;border-radius:6px;cursor:pointer">
+                ${mostrarCompleto ? 'Leer menos' : 'Leer más'}
+              </button>
+            </div>
+          ` : ''}
+          
           <div class="acciones" style="margin-top:20px">
             <button
               class="btn-compartir"
@@ -434,6 +439,7 @@ function actualizarMetaTags(noticia) {
               Compartir
             </button>
           </div>
+          
           <!-- Comentarios de Facebook (solo se muestran cuando la noticia está expandida) -->
           ${mostrarCompleto ? `
           <div class="fb-comments"
@@ -445,12 +451,54 @@ function actualizarMetaTags(noticia) {
       `;
     }).join('');
 
-    // 6. EVENT LISTENER PARA BOTONES "LEER MÁS"
-    document.querySelectorAll('.btn-leer-mas').forEach(btn => {
+    // 6. EVENT LISTENER PARA BOTONES "LEER MÁS/LEER MENOS"
+    document.querySelectorAll('.btn-toggle-leer').forEach(btn => {
       btn.addEventListener('click', (e) => {
         const slug = e.currentTarget.dataset.slug;
-        // Redirigir a la misma página con el parámetro de la noticia
-        window.location.href = `${location.origin + location.pathname}?n=${slug}`;
+        const expandido = e.currentTarget.dataset.expandido === 'true';
+        const noticiaElement = document.querySelector(`[data-slug="${slug}"]`);
+        const contenido = noticiaElement.querySelector('.contenido-noticia');
+        const comentariosFB = noticiaElement.querySelector('.fb-comments');
+        
+        // Alternar visibilidad
+        if (contenido) {
+          if (expandido) {
+            contenido.style.display = 'none';
+            e.currentTarget.textContent = 'Leer más';
+            e.currentTarget.dataset.expandido = 'false';
+            
+            // Ocultar comentarios de Facebook
+            if (comentariosFB) {
+              comentariosFB.style.display = 'none';
+            }
+            
+            // Limpiar parámetro de URL si está presente
+            if (window.location.search.includes(`n=${slug}`)) {
+              const newUrl = window.location.origin + window.location.pathname;
+              window.history.replaceState({}, document.title, newUrl);
+            }
+          } else {
+            contenido.style.display = 'block';
+            e.currentTarget.textContent = 'Leer menos';
+            e.currentTarget.dataset.expandido = 'true';
+            
+            // Mostrar comentarios de Facebook
+            if (comentariosFB) {
+              comentariosFB.style.display = 'block';
+              // Recargar comentarios de Facebook si es necesario
+              if (typeof FB !== 'undefined') {
+                FB.XFBML.parse();
+              }
+            }
+            
+            // Actualizar URL con parámetro de noticia
+            const newUrl = `${window.location.origin + window.location.pathname}?n=${slug}`;
+            window.history.replaceState({}, document.title, newUrl);
+            
+            // Scroll suave a la noticia
+            noticiaElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
       });
     });
 
