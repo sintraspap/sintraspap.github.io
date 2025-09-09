@@ -238,7 +238,7 @@ footer .muted {
 </header>
 <main class="container">
 
- <!-- INICIO -->
+<!-- INICIO -->
 <section id="inicio" class="active">
   <!-- AUSPCIANTES ARRIBA -->
   <div class="sponsor-grid">
@@ -353,12 +353,12 @@ function actualizarMetaTags(noticia) {
 
       return `
         <article class="card" data-slug="${slug}" ${isActive ? 'style="border: 2px solid #0b2a59;"' : ''}>
-          ${item.imagen ? `<img src="${item.imagen}" alt="${safeTitle}" style="max-height:300px;object-fit:cover;">` : ''}
           <h3>${item.titulo || ''}</h3>
-          ${item.resumen ? `<p class="muted">${item.resumen}</p>` : ''}
-          ${item.cuerpo ? `<div>${item.cuerpo}</div>` : ''}
-          ${item.fecha ? `<p style="margin-top:6px"><small>${item.fecha}</small></p>` : ''}
-          <div class="acciones" style="margin-top:12px">
+          ${item.fecha ? `<p style="margin-top:0; margin-bottom:12px;"><small><strong>${item.fecha}</strong></small></p>` : ''}
+          ${item.imagen ? `<img src="${item.imagen}" alt="${safeTitle}" style="max-height:300px;object-fit:cover; margin-bottom:12px;">` : ''}
+          ${item.resumen ? `<p class="muted" style="font-style: italic;">${item.resumen}</p>` : ''}
+          ${item.cuerpo ? `<div style="margin-top:12px;">${item.cuerpo}</div>` : ''}
+          <div class="acciones" style="margin-top:20px">
             <button
               class="btn-compartir"
               style="background:#0b5ed7;color:#fff;border:none;padding:8px 14px;border-radius:6px;cursor:pointer"
