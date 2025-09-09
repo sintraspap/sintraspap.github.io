@@ -34,6 +34,58 @@
       <p>La intendenta interina de Ciudad del Este, <strong>María Portillo</strong>, destituyó de manera inmediata al funcionario municipal <strong>Eduardo Joel Ríos Dávalos</strong>, tras protagonizar un violento incidente en el Hospital Distrital de Presidente Franco.</p>
 
       <p>Según la denuncia, Ríos Dávalos amenazó de muerte y profirió graves insultos contra un guardia de seguridad del hospital, llegando incluso a decir que atentaría contra su familia.</p>
+  
+  <!-- Navegación y compartir -->
+<nav style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:16px 0">
+  <!-- Volver al inicio -->
+  <a href="/" style="background:#0b2a59;color:#fff;padding:8px 14px;border-radius:6px;display:inline-block;text-decoration:none">
+    ⬅ Volver al inicio
+  </a>
+
+  <!-- Botones de compartir (se completan con JS) -->
+  <a id="btn-whatsapp"  target="_blank" rel="noopener" style="color:#0b2a59;text-decoration:underline">WhatsApp</a>
+  <a id="btn-facebook"  target="_blank" rel="noopener" style="color:#0b2a59;text-decoration:underline">Facebook</a>
+  <a id="btn-twitter"   target="_blank" rel="noopener" style="color:#0b2a59;text-decoration:underline">X / Twitter</a>
+  <a id="btn-telegram"  target="_blank" rel="noopener" style="color:#0b2a59;text-decoration:underline">Telegram</a>
+  <button id="btn-copy" type="button" style="border:none;background:none;color:#0b2a59;text-decoration:underline;cursor:pointer">
+    Copiar enlace
+  </button>
+</nav>
+
+<script>
+  (function () {
+    // Usa URL absoluta de esta página (mejor que hardcodear)
+    const url   = location.href;
+    const title = document.title;
+
+    // Enlaces de compartir
+    const wa  = https://wa.me/?text=${encodeURIComponent(url)};
+    const fb  = https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)};
+    const tw  = https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)};
+    const tg  = https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)};
+
+    // Asigna href
+    const set = (id, href) => { const a = document.getElementById(id); if (a) a.href = href; };
+    set('btn-whatsapp', wa);
+    set('btn-facebook', fb);
+    set('btn-twitter',  tw);
+    set('btn-telegram', tg);
+
+    // Copiar enlace al portapapeles
+    const copyBtn = document.getElementById('btn-copy');
+    if (copyBtn && navigator.clipboard) {
+      copyBtn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(url);
+          copyBtn.textContent = '¡Enlace copiado!';
+          setTimeout(() => (copyBtn.textContent = 'Copiar enlace'), 1500);
+        } catch {
+          alert('No se pudo copiar. Copiá manualmente: ' + url);
+        }
+      });
+    }
+  })();
+</script>  
     </article>
   </main>
 </body>
