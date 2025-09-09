@@ -1,94 +1,308 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-
   <title>Imputan por homicidio doloso y violación de Ley de Armas a guardia de seguridad</title>
   <meta name="description" content="Guardia imputado por homicidio doloso y violación de la Ley de Armas.">
-
+  
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:title" content="Imputan por homicidio doloso y violación de Ley de Armas a guardia de seguridad">
   <meta property="og:description" content="Guardia imputado por homicidio doloso y violación de la Ley de Armas.">
   <meta property="og:image" content="https://sintraspap.github.io/images/uploads/imputan1.jpg">
   <meta property="og:url" content="https://sintraspap.github.io/noticias/imputan-por-homicidio-doloso-guardia-seguridad/">
-
+  
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Imputan por homicidio doloso y violación de Ley de Armas a guardia de seguridad">
   <meta name="twitter:description" content="Guardia imputado por homicidio doloso y violación de la Ley de Armas.">
   <meta name="twitter:image" content="https://sintraspap.github.io/images/uploads/imputan1.jpg">
-
+  
   <link rel="icon" href="/favicon.ico">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .container {
+      max-width: 800px;
+      width: 100%;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      margin: 20px auto;
+    }
+    
+    header {
+      background: #0b2a59;
+      color: white;
+      padding: 25px;
+      text-align: center;
+    }
+    
+    h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+    
+    .date {
+      font-size: 16px;
+      opacity: 0.9;
+    }
+    
+    .news-content {
+      padding: 25px;
+    }
+    
+    .image-container {
+      width: 100%;
+      margin: 20px 0;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    }
+    
+    .news-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+    
+    .intro {
+      font-style: italic;
+      color: #0b2a59;
+      font-size: 18px;
+      margin: 20px 0;
+      padding: 15px;
+      background: #f0f5ff;
+      border-left: 4px solid #0b2a59;
+      border-radius: 4px;
+    }
+    
+    p {
+      margin-bottom: 16px;
+      text-align: justify;
+    }
+    
+    .quote {
+      background-color: #f8f9fa;
+      padding: 20px;
+      border-left: 4px solid #dc3545;
+      border-radius: 4px;
+      margin: 20px 0;
+      font-style: italic;
+    }
+    
+    .question {
+      background-color: #fff3cd;
+      padding: 20px;
+      border-left: 4px solid #ffc107;
+      border-radius: 4px;
+      margin: 25px 0;
+      font-weight: bold;
+    }
+    
+    .divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, #ccc, transparent);
+      margin: 30px 0;
+    }
+    
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+      margin-top: 30px;
+    }
+    
+    .btn {
+      padding: 12px 25px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-primary {
+      background: #0b2a59;
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background: #1a3a69;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(11, 42, 89, 0.2);
+    }
+    
+    .btn-secondary {
+      background: transparent;
+      color: #0b2a59;
+      border: 2px solid #0b2a59;
+    }
+    
+    .btn-secondary:hover {
+      background: #0b2a59;
+      color: white;
+      transform: translateY(-2px);
+    }
+    
+    .social-share {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    
+    .social-btn {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 18px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    
+    .whatsapp { background: #25D366; }
+    .facebook { background: #3b5998; }
+    .twitter { background: #1DA1F2; }
+    .telegram { background: #0088cc; }
+    
+    .social-btn:hover {
+      transform: translateY(-3px) rotate(5deg);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #666;
+      font-size: 14px;
+      background: #f9f9f9;
+      border-top: 1px solid #eee;
+    }
+    
+    @media (max-width: 600px) {
+      .container {
+        border-radius: 0;
+      }
+      
+      h1 {
+        font-size: 24px;
+      }
+      
+      .news-content {
+        padding: 20px;
+      }
+      
+      .actions {
+        flex-direction: column;
+      }
+      
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
-  <main class="container">
-    <article>
+  <div class="container">
+    <header>
       <h1>Imputan por homicidio doloso y violación de Ley de Armas a guardia de seguridad</h1>
-      <p><small><strong>2025-09-08</strong></small></p>
-      <img src="/images/uploads/imputan1.jpg" alt="Imputan a guardia de seguridad" style="max-height:300px;object-fit:cover">
-
-      <p><em>De no creer…</em></p>
-
+      <div class="date">2025-09-08</div>
+    </header>
+    
+    <div class="news-content">
+      <div class="image-container">
+        <img src="https://sintraspap.github.io/images/uploads/imputan1.jpg" alt="Imputan a guardia de seguridad" class="news-image">
+      </div>
+      
+      <p class="intro">De no creer…</p>
+      
       <p>El guardia de seguridad que disparó contra un presunto delincuente fue imputado por homicidio doloso y violación de la Ley de Armas, según confirmó el fiscal de la causa, Édgar Delgado.</p>
 
-      <p>De acuerdo con la versión del representante del Ministerio Público, "se está construyendo un caso de dolo eventual porque el disparo lo realizó hacia la humanidad de la víctima. La distancia no representaba ningún peligro presente..."</p>
+      <div class="quote">
+        <p>De acuerdo con la versión del representante del Ministerio Público, "se está construyendo un caso de dolo eventual porque el disparo lo realizó hacia la humanidad de la víctima. La distancia no representaba ningún peligro presente..."</p>
+      </div>
+      
+      <div class="question">
+        <p>La discusión vuelve a poner en el centro de la agenda el eterno debate: ¿tienen más derechos los bandidos que la gente trabajadora que solo quiere defenderse?</p>
+      </div>
+      
+      <div class="divider"></div>
+      
+      <div class="actions">
+        <a href="/" class="btn btn-primary">⬅ Volver al inicio</a>
+        <button id="copyLink" class="btn btn-secondary">Copiar enlace</button>
+      </div>
+      
+      <div class="social-share">
+        <a href="#" class="social-btn whatsapp">📱</a>
+        <a href="#" class="social-btn facebook">f</a>
+        <a href="#" class="social-btn twitter">𝕏</a>
+        <a href="#" class="social-btn telegram">✈️</a>
+      </div>
+    </div>
+    
+    <footer>
+      SINTRASPAP © 2025 - Todos los derechos reservados
+    </footer>
+  </div>
 
-      <p>La discusión vuelve a poner en el centro de la agenda el eterno debate: ¿tienen más derechos los bandidos que la gente trabajadora que solo quiere defenderse?</p>
-  
-    <!-- Navegación y compartir -->
-<nav style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:16px 0">
-  <!-- Volver al inicio -->
-  <a href="/" style="background:#0b2a59;color:#fff;padding:8px 14px;border-radius:6px;display:inline-block;text-decoration:none">
-    ⬅ Volver al inicio
-  </a>
-
-  <!-- Botones de compartir (se completan con JS) -->
-  <a id="btn-whatsapp"  target="_blank" rel="noopener" style="color:#0b2a59;text-decoration:underline">WhatsApp</a>
-  <a id="btn-facebook"  target="_blank" rel="noopener" style="color:#0b2a59;text-decoration:underline">Facebook</a>
-  <a id="btn-twitter"   target="_blank" rel="noopener" style="color:#0b2a59;text-decoration:underline">X / Twitter</a>
-  <a id="btn-telegram"  target="_blank" rel="noopener" style="color:#0b2a59;text-decoration:underline">Telegram</a>
-  <button id="btn-copy" type="button" style="border:none;background:none;color:#0b2a59;text-decoration:underline;cursor:pointer">
-    Copiar enlace
-  </button>
-</nav>
-
-<script>
-  (function () {
-    // Usa URL absoluta de esta página (mejor que hardcodear)
-    const url   = location.href;
-    const title = document.title;
-
-    // Enlaces de compartir
-    const wa  = https://wa.me/?text=${encodeURIComponent(url)};
-    const fb  = https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)};
-    const tw  = https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)};
-    const tg  = https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)};
-
-    // Asigna href
-    const set = (id, href) => { const a = document.getElementById(id); if (a) a.href = href; };
-    set('btn-whatsapp', wa);
-    set('btn-facebook', fb);
-    set('btn-twitter',  tw);
-    set('btn-telegram', tg);
-
-    // Copiar enlace al portapapeles
-    const copyBtn = document.getElementById('btn-copy');
-    if (copyBtn && navigator.clipboard) {
-      copyBtn.addEventListener('click', async () => {
-        try {
-          await navigator.clipboard.writeText(url);
-          copyBtn.textContent = '¡Enlace copiado!';
-          setTimeout(() => (copyBtn.textContent = 'Copiar enlace'), 1500);
-        } catch {
-          alert('No se pudo copiar. Copiá manualmente: ' + url);
-        }
-      });
+  <script>
+    // Función para compartir en redes sociales
+    function setupSocialShare() {
+      const url = encodeURIComponent(window.location.href);
+      const title = encodeURIComponent(document.title);
+      
+      document.querySelector('.whatsapp').href = `https://wa.me/?text=${title}%20${url}`;
+      document.querySelector('.facebook').href = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+      document.querySelector('.twitter').href = `https://twitter.com/intent/tweet?url=${url}&text=${title}`;
+      document.querySelector('.telegram').href = `https://t.me/share/url?url=${url}&text=${title}`;
     }
-  })();
-</script>
-    </article>
-  </main>
+    
+    // Función para copiar enlace
+    document.getElementById('copyLink').addEventListener('click', function() {
+      const url = window.location.href;
+      
+      navigator.clipboard.writeText(url).then(() => {
+        this.textContent = '¡Enlace copiado!';
+        setTimeout(() => {
+          this.textContent = 'Copiar enlace';
+        }, 2000);
+      }).catch(err => {
+        alert('No se pudo copiar el enlace: ' + err);
+      });
+    });
+    
+    // Inicializar cuando el documento esté listo
+    document.addEventListener('DOMContentLoaded', setupSocialShare);
+  </script>
 </body>
 </html>
