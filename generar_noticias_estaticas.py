@@ -124,6 +124,19 @@ def generar_pagina_noticia(noticia, index):
         
         <a href="{SITE_URL}" class="volver">← Volver al inicio</a>
     </article>
+
+    # Dentro de la plantilla HTML, antes del </body>, agrega:
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" 
+    src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v19.0"
+    nonce="sintraspap"></script>
+    
+<!-- Comentarios de Facebook -->
+<div class="fb-comments"
+     data-href="{SITE_URL}/noticias/{slug}.html"
+     data-width="100%"
+     data-numposts="3"></div>
+
 </body>
 </html>"""
     
