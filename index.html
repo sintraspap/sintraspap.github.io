@@ -316,11 +316,10 @@ footer .muted {
   <!-- Noticias desde data/noticias.json -->
   <div id="news-from-json" class="cards"></div>
   
-  <script>
-// 1. FUNCIÓN PARA ACTUALIZAR META TAGS DINÁMICAMENTE (SOLO METAETIQUETAS, NO TÍTULO VISIBLE)
-  
+ <script>
+// 1. FUNCIÓN PARA ACTUALIZAR META TAGS DINÁMICAMENTE
+function actualizarMetaTags(noticia) {
   // Título fijo para la página - NO cambiar el título visible
-  // Mantener para metaetiquetas (redes sociales) solamente
   const metaTitle = noticia.titulo ? `${noticia.titulo} - SINTRASPAP` : 'SINTRASPAP';
   
   // Actualizar meta tags OG
