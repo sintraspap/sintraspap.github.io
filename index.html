@@ -278,8 +278,17 @@ footer .muted {
 
 <main id="main-content" class="container" role="main">
 
-<!-- INICIO -->
+  <!-- INICIO -->
 <section id="inicio" class="active">
+  <!-- ANUNCIOS DINÁMICOS (CARRUSEL DE TEXTO) -->
+  <div class="anuncio-dinamico" style="background: linear-gradient(135deg, #0b2a59 0%, #1e4f9a 100%); border-radius: 12px; padding: 20px; margin-bottom: 24px; text-align: center; box-shadow: 0 4px 12px rgba(11, 42, 89, 0.2);">
+    <div id="carrusel-anuncios" style="min-height: 50px; display: flex; align-items: center; justify-content: center;">
+      <p style="margin: 0; font-size: 18px; font-weight: 600; color: white;">
+        📢 <a href="#ofertas" style="color: white; text-decoration: underline;">¡Revisa las nuevas ofertas laborales!</a>
+      </p>
+    </div>
+  </div>
+
   <!-- AUSPCIANTES ARRIBA -->
   <div class="sponsor-grid">
     <div class="sponsor-item">
@@ -296,13 +305,13 @@ footer .muted {
   <div id="news-from-json" class="cards"></div>
   
   <script>
-// 1. FUNCIÓN PARA ACTUALIZAR META TAGS DINÁMICAMENTE
+// 1. FUNCIÓN PARA ACTUALIZAR META TAGS DINÁMICAMENTE (SOLO METAETIQUETAS, NO TÍTULO VISIBLE)
 function actualizarMetaTags(noticia) {
   if (!noticia) return;
   
-  // Configurar título
-  const title = noticia.titulo ? `${noticia.titulo} - SINTRASPAP` : 'SINTRASPAP';
-  document.title = title;
+  // Título fijo para la página - NO cambiar el título visible
+  // Mantener para metaetiquetas (redes sociales) solamente
+  const metaTitle = noticia.titulo ? `${noticia.titulo} - SINTRASPAP` : 'SINTRASPAP';
   
   // Actualizar meta tags OG
   const ogTitle = document.querySelector('meta[property="og:title"]');
@@ -315,8 +324,9 @@ function actualizarMetaTags(noticia) {
   const twitterDescription = document.querySelector('meta[name="twitter:description"]');
   const twitterImage = document.querySelector('meta[name="twitter:image"]');
   
-  if (ogTitle) ogTitle.setAttribute('content', title);
-  if (twitterTitle) twitterTitle.setAttribute('content', title);
+  // Solo actualizar metaetiquetas, no el título visible
+  if (ogTitle) ogTitle.setAttribute('content', metaTitle);
+  if (twitterTitle) twitterTitle.setAttribute('content', metaTitle);
   
   // Descripción (usar resumen o título si no hay resumen)
   const description = noticia.resumen || noticia.titulo || 'Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay';
@@ -377,7 +387,7 @@ function actualizarMetaTags(noticia) {
       }
     }
 
-    // 4. ACTUALIZAR META TAGS CON LA NOTICIA SELECCIONADA
+    // 4. ACTUALIZAR META TAGS CON LA NOTICIA SELECCIONADA (SOLO METAETIQUETAS)
     actualizarMetaTags(noticiaSeleccionada);
 
     // 5. RENDERIZAR NOTICIAS
@@ -480,6 +490,55 @@ function actualizarMetaTags(noticia) {
       '<p class="muted">⚠ No se pudo cargar noticias.</p>';
   }
 })();
+
+// CARRUSEL DE ANUNCIOS MEJORADO
+const anuncios = [
+  '📢 <a href="#ofertas" style="color: white; text-decoration: underline;">¡Revisa las nuevas ofertas laborales en nuestra sección de empleos!</a>',
+  '🔔 <a href="https://wa.me/595992644708" style="color: white; text-decoration: underline;" target="_blank">¿Necesitas asesoramiento legal? Contáctanos por WhatsApp</a>',
+  '📋 <a href="#leyes" style="color: white; text-decoration: underline;">Conoce tus derechos laborales en la sección de Leyes</a>',
+  '💼 <a href="#directorio" style="color: white; text-decoration: underline;">Empresas de seguridad habilitadas - Ver directorio actualizado</a>',
+  '👥 <a href="#contacto" style="color: white; text-decoration: underline;">¡Únete a nuestro sindicato! Protegemos tus derechos laborales</a>'
+];
+
+let anuncioIndex = 0;
+const contenedorAnuncios = document.getElementById('carrusel-anuncios');
+
+function cambiarAnuncio() {
+  if (!contenedorAnuncios) return;
+  
+  // Efecto de desvanecimiento
+  contenedorAnuncios.style.opacity = '0';
+  contenedorAnuncios.style.transition = 'opacity 0.5s ease';
+  
+  setTimeout(() => {
+    anuncioIndex = (anuncioIndex + 1) % anuncios.length;
+    contenedorAnuncios.innerHTML = `<p style="margin: 0; font-size: 18px; font-weight: 600; color: white;">${anuncios[anuncioIndex]}</p>`;
+    
+    // Restaurar opacidad
+    setTimeout(() => {
+      contenedorAnuncios.style.opacity = '1';
+    }, 50);
+  }, 500);
+}
+
+// Iniciar carrusel
+if (contenedorAnuncios) {
+  // Cambiar anuncio cada 5 segundos
+  setInterval(cambiarAnuncio, 5000);
+  
+  // Pausar cuando el mouse está sobre el anuncio
+  contenedorAnuncios.addEventListener('mouseenter', () => {
+    clearInterval(window.anuncioInterval);
+  });
+  
+  // Reanudar cuando el mouse sale
+  contenedorAnuncios.addEventListener('mouseleave', () => {
+    window.anuncioInterval = setInterval(cambiarAnuncio, 5000);
+  });
+  
+  // Iniciar intervalo
+  window.anuncioInterval = setInterval(cambiarAnuncio, 5000);
+}
 </script>
 
 </section>
