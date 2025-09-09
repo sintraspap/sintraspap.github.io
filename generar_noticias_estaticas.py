@@ -14,7 +14,7 @@ from datetime import datetime
 # Configuración
 SITE_URL = "https://sintraspap.github.io"
 NOTICIAS_JSON = "data/noticias.json"
-OUTPUT_DIR = "noticias"
+OUTPUT_DIR = "."  # Esto pondrá los archivos en la raíz
 
 def slugify(text):
     """Convierte texto a formato slug para URLs compatible con GitHub Pages"""
@@ -49,107 +49,17 @@ def slugify(text):
     text = re.sub(r'[\s-]+', '-', text)
     text = text.strip('-')
     
+    # Si después de todo el procesamiento queda vacío, usar "noticia"
+    if not text:
+        return "noticia"
+    
     # Limitar longitud para GitHub Pages
     if len(text) > 60:
         text = text[:60]
         # Asegurar que no termina con guión
         text = text.rsplit('-', 1)[0]
     
-    return text or "noticia"
-
-def generar_pagina_noticia(noticia, index):
-    """Genera HTML estático para una noticia"""
-    
-    # Crear slug para la URL
-    slug = slugify(noticia.get('titulo', f'noticia-{index}'))
-    
-    # Plantilla HTML
-    html_template = f"""<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{noticia.get('titulo', '')} - SINTRASPAP</title>
-    <meta name="description" content="{noticia.get('resumen', '')}">
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="{noticia.get('titulo', '')} - SINTRASPAP">
-    <meta property="og:description" content="{noticia.get('resumen', '')}">
-    <meta property="og:image" content="{noticia.get('imagen', '')}">
-    <meta property="og:url" content="{SITE_URL}/{slug}.html">
-    
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{noticia.get('titulo', '')} - SINTRASPAP">
-    <meta name="twitter:description" content="{noticia.get('resumen', '')}">
-    <meta name="twitter:image" content="{noticia.get('imagen', '')}">
-    
-    <style>
-        body {{
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            line-height: 1.6;
-        }}
-        .noticia-img {{
-            width: 100%;
-            max-height: 400px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin: 20px 0;
-        }}
-        .volver {{
-            display: inline-block;
-            margin-top: 30px;
-            padding: 10px 15px;
-            background: #0b2a59;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }}
-    </style>
-</head>
-<body>
-    <article>
-        <h1>{noticia.get('titulo', '')}</h1>
-        <p><strong>Fecha:</strong> {noticia.get('fecha', '')}</p>
-        
-        {f'<img src="{noticia["imagen"]}" alt="{noticia.get("titulo", "")}" class="noticia-img">' if noticia.get('imagen') else ''}
-        
-        <div class="contenido">
-            {noticia.get('cuerpo', '')}
-        </div>
-        
-        <a href="{SITE_URL}" class="volver">← Volver al inicio</a>
-    </article>
-
-    # Dentro de la plantilla HTML, antes del </body>, agrega:
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous" 
-    src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v19.0"
-    nonce="sintraspap"></script>
-    
-<!-- Comentarios de Facebook -->
-<div class="fb-comments"
-     data-href="{SITE_URL}/noticias/{slug}.html"
-     data-width="100%"
-     data-numposts="3"></div>
-
-</body>
-</html>"""
-    
-    # Crear directorio si no existe
-    if not os.path.exists(OUTPUT_DIR):
-        os.makedirs(OUTPUT_DIR)
-    
-    # Guardar archivo
-    filename = f"{OUTPUT_DIR}/{slug}.html"
-    with open(filename, 'w', encoding='utf-8') as f:
-        f.write(html_template)
-    
-    return f"{SITE_URL}/{slug}.html"
+    return text
 
 def main():
     print("🔄 Generando páginas estáticas para noticias...")

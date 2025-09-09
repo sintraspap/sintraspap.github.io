@@ -447,56 +447,70 @@ function actualizarMetaTags(noticia) {
       </div>` : ''}
     
     <div class="acciones" style="margin-top:20px">
+
       <button
   class="btn-compartir"
   style="background:#0b5ed7;color:#fff;border:none;padding:8px 14px;border-radius:6px;cursor:pointer"
   data-title="${item.titulo || ''}"
   data-image="${item.imagen || ''}"
-  data-url="${location.origin}/noticias/${slug}.html"
+  data-slug="${slug}"
+  onclick="window.open('${location.origin}/${slug}.html', '_blank')"
 >
   Compartir
 </button>
+
     </div>
     
     <!-- Comentarios de Facebook -->
-  <div class="fb-comments"
-  data-href="${location.origin}/noticias/${slug}.html"
-  data-width="100%"
-  data-numposts="3"></div>
-  </article>
-`;
+    <div class="fb-comments" data-href="${location.origin}/${slug}.html"
+     data-width="100%"
+     data-numposts="3"></div>
 
     }).join('');
 
     // 6. EVENT LISTENER PARA BOTONES COMPARTIR
     document.querySelectorAll('.btn-compartir').forEach(btn => {
-      btn.addEventListener('click', async (e) => {
-        const title = e.currentTarget.dataset.title || document.title;
-        const image = e.currentTarget.dataset.image || '';
-        const url = e.currentTarget.dataset.url || location.href;
-        
-        // Encontrar la noticia correspondiente
-        const itemIndex = items.findIndex(item => item.titulo === title);
-        if (itemIndex !== -1) {
-          actualizarMetaTags({
-            ...items[itemIndex],
-            imagen: image || items[itemIndex].imagen
-          });
-        }
-        
-        // Compartir
-        try {
-          if (navigator.share) {
-            await navigator.share({ title, url });
-          } else {
-            await navigator.clipboard.writeText(url);
-            alert('Enlace copiado ✔');
-          }
-        } catch (err) {
-          console.log('Error al compartir:', err);
-        }
-      });
+  btn.addEventListener('click', async (e) => {
+    const title = e.currentTarget.dataset.title || document.title;
+    const image = e.currentTarget.dataset.image || '';
+    const slug = e.currentTarget.dataset.slug || '';
+    const url = `${location.origin}/${slug}.html`;
+    
+    // Encontrar la noticia correspondiente
+    const itemIndex = items.findIndex(item => {
+      const itemSlug = (item.titulo || '')
+        .toLowerCase()
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^a-z0-9\s-]/g, '')
+        .trim().replace(/\s+/g, '-') || ('noticia-' + items.indexOf(item));
+      return itemSlug === slug;
     });
+    
+    if (itemIndex !== -1) {
+      actualizarMetaTags({
+        ...items[itemIndex],
+        imagen: image || items[itemIndex].imagen
+      });
+    }
+    
+    // Compartir
+    try {
+      if (navigator.share) {
+        await navigator.share({ title, url });
+      } else {
+        await navigator.clipboard.writeText(url);
+        alert('Enlace copiado ✔');
+      }
+    } catch (err) {
+      console.log('Error al compartir:', err);
+    }
+  });
+});
+
+<a href="${slug}.html" 
+   style="display:inline-block; margin-left:10px; background:#28a745; color:#fff; padding:8px 14px; border-radius:6px; text-decoration:none;">
+   Leer más →
+</a>
 
   } catch (e) {
     console.error('Error cargando noticias:', e);
