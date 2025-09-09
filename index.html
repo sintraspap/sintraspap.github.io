@@ -278,19 +278,19 @@ footer .muted {
 
 <main id="main-content" class="container" role="main">
 
-<!-- INICIO -->
+  <!-- INICIO -->
 <section id="inicio" class="active">
 
-<!-- BANNER GRUPO WHATSAPP - Una sola línea -->
-<div style="background: #25D366; color: white; padding: 10px 15px; border-radius: 8px; margin-bottom: 20px; text-align: center; font-size: 0.9rem;">
-  📱 <strong>Únete a nuestro grupo de WhatsApp:</strong> 
-  <a href="https://chat.whatsapp.com/EOouzAXfu7y3qGDIFkU2bZ" 
-     target="_blank" 
-     rel="noopener"
-     style="color: white; text-decoration: underline; font-weight: bold; margin-left: 5px;">
-    250+ miembros - Unirse aquí
-  </a>
-</div>
+  <!-- BANNER GRUPO WHATSAPP - Una sola línea -->
+  <div style="background: #25D366; color: white; padding: 10px 15px; border-radius: 8px; margin-bottom: 20px; text-align: center; font-size: 0.9rem;">
+    📱 <strong>Únete a nuestro grupo de WhatsApp:</strong> 
+    <a href="https://chat.whatsapp.com/EOouzAXfu7y3qGDIFkU2bZ" 
+       target="_blank" 
+       rel="noopener"
+       style="color: white; text-decoration: underline; font-weight: bold; margin-left: 5px;">
+      250+ miembros - Unirse aquí
+    </a>
+  </div>
 
   <!-- ANUNCIOS DINÁMICOS (CARRUSEL DE TEXTO) -->
   <div class="anuncio-dinamico" style="background: linear-gradient(135deg, #0b2a59 0%, #1e4f9a 100%); border-radius: 12px; padding: 20px; margin-bottom: 24px; text-align: center; box-shadow: 0 4px 12px rgba(11, 42, 89, 0.2);">
@@ -301,166 +301,233 @@ footer .muted {
     </div>
   </div>
 
-  <!-- AUSPCIANTES ARRIBA -->
-  <div class="sponsor-grid">
-    <div class="sponsor-item">
-      <img src="banner-1.png" alt="Auspiciante 1" onerror="this.style.display='none'">
-      <a href="https://wa.me/595992644708" target="_blank" rel="noopener">Escribinos al WhatsApp</a>
-    </div>
-    <div class="sponsor-item">
-      <img src="banner-2.png" alt="Auspiciante 2" onerror="this.style.display='none'">
-      <a href="https://wa.me/595992644708" target="_blank" rel="noopener">Escribinos al WhatsApp</a>
-    </div>
+  <!-- NOTICIAS EN HTML -->
+  <div id="news-container" class="cards">
+    
+    <!-- Noticia 1: Imputan por homicidio doloso -->
+    <article class="card" data-slug="imputan-por-homicidio-doloso-guardia-seguridad">
+      <h3>Imputan por homicidio doloso y violación de Ley de Armas a guardia de seguridad que mató a presunto ladrón</h3>
+      <p style="margin-top:0; margin-bottom:12px;"><small><strong>2025-09-08</strong></small></p>
+      <img src="images/uploads/imputan1.jpg" alt="Imputan a guardia de seguridad" style="max-height:300px;object-fit:cover; margin-bottom:12px;">
+      
+      <p class="muted" style="font-style: italic;">De no creer...</p>
+      
+      <div class="contenido-noticia" style="display: none; margin-top:12px;">
+        <p>El guardia de seguridad que disparó contra un presunto delincuente fue imputado por homicidio doloso y violación de la Ley de Armas, según confirmó el fiscal de la causa, Édgar Delgado.</p>
+        
+        <p>De acuerdo con la versión del representante del Ministerio Público, "se está construyendo un caso de dolo eventual porque el disparo lo realizó hacia la humanidad de la víctima. La distancia no representaba ningún peligro presente para el guardia porque la víctima no contaba con ningún tipo de arma. El otro tenía otro medio para repeler el peligro", explicó Delgado.</p>
+        
+        <p>El hecho generó una fuerte polémica, ya que, según muchos sectores de la sociedad, parece que los delincuentes gozan de más protección legal que los trabajadores y ciudadanos honestos que arriesgan su vida frente a situaciones de inseguridad. Mientras el guardia deberá enfrentar un proceso judicial que podría costarle años de cárcel, el fallecido había sido sindicado como parte de un intento de robo.</p>
+        
+        <p>La discusión vuelve a poner en el centro de la agenda el eterno debate: ¿tienen más derechos los bandidos que la gente trabajadora que solo quiere defenderse? La ciudadanía reclama leyes más equilibradas que protejan a quienes actúan en legítima defensa, al tiempo que exigen mayor firmeza contra la delincuencia que día a día afecta a comerciantes, trabajadores y familias.</p>
+      </div>
+      
+      <div style="margin-top:12px;">
+        <button class="btn-toggle-leer" data-slug="imputan-por-homicidio-doloso-guardia-seguridad" data-expandido="false" 
+                style="background:#0b2a59;color:#fff;border:none;padding:8px 14px;border-radius:6px;cursor:pointer">
+          Leer más
+        </button>
+      </div>
+      
+      <div class="acciones" style="margin-top:20px">
+        <button
+          class="btn-compartir"
+          style="background:#0b5ed7;color:#fff;border:none;padding:8px 14px;border-radius:6px;cursor:pointer"
+          data-title="Imputan por homicidio doloso y violación de Ley de Armas a guardia de seguridad que mató a presunto ladrón"
+          data-image="images/uploads/imputan1.jpg"
+          data-url="https://sintraspap.github.io/?n=imputan-por-homicidio-doloso-guardia-seguridad"
+          aria-label="Compartir noticia: Imputan por homicidio doloso a guardia de seguridad"
+        >
+          Compartir
+        </button>
+      </div>
+      
+      <!-- Comentarios de Facebook (solo se muestran cuando la noticia está expandida) -->
+      <div class="fb-comments" style="display:none;"
+           data-href="https://sintraspap.github.io/?n=imputan-por-homicidio-doloso-guardia-seguridad"
+           data-width="100%"
+           data-numposts="3"></div>
+    </article>
+
+    <!-- Noticia 2: Intendenta de CDE destituye a funcionario -->
+    <article class="card" data-slug="intendenta-cde-destituye-funcionario-violencia-hospital">
+      <h3>Intendenta de CDE destituye a funcionario por violencia en hospital de Franco</h3>
+      <p style="margin-top:0; margin-bottom:12px;"><small><strong>2025-09-05</strong></small></p>
+      <img src="https://sintraspap.github.io/images/uploads/gvd.jpg" alt="Intendenta de CDE destituye a funcionario" style="max-height:300px;object-fit:cover; margin-bottom:12px;">
+      
+      <p class="muted" style="font-style: italic;">La intendenta interina de Ciudad del Este, María Portillo, destituyó al funcionario Eduardo Joel Ríos Dávalos tras un violento incidente en el Hospital Distrital de Presidente Franco.</p>
+      
+      <div class="contenido-noticia" style="display: none; margin-top:12px;">
+        <p>La intendenta interina de Ciudad del Este, <strong>María Portillo</strong>, destituyó de manera inmediata al funcionario municipal <strong>Eduardo Joel Ríos Dávalos</strong>, tras protagonizar un violento incidente en el Hospital Distrital de Presidente Franco.</p>
+
+        <p>Según la denuncia, Ríos Dávalos amenazó de muerte y profirió graves insultos contra un guardia de seguridad del hospital, llegando incluso a decir que atentaría contra su familia. La escena fue registrada en video y generó repudio ciudadano.</p>
+
+        <p>Portillo expresó que en su administración no se tolerarán conductas violentas y pidió a las instituciones judiciales sancionar con la mayor severidad al exfuncionario.</p>
+
+        <p>Ríos Dávalos, de 35 años, ex candidato a concejal en Hernandarias, fue abucheado por otras personas que aguardaban en el lugar al presionar al guardia para que lo comunique con el director del hospital.</p>
+      </div>
+      
+      <div style="margin-top:12px;">
+        <button class="btn-toggle-leer" data-slug="intendenta-cde-destituye-funcionario-violencia-hospital" data-expandido="false" 
+                style="background:#0b2a59;color:#fff;border:none;padding:8px 14px;border-radius:6px;cursor:pointer">
+          Leer más
+        </button>
+      </div>
+      
+      <div class="acciones" style="margin-top:20px">
+        <button
+          class="btn-compartir"
+          style="background:#0b5ed7;color:#fff;border:none;padding:8px 14px;border-radius:6px;cursor:pointer"
+          data-title="Intendenta de CDE destituye a funcionario por violencia en hospital de Franco"
+          data-image="https://sintraspap.github.io/images/uploads/gvd.jpg"
+          data-url="https://sintraspap.github.io/?n=intendenta-cde-destituye-funcionario-violencia-hospital"
+          aria-label="Compartir noticia: Intendenta de CDE destituye a funcionario"
+        >
+          Compartir
+        </button>
+      </div>
+      
+      <!-- Comentarios de Facebook (solo se muestran cuando la noticia está expandida) -->
+      <div class="fb-comments" style="display:none;"
+           data-href="https://sintraspap.github.io/?n=intendenta-cde-destituye-funcionario-violencia-hospital"
+           data-width="100%"
+           data-numposts="3"></div>
+    </article>
+
+    <!-- Noticia 3: Repudio a agresión contra guardia -->
+    <article class="card" data-slug="repudio-agresion-guardia-hospital-franco">
+      <h3>Repudio a agresión contra guardia en el Hospital Distrital de Presidente Franco</h3>
+      <p style="margin-top:0; margin-bottom:12px;"><small><strong>2025-09-03</strong></small></p>
+      <img src="https://sintraspap.github.io/images/uploads/spy.jpg" alt="Repudio a agresión contra guardia" style="max-height:300px;object-fit:cover; margin-bottom:12px;">
+      
+      <p class="muted" style="font-style: italic;">SINTRASPAP repudia la agresión al guardia del Hospital Distrital de Presidente Franco e insta a sancionar al responsable.</p>
+      
+      <div class="contenido-noticia" style="display: none; margin-top:12px;">
+        <p>Desde el <strong>Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay (SINTRASPAP)</strong> repudiamos enérgicamente el actuar de la persona que maltrató y amenazó de muerte al compañero guardia del Hospital Distrital de Presidente Franco.</p>
+        <p>La salud es un derecho, pero no puede reclamarse con violencia ni a costa de quienes cumplen con su labor diaria. Felicitamos al compañero por su templanza y profesionalismo.</p>
+        <p>Instamos a las autoridades a identificar al agresor y aplicar las sanciones correspondientes. Toda nuestra solidaridad con el guardia y con quienes trabajan cuidando a la ciudadanía.</p>
+      </div>
+      
+      <div style="margin-top:12px;">
+        <button class="btn-toggle-leer" data-slug="repudio-agresion-guardia-hospital-franco" data-expandido="false" 
+                style="background:#0b2a59;color:#fff;border:none;padding:8px 14px;border-radius:6px;cursor:pointer">
+          Leer más
+        </button>
+      </div>
+      
+      <div class="acciones" style="margin-top:20px">
+        <button
+          class="btn-compartir"
+          style="background:#0b5ed7;color:#fff;border:none;padding:8px 14px;border-radius:6px;cursor:pointer"
+          data-title="Repudio a agresión contra guardia en el Hospital Distrital de Presidente Franco"
+          data-image="https://sintraspap.github.io/images/uploads/spy.jpg"
+          data-url="https://sintraspap.github.io/?n=repudio-agresion-guardia-hospital-franco"
+          aria-label="Compartir noticia: Repudio a agresión contra guardia"
+        >
+          Compartir
+        </button>
+      </div>
+      
+      <!-- Comentarios de Facebook (solo se muestran cuando la noticia está expandida) -->
+      <div class="fb-comments" style="display:none;"
+           data-href="https://sintraspap.github.io/?n=repudio-agresion-guardia-hospital-franco"
+           data-width="100%"
+           data-numposts="3"></div>
+    </article>
+
+    <!-- Noticia 4: Reconocimiento al SINTRASPAP -->
+    <article class="card" data-slug="reconocimiento-sintraspap-personeria-gremial">
+      <h3>Reconocimiento al SINTRASPAP</h3>
+      <p style="margin-top:0; margin-bottom:12px;"><small><strong>2025-02-15</strong></small></p>
+      <img src="https://sintraspap.github.io/images/uploads/spy2.jpg" alt="Reconocimiento al SINTRASPAP" style="max-height:300px;object-fit:cover; margin-bottom:12px;">
+      
+      <p class="muted" style="font-style: italic;">El Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay (SINTRASPAP) obtuvo el reconocimiento oficial del Ministerio de Trabajo, Empleo y Seguridad Social.</p>
+      
+      <div class="contenido-noticia" style="display: none; margin-top:12px;">
+        <p>Tras mucho esfuerzo y perseverancia, y pese a varios intentos de las empresas explotadoras por frenar nuestra conformación, hemos logrado obtener la personería gremial, reconocimiento definitivo otorgado por el Ministerio de Trabajo, Empleo y Seguridad Social.</p>
+        <p>Este logro histórico nos otorga la representación legal de nuestros afiliados y nos fortalece para seguir luchando por un sector más justo, digno y respetado para todos los trabajadores de la seguridad privada.</p>
+      </div>
+      
+      <div style="margin-top:12px;">
+        <button class="btn-toggle-leer" data-slug="reconocimiento-sintraspap-personeria-gremial" data-expandido="false" 
+                style="background:#0b2a59;color:#fff;border:none;padding:8px 14px;border-radius:6px;cursor:pointer">
+          Leer más
+        </button>
+      </div>
+      
+      <div class="acciones" style="margin-top:20px">
+        <button
+          class="btn-compartir"
+          style="background:#0b5ed7;color:#fff;border:none;padding:8px 14px;border-radius:6px;cursor:pointer"
+          data-title="Reconocimiento al SINTRASPAP"
+          data-image="https://sintraspap.github.io/images/uploads/spy2.jpg"
+          data-url="https://sintraspap.github.io/?n=reconocimiento-sintraspap-personeria-gremial"
+          aria-label="Compartir noticia: Reconocimiento al SINTRASPAP"
+        >
+          Compartir
+        </button>
+      </div>
+      
+      <!-- Comentarios de Facebook (solo se muestran cuando la noticia está expandida) -->
+      <div class="fb-comments" style="display:none;"
+           data-href="https://sintraspap.github.io/?n=reconocimiento-sintraspap-personeria-gremial"
+           data-width="100%"
+           data-numposts="3"></div>
+    </article>
+
   </div>
+  
+  <script>
+    // CARRUSEL DE ANUNCIOS MEJORADO
+    const anuncios = [
+      '📢 <a href="#ofertas" style="color: white; text-decoration: underline;">¡Revisa las nuevas ofertas laborales en nuestra sección de empleos!</a>',
+      '🔔 <a href="https://wa.me/595992644708" style="color: white; text-decoration: underline;" target="_blank">¿Necesitas asesoramiento legal? Contáctanos por WhatsApp</a>',
+      '📋 <a href="#leyes" style="color: white; text-decoration: underline;">Conoce tus derechos laborales en la sección de Leyes</a>',
+      '💼 <a href="#directorio" style="color: white; text-decoration: underline;">Empresas de seguridad habilitadas - Ver directorio actualizado</a>',
+      '👥 <a href="#contacto" style="color: white; text-decoration: underline;">¡Únete a nuestro sindicato! Protegemos tus derechos laborales</a>'
+    ];
 
-  <!-- Noticias desde data/noticias.json -->
-  <div id="news-from-json" class="cards"></div>
-  
- <script>
-// 1. FUNCIÓN PARA ACTUALIZAR META TAGS DINÁMICAMENTE
-function actualizarMetaTags(noticia) {
-  // Título fijo para la página - NO cambiar el título visible
-  const metaTitle = noticia.titulo ? `${noticia.titulo} - SINTRASPAP` : 'SINTRASPAP';
-  
-  // Actualizar meta tags OG
-  const ogTitle = document.querySelector('meta[property="og:title"]');
-  const ogDescription = document.querySelector('meta[property="og:description"]');
-  const ogImage = document.querySelector('meta[property="og:image"]');
-  const ogUrl = document.querySelector('meta[property="og:url"]');
-  
-  // Actualizar meta tags Twitter
-  const twitterTitle = document.querySelector('meta[name="twitter:title"]');
-  const twitterDescription = document.querySelector('meta[name="twitter:description"]');
-  const twitterImage = document.querySelector('meta[name="twitter:image"]');
-  
-  // Solo actualizar metaetiquetas, no el título visible
-  if (ogTitle) ogTitle.setAttribute('content', metaTitle);
-  if (twitterTitle) twitterTitle.setAttribute('content', metaTitle);
-  
-  // Descripción (usar resumen o título si no hay resumen)
-  const description = noticia.resumen || noticia.titulo || 'Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay';
-  if (ogDescription) ogDescription.setAttribute('content', description);
-  if (twitterDescription) twitterDescription.setAttribute('content', description);
-  
-  // Imagen (usar imagen de la noticia o la portada por defecto)
-  const imageUrl = noticia.imagen || 'https://sintraspap.github.io/portada.jpg';
-  if (ogImage) ogImage.setAttribute('content', imageUrl);
-  if (twitterImage) twitterImage.setAttribute('content', imageUrl);
-  
-  // URL actual (con parámetro de noticia si existe)
-  const currentUrl = window.location.href;
-  if (ogUrl) ogUrl.setAttribute('content', currentUrl);
-}
+    let anuncioIndex = 0;
+    const contenedorAnuncios = document.getElementById('carrusel-anuncios');
 
-// 2. CARGAR NOTICIAS DESDE JSON
-(async () => {
-  try {
-    const res = await fetch('data/noticias.json?v=' + Date.now(), { cache: 'no-store' });
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-
-    const data = await res.json();
-    const items = Array.isArray(data) ? data : (data.items || []);
-
-    // Orden por fecha (más nuevas primero)
-    items.sort((a, b) => (b.fecha || '').localeCompare(a.fecha || ''));
-
-    const cont = document.getElementById('news-from-json');
-    if (!items.length) {
-      cont.innerHTML = '<p class="muted">Aún no hay noticias.</p>';
-      return;
+    function cambiarAnuncio() {
+      if (!contenedorAnuncios) return;
+      
+      // Efecto de desvanecimiento
+      contenedorAnuncios.style.opacity = '0';
+      contenedorAnuncios.style.transition = 'opacity 0.5s ease';
+      
+      setTimeout(() => {
+        anuncioIndex = (anuncioIndex + 1) % anuncios.length;
+        contenedorAnuncios.innerHTML = `<p style="margin: 0; font-size: 18px; font-weight: 600; color: white;">${anuncios[anuncioIndex]}</p>`;
+        
+        // Restaurar opacidad
+        setTimeout(() => {
+          contenedorAnuncios.style.opacity = '1';
+        }, 50);
+      }, 500);
     }
 
-    // 3. VERIFICAR SI HAY UNA NOTICIA ESPECÍFICA EN LA URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const noticiaParam = urlParams.get('n');
-    let noticiaSeleccionada = items[0]; // Por defecto la primera
-
-    if (noticiaParam) {
-      // Buscar la noticia por slug
-      const found = items.find((item, index) => {
-        const slug = (item.titulo || '')
-          .toLowerCase()
-          .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-          .replace(/[^a-z0-9\s-]/g, '')
-          .trim().replace(/\s+/g, '-') || ('noticia-' + index);
-        return slug === noticiaParam;
+    // Iniciar carrusel
+    if (contenedorAnuncios) {
+      // Cambiar anuncio cada 5 segundos
+      setInterval(cambiarAnuncio, 5000);
+      
+      // Pausar cuando el mouse está sobre el anuncio
+      contenedorAnuncios.addEventListener('mouseenter', () => {
+        clearInterval(window.anuncioInterval);
       });
       
-      if (found) {
-        noticiaSeleccionada = found;
-        // Scroll suave a la noticia después de cargar
-        setTimeout(() => {
-          const element = document.querySelector(`[data-slug="${noticiaParam}"]`);
-          if (element) element.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
-      }
+      // Reanudar cuando el mouse sale
+      contenedorAnuncios.addEventListener('mouseleave', () => {
+        window.anuncioInterval = setInterval(cambiarAnuncio, 5000);
+      });
+      
+      // Iniciar intervalo
+      window.anuncioInterval = setInterval(cambiarAnuncio, 5000);
     }
 
-    // 4. ACTUALIZAR META TAGS CON LA NOTICIA SELECCIONADA (SOLO METAETIQUETAS)
-    actualizarMetaTags(noticiaSeleccionada);
-
-    // 5. RENDERIZAR NOTICIAS
-    cont.innerHTML = items.map((item, i) => {
-      const slug = (item.titulo || '')
-        .toLowerCase()
-        .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-        .replace(/[^a-z0-9\s-]/g, '')
-        .trim().replace(/\s+/g, '-') || ('noticia-' + i);
-
-      const safeTitle = (item.titulo || '').replace(/"/g, '&quot;');
-      const isActive = noticiaParam === slug;
-      
-      // Determinar si mostrar contenido completo o resumen
-      const mostrarCompleto = isActive || !item.cuerpo;
-      
-      return `
-        <article class="card" data-slug="${slug}" ${isActive ? 'style="border: 2px solid #0b2a59;"' : ''}>
-          <h3>${item.titulo || ''}</h3>
-          ${item.fecha ? `<p style="margin-top:0; margin-bottom:12px;"><small><strong>${item.fecha}</strong></small></p>` : ''}
-          ${item.imagen ? `<img src="${item.imagen}" alt="${safeTitle}" style="max-height:300px;object-fit:cover; margin-bottom:12px;">` : ''}
-          
-          ${item.resumen ? `<p class="muted" style="font-style: italic;">${item.resumen}</p>` : ''}
-          
-          ${item.cuerpo ? `
-            <div class="contenido-noticia" style="${mostrarCompleto ? '' : 'display: none;'} margin-top:12px;">
-              ${item.cuerpo}
-            </div>
-          ` : ''}
-          
-          ${item.cuerpo ? `
-            <div style="margin-top:12px;">
-              <button class="btn-toggle-leer" data-slug="${slug}" data-expandido="${mostrarCompleto}" 
-                      style="background:#0b2a59;color:#fff;border:none;padding:8px 14px;border-radius:6px;cursor:pointer">
-                ${mostrarCompleto ? 'Leer menos' : 'Leer más'}
-              </button>
-            </div>
-          ` : ''}
-          
-          <div class="acciones" style="margin-top:20px">
-            <button
-              class="btn-compartir"
-              style="background:#0b5ed7;color:#fff;border:none;padding:8px 14px;border-radius:6px;cursor:pointer"
-              data-title="${item.titulo || ''}"
-              data-image="${item.imagen || ''}"
-              data-url="${location.origin + location.pathname}?n=${slug}"
-              aria-label="Compartir noticia: ${item.titulo || ''}"
-            >
-              Compartir
-            </button>
-          </div>
-          
-          <!-- Comentarios de Facebook (solo se muestran cuando la noticia está expandida) -->
-          ${mostrarCompleto ? `
-          <div class="fb-comments"
-               data-href="${location.origin + location.pathname}?n=${slug}"
-               data-width="100%"
-               data-numposts="3"></div>
-          ` : ''}
-        </article>
-      `;
-    }).join('');
-
-    // 6. EVENT LISTENER PARA BOTONES "LEER MÁS/LEER MENOS"
+    // EVENT LISTENER PARA BOTONES "LEER MÁS/LEER MENOS"
     document.querySelectorAll('.btn-toggle-leer').forEach(btn => {
       btn.addEventListener('click', (e) => {
         const slug = e.currentTarget.dataset.slug;
@@ -511,21 +578,11 @@ function actualizarMetaTags(noticia) {
       });
     });
 
-    // 7. EVENT LISTENER PARA BOTONES COMPARTIR
+    // EVENT LISTENER PARA BOTONES COMPARTIR
     document.querySelectorAll('.btn-compartir').forEach(btn => {
       btn.addEventListener('click', async (e) => {
         const title = e.currentTarget.dataset.title || document.title;
-        const image = e.currentTarget.dataset.image || '';
         const url = e.currentTarget.dataset.url || location.href;
-        
-        // Encontrar la noticia correspondiente
-        const itemIndex = items.findIndex(item => item.titulo === title);
-        if (itemIndex !== -1) {
-          actualizarMetaTags({
-            ...items[itemIndex],
-            imagen: image || items[itemIndex].imagen
-          });
-        }
         
         // Compartir
         try {
@@ -541,62 +598,22 @@ function actualizarMetaTags(noticia) {
       });
     });
 
-  } catch (e) {
-    console.error('Error cargando noticias:', e);
-    document.getElementById('news-from-json').innerHTML =
-      '<p class="muted">⚠ No se pudo cargar noticias.</p>';
-  }
-})();
-
-// CARRUSEL DE ANUNCIOS MEJORADO
-const anuncios = [
-  '📢 <a href="#ofertas" style="color: white; text-decoration: underline;">¡Revisa las nuevas ofertas laborales en nuestra sección de empleos!</a>',
-  '🔔 <a href="https://wa.me/595992644708" style="color: white; text-decoration: underline;" target="_blank">¿Necesitas asesoramiento legal? Contáctanos por WhatsApp</a>',
-  '📋 <a href="#leyes" style="color: white; text-decoration: underline;">Conoce tus derechos laborales en la sección de Leyes</a>',
-  '💼 <a href="#directorio" style="color: white; text-decoration: underline;">Empresas de seguridad habilitadas - Ver directorio actualizado</a>',
-  '👥 <a href="#contacto" style="color: white; text-decoration: underline;">¡Únete a nuestro sindicato! Protegemos tus derechos laborales</a>'
-];
-
-let anuncioIndex = 0;
-const contenedorAnuncios = document.getElementById('carrusel-anuncios');
-
-function cambiarAnuncio() {
-  if (!contenedorAnuncios) return;
-  
-  // Efecto de desvanecimiento
-  contenedorAnuncios.style.opacity = '0';
-  contenedorAnuncios.style.transition = 'opacity 0.5s ease';
-  
-  setTimeout(() => {
-    anuncioIndex = (anuncioIndex + 1) % anuncios.length;
-    contenedorAnuncios.innerHTML = `<p style="margin: 0; font-size: 18px; font-weight: 600; color: white;">${anuncios[anuncioIndex]}</p>`;
-    
-    // Restaurar opacidad
-    setTimeout(() => {
-      contenedorAnuncios.style.opacity = '1';
-    }, 50);
-  }, 500);
-}
-
-// Iniciar carrusel
-if (contenedorAnuncios) {
-  // Cambiar anuncio cada 5 segundos
-  setInterval(cambiarAnuncio, 5000);
-  
-  // Pausar cuando el mouse está sobre el anuncio
-  contenedorAnuncios.addEventListener('mouseenter', () => {
-    clearInterval(window.anuncioInterval);
-  });
-  
-  // Reanudar cuando el mouse sale
-  contenedorAnuncios.addEventListener('mouseleave', () => {
-    window.anuncioInterval = setInterval(cambiarAnuncio, 5000);
-  });
-  
-  // Iniciar intervalo
-  window.anuncioInterval = setInterval(cambiarAnuncio, 5000);
-}
-</script>
+    // Manejar parámetros de URL para noticias específicas
+    window.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const noticiaParam = urlParams.get('n');
+      
+      if (noticiaParam) {
+        const noticiaElement = document.querySelector(`[data-slug="${noticiaParam}"]`);
+        if (noticiaElement) {
+          const btn = noticiaElement.querySelector('.btn-toggle-leer');
+          if (btn && btn.dataset.expandido === 'false') {
+            btn.click(); // Simular clic para expandir
+          }
+        }
+      }
+    });
+  </script>
 
 </section>
 
