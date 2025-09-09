@@ -7,7 +7,6 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-Q994YVT2V2');
 </script>
 <meta charset="utf-8" />
@@ -19,18 +18,20 @@
 <link rel="icon" href="favicon-32x32.png" sizes="32x32" type="image/png">
 <link rel="icon" href="favicon-16x16.png" sizes="16x16" type="image/png">
 
-<!-- Open Graph general -->
+<!-- Open Graph general (se actualizarán dinámicamente) -->
 <meta property="og:title" id="og-title" content="SINTRASPAP - Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay">
 <meta property="og:description" id="og-description" content="Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay. Representamos y defendemos a los trabajadores de la seguridad privada en todo el país.">
 <meta property="og:image" id="og-image" content="https://sintraspap.github.io/portada.jpg">
 <meta property="og:url" id="og-url" content="https://sintraspap.github.io/">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="SINTRASPAP">
 
 <!-- Para que también se vea bien en Twitter/X -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" id="twitter-title" content="SINTRASPAP - Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay">
 <meta name="twitter:description" id="twitter-description" content="Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay. Representamos y defendemos a los trabajadores de la seguridad privada en todo el país.">
 <meta name="twitter:image" id="twitter-image" content="https://sintraspap.github.io/portada.jpg">
+<meta name="twitter:site" content="@sintraspap_py">
 
 <style>
   :root{ --azul:#0b2a59; --azul-hover:#1e4f9a; --borde:#e5e7eb; --gris:#666; }
@@ -212,10 +213,46 @@ footer .muted {
   .footer-social{ gap:16px; }
   .footer-social a{ width:56px; height:56px; font-size:28px; } /* un pelín más grandes en móvil */
 }
+
+/* Mejoras de accesibilidad */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--azul);
+  color: white;
+  padding: 8px;
+  z-index: 100;
+  transition: top 0.3s;
+}
+.skip-link:focus {
+  top: 0;
+}
+
+/* Mejora para el botón de menú en móviles */
+.burger {
+  cursor: pointer;
+}
+.burger:focus {
+  outline: 2px solid white;
+  outline-offset: 2px;
+}
+
+/* Mejora para las tarjetas de noticias */
+.card {
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.card:focus-within, .card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
+
+<!-- Enlace para saltar navegación (accesibilidad) -->
+<a href="#main-content" class="skip-link">Saltar al contenido principal</a>
 
 <header>
   <div class="container head">
@@ -223,8 +260,10 @@ footer .muted {
       <img src="logo-sintraspap.png" alt="Logo SINTRASPAP" onerror="this.style.display='none'">
       <span>SINTRASPAP</span>
     </div>
-    <button class="burger" onclick="document.querySelector('.menu').classList.toggle('show')">☰ Menú</button>
-    <nav>
+    <button class="burger" aria-label="Abrir menú" aria-expanded="false" onclick="document.querySelector('.menu').classList.toggle('show'); this.setAttribute('aria-expanded', document.querySelector('.menu').classList.contains('show'))">
+      ☰ Menú
+    </button>
+    <nav aria-label="Navegación principal">
       <ul class="menu" id="menu">
         <li><a href="#inicio">Inicio</a></li>
         <li><a href="#institucional">Institucional</a></li>
@@ -236,9 +275,10 @@ footer .muted {
     </nav>
   </div>
 </header>
-<main class="container">
 
-<!-- INICIO -->
+<main id="main-content" class="container" role="main">
+
+ <!-- INICIO -->
 <section id="inicio" class="active">
   <!-- AUSPCIANTES ARRIBA -->
   <div class="sponsor-grid">
@@ -365,6 +405,7 @@ function actualizarMetaTags(noticia) {
               data-title="${item.titulo || ''}"
               data-image="${item.imagen || ''}"
               data-url="${location.origin + location.pathname}?n=${slug}"
+              aria-label="Compartir noticia: ${item.titulo || ''}"
             >
               Compartir
             </button>
@@ -458,7 +499,8 @@ function actualizarMetaTags(noticia) {
       height="1200" 
       frameborder="0" 
       marginheight="0" 
-      marginwidth="0">
+      marginwidth="0"
+      title="Formulario de ofertas laborales">
       Cargando…
     </iframe>
   </div>
@@ -514,7 +556,7 @@ details[open] > summary {
 
   <!-- Buscador -->
   <div class="buscador">
-    <input id="q" class="input" type="search" placeholder="Buscar (ID, empresa, resolución, rubro)..." oninput="filtrarDirectorio()" />
+    <input id="q" class="input" type="search" placeholder="Buscar (ID, empresa, resolución, rubro)..." oninput="filtrarDirectorio()" aria-label="Buscar en el directorio de empresas" />
   </div>
 
   <!-- Tabla -->
@@ -614,11 +656,6 @@ function showSection(id){
 
 function handleHash(){
   const h = location.hash || '#inicio';
-
-  // ⚠️ Deja pasar rutas internas del widget de Netlify Identity
-  // (por ejemplo "#/invite", "#/recovery", etc.)
-  if (h.startsWith('#/')) return;
-
   showSection(h);
 }
 
