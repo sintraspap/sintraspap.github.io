@@ -1,10 +1,12 @@
 {
-  "name": "sintraspap",
-  "private": true,
+  "name": "sintraspap-generator",
+  "version": "1.0.0",
+  "description": "Generador de páginas para redes sociales",
+  "main": "generar-noticias.js",
   "scripts": {
-    "build": "eleventy"
+    "generate": "node generar-noticias.js"
   },
-  "devDependencies": {
-    "@11ty/eleventy": "^2.0.0"
-  }
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
