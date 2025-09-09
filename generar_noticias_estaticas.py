@@ -17,11 +17,45 @@ NOTICIAS_JSON = "data/noticias.json"
 OUTPUT_DIR = "noticias"
 
 def slugify(text):
-    """Convierte texto a formato slug para URLs"""
-    text = text.lower()
+    """Convierte texto a formato slug para URLs compatible con GitHub Pages"""
+    if not text:
+        return "noticia"
+    
+    # Diccionario completo de reemplazos
+    replacements = {
+        'á': 'a', 'é': 'e', 'í': 'i', 'ó': 'o', 'ú': 'u',
+        'ñ': 'n', 'ü': 'u', 
+        'à': 'a', 'è': 'e', 'ì': 'i', 'ò': 'o', 'ù': 'u',
+        'â': 'a', 'ê': 'e', 'î': 'i', 'ô': 'o', 'û': 'u',
+        'ä': 'a', 'ë': 'e', 'ï': 'i', 'ö': 'o', 
+        'ç': 'c',
+        '¿': '', '?': '', '¡': '', '!': '',
+        '´': '', '`': '', "'": '', '"': '', 
+        '(': '', ')': '', '[': '', ']': '', '{': '', '}': '',
+        '*': '', '+': '-', '=': '-', '$': '', '%': '', 
+        '&': 'y', '@': '', '#': '', ';': '', ':': '', 
+        ',': '', '.': '', '<': '', '>': '', '/': '-', '\\': '-',
+        'º': '', 'ª': '', '·': '-'
+    }
+    
+    text = text.lower().strip()
+    
+    # Aplicar reemplazos
+    for old, new in replacements.items():
+        text = text.replace(old, new)
+    
+    # Eliminar otros caracteres especiales y normalizar
     text = re.sub(r'[^a-z0-9\s-]', '', text)
     text = re.sub(r'[\s-]+', '-', text)
-    return text
+    text = text.strip('-')
+    
+    # Limitar longitud para GitHub Pages
+    if len(text) > 60:
+        text = text[:60]
+        # Asegurar que no termina con guión
+        text = text.rsplit('-', 1)[0]
+    
+    return text or "noticia"
 
 def generar_pagina_noticia(noticia, index):
     """Genera HTML estático para una noticia"""
