@@ -21,8 +21,8 @@
 <!-- Open Graph para redes sociales (ESTÁTICOS - NO se modifican con JS) -->
 <meta property="og:title" content="SINTRASPAP - Sindicato de Seguridad Privada del Paraguay">
 <meta property="og:description" content="Defendemos los derechos de los trabajadores de seguridad privada. Ofertas laborales, leyes, directorio de empresas y más.">
-<meta property="og:image" content="https://sintraspap.github.io/images/uploads/imputan1.jpg">
-<meta property="og:url" content="https://sintraspap.github.io">
+<meta property="og:image" content="https://sintraspap.github.io/portada.jpg">
+<meta name="twitter:image" content="https://sintraspap.github.io/portada.jpg">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="SINTRASPAP">
 
@@ -371,36 +371,47 @@ footer .muted {
 
   <!-- JS: SOLO el carrusel de anuncios (corregido) -->
   <script>
-    const anuncios = [
-      '📢 <a href="#ofertas" style="color: white; text-decoration: underline;">¡Revisa las nuevas ofertas laborales en nuestra sección de empleos!</a>',
-      '🔔 <a href="https://wa.me/595992644708" style="color: white; text-decoration: underline;" target="_blank">¿Necesitas asesoramiento legal? Contáctanos por WhatsApp</a>',
-      '📋 <a href="#leyes" style="color: white; text-decoration: underline;">Conoce tus derechos laborales en la sección de Leyes</a>',
-      '💼 <a href="#directorio" style="color: white; text-decoration: underline;">Empresas de seguridad habilitadas - Ver directorio actualizado</a>',
-      '👥 <a href="#contacto" style="color: white; text-decoration: underline;">¡Únete a nuestro sindicato! Protegemos tus derechos laborales</a>'
-    ];
+  // Mensajes del carrusel
+  const anuncios = [
+    '📢 <a href="#ofertas" style="color: white; text-decoration: underline;">¡Revisa las nuevas ofertas laborales en nuestra sección de empleos!</a>',
+    '🔔 <a href="https://wa.me/595992644708" style="color: white; text-decoration: underline;" target="_blank">¿Necesitas asesoramiento legal? Contáctanos por WhatsApp</a>',
+    '📋 <a href="#leyes" style="color: white; text-decoration: underline;">Conoce tus derechos laborales en la sección de Leyes</a>',
+    '💼 <a href="#directorio" style="color: white; text-decoration: underline;">Empresas de seguridad habilitadas - Ver directorio actualizado</a>',
+    '👥 <a href="#contacto" style="color: white; text-decoration: underline;">¡Únete a nuestro sindicato! Protegemos tus derechos laborales</a>'
+  ];
 
-    let anuncioIndex = 0;
-    const contenedorAnuncios = document.getElementById('carrusel-anuncios');
+  let anuncioIndex = 0;
+  const contenedorAnuncios = document.getElementById('carrusel-anuncios');
 
-    function cambiarAnuncio() {
-      if (!contenedorAnuncios) return;
-      contenedorAnuncios.style.opacity = '0';
-      contenedorAnuncios.style.transition = 'opacity 0.5s ease';
-      setTimeout(() => {
-        anuncioIndex = (anuncioIndex + 1) % anuncios.length;
-        contenedorAnuncios.innerHTML =
-          <p style="margin:0;font-size:18px;font-weight:600;color:white;">${anuncios[anuncioIndex]}</p>;
-        setTimeout(() => { contenedorAnuncios.style.opacity = '1'; }, 50);
-      }, 500);
-    }
+  // Dibuja el anuncio actual
+  function renderAnuncio() {
+    contenedorAnuncios.innerHTML =
+      <p style="margin:0;font-size:18px;font-weight:600;color:white;">${anuncios[anuncioIndex]}</p>;
+  }
 
-    if (contenedorAnuncios) {
-      setInterval(cambiarAnuncio, 5000);
-      contenedorAnuncios.addEventListener('mouseenter', () => clearInterval(window.anuncioInterval));
-      contenedorAnuncios.addEventListener('mouseleave', () => window.anuncioInterval = setInterval(cambiarAnuncio, 5000));
+  // Cambia al siguiente anuncio con fade
+  function cambiarAnuncio() {
+    if (!contenedorAnuncios) return;
+    contenedorAnuncios.style.transition = 'opacity .5s ease';
+    contenedorAnuncios.style.opacity = '0';
+    setTimeout(() => {
+      anuncioIndex = (anuncioIndex + 1) % anuncios.length;
+      renderAnuncio();
+      // vuelve a mostrar
+      setTimeout(() => { contenedorAnuncios.style.opacity = '1'; }, 50);
+    }, 500);
+  }
+
+  // Inicializa carrusel
+  if (contenedorAnuncios) {
+    renderAnuncio(); // mostrar el primero
+    window.anuncioInterval = setInterval(cambiarAnuncio, 5000);
+    contenedorAnuncios.addEventListener('mouseenter', () => clearInterval(window.anuncioInterval));
+    contenedorAnuncios.addEventListener('mouseleave', () => {
       window.anuncioInterval = setInterval(cambiarAnuncio, 5000);
-    }
-  </script>
+    });
+  }
+</script>
 
 </section>
 
