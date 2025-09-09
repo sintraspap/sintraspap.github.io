@@ -18,19 +18,19 @@
 <link rel="icon" href="favicon-32x32.png" sizes="32x32" type="image/png">
 <link rel="icon" href="favicon-16x16.png" sizes="16x16" type="image/png">
 
-<!-- Open Graph general (se actualizarán dinámicamente) -->
-<meta property="og:title" id="og-title" content="SINTRASPAP - Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay">
-<meta property="og:description" id="og-description" content="Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay. Representamos y defendemos a los trabajadores de la seguridad privada en todo el país.">
-<meta property="og:image" id="og-image" content="https://sintraspap.github.io/portada.jpg">
-<meta property="og:url" id="og-url" content="https://sintraspap.github.io/">
+<!-- Open Graph para redes sociales (ESTÁTICOS - NO se modifican con JS) -->
+<meta property="og:title" content="SINTRASPAP - Sindicato de Seguridad Privada del Paraguay">
+<meta property="og:description" content="Defendemos los derechos de los trabajadores de seguridad privada. Ofertas laborales, leyes, directorio de empresas y más.">
+<meta property="og:image" content="https://sintraspap.github.io/images/uploads/imputan1.jpg">
+<meta property="og:url" content="https://sintraspap.github.io">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="SINTRASPAP">
 
-<!-- Para que también se vea bien en Twitter/X -->
+<!-- Twitter Cards -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" id="twitter-title" content="SINTRASPAP - Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay">
-<meta name="twitter:description" id="twitter-description" content="Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay. Representamos y defendemos a los trabajadores de la seguridad privada en todo el país.">
-<meta name="twitter:image" id="twitter-image" content="https://sintraspap.github.io/portada.jpg">
+<meta name="twitter:title" content="SINTRASPAP - Sindicato de Seguridad Privada del Paraguay">
+<meta name="twitter:description" content="Defendemos los derechos de los trabajadores de seguridad privada">
+<meta name="twitter:image" content="https://sintraspap.github.io/images/uploads/imputan1.jpg">
 <meta name="twitter:site" content="@sintraspap_py">
 
 <style>
@@ -318,8 +318,6 @@ footer .muted {
   
   <script>
 // 1. FUNCIÓN PARA ACTUALIZAR META TAGS DINÁMICAMENTE (SOLO METAETIQUETAS, NO TÍTULO VISIBLE)
-function actualizarMetaTags(noticia) {
-  if (!noticia) return;
   
   // Título fijo para la página - NO cambiar el título visible
   // Mantener para metaetiquetas (redes sociales) solamente
