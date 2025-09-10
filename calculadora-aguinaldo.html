@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Aguinaldo - Paraguay</title>
+    <style>
+        :root {
+            --primary: #3498db;
+            --primary-dark: #2980b9;
+            --secondary: #2c3e50;
+            --light: #ecf0f1;
+            --danger: #e74c3c;
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --gray: #95a5a6;
+            --dark: #34495e;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f7fa;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: var(--secondary);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        
+        header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 25px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .card-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+            font-weight: 600;
+            color: var(--secondary);
+            background-color: #f8f9fa;
+        }
+        
+        .card-body {
+            padding: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+        
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 100%;
+            font-weight: 600;
+        }
+        
+        .btn:hover {
+            background: var(--primary-dark);
+        }
+        
+        .result {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid var(--success);
+        }
+        
+        .result h3 {
+            margin-top: 0;
+            color: var(--secondary);
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed #eee;
+        }
+        
+        .result-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .result-item .label {
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .result-item .value {
+            font-weight: 600;
+            color: var(--success);
+        }
+        
+        .legal-note {
+            margin-top: 30px;
+            font-size: 14px;
+            color: var(--gray);
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+        
+        .info-box {
+            background-color: #e8f4fc;
+            border-left: 4px solid var(--primary);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .info-box h4 {
+            margin-top: 0;
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                border-radius: 0;
+                box-shadow: none;
+            }
+            
+            body {
+                padding: 10px;
+                background: white;
+            }
+            
+            .content {
+                padding: 15px;
+            }
+        }
+        
+        .half-width {
+            display: inline-block;
+            width: 48%;
+        }
+        
+        .left {
+            float: left;
+        }
+        
+        .right {
+            float: right;
+        }
+        
+        .clearfix::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        
+        .error {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #ffe6e6;
+            border-left: 4px solid var(--danger);
+            border-radius: 4px;
+            color: var(--danger);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Calculadora de Aguinaldo - Paraguay</h1>
+            <p>Basado en el Artículo 243 del Código del Trabajo (Ley N° 213/93)</p>
+        </header>
+        
+        <div class="content">
+            <div class="info-box">
+                <h4>Información importante</h4>
+                <p>El aguinaldo corresponde a la doceava parte de las remuneraciones devengadas durante el año calendario, incluyendo salario, horas extras, comisiones y otros conceptos. Debe ser abonado antes del 31 de diciembre de cada año.</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">Datos para el cálculo</div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="salario">Salario Mensual (en Guaraníes):</label>
+                        <input type="text" id="salario" inputmode="numeric" placeholder="Ej: 2500000" autocomplete="off">
+                    </div>
+                    
+                    <div class="form-group clearfix">
+                        <div class="half-width left">
+                            <label for="fecha-inicio">Fecha de Inicio:</label>
+                            <input type="date" id="fecha-inicio">
+                        </div>
+                        <div class="half-width right">
+                            <label for="fecha-fin">Fecha de Fin (normalmente 31/12):</label>
+                            <input type="date" id="fecha-fin">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="otros-ingresos">Otros ingresos anuales (horas extras, comisiones, bonos, etc.):</label>
+                        <input type="text" id="otros-ingresos" inputmode="numeric" placeholder="Ej: 1000000" autocomplete="off" value="0">
+                    </div>
+                    
+                    <button id="calcular" class="btn">Calcular Aguinaldo</button>
+                </div>
+            </div>
+            
+            <div id="error-msg" class="error">
+                Error: Las fechas seleccionadas no son válidas para el cálculo.
+            </div>
+            
+            <div id="resultado" class="result">
+                <h3>Resultado del Cálculo</h3>
+                <div class="result-item">
+                    <span class="label">Salario anual:</span>
+                    <span id="salario-anual" class="value">0 Gs.</span>
+                </div>
+                <div class="result-item">
+                    <span class="label">Otros ingresos anuales:</span>
+                    <span id="otros-anual" class="value">0 Gs.</span>
+                </div>
+                <div class="result-item">
+                    <span class="label">Total ingresos anuales:</span>
+                    <span id="total-anual" class="value">0 Gs.</span>
+                </div>
+                <div class="result-item">
+                    <span class="label">Aguinaldo completo (1/12):</span>
+                    <span id="aguinaldo-completo" class="value">0 Gs.</span>
+                </div>
+                <div class="result-item">
+                    <span class="label">Período de cálculo:</span>
+                    <span id="periodo-calculo" class="value">-</span>
+                </div>
+                <div class="result-item">
+                    <span class="label">Días trabajados en el año:</span>
+                    <span id="dias-trabajados" class="value">0</span>
+                </div>
+                <div class="result-item">
+                    <span class="label">Proporción calculada:</span>
+                    <span id="proporcion" class="value">0%</span>
+                </div>
+                <div class="result-item" style="border-top: 2px solid #ddd; padding-top: 15px;">
+                    <span class="label" style="font-size: 1.2em;">Aguinaldo proporcional:</span>
+                    <span id="aguinaldo-proporcional" class="value" style="font-size: 1.2em; color: #2c3e50;">0 Gs.</span>
+                </div>
+            </div>
+            
+            <div class="legal-note">
+                <h4>Base Legal</h4>
+                <p>Según el <strong>Artículo 243</strong> del Código del Trabajo de Paraguay (Ley N° 213/93):</p>
+                <p><em>"Queda establecida una remuneración anual complementaria o aguinaldo, equivalente a la doceava parte de las remuneraciones devengadas durante el año calendario a favor del trabajador en todo concepto (salario, horas extraordinarias, comisiones, u otras), la que será abonada antes del 31 de diciembre, o en el momento en que termine la relación laboral si ello ocurre antes de esa época del año."</em></p>
+                <p>El aguinaldo es un derecho irrenunciable para todos los trabajadores del sector privado y público en Paraguay.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Establecer fecha fin por defecto (31 de diciembre del año actual)
+            const today = new Date();
+            const year = today.getFullYear();
+            document.getElementById('fecha-fin').value = year + '-12-31';
+            
+            // Establecer fecha de inicio por defecto (1 de enero del año actual)
+            document.getElementById('fecha-inicio').value = year + '-01-01';
+            
+            // Calcular al hacer clic en el botón
+            document.getElementById('calcular').addEventListener('click', function() {
+                calcularAguinaldo();
+            });
+            
+            // Permitir solo números en los campos de salario
+            document.getElementById('salario').addEventListener('input', function(e) {
+                this.value = this.value.replace(/\D/g, '');
+            });
+            
+            document.getElementById('otros-ingresos').addEventListener('input', function(e) {
+                this.value = this.value.replace(/\D/g, '');
+            });
+        });
+        
+        function formatNumber(num) {
+            return new Intl.NumberFormat('es-PY').format(num);
+        }
+        
+        function parseCurrency(value) {
+            if (!value || value === '') return 0;
+            // Eliminar todos los caracteres no numéricos
+            const numericValue = value.toString().replace(/\D/g, '');
+            return parseInt(numericValue) || 0;
+        }
+        
+        function esBisiesto(year) {
+            return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+        }
+        
+        function calcularAguinaldo() {
+            console.log('Calculando aguinaldo...');
+            
+            const salarioInput = document.getElementById('salario');
+            const otrosInput = document.getElementById('otros-ingresos');
+            
+            const salario = parseCurrency(salarioInput.value);
+            const fechaInicio = new Date(document.getElementById('fecha-inicio').value);
+            const fechaFin = new Date(document.getElementById('fecha-fin').value);
+            const otrosIngresos = parseCurrency(otrosInput.value);
+            
+            console.log('Salario:', salario);
+            console.log('Otros ingresos:', otrosIngresos);
+            console.log('Fecha inicio:', fechaInicio);
+            console.log('Fecha fin:', fechaFin);
+            
+            // Validaciones
+            if (salario <= 0) {
+                alert('Por favor, ingrese un salario válido.');
+                salarioInput.focus();
+                return;
+            }
+            
+            if (isNaN(fechaInicio.getTime())) {
+                alert('Por favor, ingrese una fecha de inicio válida.');
+                document.getElementById('fecha-inicio').focus();
+                return;
+            }
+            
+            if (isNaN(fechaFin.getTime())) {
+                alert('Por favor, ingrese una fecha final válida.');
+                document.getElementById('fecha-fin').focus();
+                return;
+            }
+            
+            if (fechaFin <= fechaInicio) {
+                alert('La fecha final debe ser posterior a la fecha de inicio.');
+                document.getElementById('fecha-fin').focus();
+                return;
+            }
+            
+            // Ocultar mensajes de error y resultado previos
+            document.getElementById('error-msg').style.display = 'none';
+            document.getElementById('resultado').style.display = 'none';
+            
+            // Obtener el año de la fecha de fin
+            const year = fechaFin.getFullYear();
+            
+            // Definir los límites del año
+            const inicioAnio = new Date(year, 0, 1); // 1 de enero del año
+            const finAnio = new Date(year, 11, 31); // 31 de diciembre del año
+            
+            // Calcular fechas de inicio y fin para el cálculo
+            let inicioCalculo = fechaInicio.getFullYear() === year ? 
+                (fechaInicio > inicioAnio ? fechaInicio : inicioAnio) : 
+                inicioAnio;
+                
+            let finCalculo = fechaFin < finAnio ? fechaFin : finAnio;
+            
+            // Verificar si el período de cálculo es válido
+            if (finCalculo < inicioCalculo) {
+                document.getElementById('error-msg').style.display = 'block';
+                document.getElementById('error-msg').textContent = 
+                    'Error: No hay días trabajados en el año ' + year + ' para calcular el aguinaldo.';
+                return;
+            }
+            
+            // Calcular días trabajados en el año
+            const diffTime = finCalculo.getTime() - inicioCalculo.getTime();
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
+            
+            // Determinar días totales del año
+            const diasAnio = esBisiesto(year) ? 366 : 365;
+            
+            // Calcular proporción
+            const proporcion = diffDays / diasAnio;
+            
+            // Cálculos según la ley
+            const salarioAnual = salario * 12;
+            const totalIngresosAnuales = salarioAnual + otrosIngresos;
+            const aguinaldoCompleto = totalIngresosAnuales / 12;
+            const aguinaldoProporcional = aguinaldoCompleto * proporcion;
+            
+            console.log('Resultados:', {
+                salarioAnual,
+                totalIngresosAnuales,
+                aguinaldoCompleto,
+                diffDays,
+                proporcion,
+                aguinaldoProporcional
+            });
+            
+            // Formatear fechas para mostrar
+            const formatoFecha = { day: '2-digit', month: '2-digit', year: 'numeric' };
+            const periodoCalculo = `${inicioCalculo.toLocaleDateString('es-PY', formatoFecha)} - ${finCalculo.toLocaleDateString('es-PY', formatoFecha)}`;
+            
+            // Mostrar resultado
+            document.getElementById('salario-anual').textContent = formatNumber(salarioAnual) + ' Gs.';
+            document.getElementById('otros-anual').textContent = formatNumber(otrosIngresos) + ' Gs.';
+            document.getElementById('total-anual').textContent = formatNumber(totalIngresosAnuales) + ' Gs.';
+            document.getElementById('aguinaldo-completo').textContent = formatNumber(aguinaldoCompleto) + ' Gs.';
+            document.getElementById('periodo-calculo').textContent = periodoCalculo;
+            document.getElementById('dias-trabajados').textContent = diffDays;
+            document.getElementById('proporcion').textContent = (proporcion * 100).toFixed(2) + '%';
+            document.getElementById('aguinaldo-proporcional').textContent = formatNumber(Math.round(aguinaldoProporcional)) + ' Gs.';
+                
+            document.getElementById('resultado').style.display = 'block';
+            
+            // Scroll to results
+            document.getElementById('resultado').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
