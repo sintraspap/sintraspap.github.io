@@ -3,12 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Código del Trabajo Paraguay</title>
+    <title>Código del Trabajo Paraguay - SINTRASPAP</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         /* ===== ESTILOS GENERALES ===== */
+        :root {
+            --azul: #0b2a59;
+            --azul-hover: #1e4f9a;
+            --borde: #e5e7eb;
+            --gris: #666;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
         body {
-            font-family: Arial, sans-serif;
+            font-family: system-ui, Segoe UI, Roboto, Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f5f7fa;
@@ -33,18 +44,21 @@
         }
 
         .top-bar {
-            background: linear-gradient(135deg, #0b2a59 0%, #1e4f9a 100%);
+            background: linear-gradient(135deg, var(--azul) 0%, var(--azul-hover) 100%);
             color: white;
             padding: 8px 20px;
             display: flex;
             justify-content: center;
             align-items: center;
             font-size: 13px;
+            flex-wrap: wrap;
         }
 
         .contact-info {
             display: flex;
             gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .contact-info a {
@@ -95,32 +109,31 @@
         .logo {
             width: 80px;
             height: 80px;
-            background: linear-gradient(135deg, #0b2a59 0%, #1e4f9a 100%);
-            border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: white;
-            font-size: 32px;
-            font-weight: bold;
-            box-shadow: 0 4px 10px rgba(11, 42, 89, 0.3);
+        }
+
+        .logo img {
+            max-width: 100%;
+            max-height: 100%;
         }
 
         .titles h1 {
-            color: #0b2a59;
+            color: var(--azul);
             font-size: 28px;
             margin-bottom: 5px;
         }
 
         .titles p {
-            color: #1e4f9a;
+            color: var(--azul-hover);
             font-size: 16px;
             font-weight: 500;
             margin: 0;
         }
 
         .cta-button {
-            background: linear-gradient(135deg, #0b2a59 0%, #1e4f9a 100%);
+            background: linear-gradient(135deg, var(--azul) 0%, var(--azul-hover) 100%);
             color: white;
             padding: 10px 20px;
             border-radius: 30px;
@@ -139,7 +152,7 @@
 
         /* ===== ESTILOS DE NAVEGACIÓN ===== */
         .topnav {
-            background-color: #0b2a59;
+            background-color: var(--azul);
             padding: 10px 0;
             display: flex;
             justify-content: center;
@@ -160,7 +173,7 @@
         }
 
         .home-button {
-            background: #1e4f9a;
+            background: var(--azul-hover);
             color: white;
             padding: 8px 15px;
             border-radius: 5px;
@@ -184,14 +197,14 @@
 
         .search-input {
             padding: 8px 12px;
-            border: 1px solid #ddd;
+            border: 1px solid var(--borde);
             border-radius: 5px;
             font-size: 14px;
             width: 200px;
         }
 
         .search-button {
-            background: #1e4f9a;
+            background: var(--azul-hover);
             color: white;
             border: none;
             padding: 8px 15px;
@@ -208,17 +221,17 @@
         /* ===== ESTILOS DEL CONTENIDO ===== */
         .page-title {
             text-align: center;
-            color: #0b2a59;
+            color: var(--azul);
             font-size: 28px;
             margin: 20px 0;
             padding-bottom: 10px;
-            border-bottom: 2px solid #1e4f9a;
+            border-bottom: 2px solid var(--azul-hover);
         }
 
         .slogan {
             font-family: Arial, sans-serif;
             font-size: 12pt;
-            color: #1e4f9a;
+            color: var(--azul-hover);
             text-align: center;
             background: #f0f5ff;
             padding: 10px;
@@ -239,15 +252,15 @@
         }
 
         .section-title {
-            color: #0b2a59;
+            color: var(--azul);
             font-size: 20px;
             margin-bottom: 15px;
             padding-bottom: 5px;
-            border-bottom: 1px solid #e5e7eb;
+            border-bottom: 1px solid var(--borde);
         }
 
         .article-title {
-            color: #1e4f9a;
+            color: var(--azul-hover);
             font-weight: bold;
             margin-bottom: 10px;
         }
@@ -264,7 +277,7 @@
         }
 
         .back-button {
-            background: #0b2a59;
+            background: var(--azul);
             color: white;
             padding: 10px 20px;
             border-radius: 5px;
@@ -274,7 +287,26 @@
         }
 
         .back-button:hover {
-            background: #1e4f9a;
+            background: var(--azul-hover);
+        }
+
+        /* Estilos para resultados de búsqueda */
+        .search-highlight {
+            background-color: yellow;
+            font-weight: bold;
+        }
+
+        .search-results {
+            margin: 15px 0;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            border-left: 4px solid var(--azul);
+        }
+
+        .no-results {
+            color: #dc3545;
+            font-style: italic;
         }
 
         /* ===== RESPONSIVE ===== */
@@ -344,25 +376,27 @@
         <!-- Main header with logo and title -->
         <div class="main-header">
             <div class="logo-container">
-                <div class="logo">S</div>
+                <div class="logo">
+                    <img src="logo-sintraspap.png" alt="Logo SINTRASPAP" onerror="this.style.display='none'">
+                </div>
                 <div class="titles">
                     <h1>SINTRASPAP</h1>
                     <p>Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay</p>
                 </div>
             </div>
-            <a href="#contacto" class="cta-button">Únete al sindicato</a>
+            <a href="index.html#contacto" class="cta-button">Únete al sindicato</a>
         </div>
     </div>
 
     <!-- Navigation Menu -->
     <div class="topnav">
         <div class="nav-content">
-            <a href="#" class="home-button">
+            <a href="index.html#inicio" class="home-button">
                 <i class="fas fa-home"></i> Inicio
             </a>
             <div class="search-container">
-                <input type="text" class="search-input" placeholder="Buscar en el código...">
-                <button class="search-button">Buscar</button>
+                <input type="text" class="search-input" placeholder="Buscar en el código..." id="searchInput">
+                <button class="search-button" id="searchButton">Buscar</button>
             </div>
         </div>
     </div>
@@ -375,13 +409,15 @@
             <i>Actualizado: 01.02.2025</i>
         </p>
 
-        <div class="legal-content">
-            <p style="color:#1e4f9a; font-style: italic; text-align: center;">Código del Trabajo de la República del Paraguay</p>
+        <div id="searchResults" class="search-results" style="display: none;"></div>
+
+        <div class="legal-content" id="legalContent">
+            <p style="color:var(--azul-hover); font-style: italic; text-align: center;">Código del Trabajo de la República del Paraguay</p>
 
             <div class="legal-section">
-                <p align="center" style="color:#0b2a59; font-weight: bold;">LIBRO PRIMERO <br>Disposiciones Generales y Contrato Individual de Trabajo</p>
-                <p align="center" style="color:#0b2a59; font-weight: bold;">TITULO PRIMERO <br>Disposiciones Generales</p>
-                <p align="center" style="color:#0b2a59; font-weight: bold;">CAPITULO I <br>Del Objeto y Aplicación del Código</p>
+                <p align="center" style="color:var(--azul); font-weight: bold;">LIBRO PRIMERO <br>Disposiciones Generales y Contrato Individual de Trabajo</p>
+                <p align="center" style="color:var(--azul); font-weight: bold;">TITULO PRIMERO <br>Disposiciones Generales</p>
+                <p align="center" style="color:var(--azul); font-weight: bold;">CAPITULO I <br>Del Objeto y Aplicación del Código</p>
             </div>
 
             <div class="legal-section">
@@ -412,6 +448,60 @@
                     </ol>
                 </div>
             </div>
+
+            <!-- Más contenido del código laboral aquí -->
+            <div class="legal-section">
+                <div class="article-title">Artículo 4.</div>
+                <div class="article-content">
+                    <p>Los reglamentos de fábricas o talleres, contratos individuales y colectivos de trabajo que establezcan derechos o beneficios en favor de los trabajadores, inferiores a los acordados por la Ley, no producirán ningún efecto, entendiéndose sustituidos por los que, en su caso, establece aquélla.</p>
+                </div>
+            </div>
+
+            <div class="legal-section">
+                <div class="article-title">Artículo 5.</div>
+                <div class="article-content">
+                    <p>Las disposiciones de este Código contienen el mínimo de garantías y derechos en beneficio de los trabajadores.</p>
+                    <p>Ese mínimo no podrá alterarse en detrimento de éstos.</p>
+                    <p>Las prestaciones ya reconocidas espontáneamente o mediante convenio por los empleadores y que fuesen más favorables a los trabajadores, prevalecerán sobre las que esta Ley establece.</p>
+                </div>
+            </div>
+
+            <div class="legal-section">
+                <div class="article-title">Artículo 6.</div>
+                <div class="article-content">
+                    <p>A falta de normas legales o contractuales de trabajo, exactamente aplicables al caso controvertido, se resolverá de acuerdo con la equidad, los principios generales del Derecho Laboral, las disposiciones de los convenios de la Organización Internacional del Trabajo aplicables al Paraguay, los principios del derecho común no contrarios a los del Derecho Laboral, la doctrina y jurisprudencia, la costumbre o el uso local.</p>
+                </div>
+            </div>
+
+            <div class="legal-section">
+                <div class="article-title">Artículo 7.</div>
+                <div class="article-content">
+                    <p>Si se suscitase duda sobre interpretación o aplicación de las normas de trabajo, prevalecerán las que sean más favorables al trabajador.</p>
+                </div>
+            </div>
+
+            <div class="legal-section">
+                <p align="center" style="color:var(--azul-hover); font-weight: bold;">CAPITULO II <br>Del Trabajo y sus Garantías</p>
+            </div>
+
+            <div class="legal-section">
+                <div class="article-title">Artículo 8.</div>
+                <div class="article-content">
+                    <p>Se entiende por trabajo, a los fines de este Código, toda actividad humana, consciente y voluntaria, prestada en forma dependiente y retribuida, para la producción de bienes o servicios.</p>
+                </div>
+            </div>
+
+            <div class="legal-section">
+                <div class="article-title">Artículo 9.</div>
+                <div class="article-content">
+                    <p>El trabajo es un derecho y un deber social y goza de protección del Estado. No debe ser considerado como una mercancía. Exige respeto para las libertades y dignidad de quienes lo prestan, y se efectuará en condiciones que aseguren la salud y un nivel económico compatible con las responsabilidades del trabajador padre o madre de familia.</p>
+                    <p>No podrán establecerse discriminaciones relativas al trabajador por motivos étnicos, de nacionalidad, sexo, edad, religión, condición social, preferencias religiosas, políticas o sindicales.</p>
+                    <p>El trabajo de las personas con discapacidad será especialmente amparado.</p>
+                </div>
+            </div>
+
+            <!-- Continuar con más artículos según sea necesario -->
+
         </div>
 
         <div class="back-to-top">
@@ -422,25 +512,89 @@
     </div>
 
     <script>
-        // Funcionalidad básica de búsqueda
+        // Funcionalidad de búsqueda mejorada
         document.addEventListener('DOMContentLoaded', function() {
-            const searchButton = document.querySelector('.search-button');
-            const searchInput = document.querySelector('.search-input');
+            const searchButton = document.getElementById('searchButton');
+            const searchInput = document.getElementById('searchInput');
+            const searchResults = document.getElementById('searchResults');
+            const legalContent = document.getElementById('legalContent');
             
-            searchButton.addEventListener('click', function() {
-                if (searchInput.value.trim() !== '') {
-                    alert('Búsqueda realizada: ' + searchInput.value);
-                    searchInput.value = '';
-                } else {
-                    alert('Por favor, ingrese un término de búsqueda');
+            // Función para realizar la búsqueda
+            function performSearch() {
+                const searchTerm = searchInput.value.trim().toLowerCase();
+                
+                if (searchTerm === '') {
+                    searchResults.style.display = 'none';
+                    searchResults.innerHTML = '';
+                    removeHighlights();
+                    return;
+                }
+                
+                // Restaurar contenido original
+                removeHighlights();
+                
+                // Buscar en el contenido
+                const contentText = legalContent.textContent.toLowerCase();
+                if (!contentText.includes(searchTerm)) {
+                    searchResults.style.display = 'block';
+                    searchResults.innerHTML = '<p class="no-results">No se encontraron resultados para: "' + searchTerm + '"</p>';
+                    return;
+                }
+                
+                // Resaltar términos encontrados
+                highlightSearchTerms(searchTerm);
+                
+                // Mostrar resultados
+                searchResults.style.display = 'block';
+                searchResults.innerHTML = '<p>Resultados de búsqueda para: "' + searchTerm + '"</p>';
+                
+                // Desplazar al primer resultado
+                const firstHighlight = document.querySelector('.search-highlight');
+                if (firstHighlight) {
+                    firstHighlight.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+            
+            // Función para resaltar términos de búsqueda
+            function highlightSearchTerms(term) {
+                const elements = legalContent.querySelectorAll('p, li, .article-title, .article-content');
+                
+                elements.forEach(element => {
+                    const originalHTML = element.innerHTML;
+                    const regex = new RegExp(term, 'gi');
+                    const newHTML = originalHTML.replace(regex, match => 
+                        `<span class="search-highlight">${match}</span>`
+                    );
+                    
+                    if (newHTML !== originalHTML) {
+                        element.innerHTML = newHTML;
+                    }
+                });
+            }
+            
+            // Función para eliminar resaltados anteriores
+            function removeHighlights() {
+                const highlights = document.querySelectorAll('.search-highlight');
+                highlights.forEach(highlight => {
+                    const parent = highlight.parentNode;
+                    parent.replaceChild(document.createTextNode(highlight.textContent), highlight);
+                    parent.normalize();
+                });
+            }
+            
+            // Event listeners
+            searchButton.addEventListener('click', performSearch);
+            
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    performSearch();
                 }
             });
             
-            // Permitir búsqueda con Enter
-            searchInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    searchButton.click();
-                }
+            // Botón volver al inicio
+            document.querySelector('.back-button').addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
         });
     </script>
