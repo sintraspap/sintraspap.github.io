@@ -6,374 +6,80 @@
     <title>Código del Trabajo Paraguay - SINTRASPAP</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        /* ===== ESTILOS GENERALES ===== */
         :root {
             --azul: #0b2a59;
             --azul-hover: #1e4f9a;
             --borde: #e5e7eb;
             --gris: #666;
         }
-        
-        * {
-            box-sizing: border-box;
-        }
-        
+        * { box-sizing: border-box; }
         body {
             font-family: system-ui, Segoe UI, Roboto, Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f5f7fa;
-            color: #333;
-            line-height: 1.6;
+            margin: 0; padding: 0;
+            background-color: #f5f7fa; color: #333; line-height: 1.6;
         }
-        
-        .content {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        /* ===== ESTILOS DEL ENCABEZADO SINTRASPAP ===== */
-        .header-container {
-            width: 100%;
-            max-width: 100%;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            margin-bottom: 20px;
-            background: white;
-        }
-
-        .top-bar {
-            background: linear-gradient(135deg, var(--azul) 0%, var(--azul-hover) 100%);
-            color: white;
-            padding: 8px 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 13px;
-            flex-wrap: wrap;
-        }
-
-        .contact-info {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .contact-info a {
-            color: white;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            transition: opacity 0.3s;
-        }
-
-        .contact-info a:hover {
-            opacity: 0.8;
-        }
-
-        .social-icons {
-            display: flex;
-            gap: 10px;
-        }
-
-        .social-icons a {
-            color: white;
-            font-size: 14px;
-            transition: transform 0.3s;
-        }
-
-        .social-icons a:hover {
-            transform: translateY(-2px);
-        }
-
-        .main-header {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
-        .logo-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 15px;
-        }
-
-        .logo {
-            width: 80px;
-            height: 80px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .logo img {
-            max-width: 100%;
-            max-height: 100%;
-        }
-
-        .titles h1 {
-            color: var(--azul);
-            font-size: 28px;
-            margin-bottom: 5px;
-        }
-
-        .titles p {
-            color: var(--azul-hover);
-            font-size: 16px;
-            font-weight: 500;
-            margin: 0;
-        }
-
-        .cta-button {
-            background: linear-gradient(135deg, var(--azul) 0%, var(--azul-hover) 100%);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            box-shadow: 0 4px 10px rgba(11, 42, 89, 0.25);
-            font-size: 16px;
-            margin-top: 10px;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(11, 42, 89, 0.35);
-        }
-
-        /* ===== ESTILOS DE NAVEGACIÓN ===== */
-        .topnav {
-            background-color: var(--azul);
-            padding: 10px 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .nav-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            max-width: 900px;
-            padding: 0 20px;
-        }
-
-        .home-button {
-            background: var(--azul-hover);
-            color: white;
-            padding: 8px 15px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            transition: background 0.3s;
-        }
-
-        .home-button:hover {
-            background: #153e7a;
-        }
-
-        .search-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .search-input {
-            padding: 8px 12px;
-            border: 1px solid var(--borde);
-            border-radius: 5px;
-            font-size: 14px;
-            width: 200px;
-        }
-
-        .search-button {
-            background: var(--azul-hover);
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: background 0.3s;
-        }
-
-        .search-button:hover {
-            background: #153e7a;
-        }
-
-        /* ===== ESTILOS DEL CONTENIDO ===== */
-        .page-title {
-            text-align: center;
-            color: var(--azul);
-            font-size: 28px;
-            margin: 20px 0;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--azul-hover);
-        }
-
-        .slogan {
-            font-family: Arial, sans-serif;
-            font-size: 12pt;
-            color: var(--azul-hover);
-            text-align: center;
-            background: #f0f5ff;
-            padding: 10px;
-            border-radius: 5px;
-            margin: 20px 0;
-        }
-
-        .legal-content {
-            background: white;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            margin-bottom: 30px;
-        }
-
-        .legal-section {
-            margin-bottom: 25px;
-        }
-
-        .section-title {
-            color: var(--azul);
-            font-size: 20px;
-            margin-bottom: 15px;
-            padding-bottom: 5px;
-            border-bottom: 1px solid var(--borde);
-        }
-
-        .article-title {
-            color: var(--azul-hover);
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .article-content {
-            margin-left: 20px;
-            margin-bottom: 20px;
-        }
-
-        .back-to-top {
-            display: block;
-            text-align: center;
-            margin: 30px 0;
-        }
-
-        .back-button {
-            background: var(--azul);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background 0.3s;
-        }
-
-        .back-button:hover {
-            background: var(--azul-hover);
-        }
-
-        /* Estilos para resultados de búsqueda */
-        .search-highlight {
-            background-color: yellow;
-            font-weight: bold;
-        }
-
-        .search-results {
-            margin: 15px 0;
-            padding: 10px;
-            background-color: #f8f9fa;
-            border-radius: 5px;
-            border-left: 4px solid var(--azul);
-        }
-
-        .no-results {
-            color: #dc3545;
-            font-style: italic;
-        }
-
-        /* ===== RESPONSIVE ===== */
+        .content { max-width: 900px; margin: 0 auto; padding: 20px; }
+        .header-container { width: 100%; box-shadow: 0 5px 15px rgba(0,0,0,.1); margin-bottom: 20px; background: white; }
+        .top-bar { background: linear-gradient(135deg,var(--azul) 0%,var(--azul-hover) 100%); color: white; padding: 8px 20px; display: flex; justify-content: center; align-items: center; font-size: 13px; flex-wrap: wrap; }
+        .contact-info { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; }
+        .contact-info a { color: white; text-decoration: none; display: flex; align-items: center; gap: 5px; transition: opacity .3s; }
+        .contact-info a:hover { opacity: .8; }
+        .social-icons { display: flex; gap: 10px; }
+        .social-icons a { color: white; font-size: 14px; transition: transform .3s; }
+        .social-icons a:hover { transform: translateY(-2px); }
+        .main-header { padding: 20px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+        .logo-container { display: flex; flex-direction: column; align-items: center; gap: 12px; margin-bottom: 15px; }
+        .logo { width: 80px; height: 80px; display: flex; justify-content: center; align-items: center; }
+        .logo img { max-width: 100%; max-height: 100%; }
+        .titles h1 { color: var(--azul); font-size: 28px; margin-bottom: 5px; }
+        .titles p { color: var(--azul-hover); font-size: 16px; font-weight: 500; margin: 0; }
+        .cta-button { background: linear-gradient(135deg,var(--azul) 0%,var(--azul-hover) 100%); color: white; padding: 10px 20px; border-radius: 30px; text-decoration: none; font-weight: 600; transition: all .3s; box-shadow: 0 4px 10px rgba(11,42,89,.25); font-size: 16px; margin-top: 10px; }
+        .cta-button:hover { transform: translateY(-3px); box-shadow: 0 6px 15px rgba(11,42,89,.35); }
+        .topnav { background-color: var(--azul); padding: 10px 0; display: flex; justify-content: center; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,.1); }
+        .nav-content { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 900px; padding: 0 20px; }
+        .home-button { background: var(--azul-hover); color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; font-weight: 600; display: flex; align-items: center; gap: 5px; transition: background .3s; }
+        .home-button:hover { background: #153e7a; }
+        .search-container { display: flex; align-items: center; gap: 10px; }
+        .search-input { padding: 8px 12px; border: 1px solid var(--borde); border-radius: 5px; font-size: 14px; width: 200px; }
+        .search-button { background: var(--azul-hover); color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: 600; transition: background .3s; }
+        .search-button:hover { background: #153e7a; }
+        .page-title { text-align: center; color: var(--azul); font-size: 28px; margin: 20px 0; padding-bottom: 10px; border-bottom: 2px solid var(--azul-hover); }
+        .slogan { font-family: Arial, sans-serif; font-size: 12pt; color: var(--azul-hover); text-align: center; background: #f0f5ff; padding: 10px; border-radius: 5px; margin: 20px 0; }
+        .legal-content { background: white; padding: 25px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,.05); margin-bottom: 30px; }
+        .legal-section { margin-bottom: 25px; }
+        .section-title { color: var(--azul); font-size: 20px; margin-bottom: 15px; padding-bottom: 5px; border-bottom: 1px solid var(--borde); }
+        .article-title { color: var(--azul-hover); font-weight: bold; margin-bottom: 10px; }
+        .article-content { margin-left: 20px; margin-bottom: 20px; }
+        .back-to-top { display: block; text-align: center; margin: 30px 0; }
+        .back-button { background: var(--azul); color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: 600; transition: background .3s; }
+        .back-button:hover { background: var(--azul-hover); }
+        .search-highlight { background-color: yellow; font-weight: bold; }
+        .search-results { margin: 15px 0; padding: 10px; background-color: #f8f9fa; border-radius: 5px; border-left: 4px solid var(--azul); }
+        .no-results { color: #dc3545; font-style: italic; }
         @media (max-width: 768px) {
-            .top-bar {
-                flex-direction: column;
-                gap: 10px;
-                padding: 10px;
-            }
-            
-            .contact-info {
-                flex-direction: column;
-                gap: 8px;
-                align-items: center;
-            }
-            
-            .nav-content {
-                flex-direction: column;
-                gap: 10px;
-            }
-            
-            .search-container {
-                width: 100%;
-                justify-content: center;
-            }
-            
-            .search-input {
-                width: 100%;
-            }
-            
-            .titles h1 {
-                font-size: 24px;
-            }
-            
-            .titles p {
-                font-size: 14px;
-            }
+            .top-bar { flex-direction: column; gap: 10px; padding: 10px; }
+            .contact-info { flex-direction: column; gap: 8px; align-items: center; }
+            .nav-content { flex-direction: column; gap: 10px; }
+            .search-container { width: 100%; justify-content: center; }
+            .search-input { width: 100%; }
+            .titles h1 { font-size: 24px; }
+            .titles p { font-size: 14px; }
         }
     </style>
 </head>
 <body>
-    <!-- Encabezado SINTRASPAP -->
     <div class="header-container">
-        <!-- Top bar with contact info -->
         <div class="top-bar">
             <div class="contact-info">
-                <a href="tel:+595992644708">
-                    <i class="fas fa-phone"></i> +595 992 644 708
-                </a>
-                <a href="mailto:sintraspappy@gmail.com">
-                    <i class="fas fa-envelope"></i> sintraspappy@gmail.com
-                </a>
+                <a href="tel:+595992644708"><i class="fas fa-phone"></i> +595 992 644 708</a>
+                <a href="mailto:sintraspappy@gmail.com"><i class="fas fa-envelope"></i> sintraspappy@gmail.com</a>
             </div>
             <div class="social-icons">
-                <a href="#">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="#">
-                    <i class="fab fa-x-twitter"></i>
-                </a>
-                <a href="#">
-                    <i class="fab fa-whatsapp"></i>
-                </a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-x-twitter"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
             </div>
         </div>
-        
-        <!-- Main header with logo and title -->
         <div class="main-header">
             <div class="logo-container">
                 <div class="logo">
@@ -388,12 +94,9 @@
         </div>
     </div>
 
-    <!-- Navigation Menu -->
     <div class="topnav">
         <div class="nav-content">
-            <a href="index.html#inicio" class="home-button">
-                <i class="fas fa-home"></i> Inicio
-            </a>
+            <a href="index.html#inicio" class="home-button"><i class="fas fa-home"></i> Inicio</a>
             <div class="search-container">
                 <input type="text" class="search-input" placeholder="Buscar en el código..." id="searchInput">
                 <button class="search-button" id="searchButton">Buscar</button>
@@ -401,132 +104,92 @@
         </div>
     </div>
 
-    <!-- Main Content -->
     <div class="content">
         <h1 class="page-title">Código del Trabajo Paraguay</h1>
-        
-        <p class="slogan">
-            <i>Actualizado: 01.02.2025</i>
-        </p>
-
-        <div id="searchResults" class="search-results" style="display: none;"></div>
+        <p class="slogan"><i>Actualizado: 01.02.2025</i></p>
+        <div id="searchResults" class="search-results" style="display:none;"></div>
 
         <div class="legal-content" id="legalContent">
             <p style="color:var(--azul-hover); font-style: italic; text-align: center;">Código del Trabajo de la República del Paraguay</p>
-
             <div class="legal-section">
                 <p align="center" style="color:var(--azul); font-weight: bold;">LIBRO PRIMERO <br>Disposiciones Generales y Contrato Individual de Trabajo</p>
                 <p align="center" style="color:var(--azul); font-weight: bold;">TITULO PRIMERO <br>Disposiciones Generales</p>
                 <p align="center" style="color:var(--azul); font-weight: bold;">CAPITULO I <br>Del Objeto y Aplicación del Código</p>
             </div>
-
-            <!-- Se han eliminado los artículos 1-9 según solicitud -->
-
-            <div class="legal-section">
-                <p align="center" style="color:var(--azul-hover); font-weight: bold;">CAPITULO II <br>Del Trabajo y sus Garantías</p>
-            </div>
-            
-            </div>
-
-            <!-- Continuar con más artículos según sea necesario -->
-
+            <!-- Aquí irían los artículos completos -->
         </div>
 
         <div class="back-to-top">
-            <a href="#" class="back-button">
-                <i class="fas fa-arrow-up"></i> Volver al inicio
-            </a>
+            <a href="#" class="back-button"><i class="fas fa-arrow-up"></i> Volver al inicio</a>
         </div>
     </div>
 
     <script>
-        // Funcionalidad de búsqueda mejorada
-        document.addEventListener('DOMContentLoaded', function() {
-            const searchButton = document.getElementById('searchButton');
-            const searchInput = document.getElementById('searchInput');
-            const searchResults = document.getElementById('searchResults');
-            const legalContent = document.getElementById('legalContent');
-            
-            // Función para realizar la búsqueda
-            function performSearch() {
-                const searchTerm = searchInput.value.trim().toLowerCase();
-                
-                if (searchTerm === '') {
-                    searchResults.style.display = 'none';
-                    searchResults.innerHTML = '';
-                    removeHighlights();
-                    return;
-                }
-                
-                // Restaurar contenido original
-                removeHighlights();
-                
-                // Buscar en el contenido
-                const contentText = legalContent.textContent.toLowerCase();
-                if (!contentText.includes(searchTerm)) {
-                    searchResults.style.display = 'block';
-                    searchResults.innerHTML = '<p class="no-results">No se encontraron resultados para: "' + searchTerm + '"</p>';
-                    return;
-                }
-                
-                // Resaltar términos encontrados
-                highlightSearchTerms(searchTerm);
-                
-                // Mostrar resultados
-                searchResults.style.display = 'block';
-                searchResults.innerHTML = '<p>Resultados de búsqueda para: "' + searchTerm + '"</p>';
-                
-                // Desplazar al primer resultado
-                const firstHighlight = document.querySelector('.search-highlight');
-                if (firstHighlight) {
-                    firstHighlight.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
-            }
-            
-            // Función para resaltar términos de búsqueda
-            function highlightSearchTerms(term) {
-                const elements = legalContent.querySelectorAll('p, li, .article-title, .article-content');
-                
-                elements.forEach(element => {
-                    const originalHTML = element.innerHTML;
-                    const regex = new RegExp(term, 'gi');
-                    const newHTML = originalHTML.replace(regex, match => 
-                        `<span class="search-highlight">${match}</span>`
-                    );
-                    
-                    if (newHTML !== originalHTML) {
-                        element.innerHTML = newHTML;
-                    }
-                });
-            }
-            
-            // Función para eliminar resaltados anteriores
-            function removeHighlights() {
-                const highlights = document.querySelectorAll('.search-highlight');
-                highlights.forEach(highlight => {
-                    const parent = highlight.parentNode;
-                    parent.replaceChild(document.createTextNode(highlight.textContent), highlight);
-                    parent.normalize();
-                });
-            }
-            
-            // Event listeners
-            searchButton.addEventListener('click', performSearch);
-            
-            searchInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    performSearch();
-                }
-            });
-            
-            // Botón volver al inicio
-            document.querySelector('.back-button').addEventListener('click', function(e) {
-                e.preventDefault();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        });
-    </script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const searchButton = document.getElementById('searchButton');
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+        const searchRoot = document.body;
 
+        const strip = s => s.normalize('NFD').replace(/\p{Diacritic}/gu, '');
+
+        function removeHighlights() {
+          const highlights = document.querySelectorAll('.search-highlight');
+          highlights.forEach(h => {
+            const parent = h.parentNode;
+            parent.replaceChild(document.createTextNode(h.textContent), h);
+            parent.normalize();
+          });
+        }
+
+        function highlightSearchTerms(term) {
+          const elements = searchRoot.querySelectorAll('p, li, .article-title, .article-content');
+          elements.forEach(el => {
+            const original = el.innerHTML;
+            const normalized = strip(original.toLowerCase());
+            if (!normalized.includes(term)) return;
+            el.innerHTML = original.replace(
+              new RegExp(term.normalize('NFD').replace(/\p{Diacritic}/gu,''), 'gi'),
+              match => <span class="search-highlight">${match}</span>
+            );
+          });
+        }
+
+        function performSearch() {
+          const raw = searchInput.value.trim();
+          const term = strip(raw.toLowerCase());
+          removeHighlights();
+          searchResults.style.display = 'none';
+          searchResults.innerHTML = '';
+
+          if (!term) return;
+
+          const fullText = strip(searchRoot.textContent.toLowerCase());
+          if (!fullText.includes(term)) {
+            searchResults.style.display = 'block';
+            searchResults.innerHTML = <p class="no-results">No se encontraron resultados para: "${raw}"</p>;
+            return;
+          }
+
+          highlightSearchTerms(term);
+          searchResults.style.display = 'block';
+          searchResults.innerHTML = <p>Resultados de búsqueda para: "${raw}"</p>;
+
+          const first = document.querySelector('.search-highlight');
+          if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        searchButton.addEventListener('click', performSearch);
+        searchInput.addEventListener('keypress', e => {
+          if (e.key === 'Enter') performSearch();
+        });
+
+        document.querySelector('.back-button').addEventListener('click', function(e) {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      });
+    </script>
 </body>
 </html>
 
