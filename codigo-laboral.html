@@ -1,342 +1,449 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Código del Trabajo Paraguay</title>
-<script type="text/javascript" src="mark.js"></script>
-<script type="text/javascript" src="search.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Código del Trabajo Paraguay</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* ===== ESTILOS GENERALES ===== */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* ===== ESTILOS DEL ENCABEZADO SINTRASPAP ===== */
+        .header-container {
+            width: 100%;
+            max-width: 100%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 20px;
+            background: white;
+        }
 
-<style type="text/css">
-/* ===== ESTILOS DEL ENCABEZADO SINTRASPAP ===== */
-.header-container {
-  width: 100%;
-  max-width: 100%;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  margin-bottom: 20px;
-}
+        .top-bar {
+            background: linear-gradient(135deg, #0b2a59 0%, #1e4f9a 100%);
+            color: white;
+            padding: 8px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 13px;
+        }
 
-.top-bar {
-  background: linear-gradient(135deg, #0b2a59 0%, #1e4f9a 100%);
-  color: white;
-  padding: 8px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 13px;
-}
+        .contact-info {
+            display: flex;
+            gap: 15px;
+        }
 
-.contact-info {
-  display: flex;
-  gap: 15px;
-}
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: opacity 0.3s;
+        }
 
-.contact-info a {
-  color: white;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  transition: opacity 0.3s;
-}
+        .contact-info a:hover {
+            opacity: 0.8;
+        }
 
-.contact-info a:hover {
-  opacity: 0.8;
-}
+        .social-icons {
+            display: flex;
+            gap: 10px;
+        }
 
-.social-icons {
-  display: flex;
-  gap: 10px;
-}
+        .social-icons a {
+            color: white;
+            font-size: 14px;
+            transition: transform 0.3s;
+        }
 
-.social-icons a {
-  color: white;
-  font-size: 14px;
-  transition: transform 0.3s;
-}
+        .social-icons a:hover {
+            transform: translateY(-2px);
+        }
 
-.social-icons a:hover {
-  transform: translateY(-2px);
-}
+        .main-header {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
 
-.main-header {
-  background: white;
-  padding: 15px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #e5e7eb;
-}
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
 
-.logo-container {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #0b2a59 0%, #1e4f9a 100%);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 32px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(11, 42, 89, 0.3);
+        }
 
-.logo {
-  width: 60px;
-  height: 60px;
-  background: linear-gradient(135deg, #0b2a59 0%, #1e4f9a 100%);
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  font-size: 24px;
-  font-weight: bold;
-}
+        .titles h1 {
+            color: #0b2a59;
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
 
-.titles h1 {
-  color: #0b2a59;
-  font-size: 22px;
-  margin-bottom: 3px;
-}
+        .titles p {
+            color: #1e4f9a;
+            font-size: 16px;
+            font-weight: 500;
+            margin: 0;
+        }
 
-.titles p {
-  color: #1e4f9a;
-  font-size: 14px;
-  font-weight: 500;
-}
+        .cta-button {
+            background: linear-gradient(135deg, #0b2a59 0%, #1e4f9a 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(11, 42, 89, 0.25);
+            font-size: 16px;
+            margin-top: 10px;
+        }
 
-.cta-button {
-  background: linear-gradient(135deg, #0b2a59 0%, #1e4f9a 100%);
-  color: white;
-  padding: 8px 16px;
-  border-radius: 30px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s;
-  box-shadow: 0 4px 10px rgba(11, 42, 89, 0.25);
-  font-size: 14px;
-}
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(11, 42, 89, 0.35);
+        }
 
-.cta-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 15px rgba(11, 42, 89, 0.35);
-}
+        /* ===== ESTILOS DE NAVEGACIÓN ===== */
+        .topnav {
+            background-color: #0b2a59;
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
 
-/* ===== ESTILOS EXISTENTES DEL CÓDIGO DEL TRABAJO ===== */
-.topnav {
-  overflow: hidden;
-  background-color: #333;
-  position: fixed;
-  width: 100%;
-  bottom: 0;
-  margin-left:-8px;
-}
-.topnav #myLinks {
-  display: none;
-  font-family: Arial, 'Times New Roman', Times, serif;
-}
-.topnav a {
-  color: white;
-  padding: 11px 10px;
-  text-decoration: none;
-  font-size: 14px;
-  display: block;
-}
-.topnav a.icon {
-  background: black;
-  display: block;
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-.topnav a.home {
-  background: black;
-  display: block;
-  position: absolute;
-  left: 0;
-  top: 0;
-}
-.topnav a:hover {
-  background-color: #ddd;
-  color: black;
-}
-.active {
-  background-color: #04AA6D;
-  color: white;
-}
-h1 {
-	text-align: center;
-	font-size: 1.4em;
-	font-family: Arial, 'Times New Roman', Times, serif;
-	color: #0000FF;
-    padding:0px;
-	margin:3px;	
-}
-p, ol, li {
-	font-family: Arial, 'Times New Roman', Times, serif;
-	font-size: 12pt;  
-}
-.slogan {
-    font-family: Arial, 'Times New Roman', Times, serif;
-    font-size: 10pt;
-	color: #0000ff;
-	text-align:center;
-}
-h2,h3,h4,h5,h6 {
-	text-align: center;
-	font-size: 1.0em;
-	font-family: Arial, 'Times New Roman', Times, serif;
-	color: #0000FF;
-    padding:0px;
-	margin:1px;	
-}
-.b1 {  
-	margin-top:2px;
-	margin-bottom:2px;
-	margin-right:1px;
-    text-align: center;
-    padding: 2px 2px;
-    border-radius: 5px;
-    background: #000;
-    text-shadow: #591717 3px 2px 1px;
-    font: normal normal bold 20px arial;
-    color: #ffffff;
-    text-decoration: none;
-	font-family: Arial, 'Times New Roman', Times, serif;
-}
-.a1 {
-    vertical-align: middle;
-	width: 50%; height: 2em;
-	margin-bottom:3px;
-	font-size: 0.8em;
-}
-mark {
-  background: yellow;
-}
-mark.current {
-  background: #33C8FF;
-  padding: 2px;
-}
-table, th, td {
-  border: 1px solid black;
-  font-family: Arial, 'Times New Roman', Times, serif;
-}
-.hidden {
-  display: none;
-}
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 900px;
+            padding: 0 20px;
+        }
 
-/* Responsive */
-@media (max-width: 900px) {
-  .main-header {
-    flex-direction: column;
-    gap: 15px;
-    text-align: center;
-  }
-  
-  .contact-info {
-    flex-direction: column;
-    gap: 8px;
-  }
-  
-  .top-bar {
-    flex-direction: column;
-    gap: 12px;
-    padding: 8px 15px;
-  }
-  
-  .titles h1 {
-    font-size: 20px;
-  }
-  
-  .titles p {
-    font-size: 13px;
-  }
-}
+        .home-button {
+            background: #1e4f9a;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: background 0.3s;
+        }
 
-.content {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 20px;
-}
-</style>
+        .home-button:hover {
+            background: #153e7a;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .search-input {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            width: 200px;
+        }
+
+        .search-button {
+            background: #1e4f9a;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .search-button:hover {
+            background: #153e7a;
+        }
+
+        /* ===== ESTILOS DEL CONTENIDO ===== */
+        .page-title {
+            text-align: center;
+            color: #0b2a59;
+            font-size: 28px;
+            margin: 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #1e4f9a;
+        }
+
+        .slogan {
+            font-family: Arial, sans-serif;
+            font-size: 12pt;
+            color: #1e4f9a;
+            text-align: center;
+            background: #f0f5ff;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .legal-content {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+
+        .legal-section {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            color: #0b2a59;
+            font-size: 20px;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .article-title {
+            color: #1e4f9a;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .article-content {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .back-to-top {
+            display: block;
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .back-button {
+            background: #0b2a59;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .back-button:hover {
+            background: #1e4f9a;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .top-bar {
+                flex-direction: column;
+                gap: 10px;
+                padding: 10px;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 8px;
+                align-items: center;
+            }
+            
+            .nav-content {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .search-container {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .search-input {
+                width: 100%;
+            }
+            
+            .titles h1 {
+                font-size: 24px;
+            }
+            
+            .titles p {
+                font-size: 14px;
+            }
+        }
+    </style>
 </head>
-<body class="content">
-
-<!-- Encabezado SINTRASPAP -->
-<div class="header-container">
-  <!-- Top bar with contact info -->
-  <div class="top-bar">
-    <div class="contact-info">
-      <a href="tel:+595992644708">
-        <i class="fas fa-phone"></i> +595 992 644 708
-      </a>
-      <a href="mailto:sintraspappy@gmail.com">
-        <i class="fas fa-envelope"></i> sintraspappy@gmail.com
-      </a>
+<body>
+    <!-- Encabezado SINTRASPAP -->
+    <div class="header-container">
+        <!-- Top bar with contact info -->
+        <div class="top-bar">
+            <div class="contact-info">
+                <a href="tel:+595992644708">
+                    <i class="fas fa-phone"></i> +595 992 644 708
+                </a>
+                <a href="mailto:sintraspappy@gmail.com">
+                    <i class="fas fa-envelope"></i> sintraspappy@gmail.com
+                </a>
+            </div>
+            <div class="social-icons">
+                <a href="#">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#">
+                    <i class="fab fa-x-twitter"></i>
+                </a>
+                <a href="#">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Main header with logo and title -->
+        <div class="main-header">
+            <div class="logo-container">
+                <div class="logo">S</div>
+                <div class="titles">
+                    <h1>SINTRASPAP</h1>
+                    <p>Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay</p>
+                </div>
+            </div>
+            <a href="#contacto" class="cta-button">Únete al sindicato</a>
+        </div>
     </div>
-    <div class="social-icons">
-      <a href="https://www.facebook.com/share/16oD8u6Nu1/" target="_blank">
-        <i class="fab fa-facebook-f"></i>
-      </a>
-      <a href="https://x.com/sintraspap_py" target="_blank">
-        <i class="fab fa-x-twitter"></i>
-      </a>
-      <a href="https://wa.me/595992644708" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-      </a>
+
+    <!-- Navigation Menu -->
+    <div class="topnav">
+        <div class="nav-content">
+            <a href="#" class="home-button">
+                <i class="fas fa-home"></i> Inicio
+            </a>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Buscar en el código...">
+                <button class="search-button">Buscar</button>
+            </div>
+        </div>
     </div>
-  </div>
-  
-  <!-- Main header with logo and title -->
-  <div class="main-header">
-    <div class="logo-container">
-      <div class="logo">S</div>
-      <div class="titles">
-        <h1>SINTRASPAP</h1>
-        <p>Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay</p>
-      </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <h1 class="page-title">Código del Trabajo Paraguay</h1>
+        
+        <p class="slogan">
+            <i>Actualizado: 01.02.2025</i>
+        </p>
+
+        <div class="legal-content">
+            <p style="color:#1e4f9a; font-style: italic; text-align: center;">Código del Trabajo de la República del Paraguay</p>
+
+            <div class="legal-section">
+                <p align="center" style="color:#0b2a59; font-weight: bold;">LIBRO PRIMERO <br>Disposiciones Generales y Contrato Individual de Trabajo</p>
+                <p align="center" style="color:#0b2a59; font-weight: bold;">TITULO PRIMERO <br>Disposiciones Generales</p>
+                <p align="center" style="color:#0b2a59; font-weight: bold;">CAPITULO I <br>Del Objeto y Aplicación del Código</p>
+            </div>
+
+            <div class="legal-section">
+                <div class="article-title">Artículo 1.</div>
+                <div class="article-content">
+                    <p>Este Código establece los derechos y obligaciones de trabajadores y empleadores en el ámbito laboral de la República del Paraguay.</p>
+                    <p>Sus disposiciones son de orden público y de cumplimiento obligatorio en todo el territorio nacional.</p>
+                </div>
+            </div>
+
+            <div class="legal-section">
+                <div class="article-title">Artículo 2.</div>
+                <div class="article-content">
+                    <p>Las disposiciones de este Código se aplican a todos los contratos de trabajo celebrados en el territorio de la República, cualquiera sea su forma o denominación.</p>
+                </div>
+            </div>
+
+            <div class="legal-section">
+                <div class="article-title">Artículo 3.</div>
+                <div class="article-content">
+                    <p>Los principios que informan este Código son:</p>
+                    <ol>
+                        <li>Protección del trabajador</li>
+                        <li>Igualdad de trato y no discriminación</li>
+                        <li>Irrenunciabilidad de derechos</li>
+                        <li>Continuidad de la relación laboral</li>
+                        <li>Primacía de la realidad</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="back-to-top">
+            <a href="#" class="back-button">
+                <i class="fas fa-arrow-up"></i> Volver al inicio
+            </a>
+        </div>
     </div>
-    <a href="#contacto" class="cta-button">Únete al sindicato</a>
-  </div>
-</div>
 
-<!-- Navigation Menu -->
-<div class="topnav">
-  <a class="home" href="index.html"><img src="home.png" style="width:22px;height:20px;"></a>
-  <div align="right">
-    <input class="a1" type="search" placeholder="..........">
-    <button id="searchButton" class="b1"><img src="search-button.png" style="width:24px; height:20px;"></button>
-    <button class="b1 hidden" data-search="prev">&uarr;&uarr;&uarr;</button>
-    <button class="b1 hidden" data-search="next">&darr;&darr;&darr;</button>
-  </div>
-</div>
-
-<script>
-  // Get reference to the activate button
-  var searchButton = document.getElementById("searchButton");
-
-  // Get references to all eligible buttons
-  var eligibleButtons = document.querySelectorAll(".b1");
-
-  // Function to activate eligible buttons
-  function activateButtons() {
-    // Loop through each eligible button and remove the 'hidden' class
-    eligibleButtons.forEach(function(button) {
-      button.classList.remove("hidden");
-    });
-  }
-
-  // Add click event listener to activate button
-  searchButton.addEventListener("click", activateButtons);
-</script>
-
-<h1><img src="gerb.png" style="height:80px;"><br>Código del Trabajo Paraguay</h1>
-<hr>
-
-<p class="slogan"><i><marquee width="100%" direction="left">Actualizado: 01.02.2025</marquee></i></p>
-<hr>
-
-<p style="color:blue; font-style: italic;">Código del Trabajo de la República del Paraguay</p>
-
-<p align="center" style="color:blue; font-weight: bold;">LIBRO PRIMERO <br>Disposiciones Generales y Contrato Individual de Trabajo</p>
-<p align="center" style="color:blue; font-weight: bold;">TITULO PRIMERO <br>Disposiciones Generales</p>
-<p align="center" style="color:blue; font-weight: bold;">CAPITULO I <br>Del Objeto y Aplicación del Código</p>
-<p style="font-weight: bold;">Artículo 1.</p>
+    <script>
+        // Funcionalidad básica de búsqueda
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchButton = document.querySelector('.search-button');
+            const searchInput = document.querySelector('.search-input');
+            
+            searchButton.addEventListener('click', function() {
+                if (searchInput.value.trim() !== '') {
+                    alert('Búsqueda realizada: ' + searchInput.value);
+                    searchInput.value = '';
+                } else {
+                    alert('Por favor, ingrese un término de búsqueda');
+                }
+            });
+            
+            // Permitir búsqueda con Enter
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    searchButton.click();
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>
