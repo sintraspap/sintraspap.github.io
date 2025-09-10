@@ -74,11 +74,13 @@
                 <a href="tel:+595992644708"><i class="fas fa-phone"></i> +595 992 644 708</a>
                 <a href="mailto:sintraspappy@gmail.com"><i class="fas fa-envelope"></i> sintraspappy@gmail.com</a>
             </div>
+
             <div class="social-icons">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-x-twitter"></i></a>
-                <a href="#"><i class="fab fa-whatsapp"></i></a>
-            </div>
+  <a href="https://www.facebook.com/sintraspap" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+  <a href="https://twitter.com/sintraspap_py" target="_blank" rel="noopener"><i class="fab fa-x-twitter"></i></a>
+  <a href="https://wa.me/595992644708" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+</div>
+
         </div>
         <div class="main-header">
             <div class="logo-container">
@@ -115,83 +117,6 @@
                 <p align="center" style="color:var(--azul); font-weight: bold;">LIBRO PRIMERO <br>Disposiciones Generales y Contrato Individual de Trabajo</p>
                 <p align="center" style="color:var(--azul); font-weight: bold;">TITULO PRIMERO <br>Disposiciones Generales</p>
                 <p align="center" style="color:var(--azul); font-weight: bold;">CAPITULO I <br>Del Objeto y Aplicación del Código</p>
-            </div>
-            <!-- Aquí irían los artículos completos -->
-        </div>
-
-        <div class="back-to-top">
-            <a href="#" class="back-button"><i class="fas fa-arrow-up"></i> Volver al inicio</a>
-        </div>
-    </div>
-
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const searchButton = document.getElementById('searchButton');
-        const searchInput = document.getElementById('searchInput');
-        const searchResults = document.getElementById('searchResults');
-        const searchRoot = document.body;
-
-        const strip = s => s.normalize('NFD').replace(/\p{Diacritic}/gu, '');
-
-        function removeHighlights() {
-          const highlights = document.querySelectorAll('.search-highlight');
-          highlights.forEach(h => {
-            const parent = h.parentNode;
-            parent.replaceChild(document.createTextNode(h.textContent), h);
-            parent.normalize();
-          });
-        }
-
-        function highlightSearchTerms(term) {
-          const elements = searchRoot.querySelectorAll('p, li, .article-title, .article-content');
-          elements.forEach(el => {
-            const original = el.innerHTML;
-            const normalized = strip(original.toLowerCase());
-            if (!normalized.includes(term)) return;
-            el.innerHTML = original.replace(
-              new RegExp(term.normalize('NFD').replace(/\p{Diacritic}/gu,''), 'gi'),
-              match => <span class="search-highlight">${match}</span>
-            );
-          });
-        }
-
-        function performSearch() {
-          const raw = searchInput.value.trim();
-          const term = strip(raw.toLowerCase());
-          removeHighlights();
-          searchResults.style.display = 'none';
-          searchResults.innerHTML = '';
-
-          if (!term) return;
-
-          const fullText = strip(searchRoot.textContent.toLowerCase());
-          if (!fullText.includes(term)) {
-            searchResults.style.display = 'block';
-            searchResults.innerHTML = <p class="no-results">No se encontraron resultados para: "${raw}"</p>;
-            return;
-          }
-
-          highlightSearchTerms(term);
-          searchResults.style.display = 'block';
-          searchResults.innerHTML = <p>Resultados de búsqueda para: "${raw}"</p>;
-
-          const first = document.querySelector('.search-highlight');
-          if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-
-        searchButton.addEventListener('click', performSearch);
-        searchInput.addEventListener('keypress', e => {
-          if (e.key === 'Enter') performSearch();
-        });
-
-        document.querySelector('.back-button').addEventListener('click', function(e) {
-          e.preventDefault();
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-      });
-    </script>
-</body>
-</html>
 
 <p style="font-weight: bold;">Artículo 1.</p>
 <p>Este Código tiene por objeto establecer normas para regular las relaciones entre los trabajadores y empleadores, concernientes a la prestación subordinada y retribuida de la actividad laboral.</p>
@@ -1671,7 +1596,125 @@
 <p>Comuníquese al Poder Ejecutivo.</p>
 <p>Aprobada por la Honorable Cámara de Diputados a quince días del mes de junio del año un mil novecientos noventa y tres, y por la Honorable Cámara de Senadores, sancionándose la Ley, en virtud del Artículo 161 de la Constitución Nacional de 1967, concordante con el Artículo 3º, Título V, de la Constitución Nacional de 1992, a veinte y nueve días del mes de junio del año un mil novecientos noventa y tres.</p>
 
+        </div>
 
-<br><br><br><br>
+        <div class="back-to-top">
+            <a href="#" class="back-button"><i class="fas fa-arrow-up"></i> Volver al inicio</a>
+        </div>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const searchButton = document.getElementById('searchButton');
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+        const searchRoot = document.body;
+
+        const strip = s => s.normalize('NFD').replace(/\p{Diacritic}/gu, '');
+
+        function removeHighlights() {
+          const highlights = document.querySelectorAll('.search-highlight');
+          highlights.forEach(h => {
+            const parent = h.parentNode;
+            parent.replaceChild(document.createTextNode(h.textContent), h);
+            parent.normalize();
+          });
+        }
+
+        function highlightSearchTerms(term) {
+          const elements = searchRoot.querySelectorAll('p, li, .article-title, .article-content');
+          elements.forEach(el => {
+            const original = el.innerHTML;
+            const normalized = strip(original.toLowerCase());
+            if (!normalized.includes(term)) return;
+            el.innerHTML = original.replace(
+              new RegExp(term.normalize('NFD').replace(/\p{Diacritic}/gu,''), 'gi'),
+              match => <span class="search-highlight">${match}</span>
+            );
+          });
+        }
+
+        function performSearch() {
+          const raw = searchInput.value.trim();
+          const term = strip(raw.toLowerCase());
+          removeHighlights();
+          searchResults.style.display = 'none';
+          searchResults.innerHTML = '';
+
+          if (!term) return;
+
+          const fullText = strip(searchRoot.textContent.toLowerCase());
+          if (!fullText.includes(term)) {
+            searchResults.style.display = 'block';
+            searchResults.innerHTML = <p class="no-results">No se encontraron resultados para: "${raw}"</p>;
+            return;
+          }
+
+          highlightSearchTerms(term);
+          searchResults.style.display = 'block';
+          searchResults.innerHTML = <p>Resultados de búsqueda para: "${raw}"</p>;
+
+          const first = document.querySelector('.search-highlight');
+          if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        searchButton.addEventListener('click', performSearch);
+        searchInput.addEventListener('keypress', e => {
+          if (e.key === 'Enter') performSearch();
+        });
+
+        document.querySelector('.back-button').addEventListener('click', function(e) {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      });
+    </script>
+
+<script>
+document.getElementById("searchButton").addEventListener("click", function() {
+  const input = document.getElementById("searchInput").value.trim();
+  const content = document.getElementById("legalContent");
+  const results = document.getElementById("searchResults");
+
+  // limpiar resaltados anteriores
+  const oldMarks = content.querySelectorAll(".search-highlight");
+  oldMarks.forEach(el => {
+    el.outerHTML = el.innerText;
+  });
+
+  if (input.length < 2) {
+    results.style.display = "block";
+    results.innerHTML = "<p class='no-results'>Ingrese al menos 2 caracteres</p>";
+    return;
+  }
+
+  const regex = new RegExp(input, "gi");
+  let matches = 0;
+
+  content.querySelectorAll("p").forEach(p => {
+    if (p.innerText.match(regex)) {
+      matches++;
+      p.innerHTML = p.innerText.replace(regex, match =>
+        `<span class="search-highlight">${match}</span>`
+      );
+    }
+  });
+
+  results.style.display = "block";
+  if (matches > 0) {
+    results.innerHTML = `<p>🔎 Se encontraron <strong>${matches}</strong> coincidencias para "<em>${input}</em>".</p>`;
+  } else {
+    results.innerHTML = "<p class='no-results'>No se encontraron coincidencias</p>";
+  }
+});
+
+// enter para buscar
+document.getElementById("searchInput").addEventListener("keydown", function(e) {
+  if (e.key === "Enter") {
+    document.getElementById("searchButton").click();
+  }
+});
+</script>
+
 </body>
 </html>
