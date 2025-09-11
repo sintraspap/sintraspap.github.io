@@ -403,13 +403,13 @@ if (contenedorAnuncios) {
 
   // Inicializar
   renderAnuncio();
-  const interval = setInterval(cambiarAnuncio, 5000);
+  const interval = setInterval(cambiarAnuncio, 8000);
 
   // Pausar al pasar el mouse, reanudar al salir
   contenedorAnuncios.addEventListener('mouseenter', () => clearInterval(interval));
   contenedorAnuncios.addEventListener('mouseleave', () => {
     clearInterval(interval); // Limpia el anterior para evitar acumulación
-    window.anuncioInterval = setInterval(cambiarAnuncio, 5000);
+    window.anuncioInterval = setInterval(cambiarAnuncio, 8000);
   });
 }
 </script>
