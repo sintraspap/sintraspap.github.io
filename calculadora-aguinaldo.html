@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora de Aguinaldo - Paraguay</title>
+    <!-- ✅ FONT AWESOME MOVIDO AQUÍ, FUERA DEL <style> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         :root {
             --primary: #3498db;
@@ -477,5 +479,19 @@
             document.getElementById('resultado').scrollIntoView({ behavior: 'smooth' });
         }
     </script>
+
+    <!-- ✅ BOTÓN DE VOLVER A LEYES -->
+    <div style="text-align: center; margin: 40px 0 20px;">
+      <a href="index.html#leyes" 
+         style="background: #2c3e50; color: white; padding: 14px 28px; border-radius: 8px; 
+                display: inline-block; font-weight: bold; text-decoration: none; 
+                font-size: 16px; transition: background 0.3s ease, transform 0.2s ease;
+                box-shadow: 0 3px 8px rgba(44, 62, 80, 0.3);"
+         onmouseover="this.style.background='#1a252f'; this.style.transform='translateY(-2px)';"
+         onmouseout="this.style.background='#2c3e50'; this.style.transform='translateY(0)';">
+        <i class="fa fa-arrow-left"></i> Volver a Leyes
+      </a>
+    </div>
+
 </body>
 </html>
