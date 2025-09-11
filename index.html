@@ -369,48 +369,49 @@ footer .muted {
 
   </div><!-- /#news-container -->
 
-  <!-- JS: SOLO el carrusel de anuncios (corregido) -->
-  <script>
-  // Mensajes del carrusel
-  const anuncios = [
-    '📢 <a href="#ofertas" style="color: white; text-decoration: underline;">¡Revisa las nuevas ofertas laborales en nuestra sección de empleos!</a>',
-    '🔔 <a href="https://wa.me/595992644708" style="color: white; text-decoration: underline;" target="_blank">¿Necesitas asesoramiento legal? Contáctanos por WhatsApp</a>',
-    '📋 <a href="#leyes" style="color: white; text-decoration: underline;">Conoce tus derechos laborales en la sección de Leyes</a>',
-    '💼 <a href="#directorio" style="color: white; text-decoration: underline;">Empresas de seguridad habilitadas - Ver directorio actualizado</a>',
-    '👥 <a href="#contacto" style="color: white; text-decoration: underline;">¡Únete a nuestro sindicato! Protegemos tus derechos laborales</a>'
-  ];
+ <!-- JS: Carrusel dinámico de anuncios (corregido y optimizado) -->
+<script>
+// Mensajes del carrusel (con URLs limpias y correctas)
+const anuncios = [
+  '📢 <a href="#ofertas" style="color: white; text-decoration: underline;">¡Revisa las nuevas ofertas laborales en nuestra sección de empleos!</a>',
+  '🔔 <a href="https://wa.me/595992644708" style="color: white; text-decoration: underline;" target="_blank">¿Necesitas asesoramiento legal? Contáctanos por WhatsApp</a>',
+  '📋 <a href="#leyes" style="color: white; text-decoration: underline;">Conoce tus derechos laborales en la sección de Leyes</a>',
+  '💼 <a href="#directorio" style="color: white; text-decoration: underline;">Empresas de seguridad habilitadas - Ver directorio actualizado</a>',
+  '👥 <a href="#contacto" style="color: white; text-decoration: underline;">¡Únete a nuestro sindicato! Protegemos tus derechos laborales</a>'
+];
 
-  let anuncioIndex = 0;
-  const contenedorAnuncios = document.getElementById('carrusel-anuncios');
+let anuncioIndex = 0;
+const contenedorAnuncios = document.getElementById('carrusel-anuncios');
 
-  // Dibuja el anuncio actual
+if (contenedorAnuncios) {
   function renderAnuncio() {
-    contenedorAnuncios.innerHTML =
-      <p style="margin:0;font-size:18px;font-weight:600;color:white;">${anuncios[anuncioIndex]}</p>;
+    contenedorAnuncios.innerHTML = `
+      <p style="margin:0; font-size:18px; font-weight:600; color:white;">
+        ${anuncios[anuncioIndex]}
+      </p>
+    `;
   }
 
-  // Cambia al siguiente anuncio con fade
   function cambiarAnuncio() {
-    if (!contenedorAnuncios) return;
-    contenedorAnuncios.style.transition = 'opacity .5s ease';
     contenedorAnuncios.style.opacity = '0';
     setTimeout(() => {
       anuncioIndex = (anuncioIndex + 1) % anuncios.length;
       renderAnuncio();
-      // vuelve a mostrar
-      setTimeout(() => { contenedorAnuncios.style.opacity = '1'; }, 50);
-    }, 500);
+      contenedorAnuncios.style.opacity = '1';
+    }, 300);
   }
 
-  // Inicializa carrusel
-  if (contenedorAnuncios) {
-    renderAnuncio(); // mostrar el primero
+  // Inicializar
+  renderAnuncio();
+  const interval = setInterval(cambiarAnuncio, 5000);
+
+  // Pausar al pasar el mouse, reanudar al salir
+  contenedorAnuncios.addEventListener('mouseenter', () => clearInterval(interval));
+  contenedorAnuncios.addEventListener('mouseleave', () => {
+    clearInterval(interval); // Limpia el anterior para evitar acumulación
     window.anuncioInterval = setInterval(cambiarAnuncio, 5000);
-    contenedorAnuncios.addEventListener('mouseenter', () => clearInterval(window.anuncioInterval));
-    contenedorAnuncios.addEventListener('mouseleave', () => {
-      window.anuncioInterval = setInterval(cambiarAnuncio, 5000);
-    });
-  }
+  });
+}
 </script>
 
 </section>
