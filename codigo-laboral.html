@@ -1,20 +1,389 @@
-<div class="content">
-  <h1 class="page-title">Código del Trabajo Paraguay</h1>
-  <p class="slogan"><i>Actualizado: 01.02.2025</i></p>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Código del Trabajo Paraguay - SINTRASPAP</title>
+  <meta name="description" content="Código del Trabajo de Paraguay actualizado y con buscador. SINTRASPAP - Sindicato Nacional de Trabajadores de la Seguridad Privada">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="icon" href="favicon-32x32.png" sizes="32x32" type="image/png">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --azul: #0b2a59;
+      --azul-hover: #1e4f9a;
+      --borde: #e5e7eb;
+      --gris: #666;
+    }
+    
+    * {
+      box-sizing: border-box;
+    }
+    
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, 'Segoe UI', Roboto, Arial, sans-serif;
+      background: #fff;
+      color: #111;
+      line-height: 1.6;
+    }
+    
+    /* Header */
+    header {
+      background: var(--azul);
+      color: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 2px 8px rgba(11, 42, 89, 0.2);
+    }
+    
+    .head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 900;
+      font-size: 24px;
+    }
+    
+    .brand img {
+      height: 48px;
+      width: auto;
+    }
+    
+    .back-home {
+      background: var(--azul-hover);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    
+    .back-home:hover {
+      background: #2a5bb8;
+    }
+    
+    /* Contenido principal */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    /* Buscador */
+    .search-container {
+      background: #f8fafc;
+      border: 2px solid var(--azul);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 20px 0;
+      text-align: center;
+    }
+    
+    .search-title {
+      color: var(--azul);
+      font-size: 24px;
+      font-weight: bold;
+      margin: 0 0 16px 0;
+    }
+    
+    .search-box {
+      display: flex;
+      gap: 10px;
+      max-width: 600px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+    }
+    
+    .search-input {
+      flex: 1;
+      min-width: 300px;
+      padding: 12px 16px;
+      border: 1px solid var(--borde);
+      border-radius: 8px;
+      font-size: 16px;
+      font-family: inherit;
+    }
+    
+    .search-button {
+      background: var(--azul);
+      color: #fff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    
+    .search-button:hover {
+      background: var(--azul-hover);
+    }
+    
+    .search-results {
+      margin-top: 16px;
+      padding: 12px;
+      background: #fff;
+      border-radius: 8px;
+      display: none;
+    }
+    
+    .search-highlight {
+      background: #ffea70;
+      padding: 2px 4px;
+      border-radius: 3px;
+      font-weight: 600;
+    }
+    
+    .ok-results {
+      color: var(--azul);
+      font-weight: 600;
+      margin: 6px 0;
+    }
+    
+    .no-results {
+      color: #dc3545;
+      font-style: italic;
+      margin: 6px 0;
+    }
+    
+    /* Encabezado legal */
+    .legal-headers {
+      text-align: center;
+      margin: 30px 0 20px;
+      padding: 20px;
+      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+      border-radius: 12px;
+      border: 1px solid var(--borde);
+    }
+    
+    .legal-headers .lh-title {
+      color: var(--azul);
+      font-size: 28px;
+      font-weight: bold;
+      margin: 0 0 15px 0;
+    }
+    
+    .legal-headers .lh-sub {
+      color: var(--azul-hover);
+      font-size: 18px;
+      font-weight: 600;
+      margin: 8px 0;
+      line-height: 1.4;
+    }
+    
+    /* Contenido legal */
+    .legal-content {
+      background: #fff;
+      border: 1px solid var(--borde);
+      border-radius: 12px;
+      padding: 30px;
+      margin: 20px 0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+    
+    .legal-content p {
+      margin: 0 0 16px 0;
+      text-align: justify;
+    }
+    
+    .legal-content p[style*="font-weight: bold"],
+    .legal-content p[align="center"] {
+      color: var(--azul);
+      font-weight: bold !important;
+      text-align: center !important;
+      margin: 24px 0 16px 0;
+      font-size: 18px;
+    }
+    
+    .legal-content p[align="center"][style*="color:red"] {
+      color: #dc3545 !important;
+      font-size: 20px;
+      margin: 30px 0 20px 0;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    /* Botón volver al inicio */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 40;
+    }
+    
+    .back-button {
+      background: var(--azul);
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(11, 42, 89, 0.3);
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .back-button:hover {
+      background: var(--azul-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(11, 42, 89, 0.4);
+    }
+    
+    /* Footer */
+    footer {
+      background: #091f40;
+      color: #fff;
+      margin-top: 40px;
+      padding: 30px 0;
+      text-align: center;
+    }
+    
+    footer p {
+      margin: 10px 0;
+      color: #fff !important;
+    }
+    
+    footer a {
+      color: #fff;
+      text-decoration: underline;
+    }
+    
+    .footer-social {
+      display: flex;
+      gap: 18px;
+      justify-content: center;
+      margin: 20px 0;
+    }
+    
+    .footer-social a {
+      color: #fff;
+      font-size: 24px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      transition: all 0.15s;
+      text-decoration: none;
+    }
+    
+    .footer-social a:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .head {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+      }
+      
+      .brand {
+        font-size: 20px;
+      }
+      
+      .search-box {
+        flex-direction: column;
+      }
+      
+      .search-input {
+        min-width: auto;
+      }
+      
+      .container {
+        padding: 16px;
+      }
+      
+      .legal-content {
+        padding: 20px;
+      }
+      
+      .back-to-top {
+        bottom: 20px;
+        right: 20px;
+      }
+      
+      .legal-headers .lh-title {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
 
-  <!-- Cabecera legal SIN caja -->
-  <section class="legal-headers" aria-label="Encabezado del Código">
-    <p class="lh-title">Código del Trabajo de la República del Paraguay</p>
-    <p class="lh-sub"><strong>LIBRO PRIMERO</strong><br>Disposiciones Generales y Contrato Individual de Trabajo</p>
-    <p class="lh-sub"><strong>TITULO PRIMERO</strong><br>Disposiciones Generales</p>
-    <p class="lh-sub"><strong>CAPITULO I</strong><br>Del Objeto y Aplicación del Código</p>
-  </section>
+<body>
+  <!-- Header con branding de SINTRASPAP -->
+  <header>
+    <div class="head">
+      <div class="brand">
+        <img src="logo-sintraspap.png" alt="Logo SINTRASPAP" onerror="this.style.display='none'">
+        <span>SINTRASPAP</span>
+      </div>
+      <a href="index.html" class="back-home">
+        <i class="fas fa-home"></i> Volver al inicio
+      </a>
+    </div>
+  </header>
 
-  <!-- Mensajes de resultados -->
-  <div id="searchResults" class="search-results" style="display:none;"></div>
+  <div class="container">
+    <!-- Buscador mejorado -->
+    <div class="search-container">
+      <h2 class="search-title">
+        <i class="fas fa-search"></i> Buscador de Artículos
+      </h2>
+      <div class="search-box">
+        <input 
+          type="search" 
+          id="searchInput" 
+          class="search-input"
+          placeholder="Buscar artículos, palabras clave..." 
+          aria-label="Buscar en el Código del Trabajo"
+        >
+        <button id="searchButton" class="search-button">
+          <i class="fas fa-search"></i> Buscar
+        </button>
+      </div>
+      <div id="searchResults" class="search-results"></div>
+    </div>
 
-  <!-- Contenido legal EN caja -->
-  <div class="legal-content" id="legalContent">
+    <!-- Encabezado legal -->
+    <div class="legal-headers">
+      <h1 class="lh-title">Código del Trabajo de la República del Paraguay</h1>
+      <p class="lh-sub"><strong>LIBRO PRIMERO</strong><br>Disposiciones Generales y Contrato Individual de Trabajo</p>
+      <p class="lh-sub"><strong>TITULO PRIMERO</strong><br>Disposiciones Generales</p>
+      <p class="lh-sub"><strong>CAPITULO I</strong><br>Del Objeto y Aplicación del Código</p>
+      <p style="margin-top: 20px; color: #666; font-style: italic;">
+        Actualizado: 01.02.2025 | Presentado por SINTRASPAP
+      </p>
+    </div>
+
+    <!-- Contenido legal -->
+    <div class="legal-content" id="legalContent">
     <p style="font-weight: bold;">Artículo 1.</p>
 <p>Este Código tiene por objeto establecer normas para regular las relaciones entre los trabajadores y empleadores, concernientes a la prestación subordinada y retribuida de la actividad laboral.</p>
 <p style="font-weight: bold;">Artículo 2.</p>
@@ -1493,232 +1862,203 @@
 <p>Comuníquese al Poder Ejecutivo.</p>
 <p>Aprobada por la Honorable Cámara de Diputados a quince días del mes de junio del año un mil novecientos noventa y tres, y por la Honorable Cámara de Senadores, sancionándose la Ley, en virtud del Artículo 161 de la Constitución Nacional de 1967, concordante con el Artículo 3º, Título V, de la Constitución Nacional de 1992, a veinte y nueve días del mes de junio del año un mil novecientos noventa y tres.</p>
 
-</div>
 
+    </div>
   </div>
 
-  <!-- ÚNICO botón volver al inicio -->
+  <!-- Botón volver al inicio -->
   <div class="back-to-top">
-    <a href="#" class="back-button"><i class="fas fa-arrow-up"></i> Volver al inicio</a>
+    <a href="#" class="back-button">
+      <i class="fas fa-arrow-up"></i> Volver arriba
+    </a>
   </div>
-</div>
 
-<style>
-  /* Estilos del encabezado legal (fuera de la caja) */
-  .legal-headers { text-align: center; margin: 20px 0 10px }
-  .legal-headers .lh-title { color: var(--azul-hover); font-style: italic; margin: 0 0 10px }
-  .legal-headers .lh-sub { color: var(--azul); margin: 6px 0; line-height: 1.35 }
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p><strong>SINTRASPAP</strong> - Sindicato Nacional de Trabajadores de la Seguridad Privada y Afines del Paraguay</p>
+      <p>Defendiendo los derechos laborales desde 2024</p>
+      
+      <div class="footer-social">
+        <a href="https://www.facebook.com/share/17MGniwXdL/" target="_blank" rel="noopener" aria-label="Facebook">
+          <i class="fa-brands fa-facebook-f"></i>
+        </a>
+        <a href="https://x.com/sintraspap_py" target="_blank" rel="noopener" aria-label="X (Twitter)">
+          <i class="fa-brands fa-x-twitter"></i>
+        </a>
+        <a href="https://wa.me/595992644708" target="_blank" rel="noopener" aria-label="WhatsApp">
+          <i class="fa-brands fa-whatsapp"></i>
+        </a>
+      </div>
+      
+      <p>© 2025 SINTRASPAP - Código del Trabajo de Paraguay</p>
+    </div>
+  </footer>
 
-  /* Resaltado de búsqueda */
-  .search-highlight { background: #ffea70; padding: 0 2px; border-radius: 3px }
-  .ok-results { color: var(--azul); margin: 6px 0 }
-  .no-results { color: #dc3545; font-style: italic; margin: 6px 0 }
-</style>
+  <!-- JavaScript para el buscador y funcionalidades -->
+  <script>
+    // Elementos del DOM
+    const searchInput = document.getElementById("searchInput");
+    const searchButton = document.getElementById("searchButton");
+    const searchResults = document.getElementById("searchResults");
+    const searchRoot = document.getElementById("legalContent");
 
-<script>
+    if (!searchInput || !searchButton || !searchResults || !searchRoot) {
+      console.error('Elementos del buscador no encontrados');
+    }
+
+    // Función para quitar diacríticos (acentos)
+    const strip = (s) => s.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+    // Eliminar highlights previos
+    function removeHighlights() {
+      const spans = searchRoot.querySelectorAll("span.search-highlight");
+      spans.forEach((span) => {
+        span.replaceWith(document.createTextNode(span.textContent));
+      });
+    }
+
+    // Verificar si es una etiqueta prohibida para highlight
+    function isForbiddenTag(el) {
+      if (!el) return false;
+      const tag = el.tagName;
+      return tag === "SCRIPT" || tag === "STYLE" || tag === "NOSCRIPT";
+    }
+
+    // Función principal de búsqueda y resaltado
+    function highlightAll(term) {
+      if (!term) return 0;
+      const termStripped = strip(term).toLowerCase();
+      if (!termStripped) return 0;
+
+      let count = 0;
+      const walker = document.createTreeWalker(
+        searchRoot,
+        NodeFilter.SHOW_TEXT,
+        {
+          acceptNode(node) {
+            if (!node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+            if (isForbiddenTag(node.parentElement)) return NodeFilter.FILTER_REJECT;
+            if (node.parentElement && node.parentElement.classList &&
+                node.parentElement.classList.contains("search-highlight")) {
+              return NodeFilter.FILTER_REJECT;
+            }
+            return NodeFilter.FILTER_ACCEPT;
+          },
+        }
+      );
+
+      const textNodes = [];
+      while (walker.nextNode()) textNodes.push(walker.currentNode);
+
+      textNodes.forEach((node) => {
+        const original = node.nodeValue;
+        const indexMap = [];
+        let lowered = "";
+        
+        for (let i = 0; i < original.length; i++) {
+          const piece = strip(original[i]);
+          for (let k = 0; k < piece.length; k++) {
+            lowered += piece[k].toLowerCase();
+            indexMap.push(i);
+          }
+        }
+
+        let pos = 0;
+        const matches = [];
+        while (true) {
+          const found = lowered.indexOf(termStripped, pos);
+          if (found === -1) break;
+          matches.push([found, found + termStripped.length]);
+          pos = found + termStripped.length;
+        }
+        if (matches.length === 0) return;
+
+        let currentNode = node;
+        for (let i = matches.length - 1; i >= 0; i--) {
+          const [s, e] = matches[i];
+          const startOriginal = indexMap[s];
+          const endOriginal = indexMap[e - 1] + 1;
+          const matchText = original.substring(startOriginal, endOriginal);
+          
+          const after = currentNode.splitText(endOriginal);
+          const before = after.splitText(startOriginal - (currentNode === node ? 0 : currentNode.length));
+          
+          const highlightSpan = document.createElement("span");
+          highlightSpan.className = "search-highlight";
+          highlightSpan.textContent = matchText;
+          
+          before.parentNode.replaceChild(highlightSpan, before);
+          count++;
+        }
+      });
+
+      return count;
+    }
+
+   // Función principal de búsqueda
 function doSearch() {
   const raw = searchInput.value.trim();
   const term = strip(raw).toLowerCase();
-
-  // para evitar inyección de HTML
-  const esc = (s) => s.replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
   removeHighlights();
   searchResults.style.display = "block";
 
   if (!term) {
-    searchResults.innerHTML = <p class="no-results">Escribí algo para buscar.</p>;
+    searchResults.innerHTML = '<p class="no-results">Escribí algo para buscar.</p>';
     return;
   }
 
   const total = highlightAll(term);
+  const escapedRaw = raw.replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
   if (total > 0) {
-    searchResults.innerHTML =
-      `<p class="ok-results">Se ${total === 1 ? "encontró" : "encontraron"} ` +
-      <strong>${total}</strong> ${total === 1 ? "coincidencia" : "coincidencias"} para "<em>${esc(raw)}</em>".</p>;
+    searchResults.innerHTML = `
+      <p class="ok-results">
+        Se ${total === 1 ? "encontró" : "encontraron"} 
+        <strong>${total}</strong> 
+        ${total === 1 ? "coincidencia" : "coincidencias"} para 
+        <em>${escapedRaw}</em>.
+      </p>`;
+    
     const first = searchRoot.querySelector(".search-highlight");
     if (first) first.scrollIntoView({ behavior: "smooth", block: "center" });
   } else {
-    searchResults.innerHTML =
-      <p class="no-results">No se encontraron resultados para "<em>${esc(raw)}</em>".</p>;
+    searchResults.innerHTML = `
+      <p class="no-results">
+        No se encontraron resultados para <em>${escapedRaw}</em>.
+      </p>`;
   }
 }
 
-  // Click + Enter
-  searchButton.addEventListener("click", doSearch);
-  searchInput.addEventListener("keydown", (e) => { if (e.key === "Enter") doSearch(); });
+    // Event listeners
+    if (searchButton) {
+      searchButton.addEventListener("click", doSearch);
+    }
 
-  // Único botón "Volver al inicio"
-  document.querySelector(".back-button")?.addEventListener("click", (e) => {
-    e.preventDefault();
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
-})();
-</script>
-
-</body>
-</html>
-
-
-
-<div class="back-to-top">
-  <a href="#" class="back-button"><i class="fas fa-arrow-up"></i> Volver al inicio</a>
-</div>
-</div>
-
-<style>
-/* Resaltado de búsqueda */
-.search-highlight {
-  background: #ffea70;
-  padding: 0 2px;
-  border-radius: 3px;
-}
-.ok-results { color: #0b2a59; margin: 6px 0; }
-.no-results { color: #666; margin: 6px 0; }
-</style>
-
-<script>
-/* ==================================================
-   Buscador con resaltado (acentos-insensible)
-   ================================================== */
-(function () {
-  const searchInput = document.getElementById("searchInput");
-  const searchButton = document.getElementById("searchButton");
-  const searchResults = document.getElementById("searchResults");
-  const searchRoot = document.getElementById("legalContent");
-
-  if (!searchInput || !searchButton || !searchResults || !searchRoot) return;
-
-  // Quitar diacríticos para comparar sin acentos
-  const strip = (s) => s.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-
-  // Elimina <span class="search-highlight"> y deja texto plano
-  function removeHighlights() {
-    const spans = searchRoot.querySelectorAll("span.search-highlight");
-    spans.forEach((span) => {
-      span.replaceWith(document.createTextNode(span.textContent));
-    });
-  }
-
-  // No resaltar dentro de estas etiquetas
-  function isForbiddenTag(el) {
-    if (!el) return false;
-    const tag = el.tagName;
-    return tag === "SCRIPT" || tag === "STYLE" || tag === "NOSCRIPT";
-  }
-
-  // Recorre NODOS DE TEXTO y envuelve coincidencias en <span.search-highlight>
-  function highlightAll(term) {
-    if (!term) return 0;
-    const termStripped = strip(term).toLowerCase();
-    if (!termStripped) return 0;
-
-    let count = 0;
-    const walker = document.createTreeWalker(
-      searchRoot,
-      NodeFilter.SHOW_TEXT,
-      {
-        acceptNode(node) {
-          if (!node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
-          if (isForbiddenTag(node.parentElement)) return NodeFilter.FILTER_REJECT;
-          if (node.parentElement && node.parentElement.classList &&
-              node.parentElement.classList.contains("search-highlight")) {
-            return NodeFilter.FILTER_REJECT;
-          }
-          return NodeFilter.FILTER_ACCEPT;
-        },
-      }
-    );
-
-    const textNodes = [];
-    while (walker.nextNode()) textNodes.push(walker.currentNode);
-
-    textNodes.forEach((node) => {
-      const original = node.nodeValue;
-      const indexMap = [];
-      let lowered = "";
-      
-      for (let i = 0; i < original.length; i++) {
-        const piece = strip(original[i]);
-        for (let k = 0; k < piece.length; k++) {
-          lowered += piece[k].toLowerCase();
-          indexMap.push(i);
+    if (searchInput) {
+      searchInput.addEventListener("keydown", (e) => { 
+        if (e.key === "Enter") {
+          e.preventDefault();
+          doSearch();
         }
-      }
+      });
+    }
 
-      let pos = 0;
-      const matches = [];
-      while (true) {
-        const found = lowered.indexOf(termStripped, pos);
-        if (found === -1) break;
-        matches.push([found, found + termStripped.length]);
-        pos = found + termStripped.length;
-      }
-      if (matches.length === 0) return;
-
-      let currentNode = node;
-      for (let i = matches.length - 1; i >= 0; i--) {
-        const [s, e] = matches[i];
-        const startOriginal = indexMap[s];
-        const endOriginal = indexMap[e - 1] + 1;
-        const matchText = original.substring(startOriginal, endOriginal);
-        
-        const after = currentNode.splitText(endOriginal);
-        const before = after.splitText(startOriginal - (currentNode === node ? 0 : currentNode.length));
-        
-        const highlightSpan = document.createElement("span");
-        highlightSpan.className = "search-highlight";
-        highlightSpan.textContent = matchText;
-        
-        before.parentNode.replaceChild(highlightSpan, before);
-        count++;
-      }
+    // Botón "Volver arriba"
+    document.querySelector(".back-button")?.addEventListener("click", (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
-    return count;
-  }
-
-  function doSearch() {
-    const raw = searchInput.value.trim();
-    const term = strip(raw).toLowerCase();
-    const esc = (s) => s.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-
-    removeHighlights();
-    searchResults.style.display = "block";
-
-    if (!term) {
-      searchResults.innerHTML = '<p class="no-results">Escribí algo para buscar.</p>';
-      return;
-    }
-
-    const total = highlightAll(term);
-
-    if (total > 0) {
-      searchResults.innerHTML = 
-        `<p class="ok-results">Se ${total === 1 ? "encontró" : "encontraron"} ` +
-        `<strong>${total}</strong> ${total === 1 ? "coincidencia" : "coincidencias"} para "<em>${esc(raw)}</em>".</p>`;
-      const first = searchRoot.querySelector(".search-highlight");
-      if (first) first.scrollIntoView({ behavior: "smooth", block: "center" });
-    } else {
-      searchResults.innerHTML = 
-        `<p class="no-results">No se encontraron resultados para "<em>${esc(raw)}</em>".</p>`;
-    }
-  }
-
-  // Event listeners
-  searchButton.addEventListener("click", doSearch);
-  searchInput.addEventListener("keydown", (e) => { 
-    if (e.key === "Enter") doSearch(); 
-  });
-
-  // Botón "Volver al inicio"
-  document.querySelector(".back-button")?.addEventListener("click", (e) => {
-    e.preventDefault();
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
-})();
-</script>
-
+    // Limpiar highlights al hacer click fuera del área de búsqueda
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.search-container')) {
+        // Opcional: mantener highlights visibles para mejor UX
+        // removeHighlights();
+        // searchResults.style.display = "none";
+      }
+    });
+  </script>
 </body>
 </html>
