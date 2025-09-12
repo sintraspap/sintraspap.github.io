@@ -256,10 +256,11 @@ footer .muted {
 
 <header>
   <div class="container head">
-    <div class="brand">
-      <img src="logo-sintraspap.png" alt="Logo SINTRASPAP" onerror="this.style.display='none'">
-      <span>SINTRASPAP</span>
-    </div>
+   <div class="brand">
+  <img src="logo-sintraspap.png" alt="Logo SINTRASPAP" onerror="this.style.display='none'">
+  <span>SINTRASPAP</span>
+  <span id="fecha-actual" style="margin-left: 12px; font-size: 0.85rem; color: rgba(255,255,255,0.9); font-weight: normal; white-space: nowrap;"></span>
+</div>
     <button class="burger" aria-label="Abrir menú" aria-expanded="false" onclick="document.querySelector('.menu').classList.toggle('show'); this.setAttribute('aria-expanded', document.querySelector('.menu').classList.contains('show'))">
       ☰ Menú
     </button>
@@ -806,5 +807,17 @@ window.addEventListener('DOMContentLoaded', agregarEstadoYLimpiarRubros);
 <script async defer crossorigin="anonymous"
   src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v19.0"
   nonce="sintraspap"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const fechaElement = document.getElementById('fecha-actual');
+    if (fechaElement) {
+      const ahora = new Date();
+      const dia = String(ahora.getDate()).padStart(2, '0');
+      const mes = String(ahora.getMonth() + 1).padStart(2, '0'); // Los meses empiezan en 0
+      const año = ahora.getFullYear();
+      fechaElement.textContent = `${dia}/${mes}/${año}`;
+    }
+  });
+</script>
 </body>
 </html>
