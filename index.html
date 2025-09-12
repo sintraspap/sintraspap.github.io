@@ -256,10 +256,17 @@ footer .muted {
 
 <header>
   <div class="container head">
-   <div class="brand">
-  <img src="logo-sintraspap.png" alt="Logo SINTRASPAP" onerror="this.style.display='none'">
-  <span>SINTRASPAP</span>
-  <span id="fecha-actual" style="margin-left: 12px; font-size: 0.85rem; color: rgba(255,255,255,0.9); font-weight: normal; white-space: nowrap;"></span>
+  <div class="brand">
+  <img src="logo-sintraspap.png" alt="Logo SINTRASPAP" onerror="this.style.display='none'" style="width:64px;height:auto;">
+  <div style="flex-grow: 1; margin-left: 12px;">
+    <span style="font-size: 1.7rem; font-weight: 900; color: #fff; line-height: 1;">SINTRASPAP</span>
+    <small style="display: block; color: rgba(255,255,255,0.85); font-size: 0.8rem; margin-top: 2px;">
+      Sindicato Nacional de Trabajadores de la Seguridad Privada
+    </small>
+  </div>
+  <div style="margin-left: 24px; padding: 6px 12px; background: rgba(255,255,255,0.1); border-radius: 16px; font-size: 0.8rem; font-weight: 500; color: #e0e0e0; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 1px 4px rgba(0,0,0,0.1);">
+    <span id="fecha-actual"></span>
+  </div>
 </div>
     <button class="burger" aria-label="Abrir menú" aria-expanded="false" onclick="document.querySelector('.menu').classList.toggle('show'); this.setAttribute('aria-expanded', document.querySelector('.menu').classList.contains('show'))">
       ☰ Menú
