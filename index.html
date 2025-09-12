@@ -256,15 +256,25 @@ footer .muted {
 
 <header>
   <div class="container head">
-  <div class="brand">
+ <div class="brand">
   <img src="logo-sintraspap.png" alt="Logo SINTRASPAP" onerror="this.style.display='none'" style="width:64px;height:auto;">
-  <div style="flex-grow: 1; margin-left: 12px;">
-    <span style="font-size: 1.7rem; font-weight: 900; color: #fff; line-height: 1;">SINTRASPAP</span>
-    <small style="display: block; color: rgba(255,255,255,0.85); font-size: 0.8rem; margin-top: 2px;">
-      Sindicato Nacional de Trabajadores de la Seguridad Privada
-    </small>
-  </div>
-  <div style="margin-left: 24px; padding: 6px 12px; background: rgba(255,255,255,0.1); border-radius: 16px; font-size: 0.8rem; font-weight: 500; color: #e0e0e0; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 1px 4px rgba(0,0,0,0.1);">
+  
+  <!-- NOMBRE PRINCIPAL: Solo "SINTRASPAP" -->
+  <span style="font-size: 1.7rem; font-weight: 900; color: #fff; line-height: 1; margin-left: 12px;">SINTRASPAP</span>
+
+  <!-- FECHA DENTRO DEL MISMO .BRAND, ALINEADA A LA DERECHA -->
+  <div style="
+    margin-left: auto;
+    padding: 6px 12px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 16px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #e0e0e0;
+    border: 1px solid rgba(255,255,255,0.15);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    white-space: nowrap;
+  ">
     <span id="fecha-actual"></span>
   </div>
 </div>
@@ -814,15 +824,16 @@ window.addEventListener('DOMContentLoaded', agregarEstadoYLimpiarRubros);
 <script async defer crossorigin="anonymous"
   src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v19.0"
   nonce="sintraspap"></script>
-  <script>
+ <script>
   document.addEventListener('DOMContentLoaded', function() {
     const fechaElement = document.getElementById('fecha-actual');
     if (fechaElement) {
       const ahora = new Date();
+      const meses = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
       const dia = String(ahora.getDate()).padStart(2, '0');
-      const mes = String(ahora.getMonth() + 1).padStart(2, '0'); // Los meses empiezan en 0
+      const mes = meses[ahora.getMonth()]; // ¡Sin padStart! Es texto, no número
       const año = ahora.getFullYear();
-      fechaElement.textContent = `${dia}/${mes}/${año}`;
+      fechaElement.textContent = `${dia} ${mes} ${año}`;
     }
   });
 </script>
