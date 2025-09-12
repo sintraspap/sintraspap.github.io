@@ -299,23 +299,85 @@ footer .muted {
   <!-- INICIO -->
 <section id="inicio" class="active">
 
-  <!-- BANNER GRUPO WHATSAPP -->
-  <div style="background:#25D366;color:white;padding:10px 15px;border-radius:8px;margin-bottom:20px;text-align:center;font-size:0.9rem;">
-    📱 <strong>Únete a nuestro grupo de WhatsApp:</strong>
-    <a href="https://chat.whatsapp.com/EOouzAXfu7y3qGDIFkU2bZ"
-       target="_blank" rel="noopener"
-       style="color:white;text-decoration:underline;font-weight:bold;margin-left:5px;">
-      250+ miembros - Unirse aquí
-    </a>
-  </div>
-
-  <!-- ANUNCIOS DINÁMICOS (CARRUSEL DE TEXTO) -->
-  <div class="anuncio-dinamico" style="background:linear-gradient(135deg,#0b2a59 0%,#1e4f9a 100%);border-radius:12px;padding:20px;margin-bottom:24px;text-align:center;box-shadow:0 4px 12px rgba(11,42,89,.2);">
-    <div id="carrusel-anuncios" style="min-height:50px;display:flex;align-items:center;justify-content:center;">
-      <p style="margin:0;font-size:18px;font-weight:600;color:white;">
-        📢 <a href="#ofertas" style="color:white;text-decoration:underline;">¡Revisa las nuevas ofertas laborales!</a>
+  <!-- BANNER Y CARRUSEL EN FILA -->
+  <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 30px; justify-content: center;">
+    
+    <!-- BANNER WHATSAPP (CUADRADO/RECTANGULAR) -->
+    <div style="
+      background: #25D366;
+      color: white;
+      border-radius: 16px;
+      padding: 20px;
+      width: 100%;
+      max-width: 480px;
+      box-shadow: 0 6px 16px rgba(37, 211, 102, 0.3);
+      text-align: center;
+      flex: 1 1 450px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    ">
+      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+        <i class="fab fa-whatsapp" style="font-size: 2rem; color: white;"></i>
+        <strong style="font-size: 1.3rem;">Únete a nuestro grupo de WhatsApp</strong>
+      </div>
+      <p style="margin: 0 0 16px; font-size: 1rem; opacity: 0.95;">
+        250+ miembros - Recibe ofertas laborales en tiempo real.
       </p>
+      <a href="https://chat.whatsapp.com/EOouzAXfu7y3qGDIFkU2bZ"
+         target="_blank" rel="noopener"
+         style="
+           background: white;
+           color: #25D366;
+           padding: 12px 28px;
+           border-radius: 50px;
+           font-weight: bold;
+           font-size: 1rem;
+           text-decoration: none;
+           box-shadow: 0 4px 10px rgba(255,255,255,0.3);
+           transition: all 0.3s ease;
+           min-width: 200px;
+         "
+         onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 14px rgba(255,255,255,0.4)';"
+         onmouseout="this.style.transform='none'; this.style.boxShadow='0 4px 10px rgba(255,255,255,0.3)';">
+        👉 Unirse al Grupo
+      </a>
     </div>
+
+    <!-- CARRUSEL DE ANUNCIOS (MISMO ESTILO) -->
+    <div style="
+      background: linear-gradient(135deg, #0b2a59 0%, #1e4f9a 100%);
+      border-radius: 16px;
+      padding: 20px;
+      width: 100%;
+      max-width: 480px;
+      box-shadow: 0 6px 16px rgba(11, 42, 89, 0.3);
+      text-align: center;
+      flex: 1 1 450px;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    ">
+      <h3 style="margin: 0 0 16px; font-size: 1.3rem; font-weight: 600;">📢 Anuncios Dinámicos</h3>
+      <div id="carrusel-anuncios" style="
+        min-height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        font-size: 1rem;
+        font-weight: 500;
+        line-height: 1.4;
+      ">
+        <p style="margin: 0; color: white;">
+          📢 <a href="#ofertas" style="color: white; text-decoration: underline;">¡Revisa las nuevas ofertas laborales!</a>
+        </p>
+      </div>
+    </div>
+
   </div>
 
   <!-- LISTADO DE NOTICIAS (RESÚMENES + LINK + COMPARTIR) -->
