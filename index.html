@@ -363,6 +363,114 @@ footer .muted {
   transform: translateY(-3px);
   box-shadow: 0 6px 16px rgba(11, 42, 89, 0.3);
 }
+
+/* Efectos para móviles con clase active */
+.card-hover:hover, 
+.card-hover:active, 
+.card-hover.mobile-active,
+.card.mobile-active {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+.btn-primary:hover, 
+.btn-primary:active, 
+.btn-primary.mobile-active {
+    background: var(--azul-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(11, 42, 89, 0.3);
+}
+
+.sponsor-item:hover, 
+.sponsor-item:active, 
+.sponsor-item.mobile-active {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+}
+
+.sponsor-item:hover img,
+.sponsor-item:hover video,
+.sponsor-item.mobile-active img,
+.sponsor-item.mobile-active video {
+    transform: scale(1.03);
+}
+
+.social-icons a:hover, 
+.social-icons a:active, 
+.social-icons a.mobile-active {
+    background: rgba(255,255,255,.3);
+    transform: translateY(-2px) rotate(5deg);
+}
+
+.footer-social a:hover,
+.footer-social a:active,
+.footer-social a.mobile-active {
+    background: rgba(255,255,255,.22);
+    transform: translateY(-4px) scale(1.1);
+}
+
+.afil-logos img:hover,
+.afil-logos img:active,
+.afil-logos img.mobile-active {
+    transform: scale(1.05);
+}
+
+.flogo:hover,
+.flogo:active,
+.flogo.mobile-active {
+    transform: scale(1.05);
+}
+
+.ley-link:hover,
+.ley-link:active,
+.ley-link.mobile-active {
+    background: #1e4f9a;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(11, 42, 89, 0.3);
+}
+
+.whatsapp-banner:hover,
+.whatsapp-banner:active,
+.whatsapp-banner.mobile-active {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+}
+
+.whatsapp-button:hover,
+.whatsapp-button:active,
+.whatsapp-button.mobile-active {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 14px rgba(255,255,255,0.4);
+    background: #f0fff0;
+}
+
+/* Mejora: Aumentar área táctil en móviles */
+@media (max-width: 768px) {
+    .touch-target {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* Mejorar menú para móviles */
+    .menu.show {
+        display: flex;
+        flex-direction: column;
+        background: var(--azul);
+        padding: 10px;
+        border-radius: 0 0 8px 8px;
+    }
+    
+    .menu.show li {
+        margin: 5px 0;
+    }
+    
+    .menu.show a {
+        padding: 12px;
+        display: block;
+    }
+}
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
@@ -1013,6 +1121,27 @@ window.addEventListener('DOMContentLoaded', agregarEstadoYLimpiarRubros);
       fechaElement.textContent = `${dia} ${mes} ${año}`;
     }
   });
+</script>
+<script>
+// Detectar si es un dispositivo táctil
+function isTouchDevice() {
+    return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+}
+
+// Añadir feedback táctil a los elementos
+if (isTouchDevice()) {
+    document.querySelectorAll('.card, .btn-primary, .sponsor-item, .social-icons a, .footer-social a, .afil-logos img, .flogo, .ley-link, .whatsapp-banner, .whatsapp-button').forEach(item => {
+        item.addEventListener('touchstart', function() {
+            this.classList.add('mobile-active');
+        });
+        
+        item.addEventListener('touchend', function() {
+            setTimeout(() => {
+                this.classList.remove('mobile-active');
+            }, 150);
+        });
+    });
+}
 </script>
 </body>
 </html>
