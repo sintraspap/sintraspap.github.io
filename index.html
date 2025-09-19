@@ -965,7 +965,9 @@ function showSection(id){
   if (!id || !document.querySelector(id)) id = '#inicio';
   sections.forEach(s => s.classList.toggle('active', ('#'+s.id) === id));
   links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === id));
+  // --- NUEVA LÍNEA: Cerrar el menú móvil ---
   document.querySelector('.menu')?.classList.remove('show');
+  // ------------------------------------------
 }
 
 function handleHash(){
