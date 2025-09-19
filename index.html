@@ -453,22 +453,44 @@ footer .muted {
         justify-content: center;
     }
     
-    /* Mejorar menú para móviles */
+    /* Mejorar menú para móviles - ¡VERSÍON AMPLIADA! */
     .menu.show {
         display: flex;
         flex-direction: column;
         background: var(--azul);
-        padding: 10px;
-        border-radius: 0 0 8px 8px;
+        padding: 20px 12px; /* Más padding vertical y horizontal */
+        border-radius: 0 0 16px 16px; /* Bordes más redondeados y pronunciados */
+        gap: 8px; /* Espacio consistente entre elementos */
     }
     
     .menu.show li {
-        margin: 5px 0;
+        margin: 0; /* Eliminamos el margen para usar solo 'gap' */
     }
     
     .menu.show a {
-        padding: 12px;
+        padding: 18px 24px; /* Mucho más padding (arriba/abajo y lados) */
         display: block;
+        font-size: 1.15rem; /* Texto más grande */
+        font-weight: 600; /* Texto en negrita para mejor legibilidad */
+        text-align: center; /* Centrado para un look más limpio */
+        color: #fff;
+        text-decoration: none;
+        border-radius: 10px; /* Bordes redondeados para cada botón */
+        background: rgba(255, 255, 255, 0.08); /* Fondo sutil para cada ítem */
+        transition: all 0.2s ease;
+        border: 1px solid rgba(255, 255, 255, 0.15); /* Borde sutil */
+    }
+    
+    .menu.show a:hover,
+    .menu.show a:focus {
+        background: rgba(255, 255, 255, 0.2); /* Hover más pronunciado */
+        transform: translateY(-2px); /* Efecto de elevación sutil */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .menu.show a:active {
+        background: rgba(255, 255, 255, 0.3); /* Feedback táctil al presionar */
+        transform: translateY(0); /* Quitar elevación al presionar */
     }
 }
 </style>
@@ -607,17 +629,15 @@ footer .muted {
       <img src="/images/uploads/imputan1.jpg" alt="Imputan a guardia de seguridad"
            style="max-width:100%;max-height:300px;object-fit:cover;margin-bottom:12px;">
       <p class="muted" style="font-style:italic;">De no creer…</p>
-      <div style="margin-top:8px;">
-        <a href="/noticias/imputan-por-homicidio-doloso-guardia-seguridad/"
-           class="btn-primary">Leer más</a>
-        <a href="https://wa.me/?text=https://sintraspap.github.io/noticias/imputan-por-homicidio-doloso-guardia-seguridad/"
-           target="_blank" rel="noopener"
-           style="margin-left:8px;color:#0b2a59;text-decoration:underline;display:inline-block; transition: all 0.2s ease;" 
-           onmouseover="this.style.color='#1e4f9a'; this.style.textDecoration='none';"
-           onmouseout="this.style.color='#0b2a59'; this.style.textDecoration='underline';">
-          Compartir en WhatsApp
-        </a>
-      </div>
+      <div style="margin-top:8px; display: flex; flex-direction: column; gap: 10px;">
+  <a href="/noticias/..." class="btn-primary">Leer más</a>
+  <a href="https://wa.me/?text=..."
+     style="color:#0b2a59; text-decoration: underline; text-align: center; padding: 8px 0; transition: all 0.2s ease;"
+     onmouseover="this.style.color='#1e4f9a'; this.style.textDecoration='none';"
+     onmouseout="this.style.color='#0b2a59'; this.style.textDecoration='underline';">
+    Compartir en WhatsApp
+  </a>
+</div>
     </article>
 
     <!-- Noticia 3 -->
@@ -627,17 +647,15 @@ footer .muted {
       <img src="/images/uploads/gvd.jpg" alt="Intendenta de CDE destituye a funcionario"
            style="max-width:100%;max-height:300px;object-fit:cover;margin-bottom:12px;">
       <p class="muted" style="font-style:italic;">La intendenta interina de Ciudad del Este destituyó al funcionario tras un violento incidente.</p>
-      <div style="margin-top:8px;">
-        <a href="/noticias/intendenta-cde-destituye-funcionario-violencia-hospital/"
-           class="btn-primary">Leer más</a>
-        <a href="https://wa.me/?text=https://sintraspap.github.io/noticias/intendenta-cde-destituye-funcionario-violencia-hospital/"
-           target="_blank" rel="noopener"
-           style="margin-left:8px;color:#0b2a59;text-decoration:underline;display:inline-block; transition: all 0.2s ease;" 
-           onmouseover="this.style.color='#1e4f9a'; this.style.textDecoration='none';"
-           onmouseout="this.style.color='#0b2a59'; this.style.textDecoration='underline';">
-          Compartir en WhatsApp
-        </a>
-      </div>
+      <div style="margin-top:8px; display: flex; flex-direction: column; gap: 10px;">
+  <a href="/noticias/..." class="btn-primary">Leer más</a>
+  <a href="https://wa.me/?text=..."
+     style="color:#0b2a59; text-decoration: underline; text-align: center; padding: 8px 0; transition: all 0.2s ease;"
+     onmouseover="this.style.color='#1e4f9a'; this.style.textDecoration='none';"
+     onmouseout="this.style.color='#0b2a59'; this.style.textDecoration='underline';">
+    Compartir en WhatsApp
+  </a>
+</div>
     </article>
 
     <!-- Noticia 4 -->
@@ -647,17 +665,15 @@ footer .muted {
       <img src="/images/uploads/spy.jpg" alt="Repudio a agresión contra guardia"
            style="max-width:100%;max-height:300px;object-fit:cover;margin-bottom:12px;">
       <p class="muted" style="font-style:italic;">SINTRASPAP repudia la agresión e insta a sancionar al responsable.</p>
-      <div style="margin-top:8px;">
-        <a href="/noticias/repudio-agresion-guardia-hospital-franco/"
-           class="btn-primary">Leer más</a>
-        <a href="https://wa.me/?text=https://sintraspap.github.io/noticias/repudio-agresion-guardia-hospital-franco/"
-           target="_blank" rel="noopener"
-           style="margin-left:8px;color:#0b2a59;text-decoration:underline;display:inline-block; transition: all 0.2s ease;" 
-           onmouseover="this.style.color='#1e4f9a'; this.style.textDecoration='none';"
-           onmouseout="this.style.color='#0b2a59'; this.style.textDecoration='underline';">
-          Compartir en WhatsApp
-        </a>
-      </div>
+      <div style="margin-top:8px; display: flex; flex-direction: column; gap: 10px;">
+  <a href="/noticias/..." class="btn-primary">Leer más</a>
+  <a href="https://wa.me/?text=..."
+     style="color:#0b2a59; text-decoration: underline; text-align: center; padding: 8px 0; transition: all 0.2s ease;"
+     onmouseover="this.style.color='#1e4f9a'; this.style.textDecoration='none';"
+     onmouseout="this.style.color='#0b2a59'; this.style.textDecoration='underline';">
+    Compartir en WhatsApp
+  </a>
+</div>
     </article>
 
     <!-- Noticia 5 -->
@@ -667,17 +683,15 @@ footer .muted {
       <img src="/images/uploads/spy2.jpg" alt="Reconocimiento al SINTRASPAP"
            style="max-width:100%;max-height:300px;object-fit:cover;margin-bottom:12px;">
       <p class="muted" style="font-style:italic;">El sindicato obtuvo el reconocimiento oficial del Ministerio de Trabajo.</p>
-      <div style="margin-top:8px;">
-        <a href="/noticias/reconocimiento-sintraspap-personeria-gremial/"
-           class="btn-primary">Leer más</a>
-        <a href="https://wa.me/?text=https://sintraspap.github.io/noticias/reconocimiento-sintraspap-personeria-gremial/"
-           target="_blank" rel="noopener"
-           style="margin-left:8px;color:#0b2a59;text-decoration:underline;display:inline-block; transition: all 0.2s ease;" 
-           onmouseover="this.style.color='#1e4f9a'; this.style.textDecoration='none';"
-           onmouseout="this.style.color='#0b2a59'; this.style.textDecoration='underline';">
-          Compartir en WhatsApp
-        </a>
-      </div>
+      <div style="margin-top:8px; display: flex; flex-direction: column; gap: 10px;">
+  <a href="/noticias/..." class="btn-primary">Leer más</a>
+  <a href="https://wa.me/?text=..."
+     style="color:#0b2a59; text-decoration: underline; text-align: center; padding: 8px 0; transition: all 0.2s ease;"
+     onmouseover="this.style.color='#1e4f9a'; this.style.textDecoration='none';"
+     onmouseout="this.style.color='#0b2a59'; this.style.textDecoration='underline';">
+    Compartir en WhatsApp
+  </a>
+</div>
     </article>
 
   </div><!-- /#news-container -->
