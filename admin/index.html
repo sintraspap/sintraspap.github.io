@@ -4,10 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin SINTRASPAP</title>
-  
-  <!-- Cargar Decap CMS -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-  
   <style>
     body { 
       margin: 0; 
@@ -27,18 +24,19 @@
       margin-left: auto;
       margin-right: auto;
     }
-    .error { 
-      background: #ff4444; 
-      color: white; 
-    }
     .back-link {
       display: inline-block;
       margin-top: 20px;
       color: white;
-      text-decoration: underline;
+      text-decoration: none;
       padding: 10px 20px;
       border: 1px solid white;
       border-radius: 5px;
+      transition: all 0.3s;
+    }
+    .back-link:hover {
+      background: white;
+      color: #0b2a59;
     }
   </style>
 </head>
@@ -49,89 +47,32 @@
   <a href="../index.html" class="back-link">← Volver al sitio principal</a>
 
   <script>
-    // Esperar a que Decap CMS se cargue
-    function initCMS() {
+    // Esperar a que CMS esté disponible
+    function initializeCMS() {
       if (typeof CMS !== 'undefined') {
-        document.getElementById('status').textContent = '✅ CMS detectado - Inicializando...';
+        document.getElementById('status').textContent = '✅ CMS cargado - Inicializando...';
         
-        // Configuración CORRECTA para GitHub Pages
-        CMS.init({
-          config: {
-            backend: {
-              name: "github",
-              repo: "sintraspap/sintraspap.github.io", // TU REPOSITORIO
-              branch: "main"
-            },
-            local_backend: true, // Para desarrollo local
-            media_folder: "images/uploads",
-            public_folder: "/images/uploads",
-            collections: [
-              {
-                name: "noticias",
-                label: "Noticias",
-                folder: "content/noticias",
-                create: true,
-                slug: "{{fields.title}}",
-                fields: [
-                  {
-                    label: "Título",
-                    name: "title",
-                    widget: "string",
-                    required: true
-                  },
-                  {
-                    label: "Fecha",
-                    name: "date",
-                    widget: "datetime",
-                    required: true
-                  },
-                  {
-                    label: "Imagen",
-                    name: "image",
-                    widget: "image",
-                    required: true
-                  },
-                  {
-                    label: "Descripción",
-                    name: "description", 
-                    widget: "text",
-                    required: true
-                  },
-                  {
-                    label: "Cuerpo",
-                    name: "body",
-                    widget: "markdown",
-                    required: true
-                  }
-                ]
-              }
-            ]
-          }
-        });
+        // Inicializar CMS - cargará automáticamente config.yml
+        CMS.init();
         
         document.getElementById('status').textContent = '✅ CMS listo - Ya puedes crear noticias';
         
       } else {
-        document.getElementById('status').className = 'status error';
-        document.getElementById('status').textContent = '❌ Error: Decap CMS no se cargó';
+        document.getElementById('status').className = 'status';
+        document.getElementById('status').style.background = '#ff4444';
+        document.getElementById('status').innerHTML = '❌ Error: Decap CMS no se cargó';
       }
     }
 
-    // Intentar inicializar inmediatamente si CMS ya está cargado
-    if (typeof CMS !== 'undefined') {
-      initCMS();
-    } else {
-      // Esperar a que se cargue el script
-      window.addEventListener('load', initCMS);
-      
-      // Timeout de seguridad
-      setTimeout(() => {
-        if (typeof CMS === 'undefined') {
-          document.getElementById('status').className = 'status error';
-          document.getElementById('status').textContent = '❌ Error: No se pudo cargar Decap CMS. Revisa la consola (F12)';
-        }
-      }, 10000);
-    }
+    // Intentar inicializar cuando la página cargue
+    document.addEventListener('DOMContentLoaded', function() {
+      if (typeof CMS !== 'undefined') {
+        initializeCMS();
+      } else {
+        // Esperar a que se cargue el script
+        window.addEventListener('load', initializeCMS);
+      }
+    });
   </script>
 </body>
 </html>
