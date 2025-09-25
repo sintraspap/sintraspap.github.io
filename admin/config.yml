@@ -2,6 +2,7 @@ backend:
   name: git-gateway
   branch: main
 
+# Configuración simple sin roles por ahora
 site_url: https://sintraspap.netlify.app
 
 media_folder: "images/uploads"
