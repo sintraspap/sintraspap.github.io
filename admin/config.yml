@@ -1,0 +1,29 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Configuración de medios (imágenes)
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+# Configuración del sitio
+site_url: "https://sintraspap.github.io"
+display_url: "https://sintraspap.github.io"
+logo_url: "/logo-sintraspap.png"
+
+# Colecciones (tipos de contenido)
+collections:
+  # Noticias
+  - name: "noticias"
+    label: "Noticias"
+    folder: "noticias"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Título", name: "titulo", widget: "string"}
+      - {label: "Fecha", name: "fecha", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD"}
+      - {label: "Imagen Principal", name: "imagen", widget: "image"}
+      - {label: "Descripción Corta", name: "descripcion", widget: "text"}
+      - {label: "Contenido", name: "contenido", widget: "markdown"}
+      - {label: "Categoría", name: "categoria", widget: "string", required: false}
+      - {label: "Publicado", name: "publicado", widget: "boolean", default: true}
