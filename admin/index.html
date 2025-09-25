@@ -8,7 +8,17 @@
 </head>
 <body>
   <script>
-    CMS.init();
+    // Esperar a que se cargue el script de Decap CMS
+    if (typeof CMS !== 'undefined') {
+      CMS.init();
+    } else {
+      // Si no se carga, reintentar después de 1 segundo
+      setTimeout(function() {
+        if (typeof CMS !== 'undefined') {
+          CMS.init();
+        }
+      }, 1000);
+    }
   </script>
 </body>
 </html>
