@@ -4,42 +4,81 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin SINTRASPAP</title>
+  
+  <!-- Cargar Decap CMS desde CDN oficial -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  
   <style>
     body {
       margin: 0;
       padding: 50px;
       font-family: Arial, sans-serif;
-      background: #f5f5f5;
+      background: #0b2a59;
+      color: white;
       text-align: center;
+    }
+    #status {
+      font-size: 18px;
+      margin: 20px 0;
+    }
+    .btn {
+      background: white;
+      color: #0b2a59;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      display: inline-block;
+      margin: 10px;
     }
   </style>
 </head>
 <body>
-  <div id="loading">🔄 Cargando editor de contenido SINTRASPAP...</div>
-  
+  <h1>📝 Admin SINTRASPAP</h1>
+  <div id="status">🔄 Inicializando sistema...</div>
+
   <script>
-    // Esperar a que la página cargue completamente
-    window.addEventListener('load', function() {
-      console.log('Página cargada, verificando CMS...');
+    // Función para inicializar CMS
+    function initializeCMS() {
+      console.log('Verificando CMS...');
       
-      if (typeof CMS !== 'undefined') {
-        console.log('CMS disponible, inicializando...');
-        document.getElementById('loading').textContent = '✅ CMS cargado - Iniciando...';
+      if (window.CMS) {
+        document.getElementById('status').innerHTML = '✅ CMS detectado - Inicializando...';
+        console.log('CMS encontrado, procediendo a inicializar...');
         
         try {
+          // Inicializar Decap CMS
           CMS.init();
+          document.getElementById('status').innerHTML = '🎉 ¡CMS listo! Redirigiendo...';
           console.log('CMS inicializado correctamente');
-          document.getElementById('loading').style.display = 'none';
         } catch (error) {
-          console.error('Error al inicializar CMS:', error);
-          document.getElementById('loading').innerHTML = '❌ Error: ' + error.message;
+          document.getElementById('status').innerHTML = '❌ Error al inicializar: ' + error.message;
+          console.error('Error en CMS.init():', error);
         }
       } else {
-        console.error('CMS no está disponible');
-        document.getElementById('loading').innerHTML = '❌ Error: No se pudo cargar Decap CMS. Recarga la página.';
+        document.getElementById('status').innerHTML = '❌ CMS no disponible. Recarga la página.';
+        console.error('CMS no está definido en window');
       }
-    });
+    }
+
+    // Esperar a que se cargue el script
+    setTimeout(initializeCMS, 2000);
+    
+    // Reintentar después de 5 segundos si falla
+    setTimeout(function() {
+      if (!window.CMS) {
+        document.getElementById('status').innerHTML = '⚠️ Reintentando carga...';
+        initializeCMS();
+      }
+    }, 5000);
   </script>
+
+  <div>
+    <a href="https://github.com/sintraspap/sintraspap.github.io" class="btn" target="_blank">
+      📁 Ver en GitHub
+    </a>
+    <button onclick="location.reload()" class="btn">
+      🔄 Recargar
+    </button>
+  </div>
 </body>
 </html>
