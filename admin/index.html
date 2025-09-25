@@ -6,18 +6,121 @@
   <title>Admin SINTRASPAP</title>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   <style>
-    body { margin: 0; padding: 20px; font-family: Arial; background: #0b2a59; color: white; text-align: center; }
-    .status { background: white; color: #0b2a59; padding: 15px; border-radius: 8px; margin: 20px 0; }
+    body { 
+      margin: 0; 
+      padding: 20px; 
+      font-family: Arial, sans-serif; 
+      background: #0b2a59; 
+      color: white; 
+      text-align: center; 
+    }
+    .status { 
+      background: white; 
+      color: #0b2a59; 
+      padding: 15px; 
+      border-radius: 8px; 
+      margin: 20px 0;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .back-link {
+      display: inline-block;
+      margin-top: 20px;
+      color: white;
+      text-decoration: underline;
+      padding: 10px 20px;
+      border: 1px solid white;
+      border-radius: 5px;
+    }
+    .instructions {
+      background: rgba(255,255,255,0.1);
+      padding: 15px;
+      border-radius: 8px;
+      margin: 20px auto;
+      max-width: 600px;
+      text-align: left;
+    }
   </style>
 </head>
 <body>
   <h1>📝 Admin SINTRASPAP</h1>
   <div class="status">✅ Sistema de administración cargado</div>
-  <p>Puedes ignorar los mensajes técnicos en rojo.</p>
   
+  <div class="instructions">
+    <h3>Instrucciones:</h3>
+    <ol>
+      <li>Haz clic en "Noticias" en el menú lateral</li>
+      <li>Haz clic en "New Noticias" para crear una nueva noticia</li>
+      <li>Completa todos los campos requeridos</li>
+      <li>Haz clic en "Publish" para publicar</li>
+    </ol>
+  </div>
+  
+  <a href="../index.html" class="back-link">← Volver al sitio principal</a>
+
   <script>
     if (window.CMS) {
-      CMS.init();
+      CMS.init({
+        config: {
+          backend: {
+            name: "git-gateway",
+            branch: "main"
+          },
+          locale: 'es',
+          media_folder: "images/uploads",
+          public_folder: "/images/uploads",
+          collections: [
+            {
+              name: "noticias",
+              label: "Noticias",
+              folder: "content/noticias",
+              create: true,
+              slug: "{{slug}}",
+              fields: [
+                { 
+                  label: "Título", 
+                  name: "title", 
+                  widget: "string",
+                  required: true
+                },
+                { 
+                  label: "Fecha", 
+                  name: "date", 
+                  widget: "datetime",
+                  format: "YYYY-MM-DD",
+                  required: true
+                },
+                { 
+                  label: "Imagen Principal", 
+                  name: "image", 
+                  widget: "image",
+                  required: true,
+                  media_library: {
+                    allow_multiple: false
+                  }
+                },
+                { 
+                  label: "Descripción Corta", 
+                  name: "description", 
+                  widget: "text",
+                  required: true
+                },
+                { 
+                  label: "Contenido Completo", 
+                  name: "body", 
+                  widget: "markdown",
+                  required: true
+                }
+              ]
+            }
+          ]
+        }
+      });
+    } else {
+      document.querySelector('.status').innerHTML = '❌ Error: No se pudo cargar Decap CMS';
+      document.querySelector('.status').style.background = '#ff4444';
+      document.querySelector('.status').style.color = 'white';
     }
   </script>
 </body>
