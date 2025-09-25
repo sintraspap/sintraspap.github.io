@@ -5,8 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin SINTRASPAP</title>
   
-  <!-- Cargar Decap CMS desde CDN oficial -->
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <!-- PROBAR DIFERENTES CDNs -->
+  <script src="https://cdn.jsdelivr.net/npm/decap-cms@3.8.3/dist/decap-cms.js"></script>
+  <!-- Si falla, probar este: -->
+  <!-- <script src="https://unpkg.com/decap-cms@3.8.3/dist/decap-cms.js"></script> -->
   
   <style>
     body {
@@ -34,42 +36,38 @@
 </head>
 <body>
   <h1>📝 Admin SINTRASPAP</h1>
-  <div id="status">🔄 Inicializando sistema...</div>
+  <div id="status">🔄 Probando carga de CMS...</div>
 
   <script>
-    // Función para inicializar CMS
-    function initializeCMS() {
-      console.log('Verificando CMS...');
+    function checkCMS() {
+      console.log('Estado de CMS:', typeof CMS);
       
       if (window.CMS) {
-        document.getElementById('status').innerHTML = '✅ CMS detectado - Inicializando...';
-        console.log('CMS encontrado, procediendo a inicializar...');
-        
+        document.getElementById('status').innerHTML = '✅ ¡CMS cargado! Inicializando...';
         try {
-          // Inicializar Decap CMS
           CMS.init();
-          document.getElementById('status').innerHTML = '🎉 ¡CMS listo! Redirigiendo...';
-          console.log('CMS inicializado correctamente');
+          document.getElementById('status').innerHTML = '🎉 ¡Sistema listo!';
         } catch (error) {
-          document.getElementById('status').innerHTML = '❌ Error al inicializar: ' + error.message;
-          console.error('Error en CMS.init():', error);
+          document.getElementById('status').innerHTML = '❌ Error: ' + error.message;
         }
       } else {
-        document.getElementById('status').innerHTML = '❌ CMS no disponible. Recarga la página.';
-        console.error('CMS no está definido en window');
+        document.getElementById('status').innerHTML = '❌ CMS no cargado. Probando alternativa...';
+        
+        // Intentar cargar desde otro CDN
+        const alternativeScript = document.createElement('script');
+        alternativeScript.src = 'https://unpkg.com/decap-cms@3.8.3/dist/decap-cms.js';
+        alternativeScript.onload = function() {
+          document.getElementById('status').innerHTML = '✅ CMS alternativo cargado. Inicializando...';
+          if (window.CMS) {
+            CMS.init();
+          }
+        };
+        document.head.appendChild(alternativeScript);
       }
     }
 
-    // Esperar a que se cargue el script
-    setTimeout(initializeCMS, 2000);
-    
-    // Reintentar después de 5 segundos si falla
-    setTimeout(function() {
-      if (!window.CMS) {
-        document.getElementById('status').innerHTML = '⚠️ Reintentando carga...';
-        initializeCMS();
-      }
-    }, 5000);
+    // Verificar después de 3 segundos
+    setTimeout(checkCMS, 3000);
   </script>
 
   <div>
