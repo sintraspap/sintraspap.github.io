@@ -4,21 +4,29 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin SINTRASPAP</title>
+  
+  <!-- Cargar desde UNPKG (más confiable) -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  
+  <style>
+    body { margin: 0; padding: 50px; text-align: center; font-family: Arial; }
+    #load { font-size: 20px; color: #0b2a59; }
+  </style>
 </head>
 <body>
+  <div id="load">⏳ Cargando editor de contenido...</div>
+  
   <script>
-    // Esperar a que se cargue el script de Decap CMS
-    if (typeof CMS !== 'undefined') {
-      CMS.init();
-    } else {
-      // Si no se carga, reintentar después de 1 segundo
-      setTimeout(function() {
-        if (typeof CMS !== 'undefined') {
-          CMS.init();
-        }
-      }, 1000);
+    // Esperar a que Decap CMS se cargue
+    function checkCMS() {
+      if (window.CMS) {
+        document.getElementById('load').textContent = '✅ CMS cargado - Inicializando...';
+        CMS.init();
+      } else {
+        setTimeout(checkCMS, 500);
+      }
     }
+    setTimeout(checkCMS, 1000);
   </script>
 </body>
 </html>
