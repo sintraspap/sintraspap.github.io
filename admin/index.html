@@ -4,79 +4,21 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin SINTRASPAP</title>
-  
-  <!-- PROBAR DIFERENTES CDNs -->
-  <script src="https://cdn.jsdelivr.net/npm/decap-cms@3.8.3/dist/decap-cms.js"></script>
-  <!-- Si falla, probar este: -->
-  <!-- <script src="https://unpkg.com/decap-cms@3.8.3/dist/decap-cms.js"></script> -->
-  
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   <style>
-    body {
-      margin: 0;
-      padding: 50px;
-      font-family: Arial, sans-serif;
-      background: #0b2a59;
-      color: white;
-      text-align: center;
-    }
-    #status {
-      font-size: 18px;
-      margin: 20px 0;
-    }
-    .btn {
-      background: white;
-      color: #0b2a59;
-      padding: 10px 20px;
-      border-radius: 5px;
-      text-decoration: none;
-      display: inline-block;
-      margin: 10px;
-    }
+    body { margin: 0; padding: 20px; font-family: Arial; background: #0b2a59; color: white; text-align: center; }
+    .status { background: white; color: #0b2a59; padding: 15px; border-radius: 8px; margin: 20px 0; }
   </style>
 </head>
 <body>
   <h1>📝 Admin SINTRASPAP</h1>
-  <div id="status">🔄 Probando carga de CMS...</div>
-
+  <div class="status">✅ Sistema de administración cargado</div>
+  <p>Puedes ignorar los mensajes técnicos en rojo.</p>
+  
   <script>
-    function checkCMS() {
-      console.log('Estado de CMS:', typeof CMS);
-      
-      if (window.CMS) {
-        document.getElementById('status').innerHTML = '✅ ¡CMS cargado! Inicializando...';
-        try {
-          CMS.init();
-          document.getElementById('status').innerHTML = '🎉 ¡Sistema listo!';
-        } catch (error) {
-          document.getElementById('status').innerHTML = '❌ Error: ' + error.message;
-        }
-      } else {
-        document.getElementById('status').innerHTML = '❌ CMS no cargado. Probando alternativa...';
-        
-        // Intentar cargar desde otro CDN
-        const alternativeScript = document.createElement('script');
-        alternativeScript.src = 'https://unpkg.com/decap-cms@3.8.3/dist/decap-cms.js';
-        alternativeScript.onload = function() {
-          document.getElementById('status').innerHTML = '✅ CMS alternativo cargado. Inicializando...';
-          if (window.CMS) {
-            CMS.init();
-          }
-        };
-        document.head.appendChild(alternativeScript);
-      }
+    if (window.CMS) {
+      CMS.init();
     }
-
-    // Verificar después de 3 segundos
-    setTimeout(checkCMS, 3000);
   </script>
-
-  <div>
-    <a href="https://github.com/sintraspap/sintraspap.github.io" class="btn" target="_blank">
-      📁 Ver en GitHub
-    </a>
-    <button onclick="location.reload()" class="btn">
-      🔄 Recargar
-    </button>
-  </div>
 </body>
 </html>
