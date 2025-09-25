@@ -3,9 +3,6 @@ backend:
   repo: sintraspap/sintraspap.github.io
   branch: main
 
-# 🔐 CONFIGURACIÓN SEGURA - usa variables de entorno
-# local_backend: true  # Para desarrollo local
-
 site_url: https://sintraspap.github.io
 
 media_folder: "images/uploads"
