@@ -5,30 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin SINTRASPAP</title>
   
-  <!-- Diferentes opciones para cargar Decap CMS -->
+  <!-- Cargar Decap CMS -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-  
-  <!-- Fallback alternativo -->
-  <script>
-    // Si Decap CMS no carga en 5 segundos, mostrar alternativa
-    setTimeout(function() {
-      if (!window.CMS) {
-        console.log('Cargando fallback...');
-        // Intentar con otro CDN
-        const script = document.createElement('script');
-        script.src = 'https://cdn.jsdelivr.net/npm/decap-cms@^3.0.0/dist/decap-cms.js';
-        document.head.appendChild(script);
-        
-        script.onload = function() {
-          initializeCMS();
-        };
-        
-        script.onerror = function() {
-          showManualOption();
-        };
-      }
-    }, 5000);
-  </script>
   
   <style>
     body { 
@@ -53,15 +31,6 @@
       background: #ff4444; 
       color: white; 
     }
-    .manual-option {
-      background: #ff9800;
-      color: white;
-      padding: 20px;
-      border-radius: 8px;
-      margin: 20px auto;
-      max-width: 600px;
-      text-align: left;
-    }
     .back-link {
       display: inline-block;
       margin-top: 20px;
@@ -71,56 +40,29 @@
       border: 1px solid white;
       border-radius: 5px;
     }
-    .hidden {
-      display: none;
-    }
   </style>
 </head>
 <body>
   <h1>📝 Admin SINTRASPAP</h1>
+  <div id="status" class="status">⏳ Cargando CMS...</div>
   
-  <div id="loading-status" class="status">
-    ⏳ Cargando sistema de administración...
-  </div>
-  
-  <div id="manual-option" class="manual-option hidden">
-    <h3>📋 Opción manual para agregar noticias:</h3>
-    <p>Si el CMS no carga, puedes agregar noticias manualmente:</p>
-    <ol>
-      <li>Crea un archivo .md en la carpeta <code>content/noticias/</code></li>
-      <li>Usa este formato:
-        <pre>
----
-title: "Título de la noticia"
-date: 2025-01-15
-image: "/images/uploads/tu-imagen.jpg"
-description: "Descripción corta de la noticia"
----
-
-Contenido completo de la noticia aquí...
-        </pre>
-      </li>
-      <li>Sube el archivo a tu repositorio</li>
-    </ol>
-  </div>
-
   <a href="../index.html" class="back-link">← Volver al sitio principal</a>
 
-  <div id="cms-root"></div>
-
   <script>
-    function initializeCMS() {
-      if (window.CMS) {
-        document.getElementById('loading-status').className = 'status';
-        document.getElementById('loading-status').innerHTML = '✅ CMS cargado correctamente';
+    // Esperar a que Decap CMS se cargue
+    function initCMS() {
+      if (typeof CMS !== 'undefined') {
+        document.getElementById('status').textContent = '✅ CMS detectado - Inicializando...';
         
+        // Configuración CORRECTA para GitHub Pages
         CMS.init({
           config: {
             backend: {
-              name: "git-gateway",
+              name: "github",
+              repo: "sintraspap/sintraspap.github.io", // TU REPOSITORIO
               branch: "main"
             },
-            locale: 'es',
+            local_backend: true, // Para desarrollo local
             media_folder: "images/uploads",
             public_folder: "/images/uploads",
             collections: [
@@ -129,36 +71,35 @@ Contenido completo de la noticia aquí...
                 label: "Noticias",
                 folder: "content/noticias",
                 create: true,
-                slug: "{{slug}}",
+                slug: "{{fields.title}}",
                 fields: [
-                  { 
-                    label: "Título", 
-                    name: "title", 
+                  {
+                    label: "Título",
+                    name: "title",
                     widget: "string",
                     required: true
                   },
-                  { 
-                    label: "Fecha", 
-                    name: "date", 
+                  {
+                    label: "Fecha",
+                    name: "date",
                     widget: "datetime",
-                    format: "YYYY-MM-DD",
                     required: true
                   },
-                  { 
-                    label: "Imagen Principal", 
-                    name: "image", 
+                  {
+                    label: "Imagen",
+                    name: "image",
                     widget: "image",
                     required: true
                   },
-                  { 
-                    label: "Descripción Corta", 
+                  {
+                    label: "Descripción",
                     name: "description", 
                     widget: "text",
                     required: true
                   },
-                  { 
-                    label: "Contenido Completo", 
-                    name: "body", 
+                  {
+                    label: "Cuerpo",
+                    name: "body",
                     widget: "markdown",
                     required: true
                   }
@@ -167,31 +108,30 @@ Contenido completo de la noticia aquí...
             ]
           }
         });
+        
+        document.getElementById('status').textContent = '✅ CMS listo - Ya puedes crear noticias';
+        
       } else {
-        showError();
+        document.getElementById('status').className = 'status error';
+        document.getElementById('status').textContent = '❌ Error: Decap CMS no se cargó';
       }
     }
-    
-    function showError() {
-      document.getElementById('loading-status').className = 'status error';
-      document.getElementById('loading-status').innerHTML = '❌ Error: No se pudo cargar Decap CMS';
-      document.getElementById('manual-option').classList.remove('hidden');
-    }
-    
-    function showManualOption() {
-      document.getElementById('manual-option').classList.remove('hidden');
-    }
-    
-    // Intentar inicializar cuando la página cargue
-    document.addEventListener('DOMContentLoaded', function() {
-      setTimeout(function() {
-        if (window.CMS) {
-          initializeCMS();
-        } else {
-          showError();
+
+    // Intentar inicializar inmediatamente si CMS ya está cargado
+    if (typeof CMS !== 'undefined') {
+      initCMS();
+    } else {
+      // Esperar a que se cargue el script
+      window.addEventListener('load', initCMS);
+      
+      // Timeout de seguridad
+      setTimeout(() => {
+        if (typeof CMS === 'undefined') {
+          document.getElementById('status').className = 'status error';
+          document.getElementById('status').textContent = '❌ Error: No se pudo cargar Decap CMS. Revisa la consola (F12)';
         }
-      }, 2000);
-    });
+      }, 10000);
+    }
   </script>
 </body>
 </html>
