@@ -2,7 +2,7 @@ backend:
   name: git-gateway
   branch: main
 
-# Configuración para Netlify
+# ConfiguraciÃ³n para Netlify
 publish_mode: editorial_workflow
 site_url: https://sintraspap.netlify.app
 
@@ -10,7 +10,7 @@ site_url: https://sintraspap.netlify.app
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
-# Configuración de colecciones
+# ConfiguraciÃ³n de colecciones
 collections:
   - name: "noticias"
     label: "Noticias"
@@ -20,7 +20,7 @@ collections:
     editor:
       preview: false
     fields:
-      - {label: "Título", name: "title", widget: "string"}
+      - {label: "TÃ­tulo", name: "title", widget: "string"}
       - {label: "Fecha", name: "date", widget: "datetime", default: "{{now}}"}
       - {label: "Imagen", name: "image", widget: "image", required: false}
       - {label: "Resumen", name: "excerpt", widget: "text", required: false}
