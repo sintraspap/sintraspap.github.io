@@ -1,0 +1,25 @@
+backend:
+  name: github
+  repo: sintraspap/sintraspap.github.io
+  branch: main
+
+# 🔐 CONFIGURACIÓN SEGURA - usa variables de entorno
+# local_backend: true  # Para desarrollo local
+
+site_url: https://sintraspap.github.io
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "noticias"
+    label: "Noticias"
+    folder: "noticias"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Título", name: "title", widget: "string", required: true}
+      - {label: "Fecha", name: "date", widget: "datetime", format: "YYYY-MM-DD", required: true}
+      - {label: "Imagen", name: "image", widget: "image", required: false}
+      - {label: "Resumen", name: "excerpt", widget: "text", required: true}
+      - {label: "Contenido", name: "body", widget: "markdown", required: true}
