@@ -2,17 +2,19 @@ backend:
   name: git-gateway
   branch: main
   commit_messages:
-    create: 'Crear {{collection}} "{{slug}}"'
-    update: 'Actualizar {{collection}} "{{slug}}"'
-    delete: 'Eliminar {{collection}} "{{slug}}"'
-    uploadMedia: 'Subir "{{path}}"'
-    deleteMedia: 'Eliminar "{{path}}"'
+    create: 'Crear noticia: {{slug}}'
+    update: 'Actualizar noticia: {{slug}}'
+    delete: 'Eliminar noticia: {{slug}}'
+    uploadMedia: 'Subir imagen: {{path}}'
 
-# Cambiar a simple_workflow para publicación directa
+# Cambio crucial: usar simple_workflow
 publish_mode: simple_workflow
+site_url: https://sintraspap.netlify.app
+
 media_folder: "static/images/uploads"
 public_folder: "/images/uploads"
 
+# Configuración simplificada de collections
 collections:
   - name: "noticias"
     label: "Noticias"
@@ -22,7 +24,7 @@ collections:
     extension: "html"
     fields:
       - { label: "Título", name: "title", widget: "string" }
-      - { label: "Fecha", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
-      - { label: "Resumen", name: "excerpt", widget: "text", required: false }
-      - { label: "Imagen", name: "image", widget: "image", required: false }
-      - { label: "Cuerpo", name: "body", widget: "markdown" }
+      - { label: "Fecha", name: "date", widget: "datetime", format: "YYYY-MM-DD", default: "" }
+      - { label: "Imagen destacada", name: "image", widget: "image", required: false }
+      - { label: "Resumen", name: "excerpt", widget: "text" }
+      - { label: "Contenido", name: "body", widget: "markdown" }
