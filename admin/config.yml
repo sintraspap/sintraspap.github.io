@@ -2,10 +2,8 @@ backend:
   name: git-gateway
   branch: main
 
-# ✅ VALORES VÁLIDOS (usa solo uno):
-publish_mode: editorial_workflow  # ← RECOMENDADO
-# O
-# publish_mode: simple_workflow
+# ⚠️ ELIMINA completamente la línea publish_mode
+# publish_mode: editorial_workflow  ← QUITAR ESTA LÍNEA
 
 site_url: https://sintraspap.netlify.app
 

@@ -1,49 +1,38 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin SINTRASPAP</title>
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SINTRASPAP Admin</title>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-    <!-- Contenedor específico para Decap CMS -->
-    <div id="nc-root"></div>
-    
-    <script>
-        // Cargar Decap CMS después de que todo esté listo
-        document.addEventListener('DOMContentLoaded', function() {
-            const script = document.createElement('script');
-            script.src = 'https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js';
-            script.onload = function() {
-                if (typeof CMS !== 'undefined') {
-                    console.log('Decap CMS cargado');
-                    // Inicializar después de un pequeño delay
-                    setTimeout(() => {
-                        try {
-                            CMS.init();
-                            console.log('CMS inicializado correctamente');
-                        } catch (error) {
-                            console.error('Error al inicializar CMS:', error);
-                        }
-                    }, 100);
-                }
-            };
-            document.head.appendChild(script);
-        });
-
-        // Configuración de Identity
-        if (window.netlifyIdentity) {
-            window.netlifyIdentity.on("init", user => {
-                console.log('Identity inicializado, usuario:', user);
-                if (!user) {
-                    window.netlifyIdentity.on("login", () => {
-                        document.location.href = "/admin/";
-                    });
-                }
-            });
-            window.netlifyIdentity.init();
+  <script>
+    // Cargar Decap CMS de forma asíncrona
+    window.addEventListener('load', function() {
+      const script = document.createElement('script');
+      script.src = 'https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js';
+      script.onload = function() {
+        if (window.CMS) {
+          console.log('Decap CMS loaded successfully');
+          // Inicializar sin parámetros
+          window.CMS.init();
         }
-    </script>
+      };
+      document.head.appendChild(script);
+    });
+
+    // Configuración simple de Identity
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on('init', user => {
+        if (!user) {
+          window.netlifyIdentity.on('login', () => {
+            document.location.href = '/admin/';
+          });
+        }
+      });
+      window.netlifyIdentity.init();
+    }
+  </script>
 </body>
 </html>
