@@ -2,9 +2,10 @@ backend:
   name: git-gateway
   branch: main
 
-# CORREGIR: Los valores válidos son:
-publish_mode: editorial_workflow  # ← valor correcto
-# O usar: simple_workflow (pero editorial_workflow es mejor)
+# ✅ VALORES VÁLIDOS (usa solo uno):
+publish_mode: editorial_workflow  # ← RECOMENDADO
+# O
+# publish_mode: simple_workflow
 
 site_url: https://sintraspap.netlify.app
 
@@ -17,7 +18,7 @@ collections:
     folder: "noticias"
     create: true
     slug: "{{slug}}"
-    extension: "md"  # ← Cambiar a markdown es más seguro
+    extension: "md"
     fields:
       - { label: "Título", name: "title", widget: "string" }
       - { label: "Fecha", name: "date", widget: "datetime", format: "YYYY-MM-DD" }

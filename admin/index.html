@@ -1,42 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SINTRASPAP Admin</title>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin SINTRASPAP</title>
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-  <!-- Contenedor necesario para Decap CMS -->
-  <div id="nc-root"></div>
-  
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-  
-  <script>
-    // Esperar a que todo cargue
-    window.addEventListener('load', function() {
-      if (typeof CMS !== 'undefined') {
-        console.log('Decap CMS cargado correctamente');
-        // Inicialización mínima
-        if (CMS.init) {
-          CMS.init();
-        }
-      } else {
-        console.error('CMS no disponible');
-      }
-    });
+    <!-- Contenedor específico para Decap CMS -->
+    <div id="nc-root"></div>
+    
+    <script>
+        // Cargar Decap CMS después de que todo esté listo
+        document.addEventListener('DOMContentLoaded', function() {
+            const script = document.createElement('script');
+            script.src = 'https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js';
+            script.onload = function() {
+                if (typeof CMS !== 'undefined') {
+                    console.log('Decap CMS cargado');
+                    // Inicializar después de un pequeño delay
+                    setTimeout(() => {
+                        try {
+                            CMS.init();
+                            console.log('CMS inicializado correctamente');
+                        } catch (error) {
+                            console.error('Error al inicializar CMS:', error);
+                        }
+                    }, 100);
+                }
+            };
+            document.head.appendChild(script);
+        });
 
-    // Manejo de Identity
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.on("init", user => {
-        console.log('Identity init, user:', user);
-        if (!user) {
-          window.netlifyIdentity.on("login", () => {
-            document.location.href = "/admin/";
-          });
+        // Configuración de Identity
+        if (window.netlifyIdentity) {
+            window.netlifyIdentity.on("init", user => {
+                console.log('Identity inicializado, usuario:', user);
+                if (!user) {
+                    window.netlifyIdentity.on("login", () => {
+                        document.location.href = "/admin/";
+                    });
+                }
+            });
+            window.netlifyIdentity.init();
         }
-      });
-    }
-  </script>
+    </script>
 </body>
 </html>
