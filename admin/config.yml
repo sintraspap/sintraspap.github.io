@@ -2,26 +2,47 @@ backend:
   name: git-gateway
   branch: main
 
-# ConfiguraciÃ³n para Netlify
 publish_mode: editorial_workflow
 site_url: https://sintraspap.netlify.app
 
-# Archivos multimedia
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
-# ConfiguraciÃ³n de colecciones
 collections:
-  - name: "noticias"
-    label: "Noticias"
+  # 1. Edita lista.json desde el panel (para el inicio)
+  - name: config
+    label: "Configuración del sitio"
+    files:
+      - name: lista-noticias
+        label: "Lista de noticias (inicio)"
+        file: "noticias/lista.json"
+        fields:
+          - name: ""
+            label: "Noticias"
+            widget: "list"
+            summary: "{{fields.titulo}}"
+            field:
+              label: "Noticia"
+              name: ""
+              widget: "object"
+              fields:
+                - { label: "Título", name: "titulo", widget: "string" }
+                - { label: "Fecha", name: "fecha", widget: "datetime", format: "YYYY-MM-DD" }
+                - { label: "Resumen", name: "resumen", widget: "text" }
+                - { label: "URL (ej: /noticias/mi-noticia/)", name: "url", widget: "string" }
+                - { label: "Imagen", name: "imagen", widget: "image", required: false }
+
+  # 2. Crea páginas HTML completas (una por noticia)
+  - name: noticias-html
+    label: "Noticias (HTML completo)"
     folder: "noticias"
     create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    editor:
-      preview: false
+    slug: "{{slug}}/index"   # ← genera /noticias/tu-noticia/index.html
+    extension: "html"
+    format: "frontmatter"
     fields:
-      - {label: "TÃ­tulo", name: "title", widget: "string"}
-      - {label: "Fecha", name: "date", widget: "datetime", default: "{{now}}"}
-      - {label: "Imagen", name: "image", widget: "image", required: false}
-      - {label: "Resumen", name: "excerpt", widget: "text", required: false}
-      - {label: "Contenido", name: "body", widget: "markdown"}
+      - { label: "Título", name: "title", widget: "string" }
+      - { label: "Fecha", name: "date", widget: "datetime", format: "YYYY-MM-DD", default: "{{now}}" }
+      - { label: "Descripción", name: "description", widget: "text", required: false }
+      - { label: "Imagen destacada", name: "image", widget: "image", required: false }
+      - { label: "Contenido HTML", name: "body", widget: "html", minimal: false }
