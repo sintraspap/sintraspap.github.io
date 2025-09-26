@@ -3,26 +3,25 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SINTRASPAP Admin</title>
+  <title>Admin SINTRASPAP</title>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
   <script>
-    // Cargar Decap CMS de forma asíncrona
+    // Cargar Decap CMS después de que todo esté listo
     window.addEventListener('load', function() {
       const script = document.createElement('script');
       script.src = 'https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js';
       script.onload = function() {
         if (window.CMS) {
-          console.log('Decap CMS loaded successfully');
-          // Inicializar sin parámetros
+          console.log('Decap CMS cargado - configurado para subcarpetas');
           window.CMS.init();
         }
       };
       document.head.appendChild(script);
     });
 
-    // Configuración simple de Identity
+    // Configuración de Identity
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on('init', user => {
         if (!user) {
