@@ -14,8 +14,7 @@ collections:
     create: true
     slug: "{{slug}}"
     path: "{{slug}}/index"
-    extension: "md"
-    # ✅ AÑADIR configuración de medios para esta colección:
+    extension: "html"  # ✅ CAMBIAR de "md" a "html"
     media_folder: "static/images/uploads"
     public_folder: "/images/uploads"
     fields:
@@ -26,9 +25,8 @@ collections:
           name: "image", 
           widget: "image", 
           required: false,
-          # ✅ Especificar también a nivel de campo:
           media_folder: "static/images/uploads",
           public_folder: "/images/uploads"
         }
       - { label: "Resumen", name: "excerpt", widget: "text" }
-      - { label: "Cuerpo", name: "body", widget: "markdown" }
+      - { label: "Cuerpo", name: "body", widget: "markdown" }  # ✅ Puedes usar markdown que se convertirá a HTML
