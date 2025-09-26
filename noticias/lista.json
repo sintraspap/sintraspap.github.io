@@ -1,12 +1,5 @@
 [
   {
-    "titulo": "Noticia de Prueba",
-    "fecha": "2025-09-10",
-    "imagen": "/images/uploads/prueba.jpg",
-    "resumen": "⚠️ Esta es una noticia de prueba. No es real.",
-    "url": "/noticias/noticia-de-prueba/"
-  },
-  {
     "titulo": "LA TORTA MILLONARIA DEL MSPBS: ₲2.276 MILLONES PARA SEGURIDAD",
     "fecha": "2025-09-08",
     "imagen": "/images/uploads/licitacionmsp.jpg",
