@@ -1,30 +1,26 @@
 backend:
   name: git-gateway
   branch: main
-  commit_messages:
-    create: 'Crear noticia: {{slug}}'
-    update: 'Actualizar noticia: {{slug}}'
-    delete: 'Eliminar noticia: {{slug}}'
-    uploadMedia: 'Subir imagen: {{path}}'
 
-# Cambio crucial: usar simple_workflow
-publish_mode: simple_workflow
+# CORREGIR: Los valores válidos son:
+publish_mode: editorial_workflow  # ← valor correcto
+# O usar: simple_workflow (pero editorial_workflow es mejor)
+
 site_url: https://sintraspap.netlify.app
 
 media_folder: "static/images/uploads"
 public_folder: "/images/uploads"
 
-# Configuración simplificada de collections
 collections:
   - name: "noticias"
     label: "Noticias"
     folder: "noticias"
     create: true
     slug: "{{slug}}"
-    extension: "html"
+    extension: "md"  # ← Cambiar a markdown es más seguro
     fields:
       - { label: "Título", name: "title", widget: "string" }
-      - { label: "Fecha", name: "date", widget: "datetime", format: "YYYY-MM-DD", default: "" }
-      - { label: "Imagen destacada", name: "image", widget: "image", required: false }
+      - { label: "Fecha", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
+      - { label: "Imagen", name: "image", widget: "image", required: false }
       - { label: "Resumen", name: "excerpt", widget: "text" }
-      - { label: "Contenido", name: "body", widget: "markdown" }
+      - { label: "Cuerpo", name: "body", widget: "markdown" }
