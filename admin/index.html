@@ -3,17 +3,16 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Panel de Administración - SINTRASPAP</title>
-  
-  <!-- Netlify Identity Widget -->
+  <title>Admin - SINTRASPAP</title>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 </head>
 <body>
-  <!-- Netlify CMS App -->
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-  
   <script>
-    // Manejo de autenticación con Netlify Identity
+    // Configuración básica sin complicaciones
+    CMS.init();
+    
+    // Redirección después de login
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on("init", user => {
         if (!user) {
@@ -23,27 +22,6 @@
         }
       });
     }
-    
-    // Manejar errores de CMS
-    window.addEventListener('error', function(e) {
-      console.error('Error detectado:', e.error);
-      if (e.error && e.error.message && e.error.message.includes('appendChild')) {
-        console.error('Problema con la configuración. Verificar config.yml y Identity.');
-      }
-    });
-    
-    // Debug: verificar si config.yml se puede cargar
-    fetch('/admin/config.yml')
-      .then(response => {
-        if (!response.ok) {
-          console.error('No se puede cargar config.yml:', response.status);
-        } else {
-          console.log('config.yml se carga correctamente');
-        }
-      })
-      .catch(error => {
-        console.error('Error cargando config.yml:', error);
-      });
   </script>
 </body>
 </html>
