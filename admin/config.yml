@@ -2,6 +2,8 @@ backend:
   name: git-gateway
   branch: main
 
+site_url: https://sintraspap.netlify.app
+
 media_folder: "static/images/uploads"
 public_folder: "/images/uploads"
 
@@ -11,12 +13,22 @@ collections:
     folder: "noticias"
     create: true
     slug: "{{slug}}"
-    # ✅ AÑADIR esta línea para crear subcarpetas:
     path: "{{slug}}/index"
     extension: "md"
+    # ✅ AÑADIR configuración de medios para esta colección:
+    media_folder: "static/images/uploads"
+    public_folder: "/images/uploads"
     fields:
       - { label: "Título", name: "title", widget: "string" }
       - { label: "Fecha", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
-      - { label: "Imagen", name: "image", widget: "image", required: false }
+      - { 
+          label: "Imagen", 
+          name: "image", 
+          widget: "image", 
+          required: false,
+          # ✅ Especificar también a nivel de campo:
+          media_folder: "static/images/uploads",
+          public_folder: "/images/uploads"
+        }
       - { label: "Resumen", name: "excerpt", widget: "text" }
       - { label: "Cuerpo", name: "body", widget: "markdown" }
