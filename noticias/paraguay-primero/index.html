@@ -1,18 +1,18 @@
-
-
-
+<!DOCTYPE html>
+<html lang="es">
+<head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Paraguay primero</title>
   <meta name="description" content="Siempre py">
   <meta property="og:title" content="Paraguay primero">
   <meta property="og:description" content="Siempre py">
-  <meta property="og:image" content="https://raw.githubusercontent.com/sintraspap/sintraspap.github.io/mainimages/uploads/prueba.jpg">
+  <meta property="og:image" content="https://raw.githubusercontent.com/sintraspap/sintraspap.github.io/main/images/uploads/prueba.jpg">
   <meta property="og:type" content="article">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Paraguay primero">
   <meta name="twitter:description" content="Siempre py">
-  <meta name="twitter:image" content="https://raw.githubusercontent.com/sintraspap/sintraspap.github.io/mainimages/uploads/prueba.jpg">
+  <meta name="twitter:image" content="https://raw.githubusercontent.com/sintraspap/sintraspap.github.io/main/images/uploads/prueba.jpg">
   <link rel="icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
@@ -55,28 +55,46 @@
       .btn{width:100%}
     }
   </style>
+</head>
+<body>
 
-
+<header>
+  <div class="container">
+    <div class="brand">
+      <img src="/logo-sintraspap.png" alt="SINTRASPAP" onerror="this.style.display='none'">
+      <span>SINTRASPAP</span>
+    </div>
+    <nav>
+      <ul class="menu">
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/noticias">Noticias</a></li>
+        <li><a href="/contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
 
 <main class="container">
   <article>
     <h1>Paraguay primero</h1>
     <p class="muted"><strong>25/9/2025</strong></p>
 
-    <img src="https://via.placeholder.com/800x400/0b2a59/ffffff?text=Imagen+no+disponible" alt="Paraguay primero" onerror="this.src='https://via.placeholder.com/800x400/0b2a59/ffffff?text=Imagen+no+disponible'">
+    <img src="https://raw.githubusercontent.com/sintraspap/sintraspap.github.io/main/images/uploads/prueba.jpg" alt="Paraguay primero" onerror="this.src='https://via.placeholder.com/800x400/0b2a59/ffffff?text=Imagen+no+disponible'">
 
     <h2>Siempre py</h2>
+    
+    <p>Contenido del artículo sobre Paraguay primero...</p>
 
     <div class="social-share">
-      <a href="javascript:window.open('https://wa.me/?text=' + encodeURIComponent(document.title) + '%20' + encodeURIComponent(location.href), '_blank')" class="social-btn whatsapp" aria-label="Compartir en WhatsApp"><i class="fab fa-whatsapp"></i></a>
-      <a href="javascript:window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(location.href), '_blank')" class="social-btn facebook" aria-label="Compartir en Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="javascript:window.open('https://wa.me/?text=' + encodeURIComponent(document.title) + '%0A' + encodeURIComponent(location.href), '_blank')" class="social-btn whatsapp" aria-label="Compartir en WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      <a href="javascript:window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(location.href), '_blank')" class="social-btn facebook" aria-label="Compartir en Facebook"><i class="fab fa-facbook-f"></i></a>
       <a href="javascript:window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(location.href) + '&amp;text=' + encodeURIComponent(document.title), '_blank')" class="social-btn twitter" aria-label="Compartir en Twitter"><i class="fab fa-twitter"></i></a>
       <a href="javascript:window.open('https://t.me/share/url?url=' + encodeURIComponent(location.href) + '&amp;text=' + encodeURIComponent(document.title), '_blank')" class="social-btn telegram" aria-label="Compartir en Telegram"><i class="fab fa-telegram-plane"></i></a>
     </div>
 
     <div class="actions">
       <a href="/" class="btn btn-primary">⬅ Volver al inicio</a>
-      <button class="btn btn-secondary" onclick="navigator.clipboard.writeText(location.href).then(()=&gt;{this.textContent='¡Enlace copiado!';setTimeout(()=&gt;this.textContent='Copiar enlace',2000)})">Copiar enlace</button>
+      <button class="btn btn-secondary" onclick="navigator.clipboard.writeText(location.href).then(()=>{this.textContent='¡Enlace copiado!';setTimeout(()=>this.textContent='Copiar enlace',2000)})">Copiar enlace</button>
     </div>
   </article>
 </main>
@@ -92,4 +110,5 @@
   </div>
 </footer>
 
-
+</body>
+</html>
