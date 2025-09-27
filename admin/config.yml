@@ -13,9 +13,18 @@ collections:
     slug: "{{slug}}"
     path: "{{slug}}/index"
     extension: "html"
+    media_folder: ""  # Esto fuerza a usar la ruta global
+    public_folder: ""
     fields:
       - { label: "Título", name: "title", widget: "string" }
       - { label: "Fecha", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
-      - { label: "Imagen", name: "image", widget: "image", required: false }
+      - { 
+          label: "Imagen", 
+          name: "image", 
+          widget: "image", 
+          required: false,
+          media_folder: "images/uploads",  # Ruta absoluta desde raíz
+          public_folder: "/images/uploads"
+        }
       - { label: "Resumen", name: "excerpt", widget: "text" }
       - { label: "Cuerpo", name: "body", widget: "markdown" }
