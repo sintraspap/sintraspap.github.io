@@ -2,16 +2,17 @@ backend:
   name: git-gateway
   branch: main
 
+# IMPORTANTE: Ruta desde la raíz del sitio
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
 collections:
   - name: "noticias"
-    label: "Lista de Noticias"
+    label: "Noticias"
     files:
-      - file: "noticias/lista.json"  # Ruta CORRECTA
-        label: "Lista JSON"
-        name: "lista-noticias"
+      - file: "noticias/lista.json"  # Ruta CORRECTA desde raíz
+        label: "Lista de Noticias"
+        name: "lista"
         fields:
           - {label: "Título", name: "titulo", widget: "string"}
           - {label: "Fecha", name: "fecha", widget: "datetime"}
