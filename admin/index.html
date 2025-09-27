@@ -4,32 +4,43 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin SINTRASPAP</title>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/decap-cms@^3.0.0/dist/cms.css" />
 </head>
 <body>
   <script>
+    // CONFIGURACIÓN DIRECTA - sin archivo externo
     CMS.init({
       config: {
         backend: {
           name: 'git-gateway',
-          branch: 'main'
+          branch: 'main',
+          repo: 'sintraspap/sintraspap.github.io'  // TU REPO
         },
-        load_config_file: true,
-        local_backend: true
+        media_folder: "images/uploads",
+        public_folder: "/images/uploads",
+        collections: [
+          {
+            name: "noticias",
+            label: "Noticias", 
+            files: [
+              {
+                file: "noticias/lista.json",
+                label: "Lista de Noticias",
+                name: "lista",
+                fields: [
+                  { label: "Título", name: "titulo", widget: "string" },
+                  { label: "Fecha", name: "fecha", widget: "datetime" },
+                  { label: "Imagen", name: "imagen", widget: "string" },
+                  { label: "Resumen", name: "resumen", widget: "text" },
+                  { label: "URL", name: "url", widget: "string" }
+                ]
+              }
+            ]
+          }
+        ]
       }
     });
-
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.on("init", user => {
-        if (!user) {
-          window.netlifyIdentity.on("login", () => {
-            document.location.href = "/admin/";
-          });
-        }
-      });
-      window.netlifyIdentity.init();
-    }
   </script>
 </body>
 </html>
