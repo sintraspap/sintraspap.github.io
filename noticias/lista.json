@@ -1,10 +1,10 @@
 [
   {
-    "titulo": "Noticia de Prueba Subcarpetas",
-    "fecha": "2025-09-27",
-    "imagen": "/images/uploads/prueba.jpg",
-    "resumen": "Esta es una noticia de prueba creada desde Decap CMS",
-    "url": "/noticias/noticia-de-prueba-subcarpetas/"
+  "titulo": "Prueba 0001111",
+  "fecha": "2025-09-26",
+  "imagen": "/images/uploads/prueba.jpg",
+  "resumen": "Solo prueba",
+  "url": "/noticias/noticia-de-prueba-subcarpetas/"
   },
   {
     "titulo": "LA TORTA MILLONARIA DEL MSPBS: ₲2.276 MILLONES PARA SEGURIDAD",
