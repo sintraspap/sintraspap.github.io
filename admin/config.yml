@@ -4,22 +4,17 @@ backend:
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
-media_library:
-  name: uploadcare
-  config:
-    publicKey: demopublickey
 
 collections:
   - name: "noticias"
-    label: "Noticias"
-    folder: "noticias"
-    create: true
-    slug: "{{slug}}"
-    path: "{{slug}}/index"
-    extension: "html"
-    fields:
-      - { label: "Título", name: "title", widget: "string" }
-      - { label: "Fecha", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
-      - { label: "Imagen", name: "image", widget: "image", required: false }
-      - { label: "Resumen", name: "excerpt", widget: "text" }
-      - { label: "Cuerpo", name: "body", widget: "html" }  # ✅ CAMBIAR a "html"
+    label: "Lista de Noticias"
+    files:
+      - file: "noticias/lista.json"  # Ruta CORRECTA
+        label: "Lista JSON"
+        name: "lista-noticias"
+        fields:
+          - {label: "Título", name: "titulo", widget: "string"}
+          - {label: "Fecha", name: "fecha", widget: "datetime"}
+          - {label: "Imagen", name: "imagen", widget: "string"}
+          - {label: "Resumen", name: "resumen", widget: "text"}
+          - {label: "URL", name: "url", widget: "string"}
