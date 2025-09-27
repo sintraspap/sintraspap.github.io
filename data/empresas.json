@@ -183,5 +183,8 @@
   { "id": "267", "empresa": "TORRES SOLUCIONES EMPRESARIALES AVANZADAS S.A. - TORRES SOLUCIONES EMPRESARIALES AVANZADAS", "resolucion": "175/2025", "fecha": "2025-08-12", "rubro": "Seguridad Fisica" },
   { "id": "268", "empresa": "TECHNOMA S.A.E.C.A. - TECHNOMA", "resolucion": "174/2025", "fecha": "2025-08-11", "rubro": "Electronica" },
   { "id": "269", "empresa": "FORCE OPTIONS S.A. - FORCE OPTIONS", "resolucion": "157/2025", "fecha": "2025-07-25", "rubro": "Seguridad Fisica" },
-  { "id": "270", "empresa": "SELCOM S.R.L. - SELCOM", "resolucion": "169/2025", "fecha": "2025-08-07", "rubro": "Seguridad Fisica" }
-]
+  { "id": "270", "empresa": "SELCOM S.R.L. - SELCOM", "resolucion": "169/2025", "fecha": "2025-08-07", "rubro": "Seguridad Fisica" },
+  { "id": "271", "empresa": "SEGEL S.A. - SEGEL", "resolucion": "192/2025", "fecha": "2025-09-03", "rubro": "Electronica" },
+  { "id": "272", "empresa": "PROSEVI - PROTECCION SEGURIDAD Y VIGILANCIA E.A.S. - PROSEVI - PROTECCION SEGURIDAD Y VIGILANCIA", "resolucion": "202/2025", "fecha": "2025-09-17", "rubro": "Seguridad Fisica" },
+  { "id": "273", "empresa": "VT SEGURIDAD PRIVADA E.A.S. - VT SEGURIDAD PRIVADA", "resolucion": "205/2025", "fecha": "2025-09-23", "rubro": "Electronica" }
+  ]
