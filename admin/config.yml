@@ -4,7 +4,7 @@ backend:
 
 site_url: https://sintraspap.netlify.app
 
-media_folder: "static/images/uploads"
+media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
 collections:
@@ -14,19 +14,10 @@ collections:
     create: true
     slug: "{{slug}}"
     path: "{{slug}}/index"
-    extension: "html"  # ✅ CAMBIAR de "md" a "html"
-    media_folder: "static/images/uploads"
-    public_folder: "/images/uploads"
+    extension: "html"
     fields:
       - { label: "Título", name: "title", widget: "string" }
       - { label: "Fecha", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
-      - { 
-          label: "Imagen", 
-          name: "image", 
-          widget: "image", 
-          required: false,
-          media_folder: "static/images/uploads",
-          public_folder: "/images/uploads"
-        }
+      - { label: "Imagen", name: "image", widget: "image", required: false }
       - { label: "Resumen", name: "excerpt", widget: "text" }
-      - { label: "Cuerpo", name: "body", widget: "markdown" }  # ✅ Puedes usar markdown que se convertirá a HTML
+      - { label: "Cuerpo", name: "body", widget: "markdown" }
