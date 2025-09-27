@@ -22,4 +22,4 @@ collections:
       - { label: "Fecha", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
       - { label: "Imagen", name: "image", widget: "image", required: false }
       - { label: "Resumen", name: "excerpt", widget: "text" }
-      - { label: "Cuerpo", name: "body", widget: "markdown" }
+      - { label: "Cuerpo", name: "body", widget: "html" }  # ✅ CAMBIAR a "html"
