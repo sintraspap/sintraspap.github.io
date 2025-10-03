@@ -1,6 +1,7 @@
 backend:
-  name: git-gateway
-  branch: main
+  name: github
+  repo: sintraspap/sintraspap.github.io
+  branch: principal
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
@@ -15,6 +16,6 @@ collections:
         fields:
           - {label: "Título", name: "titulo", widget: "string"}
           - {label: "Fecha", name: "fecha", widget: "datetime"}
-          - {label: "Imagen", name: "imagen", widget: "string"}
+          - {label: "Imagen", name: "imagen", widget: "image"}  # 👈 mejor "image" que "string"
           - {label: "Resumen", name: "resumen", widget: "text"}
           - {label: "URL", name: "url", widget: "string"}
