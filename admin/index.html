@@ -7,5 +7,14 @@
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 </head>
 <body>
+  <script>
+    // Inicializar Decap CMS
+    CMS.init();
+    
+    // Opcional: Redirigir al admin después de login
+    if (window.location.pathname === '/admin/') {
+      window.location.href = '/admin/#/';
+    }
+  </script>
 </body>
 </html>
