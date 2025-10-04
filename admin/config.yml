@@ -8,40 +8,20 @@ backend:
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
-# Configuración de publicaciones
-publish_mode: editorial_workflow  # Opcional: para tener borradores
+# Configuración del sitio
 site_url: https://sintraspap.github.io
+display_url: https://sintraspap.github.io
+logo_url: https://sintraspap.github.io/logo-sintraspap.png
 
 collections:
   - name: "noticias"
     label: "Noticias"
     folder: "noticias"
-    path: "{{slug}}/index"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    editor:
-      preview: false
     fields:
       - {label: "Título", name: "titulo", widget: "string"}
-      - {label: "Fecha", name: "fecha", widget: "datetime", format: "YYYY-MM-DD"}
+      - {label: "Fecha", name: "fecha", widget: "datetime"}
       - {label: "Imagen", name: "imagen", widget: "image", required: false}
       - {label: "Resumen", name: "resumen", widget: "text"}
-      - {label: "Contenido", name: "body", widget: "markdown"}
-      - {label: "URL", name: "url", widget: "string", pattern: ["^/.+$", "Debe empezar con /"]}
-
-  - name: "paginas"
-    label: "Páginas"
-    files:
-      - file: "noticias/lista.json"
-        label: "Lista de Noticias"
-        name: "lista-noticias"
-        fields:
-          - label: "Noticias"
-            name: "noticias"
-            widget: "list"
-            fields:
-              - {label: "Título", name: "titulo", widget: "string"}
-              - {label: "Fecha", name: "fecha", widget: "datetime", format: "YYYY-MM-DD"}
-              - {label: "Imagen", name: "imagen", widget: "image", required: false}
-              - {label: "Resumen", name: "resumen", widget: "text"}
-              - {label: "URL", name: "url", widget: "string"}
+      - {label: "URL", name: "url", widget: "string"}
